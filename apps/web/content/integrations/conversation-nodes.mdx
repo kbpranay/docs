@@ -1,0 +1,129 @@
+---
+title: Conversation Nodes
+description: Collect input and render rich conversational UI — Ask User, Gallery Card, Form Card, Picture Card, Video Card, Suggestions, Speak to Agent, LLM Classifier.
+---
+
+import { Callout } from 'nextra/components'
+
+# Conversation Nodes
+
+Conversation (CONV) nodes drive the visible back-and-forth of the conversation — prompting users, rendering rich cards, and branching based on user replies.
+
+## Ask User
+
+Prompts the user for free-text input and stores the reply in a variable.
+
+**Fields:**
+- **Message** — the prompt the user sees
+- **Conditions** — validation rules on the reply
+- **Fallback Message** — shown when validation fails
+- **Variable** — where the reply is stored
+- **Suggestions** — optional quick-reply chips
+- **Show text area** — toggle a full textarea vs a single-line input
+
+## Gallery Card
+
+A horizontally swipeable carousel of cards — good for product catalogs, option lists, or article suggestions.
+
+**Per card:**
+- Card Image URL
+- Float Image URL
+- Title
+- Subtitle
+- Description
+- Add Button (per card, supports multiple)
+
+**Surrounding the carousel:**
+- Message Before Card
+- Message After Card
+- Suggestions
+- Fallback Message
+- Variable
+- Show text area
+
+## Form Card
+
+A structured form inline in the chat — lets users submit multiple fields at once with validation.
+
+**Field types:**
+
+| Field | Use for |
+|---|---|
+| Header | Visual grouping |
+| TextField | Single-line text |
+| Email | Email addresses (auto-validated) |
+| Text Area | Multi-line text |
+| Date Picker | Dates |
+| Time Picker | Times |
+| Numeric | Numbers |
+| Dropdown select | Single choice from a list |
+| Checkbox group | Multiple choices |
+| Radio button | Single choice, all options visible |
+
+**Action Buttons** support **Label**, **Validation text**, and **Help** text per button. Surrounding config includes Message before/after card, Mandatory message, and Show text area.
+
+## Picture Card
+
+Displays one or more images with optional surrounding text.
+
+**Fields:**
+- Message Before Card
+- Picture (Image URL)
+- Add card — append more images
+- Message After Card
+- Suggestions
+- Fallback Message
+- Variable
+- Show text area
+
+## Video Card
+
+Embeds a video via a URL — ideal for walkthroughs, demos, or onboarding content.
+
+**Fields:**
+- Message Before Card
+- Video cards (add Card Video URL per card)
+- Message After Card
+- Suggestions
+- Fallback Message
+- Variable
+- Show text area
+
+## Suggestion
+
+A lightweight node that presents quick-reply chips. Useful for short menus or follow-up prompts.
+
+**Fields:**
+- Message
+- Suggestions
+- Fallback Message
+- Variable
+- Show text area
+
+## Speak to an Agent
+
+Hands the conversation off to a live agent via a suggestion chip. The text shown to the user adapts based on the live agent's availability status.
+
+**Fields:**
+- Suggestions
+- Fallback Message
+- Show text area
+
+## LLM Classifier
+
+Uses an LLM to classify the user's response into one of several topics and branch the flow accordingly.
+
+**Fields:**
+- **Question** — what to ask the user
+- **Description** — optional context
+- **Topic(s)** — each topic defines an output branch
+- **Topic Description** — helps the LLM pick the right topic
+- **Fallback Message** — shown when no topic matches
+- **Enable Fallback flow** — adds an **LLM Fallback Flow** output with a **Maximum Retry Limit** (1–5, default 3)
+- **Variable** — stores which topic was chosen
+- **Topic(s) variables** — per-topic variable storage
+- **Show text area**
+
+<Callout type="warning">
+  Without the fallback flow enabled, the flow terminates after **4 retries** with a default AIDA message. Enable the fallback flow for any classifier where you want graceful recovery from misclassification.
+</Callout>

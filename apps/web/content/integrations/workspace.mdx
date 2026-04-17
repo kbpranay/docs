@@ -1,0 +1,103 @@
+---
+title: Workspace
+description: Navigate the flow builder — add nodes, deploy, export/import, debug, and use hotkeys efficiently.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Workspace
+
+The Flows workspace is where you build the actual automation — drag nodes from the palette, wire them together, and deploy.
+
+## Adding and connecting nodes
+
+- **Add:** drag a node from the left-hand sidebar palette and drop it onto the workspace.
+- **Connect:** click the small connection-point circle on the source node and draw a wire to the next node.
+
+## Deploying a flow
+
+<Steps>
+
+### Save your flow
+
+Click **Save Flow** at the top of the workspace. Saving keeps your work, but the flow isn't live yet.
+
+### Click Deploy
+
+The **Deploy** button is in the top-right corner. Clicking it applies your changes to the live environment.
+
+</Steps>
+
+<Callout>
+  **Save ≠ Deploy.** You can save draft versions of a flow indefinitely. Only a deploy pushes them to the live bot.
+</Callout>
+
+### Deploying to another instance
+
+If your team has multiple instances (e.g., staging and production), you can deploy the same flow across them:
+
+<Steps>
+
+### Save the flow
+
+Save it in your current instance.
+
+### Click the Deploy dropdown arrow
+
+Next to the **Deploy** button.
+
+### Choose Instance
+
+Click **Choose Instance → Confirm**, then select the target instance.
+
+### Deploy
+
+Click **Deploy** to push the flow to that instance.
+
+</Steps>
+
+## Export and import
+
+**Export** from the top header:
+
+| Option | What it does |
+|---|---|
+| **Export as Blitzico File** | Download the flow as a Blitzico-compatible file |
+| **Export Flow** | Download or copy the full flow as JSON |
+| **Export Selected Nodes** | Download or copy just the nodes you selected |
+
+**Import** via the Import button — select a file, or paste a flow JSON snippet, then click **Import**.
+
+## Flow logs
+
+Open **Flow History** from the top header. Click **Export Logs** to download a CSV of every deployment and change event.
+
+## Comments
+
+Drop a **Comment** node from the Dev section to annotate your flow. Double-click the node to rename or edit the comment text. Comments are non-executing — they exist purely for documentation.
+
+## Navigating the canvas
+
+| Feature | How |
+|---|---|
+| **Fullscreen** | Click the fullscreen icon in the workspace header. Click again to exit. |
+| **Mini map** | Icon in the bottom-left — shows a zoomed-out overview. Drag inside to pan. |
+| **Lock workspace** | Lock icon at the bottom-left prevents accidental changes. |
+| **Zoom** | Scroll with mouse/trackpad, or use the zoom buttons bottom-left. A reset button restores default. |
+| **Multi-select** | Hold **Shift** + click, or hold and drag to box-select. Enables bulk move/delete/copy. |
+
+## Debugging in Picture-in-Picture
+
+Select a flow, click the **Debug** icon (bottom-right) to open the debug window. Click the **Extension** icon for additional debug features.
+
+<Callout type="warning">
+  Picture-in-Picture debugging is **Chrome browser only**. Firefox and Safari don't support the feature.
+</Callout>
+
+## Hotkeys
+
+| Modifier | macOS | Windows / Linux |
+|---|---|---|
+| Primary modifier | **⌘ (Command)** | **Ctrl** |
+
+Hotkeys follow standard patterns — combine the modifier above with common shortcuts (copy, paste, undo, select all) to speed up flow editing.

@@ -1,44 +1,56 @@
 ---
-title: Integrations Overview
-description: Overview of AIDA deployment channels – Web/App, Voice, and WhatsApp.
+title: Integrations (Flows)
+description: Connect your bot to APIs, databases, AI services, and external systems using AIDA's visual flow builder.
 ---
 
 import { Callout, Cards } from 'nextra/components'
 
-# Integrations
+# Integrations (Flows)
 
-AIDA supports three deployment channels. Access the Go-Live page from the side menu bar or click the **Go-live Recommended** button on the Home Page.
+**Flows** is AIDA's visual automation builder. It lets you drag-and-drop interconnected nodes to orchestrate everything from an API call to a full multi-step AI agent — without leaving AIDA.
+
+Use Flows to:
+
+- **Call external APIs** (CRM systems, ticketing, payments, translation services)
+- **Query databases** with SQL, CSV tables, or knowledge bases
+- **Plug in AI agents** — LLMs, RAG, classifiers, entity extraction, fully autonomous agents with tools
+- **Build multi-step logic** — branching, templating, delays, retries, fallback handling
+- **Hand off conversations** to a live agent when the bot can't resolve
 
 <Cards>
-  <Cards.Card title="Web & App Integration" href="/integrations/salesforce" arrow />
-  <Cards.Card title="Voice Integration" href="/integrations/zendesk" arrow />
-  <Cards.Card title="WhatsApp Integration" href="/integrations/genesys" arrow />
+  <Cards.Card title="Flow Management" href="/integrations/flows-basics" arrow />
+  <Cards.Card title="Workspace" href="/integrations/workspace" arrow />
+  <Cards.Card title="AI & Agents" href="/integrations/ai-agents" arrow />
+  <Cards.Card title="Conversation Nodes" href="/integrations/conversation-nodes" arrow />
+  <Cards.Card title="Logic & Dev Nodes" href="/integrations/logic-dev" arrow />
+  <Cards.Card title="Data & Tool Integrations" href="/integrations/data-tools" arrow />
 </Cards>
 
-## Bot Enable / Disable Toggle
+## Why use Flows?
 
-Each integration channel has an enable/disable toggle that lets you quickly activate or deactivate the bot for that channel. Only **App Admin**, **Team Owner**, **Manager**, and **Admin** roles can manage bot status.
+- **Visual, not code-heavy** — design complex logic by wiring nodes instead of writing code
+- **Everything in one place** — no more switching tabs between your bot builder and integration tooling
+- **Versioned & auditable** — every change is logged with who did it and when; revert any time
+- **Lockable** — lock a flow to prevent accidental edits when it's running in production
+- **Preview at design time** — card nodes show inline previews so you can validate layouts before shipping
 
-| Channel | Behavior when disabled |
-|---|---|
-| **Web/App (Chatbot)** | Chat window no longer loads for new sessions. Ongoing conversations remain active until the page is refreshed. |
-| **WhatsApp** | Ongoing sessions continue and users can still send agent requests until session auto-closes. New messages receive an offline message. |
-| **Voice** | Ongoing calls proceed as normal. New incoming calls are disconnected and receive an offline message. |
+## How Flows fit with the rest of AIDA
+
+- **Intents & Entities** understand what a user *wants* → route to a flow
+- **Flows** execute the integration logic → call systems, fetch data, generate responses
+- **Channels** deliver the final response to the user (web widget, voice, WhatsApp)
+
+From an intent, you can launch a flow as a response action: open the intent's **Response → Action** panel, pick **Flow** from the dropdown, and either create a new flow or paste an existing route ID.
 
 <Callout type="info">
-  The offline message for Voice and WhatsApp is **editable**. Click outside the field after editing to auto-save.
-
-  Interactions that occur while a channel is disabled are not included in training data — they are only counted under Total Conversations in Live Data and Analytics.
+  **Channels vs. Integrations** — [Channels](/channels) are where your bot *talks* to users (Web, Voice, WhatsApp). Integrations (this section) are how your bot *connects to external systems* via Flows.
 </Callout>
 
-## Bot Status
+## Accessing Flows
 
-| Bot State | Status shown |
-|---|---|
-| Created from scratch / pre-built intents | In Progress |
-| DocBrain indexing failed | Indexing Failed |
-| All mandatory criteria met | Your bot is now ready to go live |
+Two routes from AIDA:
 
-## Accessing Go-Live
+1. **Bot Selection page** → click **Flows**
+2. **Mega Menu** (top navigation bar) → **Flows**
 
-Navigate to **Go-Live** from the side menu bar, or click the **Go-live Recommended** button on the Home Page.
+You can also access a specific flow by pasting its route ID into an Intent → Response → Action.

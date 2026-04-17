@@ -1,0 +1,100 @@
+---
+title: Flow Management
+description: Create, name, delete, lock, and search flows in your AIDA workspace.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Flow Management
+
+Every flow starts as an entry on the Flows listing page. From there you can create, rename, delete, lock, and search for flows.
+
+## Creating a flow
+
+<Steps>
+
+### Open the Flows page
+
+Click **Flows** from the Bot Selection page or from the Mega Menu in the top nav.
+
+### Click + Create
+
+The **Create Flow** dialog opens.
+
+### Name the flow
+
+Enter a descriptive name and configure the instance where the flow should deploy.
+
+### Save
+
+Click **Save**. The new flow appears in the list and opens the workspace so you can start adding nodes.
+
+</Steps>
+
+You can also create a flow from inside an intent — open **Response → Action**, select **Flow** from the dropdown, and either create a new one or paste an existing route ID.
+
+## Renaming a flow
+
+<Steps>
+
+### Open the flow menu
+
+Click the meatball menu (three dots) next to the flow in the list.
+
+### Choose Edit Name
+
+Update the name in the prompt and confirm.
+
+</Steps>
+
+## Deleting a flow
+
+<Steps>
+
+### Open the flow menu
+
+Click the three dots next to the flow.
+
+### Delete Flow
+
+Click **Delete Flow** and confirm in the popup.
+
+</Steps>
+
+<Callout type="warning">
+  Deleting a flow removes it permanently. Any intents or parent flows that reference this flow's route ID will stop working.
+</Callout>
+
+## Locking a flow
+
+Locking a flow puts it in view-only mode — nobody can edit it until it's unlocked. This is useful for production flows that shouldn't change without review.
+
+<Steps>
+
+### Open the flow menu
+
+Click the three dots next to the flow.
+
+### Lock Flow
+
+Click **Lock Flow** and confirm.
+
+</Steps>
+
+<Callout>
+  When a flow is locked by one user, the meatball menu is **hidden for other users** — they can't accidentally take actions on a locked flow. The person who locked it (or any admin) can unlock it through the same menu.
+</Callout>
+
+## Searching flows
+
+The **Search Flow** field at the top of the Flows page filters the list as you type. Matches highlight instantly — no need to press Enter.
+
+## Change history
+
+Every flow keeps a comprehensive change log that shows:
+
+- Who made each change
+- When it happened
+- What was changed
+
+You can revert any flow to a previous version through the history panel. Access it from the top header of the workspace.

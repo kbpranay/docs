@@ -1,0 +1,133 @@
+---
+title: Data & Tool Integrations
+description: Connect agents to APIs, knowledge bases, databases, files, and webpages.
+---
+
+import { Callout } from 'nextra/components'
+
+# Data & Tool Integrations
+
+Agentic AI nodes can use six tool types to reach outside the flow and fetch real data. Each tool has its own configuration — set it up once, then reference it from any agent.
+
+## API tool
+
+Call any external service as a tool — CRM lookups, ticket creation, payments, translation, etc.
+
+**Configuration:**
+
+| Field | Description |
+|---|---|
+| Tool Type | `API` |
+| Tool Name | Short identifier |
+| Description | What the tool does (helps the agent decide when to use it) |
+| Method | `GET` or `POST` |
+| URL | The endpoint |
+| Response Type | Expected response format |
+| Timeout | Request timeout |
+| Headers | Name/value pairs |
+| Cookies | Cookie values |
+
+**Parameters** (each API call can take multiple):
+
+| Field | Description |
+|---|---|
+| Name | Parameter name |
+| Description | What the agent should put here |
+| Select Type | `string`, `number`, `integer`, or `boolean` |
+| Required | Whether this parameter is mandatory |
+| Query Parameter | If true, appends as `?name=value`; if false, goes in the body |
+
+## KB (Knowledge Base) tool
+
+Let the agent read from a DocBrain / Knowledge Base — similar to a RAG lookup but usable at tool-call granularity.
+
+**Configuration:**
+
+- **Tool Type** — `KB`
+- **Tool Name** and **Description**
+- **Choose DocBrain** — which knowledge base to query
+- **Index ID** — up to 3 can be shown; a single index ID is auto-selected
+- **Auto-use Latest Index ID** toggle — always query the most recent index
+
+**Advanced:**
+
+- **Type** — Semantic or Keyword
+- **Method** — one of three `Gpt_mix` variants
+- **TopK** — number of results to retrieve
+- **Filtered Search** — filter by Doc ID, Source ID, URL, Original URL, or Doc Type
+
+## Table tool
+
+Query structured data held in a CSV file.
+
+**Configuration:**
+
+- Upload a **.csv file** (max 5 MB)
+- For each header, configure:
+  - **Name**
+  - **Description**
+  - **Match Type** — Exact or Close
+  - **Type** — String, Category, Datetime, Integer, Float, or Boolean
+
+The agent can then run SQL-like queries against the table using natural language.
+
+## File tool
+
+Let the agent read content from PDF documents.
+
+**Configuration:**
+
+- PDF only
+- Up to **5 files**, **5 MB** each, fewer than **10 pages** per file
+
+Use the File tool for reference documents your agent needs — policy PDFs, one-pagers, product sheets.
+
+## SQL tool
+
+Run read-only SQL against a connected database.
+
+**Configuration:**
+
+- **DB URL** — must be a **read-only** connection string
+- For each table the agent can query, define:
+  - **Table Name**
+  - **Metadata description** — helps the agent understand when and how to query this table
+
+<Callout type="warning">
+  The SQL tool only accepts **read-only** DB URLs. Don't give it a connection that can mutate your data — the agent's query plans are probabilistic.
+</Callout>
+
+## Webpage tool
+
+Fetch and read live webpage content — perfect for pages that change frequently (pricing pages, offers, status dashboards).
+
+**Configuration:**
+
+- **Tool Name** and **Description**
+- **Webpage URL**
+- **Cache Minutes** — cached content is reused for this many minutes before a fresh fetch, so you don't hammer the target site
+
+Use this for pages where the content changes in minutes or hours but re-fetching on every query would be wasteful.
+
+---
+
+## Environment variables
+
+Reusable values accessible across all nodes in the project — API keys, config values, default parameters.
+
+**Defining variables:**
+
+From the workspace header, open **Flow Environment Variables** → **Add Variables**. For each variable, provide a Name, Value, and Type.
+
+**Referencing variables:**
+
+| Node type | How to reference |
+|---|---|
+| **Change** | Manipulate via global envs in the Change node's operations |
+| **Switch** | Conditional routing on env values |
+| **Template** | Use `{{env.Name}}` for dynamic substitution |
+| **Function** | Use `env.get("Name")` inside custom JavaScript |
+
+<Callout>
+  Keep API keys and secrets in environment variables rather than hardcoding them into nodes. Env variables are the right layer for values that change per-environment (dev, staging, prod).
+</Callout>

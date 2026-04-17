@@ -1,7 +1,9 @@
 export default {
   index: 'Overview',
-  salesforce: 'Web & App',
-  zendesk: 'Voice (AudioCodes)',
-  genesys: 'WhatsApp',
-  'api-services': 'API & Services',
+  'flows-basics': 'Flow Management',
+  workspace: 'Workspace',
+  'ai-agents': 'AI & Agents',
+  'conversation-nodes': 'Conversation Nodes',
+  'logic-dev': 'Logic & Dev Nodes',
+  'data-tools': 'Data & Tool Integrations',
 }

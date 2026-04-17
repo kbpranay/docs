@@ -1,0 +1,159 @@
+---
+title: AI & Agents
+description: LLM, RAG, Summariser, Classifier, Entity Extraction, and fully autonomous Agentic AI nodes.
+---
+
+import { Callout } from 'nextra/components'
+
+# AI & Agents
+
+Flows integrate seven kinds of AI nodes, ranging from simple LLM calls to autonomous agents that plan multi-step actions.
+
+## LLM Node
+
+Calls an LLM service with a system prompt and returns either a **Success** or **Otherwise** output.
+
+**System Prompt** controls tone, style, context, and safety guidelines.
+
+**Advanced setup:**
+
+- Model
+- Temperature (0–1 — higher = more creative)
+- Max Output Tokens
+- Request Timeout
+- Retries
+- PII handling
+- Chat Context
+
+**Outputs:**
+- **Success** — LLM responded normally
+- **Otherwise** — no LLM response
+- **Catch Error** — execution error occurred
+
+## RAG Node
+
+Combines real-time knowledge retrieval (DocBrain, EnterpriseBot's patented tech) with LLM generation — reducing hallucinations by grounding the response in your indexed documents.
+
+**Two modes:**
+- **RAGForge** — reuse the bot's existing RAG config, with an **Override Config** option
+- **Custom** — pick the LLM and configuration yourself
+
+**General config:**
+
+- `allow_links`, `allow_smalltalk`, `allow_comparison`
+- `add_current_date` (with timezone)
+- `use_bullet_points`, `use_titles`
+- **Basic Prompt** / **Fallback Event**
+- **Only LLM Reference URLs** / **Reset Context**
+
+**UI elements:**
+- Gallery Card, Picture Card
+- Show Reference URLs (with Topk URLs + Reference Title)
+
+**Hallucination check:**
+- Toggle + fallback event
+- Optional **LLM Validator** (separate model + system prompt)
+
+**Advanced setup:**
+- **Method** — `Gpt_mix_train_faq+para`, `Gpt_mix_train_faq`, or `Mix_train_faq`
+- **Type** — Semantic or Keyword
+- Max Output Tokens, Request Timeout, Topk, Show score
+- Intent Context, Context Length
+- Slack Notification + channel ID
+
+**Guard rails:**
+
+| Input rules | Output rules |
+|---|---|
+| Limit user message length | Rule / Prompt leak detection |
+| Prompt injection detection | Black list |
+| Black list |  |
+| Abbreviation expansion |  |
+
+**PII anonymiser:**
+- Anonymise PII toggle
+- Choose PII Type (Query or All)
+- Default masks: IBAN, phone, email, person names
+- Custom values via Regex or Keyword
+
+## Summariser
+
+Condenses large inputs into a short summary using the LLM Summariser service. Returns **Success** or **Otherwise**.
+
+**Configuration mirrors the LLM node** plus a **Context limit** (visible when Chat Context is on; hidden when off).
+
+System prompt controls style, length, format, and accuracy.
+
+## Classifier
+
+Categorises inputs using NLP for context, semantics, and tone.
+
+**Configured via:**
+- **Topic** — the main category
+- **Description** — optional context for the topic
+- **Variation** — alternative keywords or phrases for the topic
+
+**Advanced setup:** same fields as the LLM node (Model, System Prompt, Temperature, Max Output Tokens, Request Timeout, Retries, PII, Chat Context, Context limit).
+
+## LLM Entity Extraction
+
+Extracts structured entities (names, dates, locations, amounts) from unstructured text using the LLM NER service.
+
+**Configured via:**
+- **Entity Name** — what to extract
+- **Description** — context to guide the extraction
+
+Advanced setup matches the LLM node.
+
+## Agentic AI
+
+An **agent** is a digital teammate that can think, plan, and act autonomously — not just answer a single question.
+
+**Agent capabilities:**
+- **Memory** — remember past interactions
+- **Reasoning** — plan multi-step actions
+- **Tool use** — invoke external tools to gather info or take actions
+- **Execution** — carry out plans end-to-end
+
+**Tool types** your agent can use:
+
+| Tool | What it does |
+|---|---|
+| **API** | Call external services (CRM, ticketing, payments, translation) |
+| **KB** | Use a DocBrain / Knowledge Base as a reference source (RAG-style) |
+| **Table** | Query structured CSV data with SQL-like queries |
+| **File** | Read PDF content to generate responses |
+| **SQL** | Run read-only SQL queries on connected databases |
+| **Webpage** | Fetch and read live webpage content (offers, discounts, live updates) |
+
+See [Data & Tool Integrations](/integrations/data-tools) for setup details on each tool type.
+
+### Creating an agent
+
+1. Go to the **Agents** page → click **Create**.
+2. Fill in:
+   - **Name**
+   - **Description** — natural-language instructions for the agent
+   - **Enhance Prompt** — auto-expand the description
+   - **Expected Output** — the format you want back
+   - **Tools** — which tools the agent can use
+3. **Advanced Setup:** Model, Add history to messages, Number of history responses, Add datetime to instructions, Timezone, Tool call limit, Markdown.
+4. Click **Create**.
+
+### Using an agent in a flow
+
+<Callout>
+  On the Flows page, drag an **Agentic AI** node from the AI Tools palette. You can either **Create Agent** directly (same fields as above) or pick an existing agent from the **Select Agent** dropdown, which auto-populates the node's config.
+</Callout>
+
+### Response pipeline
+
+When an agent runs, you can inspect each step:
+
+| Section | Shows |
+|---|---|
+| **Request Details** | Intent, Action, LLM used, Message ID, Response Time, Agent Prompt |
+| **Tools Added** | List of configured tools + their parameters |
+| **Response Section (per tool call)** | System Prompt, Context, Result (args passed to tools), LLM Response |
+
+This makes debugging an agent's decisions much easier — you can see exactly what it looked at, what it called, and what it returned at each step.

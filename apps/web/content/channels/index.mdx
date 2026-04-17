@@ -1,0 +1,51 @@
+---
+title: Channels Overview
+description: Publish your AIDA bot on the web, voice channels, or WhatsApp — and manage API access for external callers.
+---
+
+import { Callout, Cards } from 'nextra/components'
+
+# Channels
+
+Channels are where your bot actually talks to users. AIDA ships with three conversational channels plus a programmatic API surface.
+
+<Cards>
+  <Cards.Card title="Web & App" href="/channels/salesforce" arrow />
+  <Cards.Card title="Voice (AudioCodes)" href="/channels/zendesk" arrow />
+  <Cards.Card title="WhatsApp" href="/channels/genesys" arrow />
+  <Cards.Card title="API & Services" href="/channels/api-services" arrow />
+</Cards>
+
+<Callout type="info">
+  **Channels vs. Integrations** — think of channels as the *surface* where users meet your bot (a web widget, a phone call, WhatsApp). For connecting your bot to external systems like CRMs, databases, or custom APIs, see **[Integrations (Flows)](/integrations)**.
+</Callout>
+
+## Managing a channel
+
+Every channel has an enable/disable toggle on the Go-Live page. Only **App Admin**, **Team Owner**, **Manager**, and **AIDA Admin** can change the status.
+
+| Channel | Behavior when disabled |
+|---|---|
+| **Web/App (Chatbot)** | The chat widget stops loading for new sessions. Ongoing conversations continue until the page is refreshed. |
+| **WhatsApp** | Ongoing sessions continue and users can still send agent requests until session auto-closes. New messages receive an offline message. |
+| **Voice** | Ongoing calls proceed as normal. New incoming calls are disconnected and receive an offline message. |
+
+<Callout>
+  The offline message for Voice and WhatsApp is **editable**. Click outside the field after editing to auto-save.
+
+  Interactions that happen while a channel is disabled are not included in training data — they're only counted under **Total Conversations** in Live Data and Analytics.
+</Callout>
+
+## Bot readiness
+
+Your bot's status on the Home Page tells you what's left before it can go live:
+
+| State | Status shown |
+|---|---|
+| Created from scratch / pre-built intents | In Progress |
+| DocBrain indexing failed | Indexing Failed |
+| All mandatory criteria met | Your bot is now ready to go live |
+
+## Accessing Go-Live
+
+Click **Go-Live** from the side menu, or hit the **Go-Live Recommended** button on the Home Page.

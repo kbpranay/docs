@@ -1,0 +1,102 @@
+---
+title: Logic & Dev Nodes
+description: Branch flows, transform data, call REST APIs, run custom JavaScript, pause, and debug.
+---
+
+import { Callout } from 'nextra/components'
+
+# Logic & Dev Nodes
+
+Logic nodes branch the flow. Dev nodes glue it to external systems. Link nodes stitch flows together.
+
+## Logic: If/Else
+
+Evaluates rules against incoming data and forwards to the matching output.
+
+**What you can match on:**
+- A message property
+- Flow context / global context
+- Environment variable
+- A JSONata expression
+
+Rules evaluate top-to-bottom. You can optionally **stop at the first match** (otherwise all matching branches fire).
+
+## Logic: Change
+
+Transforms data in-place before passing the message forward.
+
+**Operations:**
+
+| Operation | Effect |
+|---|---|
+| **Set** | Assign or update a value |
+| **Change** | Transform an existing value |
+| **Move** | Relocate a value from one property to another |
+| **Delete** | Remove a property |
+
+## Logic: Template
+
+Generates a dynamic string from `msg.payload` using **Mustache** templating by default (you can switch Mustache off if you want raw).
+
+Takes the incoming `msg` object plus a template string and outputs a `msg` with the populated property.
+
+**Example:** `Hello {{name}}, your order {{orderId}} is confirmed.`
+
+---
+
+## Dev: REST API
+
+Call any HTTP endpoint from a flow.
+
+**Methods:** GET, POST, PUT, DELETE
+
+**Authentication options:**
+
+| Auth | Fields |
+|---|---|
+| **Basic** | Username + Password |
+| **Bearer** | Token |
+| **OAuth2** | Grant type (Client credentials / Password / other), Access token URL, Client ID, Client Secret, Scope |
+
+**Query parameters** — key/value pairs appended to the URL for filtering, sorting, or pagination.
+
+## Dev: Function
+
+Runs custom JavaScript. The incoming message is passed in as a `msg` object, with the body on `msg.payload`. Use this for transformations too complex for Change or Template, or for calling Node.js utilities.
+
+## Dev: API Response
+
+Handles the response coming back from an API call. Used mostly in flows that were triggered via API (see the Start node's Trigger via API option).
+
+## Dev: Delay
+
+Pauses the flow, or rate-limits message throughput.
+
+**Properties:**
+- **Delay (ms)** — how long to wait; can be overridden by a property on the incoming `msg`
+- **Reset** — clears all held messages
+- **Flush** — sends all held messages immediately
+
+## Dev: Debug
+
+Logs `msg.payload` (the primary data) and the full `msg` object (metadata) so you can inspect state during development.
+
+<Callout>
+  Leave a Debug node in complex flows while you're still iterating — you can disable its output with a single click without deleting it, and re-enable when needed.
+</Callout>
+
+---
+
+## Link: Flow In / Flow Out
+
+**Flow In** is an entry point that lets data, signals, or control pass between nodes. It's how you build modular, composable flows — a main flow can hand off to a sub-flow at a Flow Out and pick it back up at the corresponding Flow In.
+
+**Flow Out** is the exit point paired with a Flow In. Use Flow In/Out pairs to:
+
+- Reuse common logic across multiple flows
+- Break a complex flow into digestible pieces
+- Test individual sections in isolation
+
+## Dev: Comment
+
+A non-executing annotation node. Drag it in from the Dev palette, double-click to edit. Use comments liberally — future-you will thank present-you when debugging flows six months later.
