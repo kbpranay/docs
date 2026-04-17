@@ -1,0 +1,46 @@
+---
+title: Deep Links
+description: Share direct links to specific intents, entities, and training sessions.
+---
+
+import { Callout } from 'nextra/components'
+
+# Deep Links
+
+Deep links let you share a direct URL to a specific intent, entity, or training session. Anyone on your team with the right role can click the link and jump straight to that resource — no navigating required.
+
+## Where deep links are available
+
+| Area | What the deep link opens | Actions available |
+|---|---|---|
+| **Intents** | A specific intent on the Intents page | Read, Update, Delete |
+| **Entities** | A specific entity on the Entities page | Read, Update, Delete |
+| **Sessions** | A specific training session on the Training page | Validate, Configure, Ignore |
+
+## Copying a deep link
+
+Each resource has a **copy icon** next to its name:
+
+- **Intent:** On the Intents page, click the copy icon next to the intent name in the list.
+- **Entity:** On the Entities page, click the copy icon next to the entity name.
+- **Session:** On the Training page, click the copy icon on the session row you want to share.
+
+The link is copied to your clipboard. Paste it into Slack, email, or anywhere you want to share it.
+
+## Deep links for training sessions
+
+When someone opens a session deep link, the **Session ID** input on the Training page is pre-filled with the ID. AIDA uses that to fetch and display just that specific session.
+
+## Who can use deep links
+
+<Callout>
+  Deep links only work for users in the **same team** with access to that resource. Opening a link for a deleted resource, a different team's resource, or when you don't have the required role redirects you to the Bot List page with an error.
+</Callout>
+
+After opening a deep link, navigating anywhere else replaces the deep link with the default URL for the new page.
+
+## When deep links don't work
+
+- **Error and redirect to Bot List:** the resource was deleted, belongs to a different team, or your role doesn't allow access
+- **"Session not found":** the session ID in the deep link doesn't match any training session (may have been purged after retention expired)
+- **Link opens but nothing appears:** your role may not have read access to this resource type — ask your Team Owner to check your permissions

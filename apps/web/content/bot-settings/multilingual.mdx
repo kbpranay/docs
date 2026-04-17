@@ -1,0 +1,76 @@
+---
+title: Multilingual
+description: Let your bot understand and respond in the user's preferred language.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Multilingual
+
+AIDA's multilingual feature translates user messages into the bot's base language for classification, and translates bot responses back into the user's language. This lets a single bot serve users across many languages without duplicating intents.
+
+Multilingual is available to **Admin**, **Team Owner**, and **Manager** roles.
+
+## Two toggles
+
+| Toggle | Effect when ON |
+|---|---|
+| **User Query** | The user's message is translated into the bot's base language before being sent to the classifier |
+| **Response** | The bot's reply is translated back into the user's language before being shown |
+
+You can enable one, both, or neither — depending on whether you want the bot to accept input in other languages, respond in other languages, or both.
+
+## Supported response types
+
+Translation applies to all of these response types:
+
+- Intent response
+- Response with suggestions
+- Response with parameters
+- Response with gallery card
+- Response with picture card
+- DocBrain response
+- LLM response
+- Omega cards
+- Blitzico response
+- Blitzico conversation nodes
+- AIDA flows
+
+## LLM settings
+
+Multilingual uses an LLM for translation. You can configure:
+
+| Setting | Range | Default |
+|---|---|---|
+| **Model** | Choose from the dropdown | — |
+| **Prompt** | Editable template | — |
+| **Timeout** | 5 – 180 seconds | 30 |
+| **Temperature** | 0 – 1 | 0.2 |
+
+Lower temperature values produce more predictable, literal translations; higher values allow more creative phrasing at the risk of meaning drift. **0.2 is a safe default** for help-desk use.
+
+## Enabling multilingual
+
+<Steps>
+
+### Go to Bot Settings
+
+Click **Bot Settings** from the side menu.
+
+### Open Multilingual
+
+Click the Multilingual section.
+
+### Turn on the toggle(s) you need
+
+Enable **User Query** and/or **Response**.
+
+### Confirm with OTP
+
+An OTP is sent to the Team Owner's email. Enter it to confirm.
+
+</Steps>
+
+<Callout type="warning">
+  OTP confirmation is required every time you enable multilingual features. Make sure your Team Owner has email access before starting.
+</Callout>

@@ -1,0 +1,154 @@
+---
+title: Frequently Asked Questions
+description: Quick answers to common questions about AIDA.
+---
+
+import { Callout } from 'nextra/components'
+
+# Frequently Asked Questions
+
+## About AIDA
+
+### What is AIDA?
+
+AIDA — Artificial Intelligence Digital Assistance — is a platform for building chatbots that handle real customer conversations. It combines Machine Learning intent classification, Elasticsearch exact-match triggers, and a document-QA layer called DocBrain. Bots can be deployed on websites, voice channels (AudioCodes), and WhatsApp.
+
+### What's the difference between Intents, Entities, and DocBrain?
+
+- **Intents** are the goals users have (book a flight, reset a password). You train them with example phrases called triggers.
+- **Entities** are the specific pieces of information users mention — dates, locations, names.
+- **DocBrain** indexes your existing documents and answers questions from them, skipping the need to hand-author every response.
+
+See [Intents & Entities](/intents-entities) for the full picture.
+
+### What roles are available?
+
+Eight roles: Team Owner, Manager, AIDA Admin, AIDA User, AIDA Dashboard, AIDA LLM Lab Admin, API & Services, and Migrations. The full table is on the [Getting Started overview](/getting-started).
+
+---
+
+## Accounts & teams
+
+### How do I reset my password?
+
+From the Login screen, click **[Forgot Password]**, enter your email, and follow the reset link we send. Once logged in, you can also change your password from **Profile settings → Account → Edit**. See [Profile & Password](/account-admin/profile).
+
+### Why was my account locked?
+
+After **5 failed login attempts**, AIDA locks your account for **30 minutes**. Wait for the window to pass, or ask your Team Owner to adjust the lockout policy from [Team Settings → Security](/account-admin/team-settings#account-lockout-policy).
+
+### Can I change my email address?
+
+No — your email is your account identifier and can't be changed. You can edit your first and last name on the Profile page.
+
+### Can I belong to multiple teams?
+
+Yes. If you're a member of multiple teams, you land on a Team Selection page after login. You can also switch teams from the profile dropdown without logging out.
+
+### How do I invite someone to my team?
+
+Team Owners, Managers, and AIDA Admins can invite users from **User Rights → Invite**. Full steps: [Users & Permissions](/account-admin/users-permissions#inviting-a-new-user).
+
+### How do I transfer team ownership?
+
+Only the current Team Owner can initiate a transfer to a Manager. It's done via **User Rights → [Transfer Ownership]** with an OTP verification. See [Users & Permissions](/account-admin/users-permissions#transferring-team-ownership).
+
+---
+
+## Bot building
+
+### Should I use DocBrain or Intents & Entities?
+
+- Use **Intents & Entities** for transactional flows where the user needs to accomplish a specific task.
+- Use **DocBrain** when you have a large corpus of documentation and want the bot to answer open-ended questions from it.
+- You can mix both in the same bot.
+
+### What's the Classifier and should I enable it?
+
+The Classifier is the ML engine that matches user messages to intents. It's **disabled by default** for new bots. Enable it from [Bot Settings → Classifier](/bot-settings/classifier) once you have 5+ intents and 50+ triggers per intent.
+
+### How many triggers do I need per intent?
+
+At least **50 triggers per intent** for reliable ML classification. Triggers can be long or short — what matters is realistic phrasing.
+
+### Can I import triggers in bulk?
+
+Yes. On an intent, click **[Import triggers]** and upload a CSV. To import for multiple intents at once, use the dropdown next to **[Add]** on the Intents list and upload a multi-intent CSV.
+
+### Can I export my triggers?
+
+Yes, via **[Export triggers]** on an intent — only visible to AIDA Admin and Team Owner. For entities, use **[Export Sub-entities]** on the Entities page (restricted to SSE Admin and Team Owner).
+
+### How do I make my bot multilingual?
+
+Open [Bot Settings → Multilingual](/bot-settings/multilingual) and toggle **User Query** and/or **Response**. Multilingual is available to Admin, Team Owner, and Manager roles, and requires OTP confirmation to enable.
+
+---
+
+## Deployment
+
+### What channels does AIDA support?
+
+Three built-in channels: **Web & App**, **Voice** (AudioCodes), and **WhatsApp**. See [Integrations](/integrations) for setup guides.
+
+### How do I embed the chatbot on my website?
+
+Open **Go Live → Web/Apps → Show script** and paste the JavaScript snippet into your site's HTML. Full guide: [Web & App Integration](/integrations/salesforce).
+
+### Can I have the same bot deployed in multiple languages on a website?
+
+Yes — use **Multi-Build Sources** under Go-Live. You add a source per language, and each gets its own URL with a `?source=SourceName` query param for analytics attribution.
+
+### What happens if I turn off a channel?
+
+- **Web/App:** Existing sessions continue until the page reloads. New sessions won't load the chat widget.
+- **Voice:** Existing calls proceed normally. New calls are disconnected with an offline message.
+- **WhatsApp:** Existing sessions continue; new messages get the offline auto-reply.
+
+---
+
+## Analytics & training
+
+### What is Intent accuracy?
+
+```
+Intent accuracy = Validated ÷ (Validated + Configured) × 100
+```
+
+It measures how often the classifier got it right on queries you've reviewed. Ignored queries don't count. See [Train Conversations](/intents-entities/train-conversations).
+
+### Where can I see how many users are escalating to agents?
+
+On the Analytics page. The metric is **Sessions with Agent Request %**, calculated as unique agent requests ÷ real conversations × 100. See [Reports & Insights](/analytics/reports-insights#sessions-with-agent-request-).
+
+### Can I export analytics data?
+
+Yes — the **Download** button on reports exports query logs to Excel. You can filter by source, channel, and date range before exporting.
+
+---
+
+## Migration & admin
+
+### How do I migrate a bot between environments?
+
+Go to **Team Configs → Migration → Create**, enter the source team's access token, Team ID, and bot ID, choose the artifact type, and click **Initiate Migration**. Full guide: [Migration](/account-admin/migration).
+
+### What can I migrate?
+
+Bots, BotForge configs, Company Templates, DocBrain, Flows, KB Forge, RAG Forge, and Tags & Templates.
+
+### Why did my migration fail?
+
+Common errors: **Invalid access token** (wrong or missing token), **Invalid Team ID**, **Not a valid source id** (bot doesn't exist), or **Source data not found** (bot exists but not in that team). Check the Migration page and your email for the exact error.
+
+---
+
+## Troubleshooting
+
+### My bot is giving wrong answers — what do I do?
+
+Open **Train conversation** and filter to **Unhandled requests** or sessions with low feedback ratings. Use **Configure** to assign queries to the right intent, or **Validate** where the bot got it right. Over time this improves accuracy. Full guide: [Bot Quality & Training](/troubleshooting/call-quality).
+
+### My bot classifies everything as Fallback
+
+Most likely the Classifier is disabled. Enable it from [Bot Settings → Classifier](/bot-settings/classifier).

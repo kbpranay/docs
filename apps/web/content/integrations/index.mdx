@@ -1,0 +1,44 @@
+---
+title: Integrations Overview
+description: Overview of AIDA deployment channels – Web/App, Voice, and WhatsApp.
+---
+
+import { Callout, Cards } from 'nextra/components'
+
+# Integrations
+
+AIDA supports three deployment channels. Access the Go-Live page from the side menu bar or click the **Go-live Recommended** button on the Home Page.
+
+<Cards>
+  <Cards.Card title="Web & App Integration" href="/integrations/salesforce" arrow />
+  <Cards.Card title="Voice Integration" href="/integrations/zendesk" arrow />
+  <Cards.Card title="WhatsApp Integration" href="/integrations/genesys" arrow />
+</Cards>
+
+## Bot Enable / Disable Toggle
+
+Each integration channel has an enable/disable toggle that lets you quickly activate or deactivate the bot for that channel. Only **App Admin**, **Team Owner**, **Manager**, and **Admin** roles can manage bot status.
+
+| Channel | Behavior when disabled |
+|---|---|
+| **Web/App (Chatbot)** | Chat window no longer loads for new sessions. Ongoing conversations remain active until the page is refreshed. |
+| **WhatsApp** | Ongoing sessions continue and users can still send agent requests until session auto-closes. New messages receive an offline message. |
+| **Voice** | Ongoing calls proceed as normal. New incoming calls are disconnected and receive an offline message. |
+
+<Callout type="info">
+  The offline message for Voice and WhatsApp is **editable**. Click outside the field after editing to auto-save.
+
+  Interactions that occur while a channel is disabled are not included in training data — they are only counted under Total Conversations in Live Data and Analytics.
+</Callout>
+
+## Bot Status
+
+| Bot State | Status shown |
+|---|---|
+| Created from scratch / pre-built intents | In Progress |
+| DocBrain indexing failed | Indexing Failed |
+| All mandatory criteria met | Your bot is now ready to go live |
+
+## Accessing Go-Live
+
+Navigate to **Go-Live** from the side menu bar, or click the **Go-live Recommended** button on the Home Page.

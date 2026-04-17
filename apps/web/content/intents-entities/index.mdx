@@ -1,0 +1,44 @@
+---
+title: Intents & Entities
+description: Teach your bot what users mean and the specific terms they use.
+---
+
+import { Cards } from 'nextra/components'
+
+# Intents & Entities
+
+Intents and entities are how AIDA understands what your users want.
+
+- **An intent** captures a user's goal — booking a flight, checking an account balance, escalating to an agent.
+- **An entity** captures the specific pieces of information inside a user's message — a city, a date, an amount.
+
+The more intents and entities you define, the more reliably your bot will pick the right response.
+
+<Cards>
+  <Cards.Card title="Intents" href="/intents-entities/intents" arrow />
+  <Cards.Card title="Triggers & Parameters" href="/intents-entities/triggers-parameters" arrow />
+  <Cards.Card title="Entities" href="/intents-entities/entities" arrow />
+  <Cards.Card title="DocBrain" href="/intents-entities/docbrain" arrow />
+  <Cards.Card title="Train Conversations" href="/intents-entities/train-conversations" arrow />
+  <Cards.Card title="Intent Explainer" href="/intents-entities/intent-explainer" arrow />
+</Cards>
+
+## How they work together
+
+When a user sends a message, AIDA:
+
+1. **Classifies** the message into the closest matching intent using the ML classifier and exact-match search.
+2. **Extracts** any entities referenced in the message.
+3. **Responds** with the reply configured for that intent, substituting entity values where needed.
+
+If no intent matches, the message falls back to the Default Fallback intent and is logged under [Unhandled requests](/intents-entities/train-conversations#unhandled-requests).
+
+## Where to start
+
+If you're building a new bot, we recommend this order:
+
+1. List the top 10–20 user goals your bot should handle → each becomes an **intent**.
+2. For each intent, write at least 50 example phrases users might use → these are **triggers**.
+3. Identify variable pieces in those phrases (names, dates, amounts) → define them as **entities**.
+4. Add **parameters** to collect information the bot needs before responding.
+5. Go live, then refine using the [Training page](/intents-entities/train-conversations).

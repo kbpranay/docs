@@ -1,0 +1,123 @@
+---
+title: Intents
+description: How to create, edit, and organize intents in AIDA.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Intents
+
+An **intent** is the goal behind what a user says. "I want to open a new account" and "How do I sign up?" are different phrasings of the same intent.
+
+When AIDA creates a bot, a few system intents are added automatically (for example `default_welcome`, `default_fallback`, and `default_consecutive_fallback`). These can be edited but **cannot be deleted**.
+
+## Creating an intent
+
+<Steps>
+
+### Open the Intents page
+
+Click **Intents** in the side menu. You'll see any existing intents in the list.
+
+### Add a new intent
+
+Click **[Add]**, enter a descriptive intent name, and click **[Save]**.
+
+### Add triggers
+
+Open the intent and add example user phrases in the Triggers section. See [Triggers & Parameters](/intents-entities/triggers-parameters).
+
+### Configure a response
+
+Switch to the Response tab and add the reply your bot should give. See [Responses](#responses).
+
+</Steps>
+
+<Callout>
+  Name intents after the user's goal, not the bot's action. `AccountOpening` is clearer than `ShowSignupForm`.
+</Callout>
+
+## Editing and deleting
+
+Open the intent, click the name field to edit, then **Save**. To remove an intent, click **[Delete]** next to Save.
+
+System-defined default intents and default events can be edited but cannot be deleted.
+
+## Example: a retail banking bot
+
+A bot for a retail bank might include intents like:
+
+| Intent | Purpose |
+|---|---|
+| `AccountOpening` | Guide user through opening a new account |
+| `CreditCardQueries` | Answer questions about credit cards |
+| `LoanInformation` | Share information about loan products |
+| `AccountClosure` | Handle requests to close an account |
+
+## Responses
+
+Each intent has a configured response. A response can include:
+
+- **Text reply** — plain text, with `<newMessage>` to split a message into multiple bubbles
+- **Picture** — JPEG, PNG, or SVG up to 2 MB (recommended aspect ratio 3:2)
+- **Gallery card** — a card with a title, subtitle, description, and up to 3 buttons
+- **Suggestions** — clickable chips that match triggers from another intent
+- **Action** — a bot behavior like `speakToAgent`, a DocBrain lookup, or a Blitzico/AIDA Flow
+
+Responses can be configured per channel:
+
+| Channel | Supports |
+|---|---|
+| Generic | Action, reply, picture, gallery card, suggestions |
+| WhatsApp | Action, reply, picture, suggestions *(no gallery card)* |
+| Voice | Action, reply only |
+| URL | Key + URL path + full response options |
+| Custom | Key + full response options |
+
+Only **Custom** and **URL** channels support repetition; the others are single-select. Generic auto-adapts based on where the bot is deployed.
+
+## Actions
+
+Actions let an intent trigger something beyond a text reply:
+
+- **DocBrain** — fetch an answer from indexed documents
+- **Blitzico** — run a Blitzico flow (requires a valid route ID)
+- **Flows** — run an AIDA flow (same route ID pattern)
+- **Others** — standard bot actions like `speakToAgent` or `lead_contact_details`
+
+For Blitzico and Flows, you can copy a route ID from another bot and click **[Verify]** to validate it — a valid ID turns the button into **"Redirect to Blitz"** or **"Redirect to Flow"**.
+
+<Callout type="warning">
+  Route IDs must come from the **same instance** as your destination. Pasting an ID from a different instance shows "Not a valid blitzico action".
+</Callout>
+
+## Context: linking intents together
+
+Use **Context Out** and **Context In** to connect intents into a flow.
+
+- Set a **Context Out** name on the parent intent.
+- Set a matching **Context In** on the child intent (same text, no spaces, case-sensitive).
+- The child intent will only trigger when the parent has been triggered in the same session.
+
+This is useful for multi-step flows where the order matters.
+
+## Events
+
+**Events** let you trigger an intent without a user typing anything — for example showing a welcome message when the chat window opens.
+
+Add an event by typing its name in the **Event** input at the top of the intent page, pressing Enter, and saving. On normal intents, events need bot-connector logic to fire them.
+
+A special event, `default_consecutive_fallback`, fires after a configurable number of consecutive fallback responses. The default is **3 consecutive fallbacks** for generic bots; custom bots can change this from Botforge.
+
+## Pre-built intents
+
+Pre-built intents are ready-made intents with triggers and entities you can apply to any bot, new or existing. See [Pre-built intents](/intents-entities/intents#pre-built-intents-library).
+
+### Add pre-built intents to an existing bot
+
+1. Go to the **Intents** page.
+2. Click the dropdown next to **[Add]** → **[Add pre-built intents]**.
+3. Click **[Add]** next to each pre-built intent you want.
+4. Click **[Proceed]**.
+5. Enter any required reference values → **[Proceed]**.
+6. Click **Go to intents page** to confirm.

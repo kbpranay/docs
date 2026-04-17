@@ -1,0 +1,57 @@
+---
+title: Bot Info
+description: Rename your bot, copy its API key, or delete it entirely.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Bot Info
+
+The **Bot Info** tab shows the details you entered when the bot was created, along with the API key used to integrate with external systems.
+
+## What's editable
+
+| Field | Editable |
+|---|---|
+| **Bot name** | ✅ Yes |
+| **Organization name** | ❌ No (locked at creation) |
+| **Language** | ❌ No (locked at creation) |
+| **API key** | ❌ No, but you can copy it |
+
+If you need to change the organization name or language, create a new bot — these settings are immutable after bot creation.
+
+## Copying the API key
+
+Click the **copy icon** next to the API key field to copy it to your clipboard.
+
+<Callout>
+  Treat the API key as a secret. Anyone with this key can call your bot's API and consume your team's usage.
+</Callout>
+
+## Deleting a bot
+
+Only a **Team Owner** can delete a bot, and deletion requires a one-time password (OTP) for confirmation.
+
+<Steps>
+
+### Open Bot Info
+
+Navigate to **Bot Settings → Bot Info**.
+
+### Click Delete bot
+
+At the bottom of the Bot Info tab, click **[Delete bot]**.
+
+### Verify with OTP
+
+An OTP is sent to the Team Owner's email address. Enter it to confirm.
+
+### Confirm deletion
+
+The bot and all its associated data are deleted. This action cannot be reversed.
+
+</Steps>
+
+<Callout type="warning">
+  Deleting a bot removes all its intents, entities, training data, conversation logs, and integrations. Make sure you've exported anything you want to keep before confirming.
+</Callout>

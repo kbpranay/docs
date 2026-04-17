@@ -1,0 +1,91 @@
+---
+title: Train Conversations
+description: Review what users have asked your bot and improve intent accuracy over time.
+---
+
+import { Callout } from 'nextra/components'
+
+# Train Conversations
+
+The Training page is where you improve your bot after it goes live. It shows every conversation that's happened — what the user said, how the bot classified it, and what response was returned. You can validate correct classifications, fix wrong ones, or ignore noise.
+
+Access it by clicking **Train conversation** in the side menu.
+
+## Filtering conversations
+
+The session list has three primary filters:
+
+| Filter | Shows |
+|---|---|
+| **Real conversations** *(default)* | Conversations from the live Go-Live URL only |
+| **All chats** | Go-Live conversations + internal chat-window test conversations |
+| **Unhandled requests** | Queries that matched the `default_fallback` intent |
+
+Additional filters let you narrow by:
+
+- **User Source** — webpage, app, LLM lab, etc.
+- **User Channel** — chatbot, voice, WhatsApp, agent assist
+- **Session ID** — jump straight to a specific session
+- **Number of chats** — filter by conversation length
+- **Ratings** — Excellent (5), Good (4), Average (3), Bad (2), Poor (1)
+- **Average conversation rating** — sum of ratings ÷ number of feedback responses
+- **Date & time** — Today, Yesterday, or Last 7 days *(maximum 7-day range)*
+- **Training status** — Trained, Incomplete, or Not trained
+- **Feedback rating & comment**
+
+## Unhandled requests
+
+When AIDA can't match a user query to any intent, it falls back to `default_fallback` and logs the message here. Reviewing unhandled requests is the fastest way to spot gaps in your intent coverage.
+
+**To fix unhandled requests:**
+
+1. Filter to **Unhandled requests**.
+2. For each query, choose an action:
+   - **Validate** — the bot's assigned intent was correct (for cases where you want to confirm even a fallback was the right call).
+   - **Configure** — assign the query to the correct intent, then **Save**. The query is added as a trigger to that intent.
+   - **Ignore** — skip without taking action.
+
+## Validate, Configure, Ignore
+
+Every bot response in every session can be actioned in one of three ways:
+
+- **Validate** — the response came from the correct intent. The session is marked Trained/Validated.
+- **Configure** — the intent was wrong. Pick the correct intent from the dropdown, click **Save**, and the response is added to that intent with a training-page source icon.
+- **Ignore** — skip without training. Useful for noise, test queries, or messages that genuinely don't need an intent.
+
+## Training status
+
+A session's status reflects how much of it has been actioned:
+
+| Status | Meaning |
+|---|---|
+| **Trained** | Every query in the session has been validated, configured, or ignored |
+| **Incomplete** | Some queries actioned, others still pending |
+| **Not trained** | No queries in the session have been actioned |
+
+## Accuracy metrics
+
+Two metrics track your training progress:
+
+- **Trained queries** = Validated + Configured count
+- **Intent accuracy %** = Validated ÷ (Validated + Configured) × 100
+
+<Callout>
+  **Ignored queries don't count** toward trained queries or intent accuracy. Only validated and configured queries move the metric.
+</Callout>
+
+## Exporting training logs
+
+Click the download/export button to get a CSV of the currently filtered sessions.
+
+Exported fields:
+
+- User Source
+- User Channel
+- Session ID
+- Number of chats
+- Feedback rating + comment
+- Date & time
+- Training status
+
+Only the sessions matching your current filter are exported — use filters to scope the download.

@@ -1,0 +1,52 @@
+---
+title: Intent Explainer
+description: See why AIDA classified a user query into a specific intent — word by word.
+---
+
+import { Callout } from 'nextra/components'
+
+# Intent Explainer
+
+Intent Explainer is a debugging tool that reveals *why* the ML classifier matched a user query to a particular intent. It's the fastest way to diagnose classification problems and improve your training data.
+
+## Where to find it
+
+Open any intent page and look for the **chat bubble icon** in the bottom-right corner. Click it to open the testing chat window, then toggle **Intent Explainer** on.
+
+<Callout>
+  Intent Explainer is **only available for ML classification**. It does not work when [the Classifier](/bot-settings/classifier) is disabled, or for exact-match Elasticsearch triggers.
+</Callout>
+
+## Reading the output
+
+When you type a test query with Intent Explainer enabled, each word in the query is highlighted based on its impact on classification:
+
+| Highlight | Meaning |
+|---|---|
+| **Green** | Positive impact — this word pushed the classifier toward the matched intent |
+| **Red** | Negative impact — this word pushed the classifier away from the matched intent |
+| **No highlight** | No significant impact |
+| **`[UNK]`** | Token the classifier didn't recognize |
+
+Hover over any highlighted word to see the numerical **attribution score** for the top intent — how much that token influenced the decision.
+
+## Entity resolution markers
+
+You'll also see special symbols in the explained output:
+
+- `~##~` marks where the classifier split the query for entity resolution
+- `~` marks a resolved entity value
+
+These reveal how the classifier tokenized the input before running classification.
+
+## Using it in training
+
+Intent Explainer works great alongside the [Training page](/intents-entities/train-conversations). Sessions where Intent Explainer was enabled are marked with a special icon in the **All chats** filter view.
+
+**A typical workflow:**
+
+1. Notice a query in Training that was classified into the wrong intent.
+2. Copy the user's message.
+3. Open the *correct* intent and paste the query into the Intent Explainer.
+4. Read the word-by-word attribution to see which words are misleading the classifier.
+5. Adjust your triggers — add clearer phrasings, remove confusing ones — until the explanation matches your expectation.

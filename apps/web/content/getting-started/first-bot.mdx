@@ -1,0 +1,124 @@
+---
+title: Creating Your First Bot
+description: Step-by-step guide to creating your first chatbot in AIDA using DocBrain or Intents & Entities.
+---
+
+import { Callout, Steps, Tabs } from 'nextra/components'
+
+# Creating Your First Bot
+
+## The Bots Page
+
+After selecting a team, you will land on the **Bots Page** which shows all bots created within that team. Click any bot card to open it.
+
+- **Search:** Use the search field to find a bot by name.
+- **Show all bots:** After entering a bot, use the **Show all bots** option at any time to return to the Bots Page.
+
+## Creating a New Bot
+
+Click the **[+ Create Bot]** button on the Bots Page or from the bot dropdown list. You will be offered two creation paths:
+
+<Tabs items={['Create with DocBrain', 'Create with Intents & Entities']}>
+  <Tabs.Tab>
+
+### Create Bot Using DocBrain
+
+DocBrain lets your bot answer questions from indexed documents. The wizard has three steps:
+
+<Steps>
+
+#### Define Bot
+
+Enter the **bot name**, **organization name**, and select the **language**. Click **Next**.
+
+#### Choose Source
+
+Select the type of data source for DocBrain and enter a DocBrain name. You can either:
+- Link an **existing DocBrain** already in your account, or
+- Create a **new DocBrain** from scratch.
+
+Click **Next** (or **Prev** to go back).
+
+#### Choose Language Model *(optional)*
+
+Select the DocBrain model type you want to use for response generation.
+
+Click **Start Indexing** once all mandatory fields are complete.
+
+</Steps>
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+
+### Create Bot Using Intents & Entities
+
+This path gives you full control over bot training through intents and entities.
+
+Fill in the following fields:
+- **Name your bot** — the bot's display name
+- **Short description** — a brief summary of the bot's purpose
+- **Organization name** — your organization's name
+- **Language** — defaults to English
+
+Then choose a starting option:
+
+**Build from scratch** — creates the bot with default system intents (Default Welcome, Default Reset, Default Fallback).
+
+**Add pre-built intents** — lets you browse and add predefined intents from the library:
+
+<Steps>
+
+#### Open the pre-built intents panel
+
+Click **[Add pre-built intents]** to browse available intent packages.
+
+#### Select intents
+
+Click **[Add]** next to each intent package you want to include. Added intents appear in the **Added pre-built intents** list.
+
+#### Confirm and create
+
+Click **[Proceed]**, enter any required reference values, then click **[Proceed]** again. Your bot is created with the selected intents.
+
+</Steps>
+
+  </Tabs.Tab>
+</Tabs>
+
+## Bot Completion Progress
+
+The Home Page shows a **completion percentage** for each bot. Here's how it's calculated:
+
+**Standard (non-DocBrain) bots:**
+
+| Action completed | Progress |
+|---|---|
+| Bot created | 0% |
+| Customize Chat UI | +25% |
+| Configure welcome message | +25% |
+| Go-Live | +25% |
+| **Total** | **75%** (100% once DocBrain is indexed, if added) |
+
+**DocBrain bots:**
+
+| Action completed | Progress |
+|---|---|
+| Bot created, indexing in progress | 0% |
+| Indexing complete (Test DocBrain) | +20% |
+| Customize Chat UI | +20% |
+| Configure welcome message | +20% |
+| Go-Live | +20% |
+| Configure prompt | +20% |
+| **Total** | **100%** |
+
+## Customizing Your Bot's Look
+
+Click **Customize Chat UI** on the Home Page to personalize the bot's chat interface appearance — colors, avatar, welcome text, and more. Changes are reflected in real time in the preview panel on the right.
+
+## Going Live
+
+Once you've configured your bot, click **Go-Live** (or the **Go-live Recommended** button on the Home Page) to deploy it. See the [Integrations](/integrations) section for deployment options including Web/App, Voice, and WhatsApp.
+
+<Callout type="info">
+  Your bot status will show **"Your bot is now ready to go live"** once all mandatory criteria are met.
+</Callout>

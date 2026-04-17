@@ -1,0 +1,93 @@
+---
+title: API & Services
+description: Enable and manage the APIs exposed by AIDA for your bots.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# API & Services
+
+The **API & Services** page lets team admins toggle individual AI services on or off for the bots in the team, and view the API keys you need to integrate them with external systems.
+
+Access it through the Accounts page. Available to **Team Owner** and **Manager** roles.
+
+## Available services
+
+| Service | Purpose |
+|---|---|
+| **LLM Service** | General-purpose LLM calls for bot responses |
+| **LLM Classifier** | ML-based intent classification |
+| **LLM NES** | Named entity search |
+| **LLM Lab** | Experiment workspace for prompt and model tuning |
+| **LLM Summarizer** | Summarize long user inputs or documents |
+| **Text Generator** | Generate free-form text for specific intents |
+| **RAG Service** | Retrieval-augmented generation for DocBrain |
+| **LLM Insights** | AI-driven analytics over conversations |
+| **Agent Service** | Enable agent handoff workflows |
+| **PDF Extractor** | Extract text from uploaded PDFs for DocBrain |
+
+## Enabling a service
+
+<Steps>
+
+### Open API & Services
+
+Navigate to **Accounts → API & Services**.
+
+### Select the service
+
+Click the service you want to enable.
+
+### Toggle it on
+
+Turn the service toggle **ON**.
+
+### Generate and enter OTP
+
+Click **Generate OTP** — a code is emailed to the Team Owner. Enter it in the field.
+
+### Confirm
+
+Click **Confirm**. An API Key dialog appears with a copy icon — copy the key to your clipboard.
+
+</Steps>
+
+<Callout type="warning">
+  **OTP confirmation is required** for every enable/disable action. Make sure your Team Owner has email access before starting.
+</Callout>
+
+## Disabling a service
+
+<Steps>
+
+### Open API & Services
+
+Navigate to the page and find the active service.
+
+### Open the menu
+
+Click the **[...]** (ellipses) next to the service.
+
+### Toggle Disable
+
+Select **Disable** from the menu.
+
+### Confirm with OTP
+
+Same OTP flow as enabling — Generate OTP, enter, Confirm.
+
+</Steps>
+
+## Viewing an existing API key
+
+1. Go to the **API & Services** page.
+2. Click the **Key** link of the active service you want to view.
+3. Copy the key with the copy icon.
+
+<Callout>
+  API keys are secrets. Store them in a password manager or your infrastructure's secret store — not in source code or shared docs.
+</Callout>
+
+## Learning more about a service
+
+Each service card links to its detailed documentation. Click the service name to open the full reference — request/response formats, rate limits, and example payloads.

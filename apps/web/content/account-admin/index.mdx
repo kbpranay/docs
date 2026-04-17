@@ -1,0 +1,48 @@
+---
+title: Account & Admin
+description: Everything related to your account, team members, permissions, and migrations.
+---
+
+import { Cards } from 'nextra/components'
+
+# Account & Admin
+
+This section covers your personal account settings and team-wide administration.
+
+<Cards>
+  <Cards.Card title="Profile & Password" href="/account-admin/profile" arrow />
+  <Cards.Card title="Users & Permissions" href="/account-admin/users-permissions" arrow />
+  <Cards.Card title="Team Settings" href="/account-admin/team-settings" arrow />
+  <Cards.Card title="Migration" href="/account-admin/migration" arrow />
+</Cards>
+
+## Profile dropdown at a glance
+
+The profile menu in the top-right header shows:
+
+- Your display name
+- Your email
+- The team you're currently logged into *(with a copy-team-ID button)*
+- **Switch Team** — change teams without logging out
+- **My Profile** — view roles, edit name
+- **Account** — change password, change timezone
+- **Logout**
+
+## Who can do what
+
+| Action | Roles allowed |
+|---|---|
+| Invite users | Team Owner, Manager, AIDA Admin |
+| Revoke user roles | Team Owner, Manager, AIDA Admin |
+| Deactivate a user | Team Owner, Manager |
+| Delete a user | Team Owner only |
+| Reset another user's 2FA | Team Owner (all); Manager (below manager level) |
+| Transfer team ownership | Team Owner only |
+| Update team name | Team Owner, Manager |
+| Configure lockout policy | Team Owner, Manager |
+| Enable API services | Team Owner, Manager |
+| Migrate bots & artifacts | Team Owner, Manager, Migrations role |
+
+## Switching teams
+
+If you belong to multiple teams, click your profile in the top-right and choose **Switch Team** to jump between them — no need to log out. You can also use the Team Selection page you see immediately after login.

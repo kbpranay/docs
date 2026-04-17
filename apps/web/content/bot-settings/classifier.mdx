@@ -1,0 +1,72 @@
+---
+title: Classifier
+description: How AIDA matches user messages to intents, and when to enable or disable it.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Classifier
+
+The **Classifier** is the engine that matches user messages to intents using Machine Learning (ML) and Elasticsearch (ES).
+
+## Default state for new bots
+
+For all newly created bots, the **Classifier is disabled by default**. This is a deliberate choice — you can opt in only when you have enough training data to make classification reliable.
+
+When you create a new bot, AIDA shows this note:
+
+> *"Classification is an optional feature and is disabled by default. Enable the Classifier from Bot Settings."*
+
+New bots come with only three system default intents — `default_welcome`, `default_reset`, and `default_fallback`.
+
+## What happens when the Classifier is disabled
+
+When the Classifier is off, most classification-driven features are hidden or locked:
+
+| Area | Behavior when Classifier is OFF |
+|---|---|
+| **User queries** | All queries route to the Fallback intent — even ones with matching triggers |
+| **Intent responses** | Only trigger for **events**, not for user text |
+| **Intents page → Triggers** | Locked with an overlay: *"Cannot access triggers — Classifier is disabled"* |
+| **Intents search filter** | "Intents by Response" option is removed |
+| **Intent Explainer** | Hidden from the testing window |
+| **Training page → Training Status column** | Disabled (column and filter hidden) |
+| **Training page → Configure/Validate/Ignore buttons** | Disabled for most responses |
+| **Configure button** | Remains active only for Flows, Blitzico, and LLM responses |
+| **Fallback responses** | Show reason *"NO ENGINE ENABLED"* in the Configure Response popup |
+
+## Enabling the Classifier
+
+<Steps>
+
+### Open Bot Settings
+
+Click **Bot Settings** in the side menu.
+
+### Go to the Classifier tab
+
+Click the **Classifier** tab.
+
+### Toggle on
+
+Turn on **Enable Classifier**.
+
+</Steps>
+
+Enabling the Classifier immediately triggers ML training and an Elasticsearch refresh. All existing intents are processed and activated.
+
+<Callout type="info">
+  After enabling, give the first training cycle a few minutes to complete. You'll then be able to access Triggers, validate responses from the Training page, and use Intent Explainer.
+</Callout>
+
+## When to enable the Classifier
+
+**Keep it disabled if:**
+- You're building a bot driven purely by events (a form assistant, a flow-based bot).
+- You have fewer than ~50 triggers per intent and don't want false classifications.
+- You're using the bot as a pass-through to Flows or Blitzico.
+
+**Enable it once:**
+- You've added at least 50 triggers per intent.
+- You've defined at least 5–10 distinct intents.
+- You want the bot to handle free-form user text beyond exact trigger matches.

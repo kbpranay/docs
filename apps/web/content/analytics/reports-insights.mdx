@@ -1,0 +1,146 @@
+---
+title: Reports & Insights
+description: Aggregate metrics, trend charts, and exportable logs for your bot.
+---
+
+import { Callout } from 'nextra/components'
+
+# Reports & Insights
+
+The Reports & Insights page (Analytics Beta) gives you aggregate metrics for conversations, agent handoffs, feedback, and intent performance. Every card also has a **View Detailed Insights** link that opens an hourly or daily breakdown.
+
+## Percentage change
+
+Every data card shows the change versus the previous period:
+
+```
+Change % = (Current − Previous) ÷ Previous × 100
+```
+
+A **green `+`** means the metric went up; a **red `−`** means it went down.
+
+## Conversation metrics
+
+### Total conversation count
+
+A count is logged every time a user clicks the chatbot window button.
+
+### Real conversations
+
+Sessions created via the Go-Live URL where the user sent at least one message. This is your most reliable measure of actual bot engagement.
+
+### Average real conversation count (hourly)
+
+```
+Avg = Total conversations in hour ÷ ((end date − start date) + 1)
+```
+
+## User message metrics
+
+### Total user messages
+
+Counts messages sent by users across both bot conversations and agent conversations.
+
+### Average user messages
+
+```
+Avg user messages = count per hour-day ÷ ((end date − start date) + 1)
+```
+
+## Agent request metrics
+
+### Total Agent Requests
+
+Counts every request to hand off to a human agent — whether via chatbot or voice.
+
+### Sessions with Agent Request %
+
+```
+% = (Unique agent requests sent) ÷ (Total real conversations) × 100
+```
+
+### Successful vs unsuccessful agent requests
+
+- **Successful** — the agent sent at least one message during the session.
+- **Unsuccessful** — the user left after the request, or the agent joined without sending a message.
+
+## Training & accuracy metrics
+
+### Trained queries
+
+Count of queries validated or configured on the [Training page](/intents-entities/train-conversations). Ignored queries don't count.
+
+### Intent accuracy %
+
+```
+Accuracy = Validated ÷ (Validated + Configured) × 100
+```
+
+## Feedback metrics
+
+### Bot Average Rating
+
+```
+Bot Avg Rating = Total session feedback rating count ÷ Total number of session feedbacks
+```
+
+### Average conversation feedback rating
+
+```
+Avg conv feedback = Total rating count ÷ Total number of feedback responses
+```
+
+Ratings use a 1–5 scale:
+
+| Score | Label |
+|---|---|
+| 5 | Excellent |
+| 4 | Good |
+| 3 | Average |
+| 2 | Bad |
+| 1 | Poor |
+
+## Conversation duration
+
+### Average Conversation Duration
+
+```
+Avg Duration = Total duration of real conversations ÷ Number of real conversations
+```
+
+Duration is measured from the first message in a session to the last, across user, bot, and agent messages combined.
+
+## Intent ranking
+
+The **Intent ranking** section surfaces the top 10 most-triggered intents, excluding defaults and small-talk intents. Variants are shown for:
+
+- Positive-sentiment intents
+- Negative-sentiment intents
+- Agent-request intents
+
+### Intent Ranking %
+
+```
+Ranking % = (Count of a particular intent triggered) ÷ (Total intents triggered) × 100
+```
+
+### Intent statistics
+
+Each intent shows:
+
+- **Trigger count** — how often it was matched
+- **Exit percentage** — how often sessions ended on this intent
+
+### Exit Percentage
+
+```
+Exit % = (Sessions ended in that intent) ÷ (Total sum of intent exit count) × 100
+```
+
+<Callout>
+  Exit counts are visible in the downloaded CSV/Excel export but not in the UI — download the full query log to analyze exits in detail.
+</Callout>
+
+## Exporting
+
+Click **Download** on any report to get a full export of query logs for the current filter in Excel format.

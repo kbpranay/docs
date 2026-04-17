@@ -1,0 +1,65 @@
+---
+title: Flows & Actions
+description: Connect your bot to Blitzico, AIDA Flows, and custom bot actions.
+---
+
+import { Callout } from 'nextra/components'
+
+# Flows & Actions
+
+Actions let an intent trigger something beyond a text reply — a Blitzico flow, an AIDA Flow, a knowledge lookup, or a predefined bot behavior like handoff to an agent.
+
+Actions are configured per-intent in the **Response → Action** section of an intent.
+
+## Action types
+
+| Action | What it does |
+|---|---|
+| **DocBrain** | Fetch an answer from indexed documents. See [DocBrain](/intents-entities/docbrain). |
+| **Blitzico** | Run a Blitzico low-code flow. Requires a valid route ID. |
+| **Flows** | Run an AIDA Flow. Same route ID pattern as Blitzico. |
+| **Others** | Standard bot actions like `speakToAgent` or `lead_contact_details`. |
+
+## Blitzico & AIDA Flows
+
+Both Blitzico and AIDA Flows use a route ID system to link the intent to the flow.
+
+**Creating a new flow:**
+
+1. In the intent's Response → Action, select **Blitzico** or **Flows**.
+2. Select the target instance from the dropdown.
+3. Click **Create new flow** — a new route ID is generated.
+4. Click **Redirect to Blitz** (or **Redirect to Flow**) to open the flow editor in the target product.
+
+**Using an existing flow:**
+
+1. Copy the route ID from the existing intent or flow.
+2. Paste it into the **Route ID** field on your new intent.
+3. Click **[Verify]**.
+
+A valid ID turns the button label into **"Redirect to Blitz"** or **"Redirect to Flow"** depending on which action type you're using.
+
+<Callout type="warning">
+  The route ID must belong to the **same instance** as your destination. Pasting an ID from a different instance shows *"Not a valid blitzico action"*.
+</Callout>
+
+## Standard bot actions
+
+The "Others" action category covers built-in bot behaviors. Type the action name, press **Enter**, then **Save**.
+
+Common examples:
+
+- **`speakToAgent`** — hand the conversation off to a human agent (requires agent routing configured)
+- **`lead_contact_details`** — capture and display the user's contact info
+
+Each standard action has a specific effect defined at the product level. Consult your AIDA admin for the full list of available actions in your deployment.
+
+## Removing an action
+
+Click **Remove action** on the intent's Response tab. A confirmation dialog prevents accidental removal.
+
+## Apply to all
+
+The **Apply to all** button propagates the current action configuration across all response types (Generic, WhatsApp, Voice, URL, Custom). This **overrides** any action already set on those channels — use it when you want identical behavior everywhere.
+
+A blue icon appears in the header tabs (Triggers, Parameters, Response) when saved content exists, giving you a quick visual of what's been configured.

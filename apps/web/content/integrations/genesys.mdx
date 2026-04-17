@@ -1,0 +1,59 @@
+---
+title: WhatsApp Integration
+description: How to integrate your AIDA bot with WhatsApp to handle customer conversations.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# WhatsApp Integration
+
+AIDA supports WhatsApp as a messaging channel, letting your bot handle customer conversations on WhatsApp directly.
+
+## Setting Up WhatsApp Integration
+
+<Steps>
+
+### Open Go-Live
+
+Click **Go Live** from the side menu bar.
+
+### Go to the WhatsApp tab
+
+Navigate to the **WhatsApp** section on the Go-Live page.
+
+### Generate a URL
+
+Click **[Generate URL]** to create your WhatsApp integration endpoint.
+
+### Configure WhatsApp
+
+Click **[How to configure]** for the detailed configuration steps. Follow the instructions to connect your WhatsApp Business account to the generated AIDA endpoint.
+
+</Steps>
+
+## Enable / Disable WhatsApp
+
+The WhatsApp toggle on the Go-Live page lets you activate or deactivate the WhatsApp channel instantly.
+
+| State | Behavior |
+|---|---|
+| **Toggle ON** | Bot handles all incoming WhatsApp messages normally |
+| **Toggle OFF (script generated)** | Ongoing sessions continue; users can still send agent requests until the session auto-closes. New messages receive an **offline message** |
+| **Toggle OFF (no script)** | Toggle is disabled; a notification is shown |
+
+<Callout type="warning">
+  The offline message is **editable** — click outside the field after editing and the message auto-saves.
+</Callout>
+
+<Callout>
+  Interactions while WhatsApp is disabled are **not** included in training data. They are only counted under **Total Conversations** in Live Data and Analytics.
+</Callout>
+
+## Who Can Manage WhatsApp Integration
+
+Only the following roles can enable/disable the WhatsApp integration:
+
+- App Admin
+- Team Owner
+- Manager
+- AIDA Admin

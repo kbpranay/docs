@@ -1,0 +1,75 @@
+---
+title: Integration Issues
+description: Fixes for Web, Voice, and WhatsApp integration problems.
+---
+
+import { Callout } from 'nextra/components'
+
+# Integration Issues
+
+If your bot isn't showing up or isn't responding on a specific channel, work through the checks below for that channel.
+
+## Web / App (chatbot widget)
+
+### The chat widget doesn't appear
+
+1. Open **Go-Live** in AIDA and confirm the **Enable toggle** for Web/App is **ON**.
+2. Re-copy the integration script from **Go-Live → Show script** — your page might have a stale snippet.
+3. Open your site's browser console and look for script errors.
+4. Confirm the chat window isn't blocked by a content-security policy or ad blocker.
+
+### The bot loads but all replies are fallback
+
+This usually means the Classifier is disabled. Open [Bot Settings → Classifier](/bot-settings/classifier) and turn it on. Until the first training cycle completes, you may continue to see fallbacks.
+
+### My Multi-Build source isn't reflecting my change
+
+- Click **Refresh** on the Go-Live page — builds have to finish before changes propagate.
+- A source marked **In Progress** won't serve the new content yet. Wait for **Build Ready**.
+- Re-publish the specific source using **Publish Builds** if the build appears stuck.
+
+## Voice (AudioCodes)
+
+### The call disconnects immediately
+
+- Check that your AudioCodes configuration points to the URL generated under **Go-Live → Voice**.
+- Confirm the **Voice toggle** on the Go-Live page is **ON**. When it's off, new incoming calls are disconnected with the offline message.
+- If you just enabled Voice, allow a few minutes for the route to propagate.
+
+### Ongoing calls continue but new calls fail
+
+This is by design when the Voice toggle is disabled — ongoing calls complete, new calls receive the offline message. Re-enable the toggle to restore new-call handling.
+
+## WhatsApp
+
+### New WhatsApp messages aren't answered by the bot
+
+1. Open **Go-Live → WhatsApp** and confirm the toggle is **ON**.
+2. If the integration script was never generated, the toggle is disabled — click **Generate URL** first.
+3. Existing sessions continue to work when the toggle is off; only new messages get the offline auto-reply.
+
+### The offline message is wrong
+
+Edit it directly on the Go-Live page. Click outside the field after editing and the new message auto-saves.
+
+## Bot status says "indexing failed"
+
+For DocBrain bots, this means the indexing job failed. Try:
+
+1. Open the DocBrain page for your bot.
+2. Re-index the source documents.
+3. Check that your sources are accessible (URLs that require authentication won't index).
+4. If the error persists, contact your AIDA administrator or EnterpriseBot support with the bot ID.
+
+<Callout>
+  Interactions that happen while a channel is disabled are **not** included in training data. They only show up in Total Conversations under Live Data and Analytics.
+</Callout>
+
+## Still stuck?
+
+Try collecting these before contacting support:
+
+- Bot ID (from Bot Settings → Bot Info)
+- Channel(s) affected (Web, Voice, WhatsApp)
+- A specific session ID where the issue happened (copy it from Training)
+- Exact error message if one appears in the UI

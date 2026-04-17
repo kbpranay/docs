@@ -1,0 +1,89 @@
+---
+title: Bot Quality & Training
+description: How to improve bot response quality, handle unhandled requests, and fix classifier issues.
+---
+
+import { Callout } from 'nextra/components'
+
+# Bot Quality & Training
+
+## Training Your Bot
+
+The **Train Conversation** page shows all conversations that have happened between users and your bot. Use it to validate, configure, or improve the bot's responses.
+
+Navigate there by clicking **[Train conversation]** in the side menu bar.
+
+### Conversation Filters
+
+| Filter | What it shows |
+|---|---|
+| **Real conversations** *(default)* | Conversations from the Go-Live page only |
+| **All chats** | Conversations from Go-Live + the internal chat window |
+| **Unhandled requests** | Queries the bot could not handle (routed to Default Fallback) |
+
+## Unhandled Requests
+
+When a user asks something the bot doesn't recognize, the query is routed to the **Default Fallback** intent and logged under **Unhandled requests**.
+
+**To fix unhandled requests:**
+
+1. Go to **Train conversation → Unhandled requests**.
+2. For each unhandled query, choose an action:
+   - **Validate** — confirm the bot's assigned intent was correct.
+   - **Configure** — assign the query to the correct intent from the dropdown, then click **Save**.
+   - **Ignore** — mark the query as not needing any action.
+
+<Callout>
+  Validate and Configure count towards **Trained queries** and **Intent accuracy**. Ignoring a query does not affect these metrics.
+
+  **Intent accuracy** = Validated ÷ (Validated + Configured) × 100
+</Callout>
+
+## Classifier Issues
+
+The **Classifier** controls how AIDA matches user queries to intents using Machine Learning (ML) and ElasticSearch (ES).
+
+### When Classifier Is Disabled
+
+The Classifier is **disabled by default** for new bots. When disabled:
+
+- All user queries route to the **Default Fallback** intent (including queries with matching triggers)
+- The **Triggers** section on the Intents page is locked
+- The **Training Status** column and filters on the Training page are hidden
+- **Configure**, **Validate**, and **Ignore** buttons are disabled for most responses
+- The **Intent explainer** option in the testing window is hidden
+
+<Callout type="warning">
+  When the Classifier is disabled, intent responses only work with **events** — not with user text input matching triggers.
+</Callout>
+
+### How to Enable the Classifier
+
+1. Go to **Bot Settings** (from the side menu).
+2. Click the **Classifier** tab.
+3. Toggle **Enable Classifier** to ON.
+
+Once enabled, ML-based classification and ElasticSearch refresh will be active for the bot.
+
+## Deep Links for Sharing Issues
+
+Deep links let you share a direct link to a specific intent, entity, or training session with teammates.
+
+| Resource | How to copy |
+|---|---|
+| **Intent** | Click the copy icon next to the intent name on the Intents page |
+| **Entity** | Click the copy icon next to the entity name on the Entities page |
+| **Training session** | Click the copy icon on the session in the Training page |
+
+<Callout>
+  Deep links are only accessible by users **within the same team** with the appropriate role. Opening a deep link for a deleted resource or a different team's resource redirects to the Bot List page.
+</Callout>
+
+## Bot Settings Reference
+
+| Setting | Location | What it does |
+|---|---|---|
+| Enable Classifier | Bot Settings → Classifier | Activates ML + ES intent matching |
+| Multilingual | Bot Settings → Bot info | Translates user queries and/or responses |
+| DocBrain configs | Bot Settings → DocBrain configs | Configures document-based QA settings |
+| Bot name | Bot Settings → Bot info | Editable bot name (org name and language are fixed) |

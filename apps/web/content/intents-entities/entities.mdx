@@ -1,0 +1,95 @@
+---
+title: Entities
+description: Define the specific terms and values your bot needs to recognize.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Entities
+
+An **entity** is a specific piece of information extracted from what a user says. In the message *"What's the weather in India today?"* the entities are:
+
+- `India` — a **location**
+- `Today` — a **date**
+
+One default entity — `Chatbot` — is created automatically when a bot is created.
+
+## Structure
+
+Entities have three levels:
+
+```
+Entity → Sub-entities → Synonyms
+```
+
+- **Entity** is the top-level category (for example, `Location` or `Temperature`).
+- **Sub-entities** are the specific values you want to match (for `Location`: `City`, `State`, `Country`).
+- **Synonyms** are alternate phrasings users might say for each sub-entity (for `Temperature`: `Temp`, `Heat`, `Degrees`).
+
+<Callout>
+  Every entity must have **at least one sub-entity** before it can be saved.
+</Callout>
+
+## Creating an entity
+
+<Steps>
+
+### Open the Entities page
+
+Click **Entities** in the side menu.
+
+### Add a new entity
+
+Click **[Add]** and enter the entity name.
+
+### Add a sub-entity
+
+Enter a reference/sub-entity name.
+
+### Add synonyms
+
+Add synonyms by pressing **Enter** after each one.
+
+### Add more sub-entities if needed
+
+Click **[Add sub-entity]** to add additional sub-entities.
+
+### Save
+
+Click **Save**.
+
+</Steps>
+
+## Editing sub-entities
+
+When you edit a sub-entity's name, the original name is automatically preserved as a synonym. This keeps the bot's recognition backward-compatible.
+
+## Deleting
+
+- Delete a **sub-entity**: click the delete icon on that sub-entity row, then Save.
+- Delete a **synonym**: click the **×** on that synonym, then Save.
+
+## Import sub-entities from CSV
+
+Click **[Import Sub-entities]**, upload your CSV, and refresh.
+
+CSV rules:
+
+- If the **Synonyms** column is empty, sub-entity names are treated as synonyms.
+- If the **Sub-entity** column is empty, the import will fail with an error.
+
+## Export sub-entities
+
+Click **[Export Sub-entities]** to download your entity definitions as a CSV.
+
+<Callout>
+  Export is restricted to **SSE Admin** and **Team Owner** roles.
+</Callout>
+
+## Searching entities
+
+The Entities list is sorted alphabetically and has a search field at the top to quickly find a specific entity.
+
+## Testing entities
+
+A chat window bubble in the bottom-right of the Entities page lets you test how your bot recognizes entities before going live.

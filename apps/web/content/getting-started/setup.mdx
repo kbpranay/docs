@@ -1,0 +1,140 @@
+---
+title: Login & Account Setup
+description: How to log in, sign up, reset your password, and manage your AIDA account.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Login & Account Setup
+
+## Logging In
+
+To access AIDA, navigate to your AIDA instance URL and log in with your credentials.
+
+<Steps>
+
+### Enter your email address
+
+On the Login screen, enter your **Email** and click **Next**.
+
+You can also sign in using Single Sign-On (SSO):
+- **Gmail** (Google)
+- **Microsoft**
+- **Okta**
+
+### Enter your password
+
+On the next screen, enter your password to complete sign-in.
+
+</Steps>
+
+## Forgot Password
+
+If you've forgotten your password:
+
+<Steps>
+
+### Click Forgot Password
+
+On the Login screen, click the **[Forgot Password]** link.
+
+### Enter your registered email
+
+Type your registered email address and submit the form. You will receive an email with a password reset link.
+
+### Set your new password
+
+Click the link in the email and set a new password. Once changed, you will receive a confirmation email.
+
+</Steps>
+
+## Account Lockout
+
+AIDA enforces security measures for failed login attempts. Lockout settings are applied globally across all teams.
+
+**Default values:**
+- **Attempts:** 5 invalid attempts before lockout
+- **Lockout duration:** 30 minutes
+- **Minimum time between attempts:** 60 seconds
+
+After exceeding the allowed attempts, your account will be locked and a message will be displayed. Wait for the lockout period to expire before trying again.
+
+## Signing Up
+
+New Team Owners can create an account directly from the Login screen.
+
+<Steps>
+
+### Start signup
+
+Click the **Signup** button on the Login screen.
+
+### Enter your details
+
+Fill in your **Email**, **First name**, and **Last name**, then click **Create my account**.
+
+### Set a password
+
+Create a strong password and click **Next**.
+
+### Set up your team
+
+Enter your **Team name**, **Organization name**, and **Designation**, then click **Submit**.
+
+</Steps>
+
+After submitting, you will receive a confirmation email. Once approved, click the **Login** button in the email to access AIDA. The signed-up user is automatically granted the **Team Owner** role.
+
+## Multiple Team Login
+
+If you are a member of multiple teams, you will be directed to a **Team Selection** page after login. This page displays all your teams as cards showing the team name, ID, and a copy option.
+
+- Click any team card to enter that team's workspace.
+- Use the search field to find a team by name.
+
+## Creating a New Team
+
+Any registered AIDA user can create a new team.
+
+<Steps>
+
+### Go to team selection
+
+After logging in, you will be directed to the Team Selection page.
+
+### Click Create
+
+Click the **Create** button on the Team Selection page.
+
+### Enter team details
+
+Enter the **Team name** and **Organization name**, then click **Submit**.
+
+</Steps>
+
+You will be automatically logged into the new team and redirected to the **Create Bot** page. You are the **Team Owner** of any team you create.
+
+<Callout>
+**Multi-team notes:**
+1. Actions such as revoking, deactivating, and deleting users are team-specific.
+2. Two-factor authentication (2FA) is not team-specific — it applies globally to your account.
+3. When a session expires and you re-login, you will be directed back to the team you were last in.
+</Callout>
+
+## Logging Out
+
+<Steps>
+
+### Open the profile dropdown
+
+Click the **profile icon** in the top-right header.
+
+### Click Logout
+
+Select **Logout** from the dropdown.
+
+### Confirm logout
+
+A confirmation prompt will appear warning that unsaved changes will be lost. Click **Confirm** to log out, or close the dialog to return to the app.
+
+</Steps>

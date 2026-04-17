@@ -1,0 +1,135 @@
+---
+title: Users & Permissions
+description: Invite users, assign roles, and manage team membership in AIDA.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Users & Permissions
+
+The **User Rights** page is where you add, remove, and manage access for everyone on your team. It's accessible to **AIDA Admin**, **Manager**, and **Team Owner** roles.
+
+<Callout>
+**The ground rules:**
+- Only a Team Owner can deactivate or delete users
+- Managers can deactivate, but not delete
+- No one can revoke, deactivate, or reassign roles to a Team Owner
+- Managers cannot act on other Managers or on the Team Owner
+- The user list shows 20 users per page, sorted alphabetically
+</Callout>
+
+## Who can invite whom
+
+| Your role | You can invite |
+|---|---|
+| **Team Owner** | Every role — AIDA, LiveChat, ERA, Insights Lab, Manager, API & Services, Migrations |
+| **Manager** | API & Services, AIDA, LiveChat, ERA, Insights Lab *(but not other Managers or Team Owner)* |
+| **AIDA Admin** | AIDA User, AIDA Dashboard |
+
+## Inviting a new user
+
+<Steps>
+
+### Open User Rights
+
+Click **[User rights]** in the navigation.
+
+### Click Invite
+
+Click the **[Invite]** button.
+
+### Fill in the details
+
+Enter the user's **Email**, **First name**, and **Last name**.
+
+### Assign a role
+
+Select the role(s) you want to grant. If you pick an admin-level role for a product, all lower roles for that product are automatically checked and cannot be unchecked.
+
+### Send the invitation
+
+Click **[Send invite]**.
+
+</Steps>
+
+The invited user receives an email with a **Join Team** button. Clicking it takes them to a page where they set their password and complete signup.
+
+## Revoking a user's roles
+
+Revoking a user's roles prevents them from logging in. All roles are removed in a single action — you can reassign them later.
+
+<Steps>
+
+### Open User Rights → find the user
+
+Locate the user card in the list.
+
+### Open the menu
+
+Click the **[...]** on the user card.
+
+### Revoke rights
+
+Click **[Revoke rights]**, then **[Confirm]** in the popup.
+
+</Steps>
+
+The user receives a confirmation email listing the revoked roles.
+
+## Deactivating a user
+
+<Steps>
+
+### Open User Rights → find the user
+
+Same starting point as revoking.
+
+### Deactivate
+
+Click the **[...]** on the user card, then **[Deactivate user]**, and confirm.
+
+</Steps>
+
+<Callout type="info">
+  Deactivated users keep their role assignments. When reactivated, the previous roles are automatically restored — no re-assignment needed.
+</Callout>
+
+## Reactivating a deactivated user
+
+<Steps>
+
+### Filter to deactivated users
+
+Click **Show users** filter and select **Deactivated user list**.
+
+### Reactivate
+
+Click **[...]** on the user card → **[Activate User]** → **[Confirm]**.
+
+</Steps>
+
+## Transferring team ownership
+
+A Team Owner can hand ownership to one of their Managers.
+
+<Steps>
+
+### Find the Manager in User Rights
+
+Navigate to User Rights and locate the Manager you want to promote.
+
+### Initiate the transfer
+
+Click **[Transfer Ownership]** on the Manager's user card and confirm.
+
+### Verify with OTP
+
+An OTP is sent to the current Team Owner's email. Enter it and click **Confirm**.
+
+### Re-login
+
+Click **Re-login** and sign back in. The selected Manager becomes the Team Owner, and the previous Team Owner becomes a Manager.
+
+</Steps>
+
+For team-wide settings — 2FA, lockout policies, team name — see [Team Settings](/account-admin/team-settings).

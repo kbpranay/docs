@@ -1,0 +1,106 @@
+---
+title: Migration
+description: Transfer bots, flows, and other artifacts between AIDA environments.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Migration
+
+Migration lets you move artifacts — bots, flows, knowledge bases, and more — from one AIDA environment to another. Typical use cases are promoting a bot from staging to production, or cloning a bot across teams for testing.
+
+Access it through **Team Configs → Migration**. Available to **Team Owner**, **Manager**, and users with the **Migrations** role.
+
+## What you can migrate
+
+| Artifact | Notes |
+|---|---|
+| **Bot** | Full bot including intents, entities, and training data |
+| **BotForge** | The BotForge visual bot configuration |
+| **Company Templates** | Shared templates across bots |
+| **DocBrain** | Indexed documents + Question Bank + KB Forge settings. Auto-reparsed after transfer |
+| **Flows** | AIDA Flows. Destination team needs at least 1 Flow instance |
+| **KB Forge** | Knowledge base configs. Works across languages |
+| **RAG Forge** | RAG configurations. Works across bot languages; falls back to team default model if custom model isn't available |
+| **Tags & Templates** | Tag definitions and response templates |
+
+## Before you start
+
+Make sure you have:
+
+1. The **access token** from the source team (from the source team's Accounts page).
+2. The **Team ID** of the source team.
+3. The **Source Bot ID** (or other artifact ID) you want to migrate.
+4. A clear **task name** to identify this migration.
+
+<Callout type="warning">
+  A unique **Task Name** is required for the **Initiate Migration** button to activate. Without it, the button stays disabled.
+</Callout>
+
+## Running a migration
+
+<Steps>
+
+### Open the Migration page
+
+Go to **Team Configs → Migration** and click **Create**.
+
+### Fill in the required fields
+
+| Field | What to enter |
+|---|---|
+| **Task Name** | A unique identifier for this migration |
+| **Environment** | Source environment (dropdown of available environments) |
+| **Team's Access Token** | Access token from the source team |
+| **Team ID** | Team ID of the source team |
+| **Choose Artefact** | Bot / BotForge / Company Templates / DocBrain / Flows / KB Forge / RAG Forge / Tags & Templates |
+| **Source Bot ID** | ID of the bot (or artifact) to migrate |
+
+### Add notification emails *(optional)*
+
+The initiating user is emailed by default. You can add up to **5 additional emails**, comma-separated, to notify other users.
+
+### Click Initiate Migration
+
+Confirm to start. You'll see a **"Migration Initiated"** popup.
+
+### Watch for the status email
+
+You (and any notified emails) receive an email when the migration completes or fails.
+
+</Steps>
+
+## Common errors
+
+| Error message | Meaning |
+|---|---|
+| **Invalid access token** | Token missing or doesn't match the source team |
+| **Invalid Team ID** | Team ID doesn't exist in the selected environment |
+| **Not a valid source id** | Bot ID doesn't exist in the source team |
+| **Source data not found** | Bot ID exists but you don't have permission, or it's in a different team |
+
+If a migration fails, AIDA sends a **Migration Failed** email from the support team's address and logs the failure on the Migration page.
+
+## Artifact-specific notes
+
+**DocBrain migration** — After migrating, DocBrain is automatically re-parsed. Question Bank and KB Forge settings transfer along with the DocBrain.
+
+**Flow migration** — The destination team must have at least one Flow instance configured. An optional **Update all node URLs** checkbox rewrites node URLs during the migration.
+
+**KB Forge migration** — The destination team must have at least one KB configured. KB Forge migrations work across languages.
+
+**RAG Forge migration** — Works across bot languages. If the custom language model used in the source isn't available in the destination, AIDA falls back to the destination team's default model.
+
+## Migration log
+
+Every migration appears in the main Migration page with these fields — all copyable with a click:
+
+- Task Name
+- Source Team ID
+- Source Bot ID
+- Destination Bot ID
+- Source Environment
+- Artefact
+- Timestamp
+
+Use the log to audit what's been migrated, or to grab IDs for a repeat migration.

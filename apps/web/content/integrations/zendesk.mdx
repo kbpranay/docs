@@ -1,0 +1,59 @@
+---
+title: Voice Integration
+description: How to integrate your AIDA bot with voice channels using AudioCodes.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Voice Integration
+
+AIDA supports voice channel integration using **AudioCodes**. This allows your bot to handle inbound phone calls with AI-powered responses.
+
+## Setting Up Voice Integration
+
+<Steps>
+
+### Open Go-Live
+
+Click **Go Live** from the side menu bar.
+
+### Go to the Voice tab
+
+Navigate to the **Voice** section on the Go-Live page.
+
+### Generate a URL
+
+Click **[Generate URL]** to create your voice integration endpoint.
+
+### Configure AudioCodes
+
+Click **[How to configure]** for the step-by-step AudioCodes configuration guide. Follow the instructions to point your AudioCodes setup to the generated AIDA voice URL.
+
+</Steps>
+
+## Enable / Disable Voice
+
+The Voice toggle on the Go-Live page lets you activate or deactivate the voice channel instantly.
+
+| State | Behavior |
+|---|---|
+| **Toggle ON** | Bot handles all incoming calls normally |
+| **Toggle OFF (script generated)** | Ongoing calls proceed as usual. New incoming calls are **disconnected** and receive an offline message |
+| **Toggle OFF (no script)** | Toggle is disabled; a notification message is shown |
+
+<Callout type="warning">
+  The offline message for disconnected calls is **editable**. Click outside the field after editing to auto-save the message.
+</Callout>
+
+<Callout>
+  Interactions that occur while Voice is disabled are **not** included in training data. They are only counted under **Total Conversations** in Live Data and Analytics.
+</Callout>
+
+## Who Can Manage Voice Integration
+
+Only the following roles can enable/disable the Voice integration:
+
+- App Admin
+- Team Owner
+- Manager
+- AIDA Admin

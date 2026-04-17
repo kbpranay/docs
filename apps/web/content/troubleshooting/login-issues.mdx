@@ -1,0 +1,92 @@
+---
+title: Login & Access Issues
+description: Solutions for login problems, account lockouts, password resets, and SSO issues in AIDA.
+---
+
+import { Callout } from 'nextra/components'
+
+# Login & Access Issues
+
+## Forgot Password
+
+If you can't remember your password, use the self-service reset flow:
+
+1. On the Login screen, click **[Forgot Password]**.
+2. Enter your registered email address.
+3. Check your inbox for a password reset email.
+4. Click the link in the email and enter your new password.
+5. You will receive a confirmation email once the password is successfully changed.
+
+## Account Lockout
+
+AIDA locks accounts after too many failed login attempts to prevent unauthorized access.
+
+**Default lockout settings (applied globally across all teams):**
+
+| Setting | Default value |
+|---|---|
+| Invalid attempts before lockout | **5** |
+| Lockout duration | **30 minutes** |
+| Minimum time between attempts | **60 seconds** |
+
+After exceeding the attempt limit, your account is locked and a message is displayed. Wait for the lockout period (30 minutes by default) before trying again.
+
+<Callout type="warning">
+  If your account is still locked after the lockout period, contact your Team Owner or AIDA Admin.
+</Callout>
+
+Your Team Owner can adjust the lockout policy from **Team Settings → Security**.
+
+## SSO Login Issues
+
+AIDA supports Single Sign-On (SSO) via Gmail (Google), Microsoft, and Okta.
+
+**If SSO login fails:**
+
+1. Confirm that your organization has SSO enabled for AIDA.
+2. Check that your SSO email matches your AIDA account email.
+3. Try the email/password login as a fallback.
+4. Contact your Team Owner to verify SSO configuration.
+
+## Invitation & Joining a Team
+
+If you received a team invitation but can't join:
+
+1. Check your inbox for an email with a **Join Team** button.
+2. Click **Join Team** — this redirects you to set your password.
+3. If the invitation link has expired, ask your Team Owner to send a new invitation.
+
+## Session Expiry
+
+If your session expires while using AIDA:
+
+- You will be redirected to the re-login page.
+- After logging back in, you will be directed to the **same team** you were in before the session expired.
+
+## Two-Factor Authentication (2FA)
+
+If 2FA is enabled for your team and you can't log in:
+
+1. Enter your email and password as usual.
+2. When prompted, click **[Setup]** to configure 2FA (first time only).
+3. Enter the authentication code sent to your email.
+4. Scan the QR code with your Authenticator app.
+5. Click **[Go to Sign in]** to complete setup.
+
+On subsequent logins, open your Authenticator app and enter the current code.
+
+<Callout>
+  2FA applies globally to your account — it is not team-specific.
+</Callout>
+
+## Can't Access Certain Pages
+
+If you're unable to access a page or feature, your role may not have permission.
+
+| Role | Restricted pages |
+|---|---|
+| AIDA User | User Rights, Create Bot, Team Settings |
+| AIDA Dashboard | All pages except Live Data, Analytics, My Profile, Account, Timezone |
+| AIDA Admin | Cannot activate/deactivate/delete users; cannot access Team Settings |
+
+Contact your Team Owner to request a role change if needed.

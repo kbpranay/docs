@@ -1,0 +1,381 @@
+/* ================================================================
+   AIDA Help Center — Freshdesk-style overrides for Nextra
+   Keeps Nextra's sidebar/content plumbing, replaces the visual
+   identity with a light-blue helpdesk palette.
+   ================================================================ */
+
+:root {
+  --aida-primary:       #2b5ce6;
+  --aida-primary-soft:  #eff3ff;
+  --aida-primary-hover: #1e4ad1;
+  --aida-bg:            #ffffff;
+  --aida-bg-alt:        #f8f9fb;
+  --aida-border:        #eef0f8;
+  --aida-border-strong: #d9dff0;
+  --aida-text:          #1a1a2e;
+  --aida-text-muted:    #6b7280;
+  --aida-text-subtle:   #9ca3af;
+
+  /* Nextra primary color override (affects links, active states) */
+  --x-color-primary-50:   240 245 255;
+  --x-color-primary-100:  224 232 254;
+  --x-color-primary-200:  193 213 255;
+  --x-color-primary-300:  157 189 255;
+  --x-color-primary-400:  115 156 252;
+  --x-color-primary-500:  67 114 240;
+  --x-color-primary-600:  43 92 230;
+  --x-color-primary-700:  30 74 209;
+  --x-color-primary-800:  28 64 176;
+  --x-color-primary-900:  30 59 143;
+  --x-color-primary-950:  21 36 95;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Body + global type
+   ────────────────────────────────────────────────────────────── */
+html, body {
+  background: var(--aida-bg);
+  color: var(--aida-text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI',
+               Roboto, Oxygen, Ubuntu, sans-serif;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Top navbar
+   ────────────────────────────────────────────────────────────── */
+.nextra-nav-container {
+  background: var(--aida-bg) !important;
+  border-bottom: 1px solid var(--aida-border) !important;
+  backdrop-filter: none !important;
+}
+.nextra-nav-container-blur {
+  display: none !important;
+}
+.nextra-nav-container nav a {
+  color: var(--aida-text);
+  font-weight: 500;
+}
+.nextra-nav-container nav a:hover {
+  color: var(--aida-primary);
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Left sidebar — Freshdesk style (always visible, light tones)
+   ────────────────────────────────────────────────────────────── */
+.nextra-sidebar {
+  background: var(--aida-bg-alt) !important;
+  border-right: 1px solid var(--aida-border) !important;
+  padding-top: 1rem !important;
+}
+
+/* Section headers (folder names in _meta.ts) */
+.nextra-sidebar ul > li > a.nextra-focus,
+.nextra-sidebar ul > li > button {
+  font-weight: 600 !important;
+  color: var(--aida-text) !important;
+  padding: 8px 12px !important;
+  border-radius: 6px !important;
+  font-size: 14px !important;
+}
+
+/* Top-level folder labels — uppercase accent */
+.nextra-sidebar > aside > div > ul > li > button,
+.nextra-sidebar > aside > div > ul > li > a.nextra-focus.items-center {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+}
+
+/* Sub-item links (individual pages) */
+.nextra-sidebar ul ul a {
+  color: var(--aida-text-muted) !important;
+  font-weight: 400 !important;
+  font-size: 13px !important;
+  padding: 5px 10px !important;
+  border-radius: 5px !important;
+}
+.nextra-sidebar ul ul a:hover {
+  background: var(--aida-primary-soft) !important;
+  color: var(--aida-primary) !important;
+}
+
+/* Active item */
+.nextra-sidebar a[aria-current="page"],
+.nextra-sidebar a.active {
+  background: var(--aida-primary-soft) !important;
+  color: var(--aida-primary) !important;
+  font-weight: 600 !important;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Content area — Nextra renders:
+   <div mx-auto flex max-w-(--nextra-content-width)>
+     <aside class="nextra-sidebar">...</aside>
+     <ClientWrapper>
+       <main data-pagefind-body>{content}</main>
+     </ClientWrapper>
+   </div>
+
+   The main element has no horizontal padding by default, so
+   content runs flush against the sidebar. Fix by adding padding
+   to the main content area.
+   ────────────────────────────────────────────────────────────── */
+main[data-pagefind-body] {
+  padding: 2rem clamp(1.5rem, 3vw, 3rem) 3rem !important;
+  max-width: 100%;
+  width: 100%;
+  min-width: 0;
+}
+
+main .nextra-breadcrumb {
+  color: var(--aida-text-muted);
+  font-size: 13px;
+  margin-bottom: 1rem;
+}
+main .nextra-breadcrumb a {
+  color: var(--aida-text-muted);
+}
+main .nextra-breadcrumb a:hover {
+  color: var(--aida-primary);
+}
+
+/* Headings */
+main h1 {
+  color: var(--aida-text) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em;
+}
+main h2 {
+  color: var(--aida-text) !important;
+  font-weight: 600 !important;
+  border-top: 1px solid var(--aida-border);
+  padding-top: 1.5rem;
+  margin-top: 2.5rem !important;
+}
+main h3 {
+  color: var(--aida-text) !important;
+  font-weight: 600 !important;
+}
+
+/* Links in content */
+main a:not(.nextra-card) {
+  color: var(--aida-primary) !important;
+  text-decoration: none !important;
+}
+main a:not(.nextra-card):hover {
+  text-decoration: underline !important;
+  color: var(--aida-primary-hover) !important;
+}
+
+/* Tables */
+main table {
+  border-collapse: collapse;
+  width: 100%;
+}
+main thead tr {
+  background: var(--aida-bg-alt) !important;
+}
+main th {
+  font-weight: 600 !important;
+  color: var(--aida-text) !important;
+  text-align: left;
+  border-bottom: 2px solid var(--aida-border-strong) !important;
+}
+main td {
+  border-bottom: 1px solid var(--aida-border) !important;
+}
+
+/* Callouts */
+.nextra-callout {
+  border-radius: 8px !important;
+}
+
+/* Inline code */
+main code:not(pre code) {
+  background: var(--aida-primary-soft) !important;
+  color: var(--aida-primary) !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  font-size: 0.9em !important;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Homepage landing wrapper — max-width + centered padding so
+   the content isn't flush with the viewport edges on the index
+   page (which Nextra renders without a <main> wrapper because
+   `index` has `display: 'hidden'` in _meta.ts).
+   ────────────────────────────────────────────────────────────── */
+.aida-landing {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem clamp(1rem, 4vw, 3rem) 4rem;
+  width: 100%;
+}
+
+.aida-section-title {
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  color: var(--aida-text) !important;
+  margin: 0 0 1rem !important;
+  border-top: none !important;
+  padding-top: 0 !important;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Homepage hero & cards
+   ────────────────────────────────────────────────────────────── */
+.aida-hero {
+  background: linear-gradient(135deg, #e8f0fe 0%, #f0f4ff 100%);
+  margin: 0 0 2.5rem;
+  padding: 3.5rem 2rem 3rem;
+  border-radius: 14px;
+  text-align: center;
+}
+.aida-hero h1 {
+  font-size: 2.2rem !important;
+  font-weight: 700 !important;
+  margin: 0 0 0.5rem !important;
+  border-top: none !important;
+  padding-top: 0 !important;
+  color: var(--aida-text) !important;
+}
+.aida-hero p {
+  font-size: 1.05rem;
+  color: var(--aida-text-muted);
+  margin: 0 0 1.5rem;
+}
+.aida-hero .aida-search-pill {
+  background: white;
+  border: 2px solid var(--aida-primary);
+  border-radius: 999px;
+  padding: 10px 20px;
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--aida-text-muted);
+  cursor: pointer;
+  transition: box-shadow 0.18s;
+}
+.aida-hero .aida-search-pill:hover {
+  box-shadow: 0 4px 16px rgba(43, 92, 230, 0.15);
+}
+
+.aida-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 2rem;
+}
+.aida-card {
+  background: white;
+  border: 1px solid var(--aida-border);
+  border-radius: 10px;
+  padding: 1.25rem 1.1rem;
+  text-decoration: none !important;
+  color: inherit;
+  transition: all 0.18s ease;
+  display: block;
+}
+.aida-card:hover {
+  border-color: var(--aida-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(43, 92, 230, 0.12);
+}
+.aida-card-icon {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+.aida-card-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+  color: var(--aida-text);
+}
+.aida-card-desc {
+  font-size: 0.8rem;
+  color: var(--aida-text-muted);
+  line-height: 1.5;
+}
+
+.aida-popular {
+  background: var(--aida-bg-alt);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  margin: 2rem 0;
+}
+.aida-popular h3 {
+  font-size: 0.85rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: var(--aida-text-muted) !important;
+  margin: 0 0 0.75rem !important;
+  font-weight: 700 !important;
+  border: none !important;
+}
+.aida-popular ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.aida-popular li {
+  padding: 6px 0;
+  border-bottom: 1px solid var(--aida-border);
+}
+.aida-popular li:last-child {
+  border-bottom: none;
+}
+.aida-popular li a {
+  color: var(--aida-primary) !important;
+  font-size: 14px;
+  text-decoration: none !important;
+}
+.aida-popular li a:hover {
+  text-decoration: underline !important;
+}
+
+.aida-contact-cta {
+  background: var(--aida-primary-soft);
+  border: 1px solid var(--aida-border-strong);
+  border-radius: 10px;
+  padding: 1.5rem;
+  text-align: center;
+  margin-top: 2.5rem;
+}
+.aida-contact-cta p {
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+  color: var(--aida-text);
+}
+.aida-contact-cta small {
+  color: var(--aida-text-muted);
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Dark mode handling — keep the Freshdesk light feel but respect
+   the .dark class if a user toggles it. We soften our palette.
+   ────────────────────────────────────────────────────────────── */
+.dark {
+  --aida-bg: #0f1220;
+  --aida-bg-alt: #181b2c;
+  --aida-border: #242841;
+  --aida-border-strong: #313657;
+  --aida-text: #e9eaf3;
+  --aida-text-muted: #9ca3af;
+  --aida-text-subtle: #6b7280;
+  --aida-primary-soft: #1a2540;
+}
+.dark .aida-hero {
+  background: linear-gradient(135deg, #181b2c 0%, #1a2540 100%);
+}
+.dark .aida-card {
+  background: #181b2c;
+}
+.dark .aida-popular {
+  background: #181b2c;
+}
+.dark .aida-contact-cta {
+  background: #1a2540;
+}

@@ -1,0 +1,107 @@
+---
+title: Triggers & Parameters
+description: Train your bot with example phrases and collect information from users with parameters.
+---
+
+import { Callout, Steps, Tabs } from 'nextra/components'
+
+# Triggers & Parameters
+
+Triggers are the example phrases that train your bot. Parameters are the pieces of information your bot collects during a conversation.
+
+## Triggers
+
+A trigger is a sample user phrase that teaches AIDA "when someone says something like this, match it to this intent."
+
+<Callout type="info">
+  Add **at least 50 triggers per intent** for reliable classification. Triggers can be long or short — what matters is that they're realistic phrasings of the user goal.
+</Callout>
+
+### Three ways to add triggers
+
+<Tabs items={['Manually', 'Auto-generate', 'Import CSV']}>
+  <Tabs.Tab>
+
+Click the **Add triggers** input, type the phrase, and press **Enter**. Save the intent. A source icon appears next to manually added triggers.
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+
+1. Click **[Auto-generate trigger]**.
+2. Enter a sample user input.
+3. Click **Generate** — AIDA suggests similar phrasings.
+4. Select or deselect suggestions.
+5. Click **[Add Triggers]**.
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+
+Click **[Import triggers]**, then drag-and-drop or upload a CSV file.
+
+To import triggers for **multiple intents at once**, click the dropdown next to the **[Add]** button on the main Intents list and upload a multi-intent CSV.
+
+  </Tabs.Tab>
+</Tabs>
+
+### Edit and delete
+
+Hover over a trigger to reveal pencil (edit) and trash (delete) icons at the right edge of the trigger.
+
+### Export triggers
+
+Click **[Export triggers]** to download all triggers for the intent as a CSV. The button is only visible when triggers exist.
+
+<Callout>
+  Export is restricted to **AIDA Admin** and **Team Owner** roles.
+</Callout>
+
+---
+
+## Parameters
+
+Parameters are the bits of information your bot needs to collect before it can respond. For example, a "Book a flight" intent needs a destination, a date, and a number of travelers.
+
+Every parameter requires:
+
+- **Parameter Name** — the identifier you'll reference in the response
+- **Entity** — defines what kind of value is valid (see [Sys entities](#sys-entity-types) below)
+- **Prompt** — the message the bot sends to ask the user for the value
+
+The **Required** toggle must be ON for the Prompt field to be editable. If the user's answer doesn't match the expected entity, the bot re-asks the prompt.
+
+### Four parameter types
+
+**Normal parameters** are scoped to one intent. Use system entities or custom entities you've defined.
+
+**Convo parameters** display user responses back inside a reply. They can be reused across intents.
+
+- Syntax: `convo:parameterName`
+- Reference it in a response with tilde wrappers: `~convo:parameterName~`
+- To reuse globally, define it in Intent A, copy the parameter name, and paste it into Intent B's response.
+
+**Context parameters** connect multiple intents into a flow.
+
+- Syntax: `contextName:parameterName`
+- In the **primary** intent: add a Context Out name, add the context parameter, toggle **Required: ON**.
+- In the **secondary** intent: add the same context name and parameter, toggle **Required: OFF**, and reference it in the reply as `~contextName:parameterName~`.
+
+**Pre-filled parameters** pull values from outside the conversation — global variables, local storage, session storage, cookies, URL query parameters, scripts, or button clicks.
+
+- Defined in Botforge (variable name + parameter name)
+- Added to the `default_welcome` intent on the AIDA side
+- Values are resolved **before** `default_welcome` triggers
+- You can assign values via the Network tab when opening the Go-Live URL
+
+### Sys entity types
+
+When adding a parameter, you can use these system-defined entities:
+
+| Entity | Matches |
+|---|---|
+| `sys_any` | Any data type |
+| `sys_number` | Numerical values only |
+| `sys_currency` | Numbers with a currency symbol |
+| `sys_date` | Date values (today, tomorrow, specific dates) |
+| `sys_email` | Properly formatted email addresses |
+
+For anything more specific — like product names or city lists — use a [custom entity](/intents-entities/entities).
