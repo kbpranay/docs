@@ -1,0 +1,164 @@
+---
+title: Preguntas frecuentes
+description: Respuestas rápidas a preguntas comunes sobre AIDA.
+---
+
+import { Callout } from 'nextra/components'
+
+# Preguntas frecuentes
+
+## Sobre AIDA
+
+### ¿Qué es AIDA?
+
+AIDA — Artificial Intelligence Digital Assistance — es una plataforma para crear **agentes** de IA que gestionan conversaciones reales con clientes. Un agente combina un prompt de sistema, un conjunto de herramientas conectadas (API, bases de conocimiento, bases de datos) y un LLM. Los agentes pueden desplegarse en sitios web, canales de voz (AudioCodes) y WhatsApp. AIDA también incluye **Flows** — un constructor visual para automatizaciones complejas de varios pasos.
+
+### ¿Los intents siguen siendo soportados?
+
+Intents, triggers y entidades están **obsoletos y serán retirados a finales de 2026**. Los bots basados en intents existentes siguen funcionando, pero:
+
+- Todos los **nuevos bots** deben crearse usando el [asistente de agente](/getting-started/first-bot)
+- Si mantienes un bot legacy, consulta [Intents y entidades (Legacy)](/intents-entities)
+- Guía de migración: los prompts reemplazan a los intents, la llamada a herramientas reemplaza a triggers + parámetros, el LLM reemplaza a la extracción de entidades
+
+### ¿De qué está hecho un agente?
+
+De tres cosas:
+
+1. **Prompts** — el prompt de bienvenida que ven los usuarios y el prompt de sistema (Instructions/Prompt) que dirige el comportamiento
+2. **Herramientas** — capacidades externas opcionales (API, KB, Table, File, SQL, Webpage)
+3. **Modelo** — el LLM subyacente (Gemini Live, variantes GPT-realtime, etc.)
+
+Configura los tres desde [Configuración del agente](/bot-settings/agent-configuration).
+
+### ¿Qué roles hay disponibles?
+
+Ocho roles: Team Owner, Manager, AIDA Admin, AIDA User, AIDA Dashboard, AIDA LLM Lab Admin, API & Services y Migrations. La tabla completa está en el [resumen de Primeros pasos](/getting-started).
+
+---
+
+## Cuentas y equipos
+
+### ¿Cómo restablezco mi contraseña?
+
+Desde la pantalla de login, haz clic en **[Forgot Password]**, introduce tu email y sigue el enlace de restablecimiento que te enviamos. Una vez iniciada la sesión, también puedes cambiar tu contraseña desde **Profile settings → Account → Edit**. Ver [Perfil y contraseña](/account-admin/profile).
+
+### ¿Por qué se bloqueó mi cuenta?
+
+Tras **5 intentos fallidos de inicio de sesión**, AIDA bloquea tu cuenta durante **30 minutos**. Espera a que pase la ventana o pide a tu Team Owner que ajuste la política de bloqueo desde [Team Settings → Security](/account-admin/team-settings#account-lockout-policy).
+
+### ¿Puedo cambiar mi dirección de email?
+
+No — tu email es el identificador de tu cuenta y no se puede cambiar. Puedes editar tu nombre y apellidos en la página de perfil.
+
+### ¿Puedo pertenecer a varios equipos?
+
+Sí. Si eres miembro de varios equipos, llegas a una página de selección de equipo tras iniciar sesión. También puedes cambiar de equipo desde el desplegable del perfil sin cerrar sesión.
+
+### ¿Cómo invito a alguien a mi equipo?
+
+Los Team Owners, Managers y AIDA Admins pueden invitar usuarios desde **User Rights → Invite**. Pasos completos: [Usuarios y permisos](/account-admin/users-permissions#invitar-a-un-nuevo-usuario).
+
+### ¿Cómo transfiero la propiedad del equipo?
+
+Solo el Team Owner actual puede iniciar una transferencia a un Manager. Se hace a través de **User Rights → [Transfer Ownership]** con una verificación OTP. Ver [Usuarios y permisos](/account-admin/users-permissions#transferir-la-propiedad-del-equipo).
+
+---
+
+## Creación de bots
+
+### ¿Debo usar DocBrain o Intents y entidades?
+
+- Usa **Intents y entidades** para flujos transaccionales donde el usuario necesita realizar una tarea específica.
+- Usa **DocBrain** cuando tengas un gran corpus de documentación y quieras que el bot responda preguntas abiertas a partir de ella.
+- Puedes mezclar ambos en el mismo bot.
+
+### ¿Qué es el Classifier y debería habilitarlo?
+
+El Classifier es el motor de ML que empareja los mensajes del usuario con los intents. Está **deshabilitado por defecto** para los nuevos bots. Habilítalo desde [Bot Settings → Classifier](/bot-settings/classifier) una vez que tengas más de 5 intents y más de 50 triggers por intent.
+
+### ¿Cuántos triggers necesito por intent?
+
+Al menos **50 triggers por intent** para una clasificación ML fiable. Los triggers pueden ser largos o cortos — lo que importa es un fraseo realista.
+
+### ¿Puedo importar triggers en bloque?
+
+Sí. En un intent, haz clic en **[Import triggers]** y sube un CSV. Para importar varios intents a la vez, usa el desplegable junto a **[Add]** en la lista de intents y sube un CSV multi-intent.
+
+### ¿Puedo exportar mis triggers?
+
+Sí, vía **[Export triggers]** en un intent — solo visible para AIDA Admin y Team Owner. Para entidades, usa **[Export Sub-entities]** en la página Entities (restringido a SSE Admin y Team Owner).
+
+### ¿Cómo hago mi bot multilingüe?
+
+Abre [Bot Settings → Multilingual](/bot-settings/multilingual) y activa **User Query** y/o **Response**. Multilingual está disponible para los roles Admin, Team Owner y Manager, y requiere confirmación OTP para habilitarse.
+
+---
+
+## Canales
+
+### ¿Qué canales soporta AIDA?
+
+Tres canales integrados: **Web y app**, **Voz** (AudioCodes) y **WhatsApp**. Ver [Canales](/channels) para guías de configuración. Para conectar a sistemas externos (CRMs, bases de datos, APIs), ver [Integraciones (Flows)](/integrations).
+
+### ¿Cómo integro el chatbot en mi sitio web?
+
+Abre **Go Live → Web/Apps → Show script** y pega el snippet JavaScript en el HTML de tu sitio. Guía completa: [Canal web y app](/channels/salesforce).
+
+### ¿Puedo tener el mismo bot desplegado en varios idiomas en un sitio web?
+
+Sí — usa **Multi-Build Sources** en Go-Live. Añades una fuente por idioma, y cada una obtiene su propia URL con un parámetro de consulta `?source=SourceName` para la atribución en analytics.
+
+### ¿Qué pasa si apago un canal?
+
+- **Web/App:** Las sesiones existentes continúan hasta que se recarga la página. Las nuevas sesiones no cargarán el widget de chat.
+- **Voice:** Las llamadas existentes proceden con normalidad. Las nuevas llamadas se desconectan con un mensaje offline.
+- **WhatsApp:** Las sesiones existentes continúan; los nuevos mensajes reciben la auto-respuesta offline.
+
+---
+
+## Analytics y entrenamiento
+
+### ¿Qué es Intent accuracy?
+
+```
+Intent accuracy = Validated ÷ (Validated + Configured) × 100
+```
+
+Mide con qué frecuencia el clasificador acertó en las consultas que has revisado. Las consultas ignoradas no cuentan. Ver [Entrenar conversaciones](/intents-entities/train-conversations).
+
+### ¿Dónde puedo ver cuántos usuarios están escalando a agentes?
+
+En la página Analytics. La métrica es **Sessions with Agent Request %**, calculada como solicitudes únicas de agente ÷ conversaciones reales × 100. Ver [Informes e insights](/analytics/reports-insights#-de-sesiones-con-solicitud-de-agente).
+
+### ¿Puedo exportar datos de analytics?
+
+Sí — el botón **Download** en los informes exporta los logs de consulta a Excel. Puedes filtrar por fuente, canal y rango de fechas antes de exportar.
+
+---
+
+## Migración y administración
+
+### ¿Cómo migro un bot entre entornos?
+
+Ve a **Team Configs → Migration → Create**, introduce el access token del equipo origen, el Team ID y el bot ID, elige el tipo de artefacto y haz clic en **Initiate Migration**. Guía completa: [Migración](/account-admin/migration).
+
+### ¿Qué puedo migrar?
+
+Bots, configuraciones de BotForge, Company Templates, DocBrain, Flows, KB Forge, RAG Forge y Tags & Templates.
+
+### ¿Por qué falló mi migración?
+
+Errores comunes: **Invalid access token** (token incorrecto o faltante), **Invalid Team ID**, **Not a valid source id** (el bot no existe) o **Source data not found** (el bot existe pero no en ese equipo). Consulta la página de Migration y tu email para ver el error exacto.
+
+---
+
+## Solución de problemas
+
+### Mi bot está dando respuestas incorrectas — ¿qué hago?
+
+Abre **Train conversation** y filtra por **Unhandled requests** o sesiones con calificaciones de feedback bajas. Usa **Configure** para asignar consultas al intent correcto, o **Validate** donde el bot acertó. Con el tiempo esto mejora la precisión. Guía completa: [Calidad y entrenamiento del bot](/troubleshooting/call-quality).
+
+### Mi bot clasifica todo como Fallback
+
+Lo más probable es que el Classifier esté deshabilitado. Habilítalo desde [Bot Settings → Classifier](/bot-settings/classifier).

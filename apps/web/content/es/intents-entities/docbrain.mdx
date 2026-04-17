@@ -1,0 +1,67 @@
+---
+title: DocBrain
+description: Responde preguntas directamente desde documentos usando la base de conocimiento con RAG de AIDA.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# DocBrain
+
+<Callout type="info">
+  **DocBrain sigue siendo soportado.** DocBrain es la capa de recuperación tanto para bots legacy basados en intents *como* para los nuevos agentes — los nuevos agentes usan DocBrain a través de la [herramienta KB](/integrations/data-tools#herramienta-kb-base-de-conocimiento). Esta página documenta DocBrain adjunto a intents; para el flujo basado en agentes, ver [Integraciones de datos y herramientas](/integrations/data-tools).
+</Callout>
+
+DocBrain permite a tu bot responder preguntas basándose en documentos que has indexado — FAQs, manuales, PDFs de políticas, páginas web. En lugar de construir cada respuesta a mano, subes el material fuente y DocBrain se encarga de la recuperación y el resumen.
+
+## Cuándo usar DocBrain
+
+Usa DocBrain cuando:
+
+- Tengas un gran corpus de material de referencia (políticas, documentación de producto, artículos de base de conocimiento).
+- Los usuarios hagan preguntas abiertas cuyas respuestas están en ese material.
+- Quieras evitar redactar a mano cientos de intents para cada posible formulación.
+
+Usa los [Intents](/intents-entities/intents) clásicos cuando:
+
+- El objetivo del usuario lleva a una acción específica (reserva, actualización de cuenta, escalado).
+- Necesitas recoger información estructurada con [Parámetros](/intents-entities/triggers-parameters#parámetros).
+
+Puedes mezclar ambos en el mismo bot — intents para flujos transaccionales, DocBrain para búsquedas de conocimiento.
+
+## Crear un bot DocBrain
+
+La forma más fácil es durante la creación del bot. Ver [Crear tu primer bot](/getting-started/first-bot#create-bot-using-docbrain).
+
+## Conectar DocBrain a un intent
+
+También puedes adjuntar DocBrain a un único intent como acción:
+
+<Steps>
+
+### Abre el intent
+
+Ve a la página Intents y abre el intent que quieres potenciar con DocBrain.
+
+### Cambia a la pestaña Response
+
+Haz clic en la pestaña **Response**.
+
+### Añade una acción DocBrain
+
+En Action, selecciona **DocBrain**. Puedes:
+- Enlazar un **DocBrain existente** (filtrado a los que coinciden con el idioma de tu bot), o
+- **Crear un nuevo DocBrain** — esto te redirige a la página Create DocBrain donde puedes configurarlo y hacer clic en **Start indexing**.
+
+### Añade triggers para las preguntas
+
+Vuelve a la pestaña Triggers y añade preguntas de ejemplo que los usuarios podrían hacer sobre los documentos indexados. El bot emparejará estos triggers y obtendrá una respuesta de DocBrain al salir en vivo.
+
+</Steps>
+
+## Configuración RAG
+
+Los ajustes avanzados de DocBrain — plantillas de prompts, parámetros de recuperación, selección del modelo de lenguaje — se gestionan en **Bot Settings → RAGForge**, disponible solo para bots con DocBrain. Ver [Bot Settings](/bot-settings) para la guía completa de configuración.
+
+<Callout>
+  Las respuestas de DocBrain dependen del contenido indexado. Si una pregunta no tiene contenido coincidente, DocBrain devuelve una respuesta fallback. Mantén tu material indexado actualizado para obtener respuestas fiables.
+</Callout>

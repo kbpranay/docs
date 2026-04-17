@@ -1,0 +1,92 @@
+---
+title: Problèmes de connexion et d'accès
+description: Solutions aux problèmes de connexion, verrouillages de compte, réinitialisations de mot de passe et problèmes SSO dans AIDA.
+---
+
+import { Callout } from 'nextra/components'
+
+# Problèmes de connexion et d'accès
+
+## Mot de passe oublié
+
+Si vous ne vous souvenez plus de votre mot de passe, utilisez le processus de réinitialisation en libre-service :
+
+1. Sur l'écran de connexion, cliquez sur **[Forgot Password]**.
+2. Saisissez votre adresse e-mail enregistrée.
+3. Vérifiez votre boîte de réception pour un e-mail de réinitialisation de mot de passe.
+4. Cliquez sur le lien dans l'e-mail et saisissez votre nouveau mot de passe.
+5. Vous recevrez un e-mail de confirmation une fois le mot de passe changé avec succès.
+
+## Verrouillage de compte
+
+AIDA verrouille les comptes après trop de tentatives de connexion infructueuses pour empêcher tout accès non autorisé.
+
+**Paramètres de verrouillage par défaut (appliqués globalement à toutes les équipes) :**
+
+| Paramètre | Valeur par défaut |
+|---|---|
+| Tentatives invalides avant verrouillage | **5** |
+| Durée du verrouillage | **30 minutes** |
+| Délai minimum entre les tentatives | **60 secondes** |
+
+Après avoir dépassé la limite de tentatives, votre compte est verrouillé et un message s'affiche. Attendez la période de verrouillage (30 minutes par défaut) avant de réessayer.
+
+<Callout type="warning">
+  Si votre compte est toujours verrouillé après la période de verrouillage, contactez votre Team Owner ou AIDA Admin.
+</Callout>
+
+Votre Team Owner peut ajuster la politique de verrouillage depuis **Team Settings → Security**.
+
+## Problèmes de connexion SSO
+
+AIDA prend en charge le Single Sign-On (SSO) via Gmail (Google), Microsoft et Okta.
+
+**Si la connexion SSO échoue :**
+
+1. Confirmez que votre organisation a activé le SSO pour AIDA.
+2. Vérifiez que votre e-mail SSO correspond à celui de votre compte AIDA.
+3. Essayez la connexion par e-mail/mot de passe comme solution de repli.
+4. Contactez votre Team Owner pour vérifier la configuration SSO.
+
+## Invitation et rejoindre une équipe
+
+Si vous avez reçu une invitation à une équipe mais ne pouvez pas la rejoindre :
+
+1. Vérifiez votre boîte de réception pour un e-mail avec un bouton **Join Team**.
+2. Cliquez sur **Join Team** — ceci vous redirige pour définir votre mot de passe.
+3. Si le lien d'invitation a expiré, demandez à votre Team Owner d'envoyer une nouvelle invitation.
+
+## Expiration de session
+
+Si votre session expire pendant l'utilisation d'AIDA :
+
+- Vous serez redirigé vers la page de reconnexion.
+- Après vous être reconnecté, vous serez redirigé vers la **même équipe** que celle dans laquelle vous étiez avant l'expiration de la session.
+
+## Authentification à deux facteurs (2FA)
+
+Si la 2FA est activée pour votre équipe et que vous ne pouvez pas vous connecter :
+
+1. Saisissez votre e-mail et votre mot de passe comme d'habitude.
+2. Lorsque vous y êtes invité, cliquez sur **[Setup]** pour configurer la 2FA (première fois uniquement).
+3. Saisissez le code d'authentification envoyé à votre e-mail.
+4. Scannez le QR code avec votre application d'authentification.
+5. Cliquez sur **[Go to Sign in]** pour terminer la configuration.
+
+Lors des connexions suivantes, ouvrez votre application d'authentification et saisissez le code actuel.
+
+<Callout>
+  La 2FA s'applique globalement à votre compte — elle n'est pas spécifique à une équipe.
+</Callout>
+
+## Impossible d'accéder à certaines pages
+
+Si vous ne pouvez pas accéder à une page ou à une fonctionnalité, il se peut que votre rôle n'en ait pas la permission.
+
+| Rôle | Pages restreintes |
+|---|---|
+| AIDA User | User Rights, Create Bot, Team Settings |
+| AIDA Dashboard | Toutes les pages sauf Live Data, Analytics, My Profile, Account, Timezone |
+| AIDA Admin | Ne peut pas activer/désactiver/supprimer des utilisateurs ; ne peut pas accéder à Team Settings |
+
+Contactez votre Team Owner pour demander un changement de rôle si nécessaire.

@@ -1,0 +1,76 @@
+---
+title: Multilingüe
+description: Permite que tu bot entienda y responda en el idioma preferido del usuario.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Multilingüe
+
+La función multilingüe de AIDA traduce los mensajes del usuario al idioma base del bot para la clasificación y traduce las respuestas del bot al idioma del usuario. Esto permite que un único bot sirva a usuarios en muchos idiomas sin duplicar intents.
+
+Multilingual está disponible para los roles **Admin**, **Team Owner** y **Manager**.
+
+## Dos toggles
+
+| Toggle | Efecto al activarse |
+|---|---|
+| **User Query** | El mensaje del usuario se traduce al idioma base del bot antes de enviarse al clasificador |
+| **Response** | La respuesta del bot se traduce al idioma del usuario antes de mostrarse |
+
+Puedes habilitar uno, ambos o ninguno — según si quieres que el bot acepte entrada en otros idiomas, responda en otros idiomas o ambos.
+
+## Tipos de respuesta soportados
+
+La traducción se aplica a todos estos tipos de respuesta:
+
+- Intent response
+- Response with suggestions
+- Response with parameters
+- Response with gallery card
+- Response with picture card
+- DocBrain response
+- LLM response
+- Omega cards
+- Blitzico response
+- Blitzico conversation nodes
+- AIDA flows
+
+## Ajustes del LLM
+
+Multilingual usa un LLM para la traducción. Puedes configurar:
+
+| Ajuste | Rango | Por defecto |
+|---|---|---|
+| **Model** | Elige del desplegable | — |
+| **Prompt** | Plantilla editable | — |
+| **Timeout** | 5 – 180 segundos | 30 |
+| **Temperature** | 0 – 1 | 0.2 |
+
+Valores de temperature más bajos producen traducciones más predecibles y literales; valores más altos permiten fraseos más creativos con riesgo de desviación del significado. **0.2 es un valor por defecto seguro** para uso de helpdesk.
+
+## Habilitar multilingual
+
+<Steps>
+
+### Ve a Bot Settings
+
+Haz clic en **Bot Settings** en el menú lateral.
+
+### Abre Multilingual
+
+Haz clic en la sección Multilingual.
+
+### Activa el/los toggle(s) que necesites
+
+Habilita **User Query** y/o **Response**.
+
+### Confirma con OTP
+
+Se envía un OTP al email del Team Owner. Introdúcelo para confirmar.
+
+</Steps>
+
+<Callout type="warning">
+  La confirmación OTP es necesaria cada vez que habilites funciones multilingual. Asegúrate de que tu Team Owner tenga acceso al email antes de empezar.
+</Callout>

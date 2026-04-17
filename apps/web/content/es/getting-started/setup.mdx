@@ -1,0 +1,140 @@
+---
+title: Inicio de sesión y configuración de cuenta
+description: Cómo iniciar sesión, registrarte, restablecer tu contraseña y gestionar tu cuenta de AIDA.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Inicio de sesión y configuración de cuenta
+
+## Iniciar sesión
+
+Para acceder a AIDA, ve a la URL de tu instancia de AIDA e inicia sesión con tus credenciales.
+
+<Steps>
+
+### Introduce tu dirección de email
+
+En la pantalla de login, introduce tu **Email** y haz clic en **Next**.
+
+También puedes iniciar sesión usando Single Sign-On (SSO):
+- **Gmail** (Google)
+- **Microsoft**
+- **Okta**
+
+### Introduce tu contraseña
+
+En la siguiente pantalla, introduce tu contraseña para completar el inicio de sesión.
+
+</Steps>
+
+## Contraseña olvidada
+
+Si has olvidado tu contraseña:
+
+<Steps>
+
+### Haz clic en Forgot Password
+
+En la pantalla de login, haz clic en el enlace **[Forgot Password]**.
+
+### Introduce tu email registrado
+
+Escribe tu dirección de email registrada y envía el formulario. Recibirás un email con un enlace para restablecer la contraseña.
+
+### Establece tu nueva contraseña
+
+Haz clic en el enlace del email y establece una nueva contraseña. Una vez cambiada, recibirás un email de confirmación.
+
+</Steps>
+
+## Bloqueo de cuenta
+
+AIDA aplica medidas de seguridad para los intentos fallidos de inicio de sesión. Los ajustes de bloqueo se aplican globalmente a todos los equipos.
+
+**Valores por defecto:**
+- **Intentos:** 5 intentos inválidos antes del bloqueo
+- **Duración del bloqueo:** 30 minutos
+- **Tiempo mínimo entre intentos:** 60 segundos
+
+Tras exceder los intentos permitidos, tu cuenta se bloqueará y se mostrará un mensaje. Espera a que el período de bloqueo expire antes de intentarlo de nuevo.
+
+## Registrarse
+
+Los nuevos Team Owners pueden crear una cuenta directamente desde la pantalla de login.
+
+<Steps>
+
+### Inicia el registro
+
+Haz clic en el botón **Signup** en la pantalla de login.
+
+### Introduce tus datos
+
+Rellena tu **Email**, **First name** y **Last name**, y haz clic en **Create my account**.
+
+### Establece una contraseña
+
+Crea una contraseña fuerte y haz clic en **Next**.
+
+### Configura tu equipo
+
+Introduce tu **Team name**, **Organization name** y **Designation**, y haz clic en **Submit**.
+
+</Steps>
+
+Tras enviar, recibirás un email de confirmación. Una vez aprobado, haz clic en el botón **Login** del email para acceder a AIDA. El usuario registrado recibe automáticamente el rol **Team Owner**.
+
+## Inicio de sesión con varios equipos
+
+Si eres miembro de varios equipos, serás dirigido a una página de **Team Selection** tras iniciar sesión. Esta página muestra todos tus equipos como tarjetas con el nombre del equipo, el ID y una opción de copia.
+
+- Haz clic en cualquier tarjeta de equipo para entrar en el espacio de trabajo de ese equipo.
+- Usa el campo de búsqueda para encontrar un equipo por nombre.
+
+## Crear un nuevo equipo
+
+Cualquier usuario registrado de AIDA puede crear un nuevo equipo.
+
+<Steps>
+
+### Ve a la selección de equipo
+
+Tras iniciar sesión, serás dirigido a la página Team Selection.
+
+### Haz clic en Create
+
+Haz clic en el botón **Create** en la página Team Selection.
+
+### Introduce los detalles del equipo
+
+Introduce el **Team name** y el **Organization name**, y haz clic en **Submit**.
+
+</Steps>
+
+Serás conectado automáticamente al nuevo equipo y redirigido a la página **Create Bot**. Eres el **Team Owner** de cualquier equipo que crees.
+
+<Callout>
+**Notas multi-equipo:**
+1. Acciones como revocar, desactivar y eliminar usuarios son específicas de cada equipo.
+2. La autenticación en dos pasos (2FA) no es específica del equipo — se aplica globalmente a tu cuenta.
+3. Cuando expire una sesión y vuelvas a iniciar sesión, serás dirigido de nuevo al equipo en el que estabas por última vez.
+</Callout>
+
+## Cerrar sesión
+
+<Steps>
+
+### Abre el desplegable de perfil
+
+Haz clic en el **icono de perfil** en la cabecera superior derecha.
+
+### Haz clic en Logout
+
+Selecciona **Logout** en el desplegable.
+
+### Confirma el cierre de sesión
+
+Aparecerá un aviso de confirmación advirtiendo que se perderán los cambios no guardados. Haz clic en **Confirm** para cerrar sesión, o cierra el diálogo para volver a la app.
+
+</Steps>

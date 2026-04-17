@@ -1,0 +1,100 @@
+---
+title: Gestion des flux
+description: Créez, nommez, supprimez, verrouillez et recherchez des flux dans votre workspace AIDA.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Gestion des flux
+
+Chaque flux commence par une entrée sur la page de listing Flows. À partir de là, vous pouvez créer, renommer, supprimer, verrouiller et rechercher des flux.
+
+## Créer un flux
+
+<Steps>
+
+### Ouvrez la page Flows
+
+Cliquez sur **Flows** depuis la page Bot Selection ou depuis le Mega Menu dans la navigation supérieure.
+
+### Cliquez sur + Create
+
+La boîte de dialogue **Create Flow** s'ouvre.
+
+### Nommez le flux
+
+Saisissez un nom descriptif et configurez l'instance où le flux doit être déployé.
+
+### Enregistrer
+
+Cliquez sur **Save**. Le nouveau flux apparaît dans la liste et ouvre le workspace pour que vous puissiez commencer à ajouter des nœuds.
+
+</Steps>
+
+Vous pouvez également créer un flux depuis l'intérieur d'une intention — ouvrez **Response → Action**, sélectionnez **Flow** dans le menu déroulant, puis créez-en un nouveau ou collez un route ID existant.
+
+## Renommer un flux
+
+<Steps>
+
+### Ouvrez le menu du flux
+
+Cliquez sur le menu en boule de viande (trois points) à côté du flux dans la liste.
+
+### Choisissez Edit Name
+
+Mettez à jour le nom dans l'invite et confirmez.
+
+</Steps>
+
+## Supprimer un flux
+
+<Steps>
+
+### Ouvrez le menu du flux
+
+Cliquez sur les trois points à côté du flux.
+
+### Delete Flow
+
+Cliquez sur **Delete Flow** et confirmez dans la fenêtre contextuelle.
+
+</Steps>
+
+<Callout type="warning">
+  La suppression d'un flux le supprime définitivement. Toute intention ou flux parent qui référence le route ID de ce flux cessera de fonctionner.
+</Callout>
+
+## Verrouiller un flux
+
+Verrouiller un flux le place en mode lecture seule — personne ne peut le modifier tant qu'il n'est pas déverrouillé. Utile pour les flux de production qui ne devraient pas changer sans revue.
+
+<Steps>
+
+### Ouvrez le menu du flux
+
+Cliquez sur les trois points à côté du flux.
+
+### Lock Flow
+
+Cliquez sur **Lock Flow** et confirmez.
+
+</Steps>
+
+<Callout>
+  Lorsqu'un flux est verrouillé par un utilisateur, le menu en boule de viande est **masqué pour les autres utilisateurs** — ils ne peuvent pas effectuer d'actions accidentelles sur un flux verrouillé. La personne qui l'a verrouillé (ou un administrateur) peut le déverrouiller via le même menu.
+</Callout>
+
+## Rechercher des flux
+
+Le champ **Search Flow** en haut de la page Flows filtre la liste au fur et à mesure que vous tapez. Les correspondances sont mises en surbrillance instantanément — pas besoin d'appuyer sur Enter.
+
+## Historique des modifications
+
+Chaque flux conserve un journal complet des modifications qui montre :
+
+- Qui a effectué chaque modification
+- Quand elle est survenue
+- Ce qui a été modifié
+
+Vous pouvez revenir à une version antérieure via le panneau d'historique. Accédez-y depuis l'en-tête supérieur du workspace.

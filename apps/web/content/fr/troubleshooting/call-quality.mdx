@@ -1,0 +1,89 @@
+---
+title: Qualité du bot et entraînement
+description: Comment améliorer la qualité des réponses du bot, traiter les requêtes non traitées et corriger les problèmes de classifier.
+---
+
+import { Callout } from 'nextra/components'
+
+# Qualité du bot et entraînement
+
+## Entraîner votre bot
+
+La page **Train Conversation** affiche toutes les conversations qui ont eu lieu entre les utilisateurs et votre bot. Utilisez-la pour valider, configurer ou améliorer les réponses du bot.
+
+Naviguez-y en cliquant sur **[Train conversation]** dans la barre latérale.
+
+### Filtres de conversation
+
+| Filtre | Ce qu'il affiche |
+|---|---|
+| **Real conversations** *(par défaut)* | Conversations uniquement depuis la page Go-Live |
+| **All chats** | Conversations depuis Go-Live + la fenêtre de chat interne |
+| **Unhandled requests** | Requêtes que le bot n'a pas pu gérer (routées vers Default Fallback) |
+
+## Requêtes non traitées
+
+Lorsqu'un utilisateur demande quelque chose que le bot ne reconnaît pas, la requête est routée vers l'intention **Default Fallback** et consignée dans **Unhandled requests**.
+
+**Pour corriger les requêtes non traitées :**
+
+1. Allez dans **Train conversation → Unhandled requests**.
+2. Pour chaque requête non traitée, choisissez une action :
+   - **Validate** — confirmer que l'intention assignée par le bot était correcte.
+   - **Configure** — affecter la requête à la bonne intention depuis le menu déroulant, puis cliquer sur **Save**.
+   - **Ignore** — marquer la requête comme ne nécessitant aucune action.
+
+<Callout>
+  Validate et Configure comptent dans les **Trained queries** et dans la **Intent accuracy**. Ignorer une requête n'affecte pas ces métriques.
+
+  **Intent accuracy** = Validated ÷ (Validated + Configured) × 100
+</Callout>
+
+## Problèmes de Classifier
+
+Le **Classifier** contrôle la manière dont AIDA associe les requêtes utilisateur aux intentions à l'aide du Machine Learning (ML) et d'ElasticSearch (ES).
+
+### Lorsque le Classifier est désactivé
+
+Le Classifier est **désactivé par défaut** pour les nouveaux bots. Lorsqu'il est désactivé :
+
+- Toutes les requêtes utilisateur sont routées vers l'intention **Default Fallback** (y compris les requêtes avec des déclencheurs correspondants)
+- La section **Triggers** sur la page Intents est verrouillée
+- La colonne **Training Status** et les filtres de la page d'entraînement sont masqués
+- Les boutons **Configure**, **Validate** et **Ignore** sont désactivés pour la plupart des réponses
+- L'option **Intent explainer** dans la fenêtre de test est masquée
+
+<Callout type="warning">
+  Lorsque le Classifier est désactivé, les réponses d'intention ne fonctionnent qu'avec des **événements** — pas avec la saisie utilisateur correspondant à des déclencheurs.
+</Callout>
+
+### Comment activer le Classifier
+
+1. Allez dans **Bot Settings** (depuis le menu latéral).
+2. Cliquez sur l'onglet **Classifier**.
+3. Activez **Enable Classifier** sur ON.
+
+Une fois activée, la classification ML et le rafraîchissement ElasticSearch seront actifs pour le bot.
+
+## Liens profonds pour partager des problèmes
+
+Les liens profonds vous permettent de partager un lien direct vers une intention, une entité ou une session d'entraînement spécifique avec vos coéquipiers.
+
+| Ressource | Comment copier |
+|---|---|
+| **Intention** | Cliquez sur l'icône de copie à côté du nom de l'intention sur la page Intents |
+| **Entité** | Cliquez sur l'icône de copie à côté du nom de l'entité sur la page Entities |
+| **Session d'entraînement** | Cliquez sur l'icône de copie sur la session dans la page Training |
+
+<Callout>
+  Les liens profonds ne sont accessibles qu'aux utilisateurs de la **même équipe** ayant le rôle approprié. L'ouverture d'un lien profond vers une ressource supprimée ou vers une ressource d'une autre équipe redirige vers la page Bot List.
+</Callout>
+
+## Référence Bot Settings
+
+| Paramètre | Emplacement | Ce qu'il fait |
+|---|---|---|
+| Enable Classifier | Bot Settings → Classifier | Active la correspondance d'intention ML + ES |
+| Multilingual | Bot Settings → Bot info | Traduit les requêtes utilisateur et/ou les réponses |
+| DocBrain configs | Bot Settings → DocBrain configs | Configure les paramètres de QA basés sur les documents |
+| Bot name | Bot Settings → Bot info | Nom du bot modifiable (nom de l'organisation et langue sont fixes) |

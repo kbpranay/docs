@@ -1,0 +1,99 @@
+---
+title: Entidades
+description: Define los términos y valores específicos que tu bot necesita reconocer.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Entidades (Legacy)
+
+<Callout type="warning">
+  **Se retirarán a finales de 2026.** Las entidades están obsoletas. Los nuevos agentes extraen información estructurada desde la entrada libre del usuario mediante el propio LLM — sin necesidad de definiciones de entidad. Ver [Crear tu primer agente](/getting-started/first-bot).
+</Callout>
+
+Una **entidad** es una pieza específica de información extraída de lo que dice un usuario. En el mensaje *"¿Qué tiempo hace hoy en India?"* las entidades son:
+
+- `India` — una **location**
+- `Hoy` — una **date**
+
+Se crea automáticamente una entidad por defecto — `Chatbot` — al crear un bot.
+
+## Estructura
+
+Las entidades tienen tres niveles:
+
+```
+Entidad → Sub-entidades → Sinónimos
+```
+
+- **Entity** es la categoría de nivel superior (por ejemplo, `Location` o `Temperature`).
+- **Sub-entities** son los valores específicos que quieres emparejar (para `Location`: `City`, `State`, `Country`).
+- **Synonyms** son formulaciones alternativas que los usuarios podrían decir para cada sub-entidad (para `Temperature`: `Temp`, `Heat`, `Degrees`).
+
+<Callout>
+  Cada entidad debe tener **al menos una sub-entidad** antes de poder guardarse.
+</Callout>
+
+## Crear una entidad
+
+<Steps>
+
+### Abre la página Entities
+
+Haz clic en **Entities** en el menú lateral.
+
+### Añade una nueva entidad
+
+Haz clic en **[Add]** e introduce el nombre de la entidad.
+
+### Añade una sub-entidad
+
+Introduce un nombre de referencia/sub-entidad.
+
+### Añade sinónimos
+
+Añade sinónimos pulsando **Enter** después de cada uno.
+
+### Añade más sub-entidades si es necesario
+
+Haz clic en **[Add sub-entity]** para añadir sub-entidades adicionales.
+
+### Guarda
+
+Haz clic en **Save**.
+
+</Steps>
+
+## Editar sub-entidades
+
+Cuando editas el nombre de una sub-entidad, el nombre original se conserva automáticamente como sinónimo. Esto mantiene el reconocimiento del bot compatible hacia atrás.
+
+## Eliminar
+
+- Eliminar una **sub-entidad**: haz clic en el icono de eliminar en esa fila de sub-entidad y luego Save.
+- Eliminar un **sinónimo**: haz clic en la **×** de ese sinónimo y luego Save.
+
+## Importar sub-entidades desde CSV
+
+Haz clic en **[Import Sub-entities]**, sube tu CSV y refresca.
+
+Reglas del CSV:
+
+- Si la columna **Synonyms** está vacía, los nombres de sub-entidad se tratan como sinónimos.
+- Si la columna **Sub-entity** está vacía, la importación fallará con un error.
+
+## Exportar sub-entidades
+
+Haz clic en **[Export Sub-entities]** para descargar tus definiciones de entidad como un CSV.
+
+<Callout>
+  La exportación está restringida a los roles **SSE Admin** y **Team Owner**.
+</Callout>
+
+## Buscar entidades
+
+La lista de Entities está ordenada alfabéticamente y tiene un campo de búsqueda en la parte superior para encontrar rápidamente una entidad específica.
+
+## Probar entidades
+
+Un bocadillo de ventana de chat en la parte inferior derecha de la página Entities te permite probar cómo tu bot reconoce las entidades antes de salir en vivo.

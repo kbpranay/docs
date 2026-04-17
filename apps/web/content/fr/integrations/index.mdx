@@ -1,0 +1,56 @@
+---
+title: Intégrations (Flows)
+description: Connectez votre bot à des API, bases de données, services IA et systèmes externes à l'aide du constructeur de flux visuel d'AIDA.
+---
+
+import { Callout, Cards } from 'nextra/components'
+
+# Intégrations (Flows)
+
+**Flows** est le constructeur d'automatisation visuel d'AIDA. Il vous permet de glisser-déposer des nœuds interconnectés pour orchestrer aussi bien un appel d'API qu'un agent IA complet en plusieurs étapes — sans quitter AIDA.
+
+Utilisez Flows pour :
+
+- **Appeler des API externes** (systèmes CRM, ticketing, paiements, services de traduction)
+- **Interroger des bases de données** avec SQL, tables CSV ou bases de connaissances
+- **Brancher des agents IA** — LLM, RAG, classifiers, extraction d'entités, agents entièrement autonomes avec outils
+- **Construire une logique multi-étapes** — branchements, templating, délais, nouvelles tentatives, gestion des repli
+- **Transférer les conversations** à un agent en direct lorsque le bot ne peut pas résoudre
+
+<Cards>
+  <Cards.Card title="Gestion des flux" href="/integrations/flows-basics" arrow />
+  <Cards.Card title="Espace de travail" href="/integrations/workspace" arrow />
+  <Cards.Card title="IA et agents" href="/integrations/ai-agents" arrow />
+  <Cards.Card title="Nœuds de conversation" href="/integrations/conversation-nodes" arrow />
+  <Cards.Card title="Nœuds Logic et Dev" href="/integrations/logic-dev" arrow />
+  <Cards.Card title="Intégrations de données et outils" href="/integrations/data-tools" arrow />
+</Cards>
+
+## Pourquoi utiliser Flows ?
+
+- **Visuel, peu de code** — concevez une logique complexe en connectant des nœuds plutôt qu'en écrivant du code
+- **Tout au même endroit** — plus besoin de passer d'onglets entre le constructeur de bot et l'outillage d'intégration
+- **Versionné et auditable** — chaque modification est consignée avec qui l'a faite et quand ; retour en arrière possible à tout moment
+- **Verrouillable** — verrouillez un flux pour éviter les modifications accidentelles lorsqu'il tourne en production
+- **Prévisualisation au design** — les nœuds de carte affichent des aperçus en ligne pour valider les mises en page avant expédition
+
+## Comment Flows s'intègre au reste d'AIDA
+
+- **Intentions et entités** comprennent ce que l'utilisateur *veut* → router vers un flux
+- **Flows** exécute la logique d'intégration → appeler des systèmes, récupérer des données, générer des réponses
+- **Canaux** délivrent la réponse finale à l'utilisateur (widget web, voix, WhatsApp)
+
+Depuis une intention, vous pouvez lancer un flux comme action de réponse : ouvrez le panneau **Response → Action** de l'intention, choisissez **Flow** dans le menu déroulant, et créez un nouveau flux ou collez un route ID existant.
+
+<Callout type="info">
+  **Canaux vs intégrations** — [Canaux](/channels) est l'endroit où votre bot *parle* aux utilisateurs (Web, Voix, WhatsApp). Les intégrations (cette section) sont la manière dont votre bot *se connecte à des systèmes externes* via Flows.
+</Callout>
+
+## Accéder à Flows
+
+Deux chemins depuis AIDA :
+
+1. **Page de sélection de bot** → cliquez sur **Flows**
+2. **Mega Menu** (barre de navigation supérieure) → **Flows**
+
+Vous pouvez également accéder à un flux spécifique en collant son route ID dans une Intention → Response → Action.

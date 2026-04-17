@@ -1,0 +1,59 @@
+---
+title: Voice-Kanal
+description: Wie du deinen AIDA-Bot per AudioCodes mit Voice-Kanälen integrierst.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Voice-Kanal
+
+AIDA unterstützt die Voice-Kanal-Integration über **AudioCodes**. Damit kann dein Bot eingehende Telefonanrufe mit KI-gestützten Antworten bearbeiten.
+
+## Voice-Kanal einrichten
+
+<Steps>
+
+### Go-Live öffnen
+
+Klicke in der Seitenmenüleiste auf **Go Live**.
+
+### Zum Voice-Tab gehen
+
+Navigiere auf der Go-Live-Seite zum Bereich **Voice**.
+
+### Eine URL generieren
+
+Klicke auf **[Generate URL]**, um deinen Voice-Integrations-Endpunkt zu erstellen.
+
+### AudioCodes konfigurieren
+
+Klicke auf **[How to configure]** für die Schritt-für-Schritt-Anleitung zur AudioCodes-Konfiguration. Folge den Anweisungen, um dein AudioCodes-Setup auf die generierte AIDA-Voice-URL zu richten.
+
+</Steps>
+
+## Voice aktivieren / deaktivieren
+
+Der Voice-Schalter auf der Go-Live-Seite erlaubt, den Voice-Kanal sofort zu aktivieren oder zu deaktivieren.
+
+| Zustand | Verhalten |
+|---|---|
+| **Toggle AN** | Bot bearbeitet alle eingehenden Anrufe wie gewohnt |
+| **Toggle AUS (Skript erstellt)** | Laufende Anrufe laufen wie gewohnt. Neue eingehende Anrufe werden **getrennt** und erhalten eine Offline-Nachricht |
+| **Toggle AUS (kein Skript)** | Schalter ist deaktiviert; eine Benachrichtigung wird angezeigt |
+
+<Callout type="warning">
+  Die Offline-Nachricht für getrennte Anrufe ist **editierbar**. Klicke nach dem Bearbeiten außerhalb des Feldes, um die Nachricht automatisch zu speichern.
+</Callout>
+
+<Callout>
+  Interaktionen, die stattfinden, während Voice deaktiviert ist, werden **nicht** in die Trainingsdaten aufgenommen. Sie werden nur unter **Gesamtkonversationen** in Live-Daten und Analytics gezählt.
+</Callout>
+
+## Wer den Voice-Kanal verwalten kann
+
+Nur die folgenden Rollen können die Voice-Integration aktivieren/deaktivieren:
+
+- App Admin
+- Team Owner
+- Manager
+- AIDA Admin

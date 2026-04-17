@@ -9,7 +9,9 @@ import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 
 const ROOT = resolve(import.meta.dirname, '..')
-const CONTENT = join(ROOT, 'content')
+// Manual coverage is checked against English content only — translations
+// mirror the English structure, so if EN is complete, others are too.
+const CONTENT = join(ROOT, 'content', 'en')
 const MANUAL = '/Users/pranayjain/Downloads/AIDA User Manual v4.12.x.md'
 
 function walkMdx(dir) {

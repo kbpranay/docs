@@ -1,0 +1,111 @@
+---
+title: Déclencheurs et paramètres
+description: Entraînez votre bot avec des phrases d'exemple et collectez des informations des utilisateurs avec des paramètres.
+---
+
+import { Callout, Steps, Tabs } from 'nextra/components'
+
+# Déclencheurs et paramètres (Legacy)
+
+<Callout type="warning">
+  **Progressivement supprimé d'ici fin 2026.** Les déclencheurs et les paramètres font partie du système d'intentions legacy. Les nouveaux bots définissent leur comportement via des [prompts d'agent](/bot-settings/agent-configuration#prompts) et de l'[appel d'outils](/bot-settings/agent-configuration#tools) — et non des déclencheurs.
+</Callout>
+
+Les déclencheurs sont les phrases d'exemple qui entraînent votre bot. Les paramètres sont les éléments d'information que votre bot collecte pendant une conversation.
+
+## Déclencheurs
+
+Un déclencheur est un exemple de phrase utilisateur qui apprend à AIDA : "quand quelqu'un dit quelque chose comme ça, associe-le à cette intention."
+
+<Callout type="info">
+  Ajoutez **au moins 50 déclencheurs par intention** pour une classification fiable. Les déclencheurs peuvent être longs ou courts — ce qui compte, c'est qu'ils soient des formulations réalistes de l'objectif de l'utilisateur.
+</Callout>
+
+### Trois façons d'ajouter des déclencheurs
+
+<Tabs items={['Manuellement', 'Auto-génération', 'Import CSV']}>
+  <Tabs.Tab>
+
+Cliquez dans le champ **Add triggers**, tapez la phrase et appuyez sur **Enter**. Enregistrez l'intention. Une icône de source apparaît à côté des déclencheurs ajoutés manuellement.
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+
+1. Cliquez sur **[Auto-generate trigger]**.
+2. Saisissez un exemple d'entrée utilisateur.
+3. Cliquez sur **Generate** — AIDA suggère des formulations similaires.
+4. Sélectionnez ou désélectionnez les suggestions.
+5. Cliquez sur **[Add Triggers]**.
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+
+Cliquez sur **[Import triggers]**, puis glissez-déposez ou téléversez un fichier CSV.
+
+Pour importer des déclencheurs pour **plusieurs intentions à la fois**, cliquez sur le menu déroulant à côté du bouton **[Add]** sur la liste principale des Intents et téléversez un CSV multi-intentions.
+
+  </Tabs.Tab>
+</Tabs>
+
+### Modifier et supprimer
+
+Survolez un déclencheur pour révéler les icônes crayon (modifier) et corbeille (supprimer) sur le bord droit du déclencheur.
+
+### Exporter les déclencheurs
+
+Cliquez sur **[Export triggers]** pour télécharger tous les déclencheurs de l'intention au format CSV. Le bouton n'est visible que lorsque des déclencheurs existent.
+
+<Callout>
+  L'export est réservé aux rôles **AIDA Admin** et **Team Owner**.
+</Callout>
+
+---
+
+## Paramètres
+
+Les paramètres sont les éléments d'information que votre bot doit collecter avant de pouvoir répondre. Par exemple, une intention "Réserver un vol" a besoin d'une destination, d'une date et d'un nombre de voyageurs.
+
+Chaque paramètre nécessite :
+
+- **Parameter Name** — l'identifiant que vous référencerez dans la réponse
+- **Entity** — définit quel type de valeur est valide (voir [Sys entities](#sys-entity-types) ci-dessous)
+- **Prompt** — le message que le bot envoie pour demander la valeur à l'utilisateur
+
+Le commutateur **Required** doit être ON pour que le champ Prompt soit modifiable. Si la réponse de l'utilisateur ne correspond pas à l'entité attendue, le bot redemande le prompt.
+
+### Quatre types de paramètres
+
+Les **paramètres normaux** sont scopés à une seule intention. Utilisez des entités système ou des entités personnalisées que vous avez définies.
+
+Les **paramètres convo** réaffichent les réponses de l'utilisateur dans une réponse. Ils peuvent être réutilisés entre intentions.
+
+- Syntaxe : `convo:parameterName`
+- Référencez-le dans une réponse avec des tildes : `~convo:parameterName~`
+- Pour le réutiliser globalement, définissez-le dans l'intention A, copiez le nom du paramètre et collez-le dans la réponse de l'intention B.
+
+Les **paramètres de contexte** connectent plusieurs intentions en un flux.
+
+- Syntaxe : `contextName:parameterName`
+- Dans l'intention **primaire** : ajouter un nom Context Out, ajouter le paramètre de contexte, activer **Required: ON**.
+- Dans l'intention **secondaire** : ajouter le même nom de contexte et le même paramètre, activer **Required: OFF**, et le référencer dans la réponse avec `~contextName:parameterName~`.
+
+Les **paramètres pré-remplis** tirent des valeurs en dehors de la conversation — variables globales, local storage, session storage, cookies, paramètres de requête d'URL, scripts ou clics de boutons.
+
+- Définis dans Botforge (nom de variable + nom de paramètre)
+- Ajoutés à l'intention `default_welcome` côté AIDA
+- Les valeurs sont résolues **avant** que `default_welcome` ne se déclenche
+- Vous pouvez assigner des valeurs via l'onglet Network lors de l'ouverture de l'URL Go-Live
+
+### Types d'entités Sys
+
+Lors de l'ajout d'un paramètre, vous pouvez utiliser ces entités définies par le système :
+
+| Entité | Correspond à |
+|---|---|
+| `sys_any` | Tout type de données |
+| `sys_number` | Valeurs numériques uniquement |
+| `sys_currency` | Nombres avec un symbole de devise |
+| `sys_date` | Valeurs de date (aujourd'hui, demain, dates spécifiques) |
+| `sys_email` | Adresses e-mail correctement formatées |
+
+Pour quelque chose de plus spécifique — comme des noms de produits ou des listes de villes — utilisez une [entité personnalisée](/intents-entities/entities).

@@ -1,0 +1,48 @@
+---
+title: Compte et administration
+description: Tout ce qui concerne votre compte, les membres d'équipe, les autorisations et les migrations.
+---
+
+import { Cards } from 'nextra/components'
+
+# Compte et administration
+
+Cette section couvre les paramètres de votre compte personnel et l'administration à l'échelle de l'équipe.
+
+<Cards>
+  <Cards.Card title="Profil et mot de passe" href="/account-admin/profile" arrow />
+  <Cards.Card title="Utilisateurs et autorisations" href="/account-admin/users-permissions" arrow />
+  <Cards.Card title="Paramètres d'équipe" href="/account-admin/team-settings" arrow />
+  <Cards.Card title="Migration" href="/account-admin/migration" arrow />
+</Cards>
+
+## Le menu profil en un coup d'œil
+
+Le menu profil en haut à droite affiche :
+
+- Votre nom d'affichage
+- Votre adresse e-mail
+- L'équipe dans laquelle vous êtes actuellement connecté *(avec un bouton pour copier l'ID d'équipe)*
+- **Switch Team** — changer d'équipe sans vous déconnecter
+- **My Profile** — consulter vos rôles, modifier votre nom
+- **Account** — changer le mot de passe, modifier le fuseau horaire
+- **Logout**
+
+## Qui peut faire quoi
+
+| Action | Rôles autorisés |
+|---|---|
+| Inviter des utilisateurs | Team Owner, Manager, AIDA Admin |
+| Révoquer les rôles d'un utilisateur | Team Owner, Manager, AIDA Admin |
+| Désactiver un utilisateur | Team Owner, Manager |
+| Supprimer un utilisateur | Team Owner uniquement |
+| Réinitialiser la 2FA d'un autre utilisateur | Team Owner (tous) ; Manager (niveaux inférieurs à Manager) |
+| Transférer la propriété de l'équipe | Team Owner uniquement |
+| Mettre à jour le nom de l'équipe | Team Owner, Manager |
+| Configurer la politique de verrouillage | Team Owner, Manager |
+| Activer les services API | Team Owner, Manager |
+| Migrer les bots et artefacts | Team Owner, Manager, rôle Migrations |
+
+## Changer d'équipe
+
+Si vous appartenez à plusieurs équipes, cliquez sur votre profil en haut à droite et choisissez **Switch Team** pour passer de l'une à l'autre — inutile de vous déconnecter. Vous pouvez aussi utiliser la page de sélection d'équipe qui s'affiche juste après la connexion.

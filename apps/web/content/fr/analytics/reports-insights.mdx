@@ -1,0 +1,146 @@
+---
+title: Rapports et insights
+description: Métriques agrégées, graphiques de tendances et logs exportables pour votre bot.
+---
+
+import { Callout } from 'nextra/components'
+
+# Rapports et insights
+
+La page Reports & Insights (Analytics Beta) vous fournit des métriques agrégées pour les conversations, les transferts vers des agents, le feedback et la performance des intentions. Chaque carte comporte également un lien **View Detailed Insights** qui ouvre une ventilation horaire ou quotidienne.
+
+## Variation en pourcentage
+
+Chaque carte de données affiche la variation par rapport à la période précédente :
+
+```
+Change % = (Current − Previous) ÷ Previous × 100
+```
+
+Un **`+` vert** signifie que la métrique a augmenté ; un **`−` rouge** signifie qu'elle a baissé.
+
+## Métriques de conversation
+
+### Nombre total de conversations
+
+Un décompte est enregistré chaque fois qu'un utilisateur clique sur le bouton de la fenêtre du chatbot.
+
+### Conversations réelles
+
+Sessions créées via l'URL Go-Live où l'utilisateur a envoyé au moins un message. C'est votre mesure la plus fiable de l'engagement réel avec le bot.
+
+### Nombre moyen de conversations réelles (horaire)
+
+```
+Avg = Total conversations in hour ÷ ((end date − start date) + 1)
+```
+
+## Métriques de messages utilisateur
+
+### Total des messages utilisateur
+
+Compte les messages envoyés par les utilisateurs, à la fois dans les conversations avec le bot et celles avec les agents.
+
+### Moyenne des messages utilisateur
+
+```
+Avg user messages = count per hour-day ÷ ((end date − start date) + 1)
+```
+
+## Métriques de demandes d'agent
+
+### Total des demandes d'agent
+
+Compte chaque demande de transfert vers un agent humain — que ce soit via chatbot ou voix.
+
+### % de sessions avec demande d'agent
+
+```
+% = (Unique agent requests sent) ÷ (Total real conversations) × 100
+```
+
+### Demandes d'agent réussies vs échouées
+
+- **Réussie** — l'agent a envoyé au moins un message durant la session.
+- **Échouée** — l'utilisateur est parti après la demande, ou l'agent a rejoint sans envoyer de message.
+
+## Métriques d'entraînement et de précision
+
+### Requêtes entraînées
+
+Nombre de requêtes validées ou configurées sur la [page d'entraînement](/intents-entities/train-conversations). Les requêtes ignorées ne sont pas comptées.
+
+### % de précision des intentions
+
+```
+Accuracy = Validated ÷ (Validated + Configured) × 100
+```
+
+## Métriques de feedback
+
+### Note moyenne du bot
+
+```
+Bot Avg Rating = Total session feedback rating count ÷ Total number of session feedbacks
+```
+
+### Note moyenne de feedback de conversation
+
+```
+Avg conv feedback = Total rating count ÷ Total number of feedback responses
+```
+
+Les notes utilisent une échelle de 1 à 5 :
+
+| Score | Libellé |
+|---|---|
+| 5 | Excellent |
+| 4 | Bon |
+| 3 | Moyen |
+| 2 | Mauvais |
+| 1 | Très mauvais |
+
+## Durée de conversation
+
+### Durée moyenne de conversation
+
+```
+Avg Duration = Total duration of real conversations ÷ Number of real conversations
+```
+
+La durée est mesurée du premier message d'une session au dernier, en cumulant les messages utilisateur, bot et agent.
+
+## Classement des intentions
+
+La section **Intent ranking** fait remonter les 10 intentions les plus déclenchées, en excluant les intentions par défaut et de small-talk. Des variantes sont affichées pour :
+
+- Les intentions à sentiment positif
+- Les intentions à sentiment négatif
+- Les intentions de demande d'agent
+
+### % de classement des intentions
+
+```
+Ranking % = (Count of a particular intent triggered) ÷ (Total intents triggered) × 100
+```
+
+### Statistiques d'intention
+
+Chaque intention affiche :
+
+- **Nombre de déclenchements** — à quelle fréquence elle a été appariée
+- **Pourcentage de sortie** — à quelle fréquence les sessions se sont terminées sur cette intention
+
+### Pourcentage de sortie
+
+```
+Exit % = (Sessions ended in that intent) ÷ (Total sum of intent exit count) × 100
+```
+
+<Callout>
+  Les décomptes de sortie sont visibles dans l'export CSV/Excel téléchargé mais pas dans l'UI — téléchargez le journal complet des requêtes pour analyser les sorties en détail.
+</Callout>
+
+## Export
+
+Cliquez sur **Download** sur n'importe quel rapport pour obtenir un export complet des logs de requêtes du filtre courant au format Excel.

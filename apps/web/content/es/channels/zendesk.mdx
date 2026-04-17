@@ -1,0 +1,59 @@
+---
+title: Canal de voz
+description: Cómo integrar tu bot de AIDA con canales de voz usando AudioCodes.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Canal de voz
+
+AIDA soporta la integración del canal de voz usando **AudioCodes**. Esto permite a tu bot gestionar llamadas telefónicas entrantes con respuestas impulsadas por IA.
+
+## Configurar el canal de voz
+
+<Steps>
+
+### Abre Go-Live
+
+Haz clic en **Go Live** en la barra lateral del menú.
+
+### Ve a la pestaña de Voice
+
+Navega a la sección **Voice** en la página Go-Live.
+
+### Genera una URL
+
+Haz clic en **[Generate URL]** para crear tu endpoint de integración de voz.
+
+### Configura AudioCodes
+
+Haz clic en **[How to configure]** para ver la guía paso a paso de configuración de AudioCodes. Sigue las instrucciones para apuntar tu configuración de AudioCodes a la URL de voz generada por AIDA.
+
+</Steps>
+
+## Habilitar / deshabilitar Voice
+
+El toggle de Voice en la página Go-Live te permite activar o desactivar el canal de voz al instante.
+
+| Estado | Comportamiento |
+|---|---|
+| **Toggle ON** | El bot gestiona todas las llamadas entrantes con normalidad |
+| **Toggle OFF (script generado)** | Las llamadas en curso proceden como siempre. Las nuevas llamadas entrantes se **desconectan** y reciben un mensaje offline |
+| **Toggle OFF (sin script)** | El toggle está deshabilitado; se muestra un mensaje de notificación |
+
+<Callout type="warning">
+  El mensaje offline para las llamadas desconectadas es **editable**. Haz clic fuera del campo tras editar para guardar automáticamente el mensaje.
+</Callout>
+
+<Callout>
+  Las interacciones que ocurren mientras Voice está deshabilitado **no** se incluyen en los datos de entrenamiento. Solo se contabilizan en **Total Conversations** en Live Data y Analytics.
+</Callout>
+
+## Quién puede gestionar el canal de voz
+
+Solo los siguientes roles pueden habilitar/deshabilitar la integración de Voice:
+
+- App Admin
+- Team Owner
+- Manager
+- AIDA Admin

@@ -1,0 +1,159 @@
+---
+title: IA y agentes
+description: Nodos de LLM, RAG, Summariser, Classifier, Entity Extraction y Agentic AI totalmente autónomos.
+---
+
+import { Callout } from 'nextra/components'
+
+# IA y agentes
+
+Flows integra siete tipos de nodos de IA, que van desde simples llamadas a LLM hasta agentes autónomos que planifican acciones de varios pasos.
+
+## Nodo LLM
+
+Llama a un servicio LLM con un prompt de sistema y devuelve una salida **Success** u **Otherwise**.
+
+El **System Prompt** controla el tono, estilo, contexto y directrices de seguridad.
+
+**Configuración avanzada:**
+
+- Model
+- Temperature (0–1 — mayor = más creativo)
+- Max Output Tokens
+- Request Timeout
+- Retries
+- Manejo de PII
+- Chat Context
+
+**Salidas:**
+- **Success** — el LLM respondió con normalidad
+- **Otherwise** — sin respuesta del LLM
+- **Catch Error** — ocurrió un error de ejecución
+
+## Nodo RAG
+
+Combina recuperación de conocimiento en tiempo real (DocBrain, tecnología patentada de EnterpriseBot) con generación por LLM — reduciendo alucinaciones al fundamentar la respuesta en tus documentos indexados.
+
+**Dos modos:**
+- **RAGForge** — reutiliza la configuración RAG existente del bot, con una opción **Override Config**
+- **Custom** — elige el LLM y la configuración tú mismo
+
+**Configuración general:**
+
+- `allow_links`, `allow_smalltalk`, `allow_comparison`
+- `add_current_date` (con timezone)
+- `use_bullet_points`, `use_titles`
+- **Basic Prompt** / **Fallback Event**
+- **Only LLM Reference URLs** / **Reset Context**
+
+**Elementos de UI:**
+- Gallery Card, Picture Card
+- Show Reference URLs (con Topk URLs + Reference Title)
+
+**Comprobación de alucinaciones:**
+- Toggle + fallback event
+- **LLM Validator** opcional (modelo separado + prompt de sistema)
+
+**Configuración avanzada:**
+- **Method** — `Gpt_mix_train_faq+para`, `Gpt_mix_train_faq` o `Mix_train_faq`
+- **Type** — Semantic o Keyword
+- Max Output Tokens, Request Timeout, Topk, Show score
+- Intent Context, Context Length
+- Slack Notification + channel ID
+
+**Guard rails:**
+
+| Reglas de entrada | Reglas de salida |
+|---|---|
+| Limitar la longitud del mensaje del usuario | Detección de fuga de reglas/prompts |
+| Detección de inyección de prompt | Lista negra |
+| Lista negra |  |
+| Expansión de abreviaturas |  |
+
+**Anonimizador de PII:**
+- Toggle Anonymise PII
+- Elegir PII Type (Query o All)
+- Máscaras por defecto: IBAN, teléfono, email, nombres de personas
+- Valores personalizados mediante Regex o Keyword
+
+## Summariser
+
+Condensa entradas grandes en un resumen corto usando el servicio LLM Summariser. Devuelve **Success** u **Otherwise**.
+
+**La configuración refleja la del nodo LLM** más un **Context limit** (visible cuando Chat Context está activo; oculto cuando está inactivo).
+
+El prompt de sistema controla el estilo, longitud, formato y precisión.
+
+## Classifier
+
+Categoriza entradas usando NLP para contexto, semántica y tono.
+
+**Configurado mediante:**
+- **Topic** — la categoría principal
+- **Description** — contexto opcional para el topic
+- **Variation** — palabras o frases alternativas para el topic
+
+**Configuración avanzada:** los mismos campos que el nodo LLM (Model, System Prompt, Temperature, Max Output Tokens, Request Timeout, Retries, PII, Chat Context, Context limit).
+
+## LLM Entity Extraction
+
+Extrae entidades estructuradas (nombres, fechas, ubicaciones, cantidades) de texto no estructurado usando el servicio LLM NER.
+
+**Configurado mediante:**
+- **Entity Name** — qué extraer
+- **Description** — contexto para guiar la extracción
+
+La configuración avanzada coincide con el nodo LLM.
+
+## Agentic AI
+
+Un **agente** es un compañero digital que puede pensar, planificar y actuar de forma autónoma — no solo responder una pregunta única.
+
+**Capacidades del agente:**
+- **Memoria** — recordar interacciones pasadas
+- **Razonamiento** — planificar acciones multi-paso
+- **Uso de herramientas** — invocar herramientas externas para recopilar información o realizar acciones
+- **Ejecución** — llevar a cabo planes de principio a fin
+
+**Tipos de herramienta** que tu agente puede usar:
+
+| Herramienta | Qué hace |
+|---|---|
+| **API** | Llamar servicios externos (CRM, ticketing, pagos, traducción) |
+| **KB** | Usar un DocBrain / base de conocimiento como fuente de referencia (estilo RAG) |
+| **Table** | Consultar datos CSV estructurados con consultas tipo SQL |
+| **File** | Leer contenido PDF para generar respuestas |
+| **SQL** | Ejecutar consultas SQL de solo lectura en bases de datos conectadas |
+| **Webpage** | Obtener y leer contenido web en vivo (ofertas, descuentos, actualizaciones en vivo) |
+
+Ver [Integraciones de datos y herramientas](/integrations/data-tools) para los detalles de configuración de cada tipo de herramienta.
+
+### Crear un agente
+
+1. Ve a la página **Agents** → haz clic en **Create**.
+2. Rellena:
+   - **Name**
+   - **Description** — instrucciones en lenguaje natural para el agente
+   - **Enhance Prompt** — expandir automáticamente la descripción
+   - **Expected Output** — el formato que quieres recibir
+   - **Tools** — qué herramientas puede usar el agente
+3. **Advanced Setup:** Model, Add history to messages, Number of history responses, Add datetime to instructions, Timezone, Tool call limit, Markdown.
+4. Haz clic en **Create**.
+
+### Usar un agente en un flow
+
+<Callout>
+  En la página Flows, arrastra un nodo **Agentic AI** desde la paleta AI Tools. Puedes **Create Agent** directamente (mismos campos que arriba) o elegir un agente existente desde el desplegable **Select Agent**, que rellena automáticamente la configuración del nodo.
+</Callout>
+
+### Pipeline de respuesta
+
+Cuando un agente se ejecuta, puedes inspeccionar cada paso:
+
+| Sección | Muestra |
+|---|---|
+| **Request Details** | Intent, Action, LLM usado, Message ID, Response Time, Agent Prompt |
+| **Tools Added** | Lista de herramientas configuradas + sus parámetros |
+| **Response Section (por llamada a herramienta)** | System Prompt, Context, Result (args pasados a las herramientas), LLM Response |
+
+Esto hace que depurar las decisiones de un agente sea mucho más fácil — puedes ver exactamente qué miró, qué llamó y qué devolvió en cada paso.

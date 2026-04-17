@@ -1,0 +1,75 @@
+---
+title: Problemas de integración
+description: Soluciones para problemas de integración en Web, Voz y WhatsApp.
+---
+
+import { Callout } from 'nextra/components'
+
+# Problemas de integración
+
+Si tu bot no aparece o no responde en un canal específico, trabaja las comprobaciones a continuación para ese canal.
+
+## Web / App (widget del chatbot)
+
+### El widget de chat no aparece
+
+1. Abre **Go-Live** en AIDA y confirma que el **toggle Enable** para Web/App está en **ON**.
+2. Vuelve a copiar el script de integración desde **Go-Live → Show script** — tu página podría tener un snippet obsoleto.
+3. Abre la consola del navegador de tu sitio y busca errores de script.
+4. Confirma que la ventana de chat no esté bloqueada por una content-security policy o un bloqueador de anuncios.
+
+### El bot carga pero todas las respuestas son fallback
+
+Esto normalmente significa que el Classifier está deshabilitado. Abre [Bot Settings → Classifier](/bot-settings/classifier) y actívalo. Hasta que se complete el primer ciclo de entrenamiento, puedes seguir viendo fallbacks.
+
+### Mi fuente de Multi-Build no refleja mi cambio
+
+- Haz clic en **Refresh** en la página Go-Live — las builds tienen que terminar antes de que los cambios se propaguen.
+- Una fuente marcada como **In Progress** aún no servirá el nuevo contenido. Espera a **Build Ready**.
+- Vuelve a publicar la fuente específica usando **Publish Builds** si la build parece atascada.
+
+## Voice (AudioCodes)
+
+### La llamada se desconecta inmediatamente
+
+- Comprueba que tu configuración de AudioCodes apunta a la URL generada en **Go-Live → Voice**.
+- Confirma que el **toggle de Voice** en la página Go-Live está en **ON**. Cuando está apagado, las nuevas llamadas entrantes se desconectan con el mensaje offline.
+- Si acabas de habilitar Voice, concede unos minutos para que la ruta se propague.
+
+### Las llamadas en curso continúan pero las nuevas fallan
+
+Esto es por diseño cuando el toggle de Voice está deshabilitado — las llamadas en curso terminan, las nuevas llamadas reciben el mensaje offline. Vuelve a habilitar el toggle para restaurar el manejo de nuevas llamadas.
+
+## WhatsApp
+
+### Los nuevos mensajes de WhatsApp no son respondidos por el bot
+
+1. Abre **Go-Live → WhatsApp** y confirma que el toggle está en **ON**.
+2. Si el script de integración nunca se generó, el toggle está deshabilitado — haz clic en **Generate URL** primero.
+3. Las sesiones existentes continúan funcionando cuando el toggle está apagado; solo los nuevos mensajes reciben la auto-respuesta offline.
+
+### El mensaje offline es incorrecto
+
+Edítalo directamente en la página Go-Live. Haz clic fuera del campo tras editar y el nuevo mensaje se guarda automáticamente.
+
+## El estado del bot dice "indexing failed"
+
+Para bots DocBrain, esto significa que el trabajo de indexación falló. Intenta:
+
+1. Abre la página DocBrain de tu bot.
+2. Vuelve a indexar los documentos fuente.
+3. Comprueba que tus fuentes son accesibles (las URLs que requieren autenticación no se indexarán).
+4. Si el error persiste, contacta a tu administrador de AIDA o al soporte de EnterpriseBot con el bot ID.
+
+<Callout>
+  Las interacciones que ocurren mientras un canal está deshabilitado **no** se incluyen en los datos de entrenamiento. Solo aparecen en Total Conversations en Live Data y Analytics.
+</Callout>
+
+## ¿Aún atascado?
+
+Intenta recopilar esto antes de contactar con soporte:
+
+- Bot ID (desde Bot Settings → Bot Info)
+- Canal(es) afectado(s) (Web, Voice, WhatsApp)
+- Un session ID específico donde ocurrió el problema (cópialo de Training)
+- Mensaje de error exacto si aparece uno en la UI

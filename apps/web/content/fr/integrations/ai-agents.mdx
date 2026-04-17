@@ -1,0 +1,159 @@
+---
+title: IA et agents
+description: LLM, RAG, Summariser, Classifier, extraction d'entités et nœuds Agentic AI entièrement autonomes.
+---
+
+import { Callout } from 'nextra/components'
+
+# IA et agents
+
+Flows intègre sept types de nœuds d'IA, allant des simples appels LLM aux agents autonomes qui planifient des actions multi-étapes.
+
+## Nœud LLM
+
+Appelle un service LLM avec un prompt système et renvoie soit **Success**, soit **Otherwise**.
+
+Le **System Prompt** contrôle le ton, le style, le contexte et les consignes de sécurité.
+
+**Configuration avancée :**
+
+- Model
+- Temperature (0–1 — plus élevé = plus créatif)
+- Max Output Tokens
+- Request Timeout
+- Retries
+- Gestion de la PII
+- Chat Context
+
+**Sorties :**
+- **Success** — le LLM a répondu normalement
+- **Otherwise** — pas de réponse du LLM
+- **Catch Error** — une erreur d'exécution s'est produite
+
+## Nœud RAG
+
+Combine la récupération de connaissances en temps réel (DocBrain, technologie brevetée d'EnterpriseBot) avec la génération LLM — réduit les hallucinations en ancrant la réponse dans vos documents indexés.
+
+**Deux modes :**
+- **RAGForge** — réutiliser la config RAG existante du bot, avec une option **Override Config**
+- **Custom** — choisir vous-même le LLM et la configuration
+
+**Configuration générale :**
+
+- `allow_links`, `allow_smalltalk`, `allow_comparison`
+- `add_current_date` (avec fuseau horaire)
+- `use_bullet_points`, `use_titles`
+- **Basic Prompt** / **Fallback Event**
+- **Only LLM Reference URLs** / **Reset Context**
+
+**Éléments UI :**
+- Gallery Card, Picture Card
+- Show Reference URLs (avec Topk URLs + Reference Title)
+
+**Vérification d'hallucination :**
+- Commutateur + événement de repli
+- **LLM Validator** optionnel (modèle + prompt système séparés)
+
+**Configuration avancée :**
+- **Method** — `Gpt_mix_train_faq+para`, `Gpt_mix_train_faq` ou `Mix_train_faq`
+- **Type** — Semantic ou Keyword
+- Max Output Tokens, Request Timeout, Topk, Show score
+- Intent Context, Context Length
+- Notification Slack + ID de canal
+
+**Garde-fous :**
+
+| Règles d'entrée | Règles de sortie |
+|---|---|
+| Limiter la longueur des messages utilisateur | Détection de fuite de règle / prompt |
+| Détection d'injection de prompt | Liste noire |
+| Liste noire |  |
+| Expansion d'abréviations |  |
+
+**Anonymiseur PII :**
+- Commutateur Anonymise PII
+- Choisir PII Type (Query ou All)
+- Masques par défaut : IBAN, téléphone, e-mail, noms de personnes
+- Valeurs personnalisées via Regex ou Keyword
+
+## Summariser
+
+Condense de grandes entrées en un court résumé à l'aide du service LLM Summariser. Renvoie **Success** ou **Otherwise**.
+
+**La configuration reflète celle du nœud LLM** plus une **Context limit** (visible lorsque Chat Context est activé ; masquée sinon).
+
+Le prompt système contrôle le style, la longueur, le format et la précision.
+
+## Classifier
+
+Catégorise les entrées à l'aide du NLP pour le contexte, la sémantique et le ton.
+
+**Configuré via :**
+- **Topic** — la catégorie principale
+- **Description** — contexte facultatif pour le sujet
+- **Variation** — mots-clés ou phrases alternatifs pour le sujet
+
+**Configuration avancée :** mêmes champs que le nœud LLM (Model, System Prompt, Temperature, Max Output Tokens, Request Timeout, Retries, PII, Chat Context, Context limit).
+
+## LLM Entity Extraction
+
+Extrait des entités structurées (noms, dates, emplacements, montants) à partir de texte non structuré à l'aide du service LLM NER.
+
+**Configuré via :**
+- **Entity Name** — ce qu'il faut extraire
+- **Description** — contexte pour guider l'extraction
+
+La configuration avancée correspond à celle du nœud LLM.
+
+## Agentic AI
+
+Un **agent** est un coéquipier numérique capable de réfléchir, planifier et agir de manière autonome — pas seulement de répondre à une seule question.
+
+**Capacités des agents :**
+- **Memory** — se souvenir des interactions passées
+- **Reasoning** — planifier des actions multi-étapes
+- **Tool use** — invoquer des outils externes pour collecter des informations ou agir
+- **Execution** — exécuter les plans de bout en bout
+
+**Types d'outils** que votre agent peut utiliser :
+
+| Outil | Ce qu'il fait |
+|---|---|
+| **API** | Appeler des services externes (CRM, ticketing, paiements, traduction) |
+| **KB** | Utiliser un DocBrain / Knowledge Base comme source de référence (de type RAG) |
+| **Table** | Interroger des données CSV structurées avec des requêtes de type SQL |
+| **File** | Lire le contenu de PDF pour générer des réponses |
+| **SQL** | Exécuter des requêtes SQL en lecture seule sur des bases de données connectées |
+| **Webpage** | Récupérer et lire le contenu d'une page web en direct (offres, remises, mises à jour en direct) |
+
+Voir [Intégrations de données et outils](/integrations/data-tools) pour les détails de configuration de chaque type d'outil.
+
+### Créer un agent
+
+1. Allez sur la page **Agents** → cliquez sur **Create**.
+2. Remplissez :
+   - **Name**
+   - **Description** — instructions en langage naturel pour l'agent
+   - **Enhance Prompt** — développer automatiquement la description
+   - **Expected Output** — le format que vous souhaitez obtenir
+   - **Tools** — quels outils l'agent peut utiliser
+3. **Advanced Setup :** Model, Add history to messages, Number of history responses, Add datetime to instructions, Timezone, Tool call limit, Markdown.
+4. Cliquez sur **Create**.
+
+### Utiliser un agent dans un flux
+
+<Callout>
+  Sur la page Flows, faites glisser un nœud **Agentic AI** depuis la palette AI Tools. Vous pouvez soit **Create Agent** directement (mêmes champs que ci-dessus), soit choisir un agent existant dans le menu déroulant **Select Agent**, ce qui remplit automatiquement la configuration du nœud.
+</Callout>
+
+### Pipeline de réponse
+
+Lorsqu'un agent s'exécute, vous pouvez inspecter chaque étape :
+
+| Section | Affiche |
+|---|---|
+| **Request Details** | Intent, Action, LLM utilisé, Message ID, Response Time, Agent Prompt |
+| **Tools Added** | Liste des outils configurés + leurs paramètres |
+| **Response Section (par appel d'outil)** | System Prompt, Context, Result (args passés aux outils), LLM Response |
+
+Cela rend le debug des décisions d'un agent beaucoup plus facile — vous voyez exactement ce qu'il a regardé, ce qu'il a appelé et ce qu'il a renvoyé à chaque étape.

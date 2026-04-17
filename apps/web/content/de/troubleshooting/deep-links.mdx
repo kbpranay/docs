@@ -1,0 +1,46 @@
+---
+title: Deep Links
+description: Teile direkte Links zu bestimmten Intents, Entitäten und Trainings-Sitzungen.
+---
+
+import { Callout } from 'nextra/components'
+
+# Deep Links
+
+Deep Links erlauben, eine direkte URL zu einem bestimmten Intent, einer Entität oder einer Trainings-Sitzung zu teilen. Jeder in deinem Team mit der passenden Rolle kann den Link anklicken und direkt zu dieser Ressource springen – ohne zu navigieren.
+
+## Wo Deep Links verfügbar sind
+
+| Bereich | Was der Deep Link öffnet | Verfügbare Aktionen |
+|---|---|---|
+| **Intents** | Einen bestimmten Intent auf der Intents-Seite | Lesen, Aktualisieren, Löschen |
+| **Entitäten** | Eine bestimmte Entität auf der Entitäten-Seite | Lesen, Aktualisieren, Löschen |
+| **Sitzungen** | Eine bestimmte Trainings-Sitzung auf der Trainingsseite | Validate, Configure, Ignore |
+
+## Einen Deep Link kopieren
+
+Jede Ressource hat ein **Kopiersymbol** neben ihrem Namen:
+
+- **Intent:** Klicke auf der Intents-Seite auf das Kopiersymbol neben dem Intent-Namen in der Liste.
+- **Entität:** Klicke auf der Entitäten-Seite auf das Kopiersymbol neben dem Entitätsnamen.
+- **Sitzung:** Klicke auf der Trainingsseite auf das Kopiersymbol in der Zeile der Sitzung, die du teilen möchtest.
+
+Der Link wird in deine Zwischenablage kopiert. Füge ihn in Slack, E-Mail oder an anderer Stelle ein, um ihn zu teilen.
+
+## Deep Links für Trainings-Sitzungen
+
+Wenn jemand einen Sitzungs-Deep-Link öffnet, wird die Eingabe **Session ID** auf der Trainingsseite mit der ID vorbelegt. AIDA nutzt das, um genau diese Sitzung abzurufen und anzuzeigen.
+
+## Wer Deep Links nutzen kann
+
+<Callout>
+  Deep Links funktionieren nur für Nutzer im **selben Team** mit Zugriff auf die Ressource. Wenn du einen Link für eine gelöschte Ressource, eine Ressource eines anderen Teams oder ohne die nötige Rolle öffnest, wirst du mit einem Fehler zur Bot-Listen-Seite weitergeleitet.
+</Callout>
+
+Nachdem du einen Deep Link geöffnet hast, wird er beim Navigieren auf eine andere Seite durch die Standard-URL der neuen Seite ersetzt.
+
+## Wenn Deep Links nicht funktionieren
+
+- **Fehler und Weiterleitung zur Bot-Liste:** Die Ressource wurde gelöscht, gehört zu einem anderen Team oder deine Rolle erlaubt keinen Zugriff
+- **„Session not found":** Die Session-ID im Deep Link passt zu keiner Trainings-Sitzung (wurde möglicherweise nach Ablauf der Retention entfernt)
+- **Link öffnet sich, aber nichts erscheint:** Deine Rolle hat möglicherweise keinen Lesezugriff auf diesen Ressourcentyp – bitte deinen Team Owner, deine Berechtigungen zu prüfen

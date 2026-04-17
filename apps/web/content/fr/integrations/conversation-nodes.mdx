@@ -1,0 +1,129 @@
+---
+title: Nœuds de conversation
+description: Collectez des entrées et affichez une UI conversationnelle riche — Ask User, Gallery Card, Form Card, Picture Card, Video Card, Suggestions, Speak to Agent, LLM Classifier.
+---
+
+import { Callout } from 'nextra/components'
+
+# Nœuds de conversation
+
+Les nœuds de conversation (CONV) pilotent le va-et-vient visible de la conversation — interroger les utilisateurs, afficher des cartes riches et créer des embranchements selon les réponses des utilisateurs.
+
+## Ask User
+
+Demande à l'utilisateur une entrée en texte libre et stocke la réponse dans une variable.
+
+**Champs :**
+- **Message** — la question vue par l'utilisateur
+- **Conditions** — règles de validation sur la réponse
+- **Fallback Message** — affiché lorsque la validation échoue
+- **Variable** — où la réponse est stockée
+- **Suggestions** — pastilles de réponse rapide facultatives
+- **Show text area** — bascule entre une textarea complète et une entrée sur une ligne
+
+## Gallery Card
+
+Un carrousel horizontal de cartes — idéal pour les catalogues de produits, listes d'options ou suggestions d'articles.
+
+**Par carte :**
+- Card Image URL
+- Float Image URL
+- Title
+- Subtitle
+- Description
+- Add Button (par carte, prend en charge plusieurs)
+
+**Autour du carrousel :**
+- Message Before Card
+- Message After Card
+- Suggestions
+- Fallback Message
+- Variable
+- Show text area
+
+## Form Card
+
+Un formulaire structuré en ligne dans le chat — permet aux utilisateurs de soumettre plusieurs champs à la fois avec validation.
+
+**Types de champ :**
+
+| Champ | À utiliser pour |
+|---|---|
+| Header | Regroupement visuel |
+| TextField | Texte sur une seule ligne |
+| Email | Adresses e-mail (validées automatiquement) |
+| Text Area | Texte multi-ligne |
+| Date Picker | Dates |
+| Time Picker | Heures |
+| Numeric | Nombres |
+| Dropdown select | Choix unique dans une liste |
+| Checkbox group | Choix multiples |
+| Radio button | Choix unique, toutes les options visibles |
+
+**Action Buttons** prennent en charge **Label**, **Validation text** et texte d'**Help** par bouton. La configuration environnante inclut Message before/after card, Mandatory message et Show text area.
+
+## Picture Card
+
+Affiche une ou plusieurs images avec éventuellement du texte autour.
+
+**Champs :**
+- Message Before Card
+- Picture (Image URL)
+- Add card — ajouter d'autres images
+- Message After Card
+- Suggestions
+- Fallback Message
+- Variable
+- Show text area
+
+## Video Card
+
+Intègre une vidéo via une URL — idéal pour des tutoriels, des démos ou du contenu d'onboarding.
+
+**Champs :**
+- Message Before Card
+- Video cards (ajouter Card Video URL par carte)
+- Message After Card
+- Suggestions
+- Fallback Message
+- Variable
+- Show text area
+
+## Suggestion
+
+Un nœud léger qui présente des pastilles de réponse rapide. Utile pour de courts menus ou des questions de suivi.
+
+**Champs :**
+- Message
+- Suggestions
+- Fallback Message
+- Variable
+- Show text area
+
+## Speak to an Agent
+
+Transfère la conversation à un agent en direct via une pastille de suggestion. Le texte affiché à l'utilisateur s'adapte au statut de disponibilité de l'agent en direct.
+
+**Champs :**
+- Suggestions
+- Fallback Message
+- Show text area
+
+## LLM Classifier
+
+Utilise un LLM pour classer la réponse de l'utilisateur dans l'un de plusieurs sujets et embrancher le flux en conséquence.
+
+**Champs :**
+- **Question** — ce qu'il faut demander à l'utilisateur
+- **Description** — contexte facultatif
+- **Topic(s)** — chaque sujet définit une branche de sortie
+- **Topic Description** — aide le LLM à choisir le bon sujet
+- **Fallback Message** — affiché lorsqu'aucun sujet ne correspond
+- **Enable Fallback flow** — ajoute une sortie **LLM Fallback Flow** avec une **Maximum Retry Limit** (1–5, par défaut 3)
+- **Variable** — stocke le sujet choisi
+- **Topic(s) variables** — stockage par variable et par sujet
+- **Show text area**
+
+<Callout type="warning">
+  Sans le flux de repli activé, le flux se termine après **4 nouvelles tentatives** avec un message AIDA par défaut. Activez le flux de repli pour tout classifier où vous souhaitez une récupération propre après une mauvaise classification.
+</Callout>

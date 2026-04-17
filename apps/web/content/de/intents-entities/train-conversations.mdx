@@ -1,0 +1,95 @@
+---
+title: Konversationen trainieren
+description: Prüfe, was Nutzer deinen Bot gefragt haben, und verbessere die Intent-Genauigkeit im Laufe der Zeit.
+---
+
+import { Callout } from 'nextra/components'
+
+# Konversationen trainieren (Legacy)
+
+<Callout type="warning">
+  **Wird bis Ende 2026 eingestellt.** Konversationen trainieren ist für Legacy-intent-basierte Bots. Agenten verbessern sich durch Prompt-Iteration und Tool-Verfeinerung statt durch Trigger-Validierung – siehe [Agenten-Konfiguration → Prompts](/bot-settings/agent-configuration#prompts).
+</Callout>
+
+Die Trainingsseite ist der Ort, an dem du deinen Bot nach dem Go-Live verbesserst. Sie zeigt jede stattgefundene Konversation – was der Nutzer gesagt hat, wie der Bot sie klassifiziert hat und welche Antwort zurückgegeben wurde. Du kannst korrekte Klassifikationen validieren, falsche korrigieren oder Rauschen ignorieren.
+
+Zugriff erfolgt über den Klick auf **Train conversation** im Seitenmenü.
+
+## Konversationen filtern
+
+Die Sitzungsliste hat drei Hauptfilter:
+
+| Filter | Zeigt |
+|---|---|
+| **Reale Konversationen** *(Standard)* | Nur Konversationen von der Live-Go-Live-URL |
+| **Alle Chats** | Go-Live-Konversationen + interne Chat-Fenster-Test-Konversationen |
+| **Unbearbeitete Anfragen** | Queries, die den Intent `default_fallback` gematcht haben |
+
+Zusätzliche Filter erlauben, einzuschränken nach:
+
+- **User Source** – Webseite, App, LLM Lab usw.
+- **User Channel** – Chatbot, Voice, WhatsApp, Agent Assist
+- **Session ID** – direkt zu einer bestimmten Sitzung springen
+- **Anzahl Chats** – nach Konversationslänge filtern
+- **Ratings** – Hervorragend (5), Gut (4), Durchschnittlich (3), Schlecht (2), Sehr schlecht (1)
+- **Durchschnittliche Konversationsbewertung** – Summe der Bewertungen ÷ Anzahl Feedback-Antworten
+- **Datum & Uhrzeit** – Heute, Gestern oder Letzte 7 Tage *(maximal 7-Tage-Zeitraum)*
+- **Trainingsstatus** – Trained, Incomplete oder Not trained
+- **Feedback-Bewertung & Kommentar**
+
+## Unbearbeitete Anfragen
+
+Wenn AIDA eine Nutzer-Query keinem Intent zuordnen kann, fällt sie auf `default_fallback` zurück und wird hier protokolliert. Das Überprüfen unbearbeiteter Anfragen ist der schnellste Weg, Lücken in deiner Intent-Abdeckung zu erkennen.
+
+**So behebst du unbearbeitete Anfragen:**
+
+1. Filtere auf **Unhandled requests**.
+2. Wähle für jede Query eine Aktion:
+   - **Validate** – der vom Bot zugewiesene Intent war korrekt (für Fälle, in denen du bestätigen willst, dass selbst ein Fallback die richtige Entscheidung war).
+   - **Configure** – ordne die Query dem richtigen Intent zu und klicke auf **Save**. Die Query wird dem Intent als Trigger hinzugefügt.
+   - **Ignore** – überspringen, ohne zu handeln.
+
+## Validate, Configure, Ignore
+
+Jede Bot-Antwort in jeder Sitzung kann auf eine von drei Arten bearbeitet werden:
+
+- **Validate** – die Antwort kam vom richtigen Intent. Die Sitzung wird als Trained/Validated markiert.
+- **Configure** – der Intent war falsch. Wähle den richtigen Intent aus dem Dropdown, klicke auf **Save**, und die Antwort wird diesem Intent mit einem Training-Seite-Source-Symbol hinzugefügt.
+- **Ignore** – überspringen ohne Training. Nützlich für Rauschen, Test-Queries oder Nachrichten, die wirklich keinen Intent brauchen.
+
+## Trainingsstatus
+
+Der Status einer Sitzung spiegelt wider, wie viel von ihr bearbeitet wurde:
+
+| Status | Bedeutung |
+|---|---|
+| **Trained** | Jede Query in der Sitzung wurde validiert, konfiguriert oder ignoriert |
+| **Incomplete** | Einige Queries bearbeitet, andere noch ausstehend |
+| **Not trained** | Keine Queries in der Sitzung wurden bearbeitet |
+
+## Genauigkeitsmetriken
+
+Zwei Metriken verfolgen deinen Trainingsfortschritt:
+
+- **Trainierte Queries** = Anzahl Validated + Configured
+- **Intent accuracy %** = Validated ÷ (Validated + Configured) × 100
+
+<Callout>
+  **Ignorierte Queries zählen nicht** zu den trainierten Queries oder zur Intent-Genauigkeit. Nur validierte und konfigurierte Queries bewegen die Metrik.
+</Callout>
+
+## Trainings-Logs exportieren
+
+Klicke auf die Download-/Export-Schaltfläche, um eine CSV der aktuell gefilterten Sitzungen zu erhalten.
+
+Exportierte Felder:
+
+- User Source
+- User Channel
+- Session ID
+- Anzahl Chats
+- Feedback-Bewertung + Kommentar
+- Datum & Uhrzeit
+- Trainingsstatus
+
+Es werden nur die Sitzungen exportiert, die zu deinem aktuellen Filter passen – verwende Filter, um den Download einzuschränken.

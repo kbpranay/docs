@@ -1,0 +1,100 @@
+---
+title: Crear tu primer agente
+description: Crea tu primer agente de AIDA usando el nuevo asistente de 3 pasos — elige un modo, añade información de la empresa y pruébalo en vivo.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Crear tu primer agente
+
+AIDA ha migrado a un modelo de **IA Agéntica**. En lugar de construir chatbots a partir de intents, triggers y entidades, ahora creas un **agente** con un prompt de sistema, herramientas conectadas y un modelo. AIDA te guía a través de un asistente de tres pasos.
+
+<Callout type="warning">
+  **Los intents se están deprecando.** Los bots basados en intents existentes siguen funcionando, pero todos los nuevos bots deben crearse como agentes. Intents, triggers y entidades se retirarán por completo a **finales de 2026**. Ver [Intents y entidades (Legacy)](/intents-entities) si mantienes un bot existente.
+</Callout>
+
+## Paso 1 — Modo del agente
+
+Elige cómo interactúa tu agente con los usuarios.
+
+| Modo | Cuándo elegirlo |
+|---|---|
+| **Standard** | Asistentes basados en texto con soporte de Speech-to-Text (STT) y Text-to-Speech (TTS). Ideal cuando la flexibilidad y el uso de herramientas son prioridades. Puede usarse como nodo de flow (solo ajustes de nodo). Los guardrails siguen en desarrollo. |
+| **Realtime Voice** | Interacciones de voz de baja latencia y en tiempo real usando habla natural. Optimizado para llamadas telefónicas y conversaciones en vivo — la entrada y salida fluyen sin interrupciones con mínimo retardo. Ideal para IA conversacional que imita interacciones similares a las humanas. Los guardrails y PII aún están en desarrollo y no se aplican. |
+
+<Callout>
+  Si tu agente necesita llamar a herramientas externas (APIs, bases de conocimiento, bases de datos), elige **Standard** — tiene soporte completo de tool-calling hoy.
+</Callout>
+
+Haz clic en **Continue** tras seleccionar.
+
+## Paso 2 — Información de la empresa
+
+Enseña a tu agente sobre tu negocio. AIDA usa esta información para construir un prompt de sistema por defecto, así que cuanto más específico seas aquí, menos tendrás que editar después.
+
+El formulario pide: **Agent Name**, **Primary Language**, **Company Name**, **Website URL**, **Welcome message** y una descripción corta de **qué debe hacer tu asistente de IA**.
+
+<Steps>
+
+### Nombra tu agente
+
+**Agent Name** — un nombre amigable que los usuarios verán (por ejemplo, `Alex`, `Sarah`, `Jordan`).
+
+### Elige un idioma principal
+
+**Primary Language** — el idioma que tu agente habla por defecto. Puedes añadir idiomas soportados después desde la pestaña Language.
+
+### Añade detalles de la empresa
+
+- **Company Name** — usado en la presentación del agente
+- **Website URL** — permite al agente referenciar tu sitio web en las respuestas
+
+### Escribe un mensaje de bienvenida
+
+**Welcome message** — describe cómo debería saludar tu agente a los usuarios. Con una o dos frases es suficiente. Ejemplo: *"Hola, soy Alex de Acme. Puedo ayudarte con el estado de pedidos, devoluciones y preguntas sobre productos."*
+
+### Describe qué debe hacer el agente
+
+**¿Qué debe hacer tu asistente de IA?** — descripción en lenguaje claro de las responsabilidades del agente. AIDA genera automáticamente un prompt de sistema detallado a partir de esto, así que sé específico.
+
+Ejemplo de entrada:
+
+> *Responde preguntas de clientes, reserva citas, toma pedidos y comprueba el estado de los pedidos.*
+
+</Steps>
+
+Haz clic en **Continue** para aprovisionar el agente.
+
+## Paso 3 — Pruébalo
+
+AIDA lanza tu agente con un modelo y voz por defecto y te ofrece una consola de prueba en vivo que muestra los detalles clave del agente junto a una vista previa interactiva.
+
+Verás:
+
+- **Model** — el LLM que impulsa al agente (para Realtime Voice, típicamente Gemini Live o una variante GPT-realtime)
+- **Voice Name** — la voz TTS/Realtime (por ejemplo, `Puck`)
+- **Language** — el idioma principal que elegiste
+
+**Pruébalo:**
+
+- Pulsa el **micro** para empezar a hablar (Realtime Voice) o escribe en el chat (Standard)
+- Espera a que el indicador **Ready to talk** se ponga verde
+- Pregunta a tu agente algo que debería poder gestionar según tu descripción
+
+<Callout type="info">
+  **Consejos para Realtime Voice:**
+  - Habla con claridad y de forma natural — el agente responde cuando terminas una idea
+  - Usa un entorno silencioso para obtener la mejor calidad de transcripción
+</Callout>
+
+Cuando estés listo para afinar, haz clic en **Go to Agent Configuration**. Ver la referencia completa de [Configuración del agente](/bot-settings/agent-configuration) para ajustes de prompts, modelo, herramientas, voz e idioma.
+
+## ¿Qué sigue?
+
+| Si quieres... | Ve a |
+|---|---|
+| Editar el prompt, cambiar el modelo, ajustar tokens | [Configuración del agente](/bot-settings/agent-configuration) |
+| Conectar el agente a sistemas externos | [Integraciones (Flows)](/integrations) |
+| Publicar el agente en web / voz / WhatsApp | [Canales](/channels) |
+| Medir el rendimiento del agente | [Analytics](/analytics) |
+| Invitar a compañeros de equipo | [Usuarios y permisos](/account-admin/users-permissions) |

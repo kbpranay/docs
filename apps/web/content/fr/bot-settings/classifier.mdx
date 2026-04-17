@@ -1,0 +1,72 @@
+---
+title: Classifier
+description: Comment AIDA associe les messages des utilisateurs aux intentions, et quand l'activer ou le désactiver.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Classifier
+
+Le **Classifier** est le moteur qui associe les messages utilisateur aux intentions à l'aide du Machine Learning (ML) et d'Elasticsearch (ES).
+
+## État par défaut pour les nouveaux bots
+
+Pour tous les bots nouvellement créés, le **Classifier est désactivé par défaut**. C'est un choix délibéré — vous pouvez vous inscrire uniquement lorsque vous disposez de suffisamment de données d'entraînement pour rendre la classification fiable.
+
+Lorsque vous créez un nouveau bot, AIDA affiche cette note :
+
+> *"Classification is an optional feature and is disabled by default. Enable the Classifier from Bot Settings."*
+
+Les nouveaux bots sont livrés avec seulement trois intentions système par défaut — `default_welcome`, `default_reset` et `default_fallback`.
+
+## Ce qui se passe lorsque le Classifier est désactivé
+
+Lorsque le Classifier est désactivé, la plupart des fonctionnalités pilotées par la classification sont masquées ou verrouillées :
+
+| Zone | Comportement quand le Classifier est OFF |
+|---|---|
+| **Requêtes utilisateur** | Toutes les requêtes sont routées vers l'intention Fallback — même celles avec des déclencheurs correspondants |
+| **Réponses d'intention** | Ne se déclenchent que pour les **événements**, pas pour le texte utilisateur |
+| **Intents page → Triggers** | Verrouillé avec un overlay : *"Cannot access triggers — Classifier is disabled"* |
+| **Filtre de recherche d'intents** | L'option "Intents by Response" est supprimée |
+| **Intent Explainer** | Masqué dans la fenêtre de test |
+| **Training page → colonne Training Status** | Désactivée (colonne et filtre masqués) |
+| **Training page → boutons Configure/Validate/Ignore** | Désactivés pour la plupart des réponses |
+| **Bouton Configure** | Reste actif uniquement pour les réponses Flows, Blitzico et LLM |
+| **Réponses Fallback** | Affichent la raison *"NO ENGINE ENABLED"* dans la fenêtre Configure Response |
+
+## Activer le Classifier
+
+<Steps>
+
+### Ouvrez Bot Settings
+
+Cliquez sur **Bot Settings** dans le menu latéral.
+
+### Allez sur l'onglet Classifier
+
+Cliquez sur l'onglet **Classifier**.
+
+### Activez
+
+Activez **Enable Classifier**.
+
+</Steps>
+
+L'activation du Classifier déclenche immédiatement un entraînement ML et un rafraîchissement Elasticsearch. Toutes les intentions existantes sont traitées et activées.
+
+<Callout type="info">
+  Après activation, laissez quelques minutes au premier cycle d'entraînement pour se terminer. Vous pourrez alors accéder à Triggers, valider des réponses depuis la page d'entraînement et utiliser Intent Explainer.
+</Callout>
+
+## Quand activer le Classifier
+
+**Gardez-le désactivé si :**
+- Vous construisez un bot piloté uniquement par événements (un assistant de formulaire, un bot basé sur des flux).
+- Vous avez moins de ~50 déclencheurs par intention et ne voulez pas de fausses classifications.
+- Vous utilisez le bot comme un passe-plat vers Flows ou Blitzico.
+
+**Activez-le une fois que :**
+- Vous avez ajouté au moins 50 déclencheurs par intention.
+- Vous avez défini au moins 5–10 intentions distinctes.
+- Vous voulez que le bot traite du texte utilisateur libre au-delà des correspondances exactes de déclencheurs.

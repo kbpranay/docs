@@ -1,0 +1,51 @@
+---
+title: Überblick Kanäle
+description: Veröffentliche deinen AIDA-Bot im Web, auf Voice-Kanälen oder in WhatsApp – und verwalte den API-Zugang für externe Aufrufer.
+---
+
+import { Callout, Cards } from 'nextra/components'
+
+# Kanäle
+
+Kanäle sind der Ort, an dem dein Bot tatsächlich mit Nutzern spricht. AIDA kommt mit drei Konversationskanälen plus einer programmatischen API-Oberfläche.
+
+<Cards>
+  <Cards.Card title="Web & App" href="/channels/salesforce" arrow />
+  <Cards.Card title="Voice (AudioCodes)" href="/channels/zendesk" arrow />
+  <Cards.Card title="WhatsApp" href="/channels/genesys" arrow />
+  <Cards.Card title="API & Services" href="/channels/api-services" arrow />
+</Cards>
+
+<Callout type="info">
+  **Kanäle vs. Integrationen** – stelle dir Kanäle als die *Oberfläche* vor, auf der Nutzer deinem Bot begegnen (ein Web-Widget, ein Telefonanruf, WhatsApp). Um deinen Bot mit externen Systemen wie CRMs, Datenbanken oder eigenen APIs zu verbinden, siehe **[Integrationen (Flows)](/integrations)**.
+</Callout>
+
+## Einen Kanal verwalten
+
+Jeder Kanal hat einen Ein-/Ausschalter auf der Go-Live-Seite. Nur **App Admin**, **Team Owner**, **Manager** und **AIDA Admin** können den Status ändern.
+
+| Kanal | Verhalten bei Deaktivierung |
+|---|---|
+| **Web/App (Chatbot)** | Das Chat-Widget wird für neue Sitzungen nicht mehr geladen. Laufende Konversationen laufen weiter, bis die Seite neu geladen wird. |
+| **WhatsApp** | Laufende Sitzungen laufen weiter, und Nutzer können bis zum automatischen Sitzungsende Agenten-Anforderungen senden. Neue Nachrichten erhalten eine Offline-Nachricht. |
+| **Voice** | Laufende Anrufe verlaufen normal. Neue eingehende Anrufe werden getrennt und erhalten eine Offline-Nachricht. |
+
+<Callout>
+  Die Offline-Nachricht für Voice und WhatsApp ist **editierbar**. Klicke nach dem Bearbeiten außerhalb des Feldes, um automatisch zu speichern.
+
+  Interaktionen, die stattfinden, während ein Kanal deaktiviert ist, fließen nicht in die Trainingsdaten ein – sie werden nur unter **Gesamtkonversationen** in Live-Daten und Analytics gezählt.
+</Callout>
+
+## Bereitschaft des Bots
+
+Der Status deines Bots auf der Startseite zeigt dir, was noch fehlt, bevor er live gehen kann:
+
+| Zustand | Angezeigter Status |
+|---|---|
+| Neu erstellt / vorgefertigte Intents | In Progress |
+| DocBrain-Indexierung fehlgeschlagen | Indexing Failed |
+| Alle verpflichtenden Kriterien erfüllt | Your bot is now ready to go live |
+
+## Zugriff auf Go-Live
+
+Klicke im Seitenmenü auf **Go-Live** oder klicke auf der Startseite auf die Schaltfläche **Go-Live Recommended**.

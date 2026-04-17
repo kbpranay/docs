@@ -1,0 +1,59 @@
+---
+title: Canal vocal
+description: Comment intégrer votre bot AIDA à des canaux vocaux à l'aide d'AudioCodes.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Canal vocal
+
+AIDA prend en charge l'intégration de canal vocal via **AudioCodes**. Cela permet à votre bot de gérer les appels téléphoniques entrants avec des réponses alimentées par l'IA.
+
+## Configurer le canal vocal
+
+<Steps>
+
+### Ouvrez Go-Live
+
+Cliquez sur **Go Live** dans la barre latérale.
+
+### Allez sur l'onglet Voice
+
+Naviguez vers la section **Voice** sur la page Go-Live.
+
+### Générez une URL
+
+Cliquez sur **[Generate URL]** pour créer votre endpoint d'intégration vocale.
+
+### Configurez AudioCodes
+
+Cliquez sur **[How to configure]** pour le guide de configuration AudioCodes pas à pas. Suivez les instructions pour pointer votre installation AudioCodes vers l'URL vocale AIDA générée.
+
+</Steps>
+
+## Activer / Désactiver la voix
+
+Le commutateur Voice sur la page Go-Live vous permet d'activer ou de désactiver instantanément le canal vocal.
+
+| État | Comportement |
+|---|---|
+| **Toggle ON** | Le bot gère normalement tous les appels entrants |
+| **Toggle OFF (script généré)** | Les appels en cours se poursuivent normalement. Les nouveaux appels entrants sont **déconnectés** et reçoivent un message hors ligne |
+| **Toggle OFF (pas de script)** | Le commutateur est désactivé ; un message de notification est affiché |
+
+<Callout type="warning">
+  Le message hors ligne pour les appels déconnectés est **modifiable**. Cliquez en dehors du champ après modification pour sauvegarder automatiquement le message.
+</Callout>
+
+<Callout>
+  Les interactions qui se produisent pendant que Voice est désactivé ne sont **pas** incluses dans les données d'entraînement. Elles sont uniquement comptabilisées dans **Total Conversations** dans Live Data et Analytics.
+</Callout>
+
+## Qui peut gérer le canal vocal
+
+Seuls les rôles suivants peuvent activer/désactiver l'intégration Voice :
+
+- App Admin
+- Team Owner
+- Manager
+- AIDA Admin

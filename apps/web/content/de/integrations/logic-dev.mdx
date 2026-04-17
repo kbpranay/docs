@@ -1,0 +1,127 @@
+---
+title: Start-, Logik- & Dev-Knoten
+description: Start-Knoten, Verzweigungslogik, Datentransformationen, REST-APIs, benutzerdefiniertes JavaScript, Verzögerungen, Debugging und Flow-Verknüpfung.
+---
+
+import { Callout } from 'nextra/components'
+
+# Start-, Logik- & Dev-Knoten
+
+Start-Knoten sind der Weg, wie ein Flow beginnt. Logik-Knoten verzweigen den Flow. Dev-Knoten verbinden ihn mit externen Systemen. Link-Knoten fügen Flows zusammen.
+
+## Start: Start-Knoten
+
+Der **Start**-Knoten erlaubt, einen Flow manuell durch Einspeisen von Daten zu triggern – typischerweise zum Testen oder wenn der Flow innerhalb von AIDA statt durch einen externen Aufrufer gestartet wird.
+
+**Einstellungen:**
+
+- **Input type** – klicke auf das Timestamp-Dropdown, um zwischen `string`, `number` oder einem anderen unterstützten Typ zu wechseln
+- **Repeat function** – gibt dieselbe Nachricht in festem Intervall erneut aus (nützlich für Health-Check-artige Flows oder geplante Trigger)
+
+## Start: Trigger via API
+
+**Trigger via API** erlaubt externen Systemen, einen Flow durch Aufruf eines Endpunkts zu starten. Nutze es für Webhooks, systemübergreifende Automatisierung oder die Integration von AIDA-Flows in eine bestehende Orchestrierungsplattform.
+
+**Einstellungen:**
+
+| Feld | Optionen |
+|---|---|
+| **Type** | REST oder SOAP |
+| **Method** | GET, POST, PUT oder PATCH |
+| **URL** | Der Endpunkt, den dein externer Aufrufer ansteuert |
+
+<Callout type="info">
+  Kombiniere **Trigger via API** am Anfang deines Flows mit einem **API Response**-Knoten (siehe unten) am Ende – der API-Response sendet die Ausgabe des Flows synchron an den Aufrufer zurück.
+</Callout>
+
+## Logik: If/Else
+
+Wertet Regeln gegen eingehende Daten aus und leitet an den passenden Ausgang weiter.
+
+**Worauf du prüfen kannst:**
+- Eine Eigenschaft der Nachricht
+- Flow-Context / globaler Context
+- Umgebungsvariable
+- Ein JSONata-Ausdruck
+
+Regeln werden von oben nach unten ausgewertet. Optional kannst du **beim ersten Match stoppen** (sonst feuern alle passenden Branches).
+
+## Logik: Change
+
+Transformiert Daten direkt, bevor die Nachricht weitergereicht wird.
+
+**Operationen:**
+
+| Operation | Effekt |
+|---|---|
+| **Set** | Einen Wert zuweisen oder aktualisieren |
+| **Change** | Einen bestehenden Wert transformieren |
+| **Move** | Einen Wert von einer Eigenschaft zu einer anderen verschieben |
+| **Delete** | Eine Eigenschaft entfernen |
+
+## Logik: Template
+
+Erzeugt einen dynamischen String aus `msg.payload` standardmäßig mit **Mustache**-Templating (du kannst Mustache abschalten, wenn du roh arbeiten willst).
+
+Nimmt das eingehende `msg`-Objekt plus einen Template-String und gibt ein `msg` mit der gefüllten Eigenschaft aus.
+
+**Beispiel:** `Hello {{name}}, your order {{orderId}} is confirmed.`
+
+---
+
+## Dev: REST API
+
+Rufe einen beliebigen HTTP-Endpunkt aus einem Flow heraus auf.
+
+**Methoden:** GET, POST, PUT, DELETE
+
+**Authentifizierungs-Optionen:**
+
+| Auth | Felder |
+|---|---|
+| **Basic** | Username + Passwort |
+| **Bearer** | Token |
+| **OAuth2** | Grant Type (Client credentials / Password / andere), Access Token URL, Client ID, Client Secret, Scope |
+
+**Query-Parameter** – Key/Value-Paare, die für Filterung, Sortierung oder Pagination an die URL angehängt werden.
+
+## Dev: Function
+
+Führt benutzerdefiniertes JavaScript aus. Die eingehende Nachricht wird als `msg`-Objekt übergeben, mit dem Body unter `msg.payload`. Nutze das für Transformationen, die für Change oder Template zu komplex sind, oder um Node.js-Utilities aufzurufen.
+
+## Dev: API Response
+
+Bearbeitet die Antwort, die von einem API-Aufruf zurückkommt. Wird meist in Flows verwendet, die per API getriggert wurden (siehe Option Trigger via API des Start-Knotens).
+
+## Dev: Delay
+
+Pausiert den Flow oder begrenzt den Nachrichtendurchsatz.
+
+**Eigenschaften:**
+- **Delay (ms)** – wie lange gewartet wird; kann durch eine Eigenschaft der eingehenden `msg` überschrieben werden
+- **Reset** – leert alle festgehaltenen Nachrichten
+- **Flush** – sendet alle festgehaltenen Nachrichten sofort
+
+## Dev: Debug
+
+Loggt `msg.payload` (die primären Daten) und das vollständige `msg`-Objekt (Metadaten), damit du während der Entwicklung den Zustand inspizieren kannst.
+
+<Callout>
+  Lass in komplexen Flows einen Debug-Knoten drin, solange du noch iterierst – du kannst seine Ausgabe mit einem Klick deaktivieren, ohne ihn zu löschen, und bei Bedarf wieder aktivieren.
+</Callout>
+
+---
+
+## Link: Flow In / Flow Out
+
+**Flow In** ist ein Eintrittspunkt, durch den Daten, Signale oder Steuerung zwischen Knoten übergeben werden. So baust du modulare, komponierbare Flows – ein Haupt-Flow kann an einem Flow Out an einen Sub-Flow übergeben und am passenden Flow In wieder aufnehmen.
+
+**Flow Out** ist der Ausgangspunkt, gepaart mit einem Flow In. Nutze Flow In/Out-Paare, um:
+
+- Gemeinsame Logik in mehreren Flows wiederzuverwenden
+- Einen komplexen Flow in verdauliche Stücke zu zerlegen
+- Einzelne Abschnitte isoliert zu testen
+
+## Dev: Comment
+
+Ein nicht-ausführender Annotations-Knoten. Ziehe ihn aus der Dev-Palette hinein, Doppelklick zum Bearbeiten. Nutze Kommentare großzügig – dein zukünftiges Ich wird es dir danken, wenn du einen Flow sechs Monate später debuggst.

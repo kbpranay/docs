@@ -1,0 +1,86 @@
+---
+title: Guide de la page d'accueil
+description: Comprendre la page d'accueil du bot et l'indicateur de pourcentage d'achèvement.
+---
+
+import { Callout } from 'nextra/components'
+
+# Guide de la page d'accueil
+
+Après l'ouverture d'un bot, vous atterrissez sur sa **page d'accueil** — une vue d'ensemble de tout ce que vous devez configurer pour mettre le bot en ligne. Une barre de progression à droite suit le niveau d'achèvement de votre bot.
+
+## Le menu latéral
+
+Cliquez sur les trois lignes en haut pour ouvrir la **barre latérale**, qui vous permet de naviguer entre les pages :
+
+- Home
+- Intents
+- Entities
+- Train conversation
+- Live data / Analytics
+- Bot Settings
+- Go Live
+
+Chaque page dispose de son propre guide ailleurs dans ce centre d'aide.
+
+## Le pourcentage d'achèvement
+
+Le pourcentage en haut de la page d'accueil indique l'avancement de la configuration essentielle. Il fonctionne différemment selon que votre bot utilise DocBrain ou non.
+
+### Bots standard (sans DocBrain)
+
+| Étape | Progression ajoutée |
+|---|---|
+| Bot créé | 0 % |
+| Customize Chat UI | +25 % |
+| Configure welcome message | +25 % |
+| Go-Live | +25 % |
+| **Total sans DocBrain** | **75 %** |
+
+Si vous ajoutez ensuite des données DocBrain, la ventilation d'achèvement change :
+
+| Étape | Progression ajoutée |
+|---|---|
+| Customize Chat UI | 20 % |
+| Configure welcome message | 20 % |
+| Embed on website *(recommandé)* | 20 % |
+| Manage data source(s) and process | 20 % |
+| Configure prompt | 20 % |
+| **Total avec DocBrain** | **100 % une fois l'indexation terminée** |
+
+<Callout>
+  **Configure prompt** n'est déverrouillé que pour les bots DocBrain. Les bots classiques le voient comme désactivé.
+</Callout>
+
+### Bots DocBrain
+
+| Étape | Progression ajoutée |
+|---|---|
+| Bot créé, indexation en cours | 0 % |
+| Indexation terminée (Test DocBrain) | +20 % |
+| Customize Chat UI | +20 % |
+| Configure welcome message | +20 % |
+| Go-Live | +20 % |
+| Configure prompt | +20 % |
+| **Total** | **100 %** |
+
+## Liens rapides de la page d'accueil
+
+La page d'accueil fait remonter des raccourcis vers les éléments que vous configurez le plus couramment ensuite. Chaque carte renvoie vers la page complète pour ce paramètre :
+
+| Carte | Ce qu'elle ouvre |
+|---|---|
+| **No DocBrain added** | RAG Configs — ajouter un DocBrain existant ou en créer un nouveau |
+| **DocBrain name** *(si ajouté)* | La page DocBrain pour votre contenu indexé |
+| **Customize Chat UI** | Éditeur d'apparence du chatbot |
+| **Configure welcome message** | Intention `default_welcome` |
+| **Embed on website** | Page Go-Live avec le script d'intégration |
+| **Manage data source(s)** | Sources de données DocBrain |
+| **Configure prompt** | Éditeur de prompt RAG Forge *(DocBrain uniquement)* |
+| **Go Live / Go Live Recommended** | Page Go-Live |
+
+Une coche verte apparaît une fois cette étape terminée.
+
+## Ce que signifie "ready to go live"
+
+Le statut de votre bot passe à **"Your bot is now ready to go live"** une fois que tous les critères obligatoires sont remplis — ce qui varie selon le type de bot. Gardez un œil sur la carte de statut à droite de la page d'accueil pour connaître l'état actuel.

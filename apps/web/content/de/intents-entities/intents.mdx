@@ -1,0 +1,127 @@
+---
+title: Intents
+description: Wie du Intents in AIDA erstellst, bearbeitest und organisierst.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Intents (Legacy)
+
+<Callout type="warning">
+  **Wird bis Ende 2026 eingestellt.** Intents sind veraltet – alle neuen Bots sollten stattdessen [Agenten mit Tool Calling](/getting-started/first-bot) verwenden. Diese Seite bleibt für Teams bestehen, die bestehende Intent-basierte Bots pflegen.
+</Callout>
+
+Ein **Intent** ist das Ziel hinter dem, was ein Nutzer sagt. „Ich möchte ein neues Konto eröffnen" und „Wie melde ich mich an?" sind unterschiedliche Formulierungen desselben Intents.
+
+Wenn AIDA einen Bot erstellt, werden automatisch einige System-Intents angelegt (zum Beispiel `default_welcome`, `default_fallback` und `default_consecutive_fallback`). Diese können bearbeitet, aber **nicht gelöscht** werden.
+
+## Einen Intent erstellen
+
+<Steps>
+
+### Die Intents-Seite öffnen
+
+Klicke im Seitenmenü auf **Intents**. Du siehst alle vorhandenen Intents in der Liste.
+
+### Einen neuen Intent hinzufügen
+
+Klicke auf **[Add]**, gib einen aussagekräftigen Intent-Namen ein und klicke auf **[Save]**.
+
+### Trigger hinzufügen
+
+Öffne den Intent und füge im Bereich Triggers beispielhafte Nutzerformulierungen hinzu. Siehe [Trigger & Parameter](/intents-entities/triggers-parameters).
+
+### Eine Antwort konfigurieren
+
+Wechsle zum Tab Response und füge die Antwort hinzu, die dein Bot geben soll. Siehe [Antworten](#responses).
+
+</Steps>
+
+<Callout>
+  Benenne Intents nach dem Ziel des Nutzers, nicht nach der Aktion des Bots. `AccountOpening` ist klarer als `ShowSignupForm`.
+</Callout>
+
+## Bearbeiten und löschen
+
+Öffne den Intent, klicke auf das Namensfeld zum Bearbeiten und dann auf **Save**. Um einen Intent zu entfernen, klicke neben Save auf **[Delete]**.
+
+Vom System definierte Default-Intents und Default-Events können bearbeitet, aber nicht gelöscht werden.
+
+## Beispiel: Ein Retail-Banking-Bot
+
+Ein Bot für eine Privatkundenbank könnte Intents wie diese enthalten:
+
+| Intent | Zweck |
+|---|---|
+| `AccountOpening` | Nutzer durch die Eröffnung eines neuen Kontos führen |
+| `CreditCardQueries` | Fragen zu Kreditkarten beantworten |
+| `LoanInformation` | Informationen zu Kreditprodukten teilen |
+| `AccountClosure` | Anfragen zur Schließung eines Kontos bearbeiten |
+
+## Antworten
+
+Jeder Intent hat eine konfigurierte Antwort. Eine Antwort kann enthalten:
+
+- **Textantwort** – reiner Text, mit `<newMessage>`, um eine Nachricht in mehrere Blasen aufzuteilen
+- **Bild** – JPEG, PNG oder SVG bis 2 MB (empfohlenes Seitenverhältnis 3:2)
+- **Gallery Card** – eine Karte mit Titel, Untertitel, Beschreibung und bis zu 3 Buttons
+- **Vorschläge** – klickbare Chips, die zu Triggern eines anderen Intents passen
+- **Aktion** – ein Bot-Verhalten wie `speakToAgent`, ein DocBrain-Lookup oder ein Blitzico-/AIDA-Flow
+
+Antworten können pro Kanal konfiguriert werden:
+
+| Kanal | Unterstützt |
+|---|---|
+| Generic | Aktion, Antwort, Bild, Gallery Card, Vorschläge |
+| WhatsApp | Aktion, Antwort, Bild, Vorschläge *(keine Gallery Card)* |
+| Voice | Nur Aktion und Antwort |
+| URL | Schlüssel + URL-Pfad + vollständige Antwortoptionen |
+| Custom | Schlüssel + vollständige Antwortoptionen |
+
+Nur die Kanäle **Custom** und **URL** unterstützen Wiederholung; die anderen erlauben nur eine Einzelauswahl. Generic passt sich automatisch an, je nachdem, wo der Bot bereitgestellt wird.
+
+## Aktionen
+
+Mit Aktionen kann ein Intent mehr auslösen als eine Textantwort:
+
+- **DocBrain** – eine Antwort aus indexierten Dokumenten holen
+- **Blitzico** – einen Blitzico-Flow ausführen (benötigt eine gültige Route-ID)
+- **Flows** – einen AIDA-Flow ausführen (gleiches Route-ID-Muster)
+- **Others** – Standard-Bot-Aktionen wie `speakToAgent` oder `lead_contact_details`
+
+Für Blitzico und Flows kannst du eine Route-ID aus einem anderen Bot kopieren und auf **[Verify]** klicken, um sie zu validieren – eine gültige ID verwandelt den Button in **„Redirect to Blitz"** oder **„Redirect to Flow"**.
+
+<Callout type="warning">
+  Route-IDs müssen von derselben **Instanz** stammen wie dein Ziel. Eine aus einer anderen Instanz eingefügte ID zeigt „Not a valid blitzico action" an.
+</Callout>
+
+## Context: Intents miteinander verbinden
+
+Nutze **Context Out** und **Context In**, um Intents zu einem Flow zu verbinden.
+
+- Lege auf dem Eltern-Intent einen **Context Out**-Namen fest.
+- Lege auf dem Kind-Intent ein passendes **Context In** fest (gleicher Text, keine Leerzeichen, Groß-/Kleinschreibung beachten).
+- Der Kind-Intent wird nur ausgelöst, wenn der Eltern-Intent in derselben Session ausgelöst wurde.
+
+Das ist nützlich für mehrstufige Flows, bei denen die Reihenfolge wichtig ist.
+
+## Events
+
+Mit **Events** kannst du einen Intent auslösen, ohne dass der Nutzer etwas eingibt – zum Beispiel eine Willkommensnachricht beim Öffnen des Chatfensters.
+
+Füge ein Event hinzu, indem du seinen Namen in das **Event**-Feld oben auf der Intent-Seite eingibst, Enter drückst und speicherst. Auf normalen Intents brauchen Events Bot-Connector-Logik, damit sie ausgelöst werden.
+
+Ein spezielles Event, `default_consecutive_fallback`, feuert nach einer konfigurierbaren Anzahl aufeinanderfolgender Fallback-Antworten. Der Standardwert beträgt **3 aufeinanderfolgende Fallbacks** für generische Bots; Custom-Bots können dies über Botforge ändern.
+
+## Vorgefertigte Intents
+
+Vorgefertigte Intents sind fertige Intents mit Triggern und Entitäten, die du auf jeden Bot anwenden kannst – neu oder bestehend. Siehe [Vorgefertigte Intents](/intents-entities/intents#pre-built-intents-library).
+
+### Vorgefertigte Intents zu einem bestehenden Bot hinzufügen
+
+1. Gehe zur **Intents**-Seite.
+2. Klicke auf das Dropdown neben **[Add]** → **[Add pre-built intents]**.
+3. Klicke neben jedem gewünschten vorgefertigten Intent auf **[Add]**.
+4. Klicke auf **[Proceed]**.
+5. Gib erforderliche Referenzwerte ein → **[Proceed]**.
+6. Klicke auf **Go to intents page** zur Bestätigung.

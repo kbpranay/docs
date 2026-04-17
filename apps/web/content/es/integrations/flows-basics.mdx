@@ -1,0 +1,100 @@
+---
+title: Gestión de flows
+description: Crea, nombra, elimina, bloquea y busca flows en tu workspace de AIDA.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Gestión de flows
+
+Cada flow comienza como una entrada en la página de listado de Flows. Desde ahí puedes crear, renombrar, eliminar, bloquear y buscar flows.
+
+## Crear un flow
+
+<Steps>
+
+### Abre la página Flows
+
+Haz clic en **Flows** desde la página Bot Selection o desde el Mega Menu en la navegación superior.
+
+### Haz clic en + Create
+
+Se abre el diálogo **Create Flow**.
+
+### Nombra el flow
+
+Introduce un nombre descriptivo y configura la instancia donde debería desplegarse el flow.
+
+### Guarda
+
+Haz clic en **Save**. El nuevo flow aparece en la lista y abre el workspace para que puedas empezar a añadir nodos.
+
+</Steps>
+
+También puedes crear un flow desde dentro de un intent — abre **Response → Action**, selecciona **Flow** en el desplegable, y crea uno nuevo o pega un route ID existente.
+
+## Renombrar un flow
+
+<Steps>
+
+### Abre el menú del flow
+
+Haz clic en el menú de puntos suspensivos (tres puntos) junto al flow en la lista.
+
+### Elige Edit Name
+
+Actualiza el nombre en el prompt y confirma.
+
+</Steps>
+
+## Eliminar un flow
+
+<Steps>
+
+### Abre el menú del flow
+
+Haz clic en los tres puntos junto al flow.
+
+### Delete Flow
+
+Haz clic en **Delete Flow** y confirma en el popup.
+
+</Steps>
+
+<Callout type="warning">
+  Eliminar un flow lo borra de forma permanente. Cualquier intent o flow padre que referencie el route ID de este flow dejará de funcionar.
+</Callout>
+
+## Bloquear un flow
+
+Bloquear un flow lo pone en modo de solo lectura — nadie puede editarlo hasta que se desbloquee. Es útil para flows de producción que no deberían cambiar sin revisión.
+
+<Steps>
+
+### Abre el menú del flow
+
+Haz clic en los tres puntos junto al flow.
+
+### Lock Flow
+
+Haz clic en **Lock Flow** y confirma.
+
+</Steps>
+
+<Callout>
+  Cuando un flow está bloqueado por un usuario, el menú de puntos está **oculto para otros usuarios** — no pueden ejecutar acciones sobre un flow bloqueado accidentalmente. La persona que lo bloqueó (o cualquier admin) puede desbloquearlo a través del mismo menú.
+</Callout>
+
+## Buscar flows
+
+El campo **Search Flow** en la parte superior de la página Flows filtra la lista a medida que escribes. Las coincidencias se resaltan al instante — no hace falta pulsar Enter.
+
+## Historial de cambios
+
+Cada flow mantiene un registro de cambios completo que muestra:
+
+- Quién hizo cada cambio
+- Cuándo ocurrió
+- Qué se cambió
+
+Puedes revertir cualquier flow a una versión anterior a través del panel de historial. Accede a él desde la cabecera superior del workspace.

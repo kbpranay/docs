@@ -1,0 +1,48 @@
+---
+title: Konto & Administration
+description: Alles rund um dein Konto, Teammitglieder, Berechtigungen und Migrationen.
+---
+
+import { Cards } from 'nextra/components'
+
+# Konto & Administration
+
+Dieser Abschnitt behandelt deine persönlichen Kontoeinstellungen sowie die teamweite Administration.
+
+<Cards>
+  <Cards.Card title="Profil & Passwort" href="/account-admin/profile" arrow />
+  <Cards.Card title="Nutzer & Berechtigungen" href="/account-admin/users-permissions" arrow />
+  <Cards.Card title="Team-Einstellungen" href="/account-admin/team-settings" arrow />
+  <Cards.Card title="Migration" href="/account-admin/migration" arrow />
+</Cards>
+
+## Das Profil-Dropdown im Überblick
+
+Das Profilmenü im Header oben rechts zeigt:
+
+- Deinen Anzeigenamen
+- Deine E-Mail
+- Das Team, in dem du aktuell eingeloggt bist *(mit einer Schaltfläche zum Kopieren der Team-ID)*
+- **Switch Team** – Teams wechseln, ohne dich auszuloggen
+- **My Profile** – Rollen ansehen, Name bearbeiten
+- **Account** – Passwort ändern, Zeitzone ändern
+- **Logout**
+
+## Wer darf was
+
+| Aktion | Erlaubte Rollen |
+|---|---|
+| Nutzer einladen | Team Owner, Manager, AIDA Admin |
+| Nutzerrollen widerrufen | Team Owner, Manager, AIDA Admin |
+| Nutzer deaktivieren | Team Owner, Manager |
+| Nutzer löschen | Nur Team Owner |
+| 2FA eines anderen Nutzers zurücksetzen | Team Owner (alle); Manager (unterhalb der Manager-Ebene) |
+| Team-Eigentum übertragen | Nur Team Owner |
+| Teamnamen aktualisieren | Team Owner, Manager |
+| Lockout-Richtlinie konfigurieren | Team Owner, Manager |
+| API-Services aktivieren | Team Owner, Manager |
+| Bots & Artefakte migrieren | Team Owner, Manager, Rolle Migrations |
+
+## Teams wechseln
+
+Wenn du mehreren Teams angehörst, klicke oben rechts auf dein Profil und wähle **Switch Team**, um zwischen ihnen zu wechseln – ohne dich auszuloggen. Du kannst auch die Team-Auswahlseite verwenden, die direkt nach dem Login erscheint.

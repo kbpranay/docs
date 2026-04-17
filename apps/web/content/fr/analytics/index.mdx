@@ -1,0 +1,37 @@
+---
+title: Analytique
+description: Mesurez les conversations, la qualité des réponses et la précision des intentions.
+---
+
+import { Cards } from 'nextra/components'
+
+# Analytique
+
+Les outils d'analytique d'AIDA vous indiquent comment votre bot se comporte réellement — combien de conversations il gère, à quelle fréquence les utilisateurs sont transférés vers des agents et où les intentions sont mal détectées.
+
+<Cards>
+  <Cards.Card title="Données en direct" href="/analytics/live-data" arrow />
+  <Cards.Card title="Rapports et insights" href="/analytics/reports-insights" arrow />
+</Cards>
+
+## Ce qu'il faut surveiller
+
+Les métriques les plus importantes pour la qualité du bot :
+
+- **Sessions avec demandes d'agent** — si ce chiffre augmente, votre bot perd en confiance
+- **Précision des intentions** — à quelle fréquence le classifier voit juste
+- **Durée moyenne des conversations** — très courte = le bot abandonne ; très longue = l'utilisateur est bloqué
+- **Notes de feedback** — signal direct des utilisateurs
+- **Principales requêtes non traitées** — le backlog le plus rapide à corriger
+
+## Filtrage
+
+Toutes les vues Analytique peuvent être filtrées par :
+
+- **Source** — Webpage, App, Others, LLM lab
+- **Canal** — Chatbot, Voice, WhatsApp, Agent Assist, Facebook
+- **Plage de dates** — jusqu'à 7 jours à la fois
+
+## Export
+
+Un bouton **Download** exporte tous les logs de requêtes du filtre courant au format Excel. Utilisez-le pour une analyse sur plus longue durée dans vos propres outils BI.

@@ -1,0 +1,31 @@
+---
+title: Bot-Einstellungen
+description: Konfiguriere das Kernverhalten deines Bots, die Sprachverarbeitung und die Classifier-Engine.
+---
+
+import { Cards } from 'nextra/components'
+
+# Bot-Einstellungen
+
+In den Bot-Einstellungen konfigurierst du die Grundlagen des Bot-Verhaltens – Namen, API-Zugang, Sprachverarbeitung und die Klassifikation von Nutzernachrichten.
+
+Öffne sie über das Symbol **Bot Settings** in der Seitenmenüleiste.
+
+<Cards>
+  <Cards.Card title="Bot-Informationen" href="/bot-settings/bot-info" arrow />
+  <Cards.Card title="Classifier" href="/bot-settings/classifier" arrow />
+  <Cards.Card title="Mehrsprachig" href="/bot-settings/multilingual" arrow />
+  <Cards.Card title="Flows & Aktionen" href="/bot-settings/flows-actions" arrow />
+</Cards>
+
+## Bereiche in den Bot-Einstellungen
+
+Die Seite Bot-Einstellungen hat drei Haupt-Tabs:
+
+| Tab | Was du tun kannst |
+|---|---|
+| **Bot Info** | Bot umbenennen, API-Key kopieren, Bot löschen (nur Team Owner) |
+| **DocBrain configs** | RAG-Einstellungen für DocBrain-Bots konfigurieren (siehe [DocBrain](/intents-entities/docbrain)) |
+| **Classifier** | ML-Klassifikation und Elasticsearch aktivieren oder deaktivieren |
+
+Die Konfiguration für Mehrsprachigkeit befindet sich für Admins, Team Owner und Manager ebenfalls in den Bot-Einstellungen.

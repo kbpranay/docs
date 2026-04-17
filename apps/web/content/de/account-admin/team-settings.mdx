@@ -1,0 +1,109 @@
+---
+title: Team-Einstellungen
+description: Teamname, Zwei-Faktor-Authentifizierung und Kontosperr-Richtlinien konfigurieren.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Team-Einstellungen
+
+Team-Einstellungen enthalten alles, was für dein gesamtes Team gilt – den Anzeigenamen des Teams, die Zwei-Faktor-Authentifizierung (2FA) und die Sperrrichtlinie für fehlgeschlagene Logins.
+
+Öffne sie über **Team Settings** in der Navigation.
+
+## Den Teamnamen aktualisieren
+
+<Steps>
+
+### Team Settings → Details öffnen
+
+Klicke auf den Tab **Team settings** und öffne dann den Bereich **Details**.
+
+### Teamname bearbeiten
+
+Klicke in das Feld Teamname und ändere den Wert.
+
+### Speichern
+
+Klicke auf **[Save]**. *(Verwende **Reset**, um ungespeicherte Änderungen zu verwerfen.)*
+
+</Steps>
+
+<Callout>
+  **Organization name** und **Team ID** werden bei der Team-Erstellung festgelegt und können danach nicht mehr geändert werden. Nur der Teamname ist editierbar.
+</Callout>
+
+## Zwei-Faktor-Authentifizierung (2FA)
+
+2FA fügt einen zweiten Verifizierungsschritt beim Login hinzu – zusätzlich zum Passwort müssen Nutzer auch einen Code eingeben, der von einer Authenticator-App (Google Authenticator, Authy, 1Password usw.) generiert wird.
+
+### 2FA für das Team aktivieren
+
+<Steps>
+
+### Team Settings → Security öffnen
+
+Klicke auf **Team settings**, dann auf **Security**.
+
+### 2FA-Schalter aktivieren
+
+Aktiviere den Schalter **2FA**.
+
+### Speichern
+
+Klicke auf **[Save]**.
+
+</Steps>
+
+Nach der Aktivierung sieht jedes Teammitglied beim Login eine **[Setup]**-Schaltfläche statt **[Sign In]**, bis die 2FA-Einrichtung abgeschlossen ist.
+
+### 2FA einrichten (End-User-Flow)
+
+<Steps>
+
+### E-Mail & Passwort eingeben
+
+Gib wie gewohnt deine Zugangsdaten ein.
+
+### Auf Setup klicken
+
+Klicke auf **[Setup]**, wenn du dazu aufgefordert wirst.
+
+### Den Code aus der E-Mail eingeben
+
+Ein Authentifizierungscode wird dem Nutzer per E-Mail zugesandt. Gib ihn ein und klicke auf **[Validate]**.
+
+### QR-Code scannen
+
+Scanne den angezeigten QR-Code mit einer Authenticator-App.
+
+### Zu Sign In gehen
+
+Klicke auf **[Go to Sign in]**. Zukünftige Logins erfordern einen zeitbasierten Code aus der Authenticator-App.
+
+</Steps>
+
+### 2FA eines anderen Nutzers zurücksetzen
+
+Wenn ein Nutzer den Zugriff auf seinen Authenticator verliert (neues Handy, verlorenes Gerät), kann ein Admin dessen 2FA zurücksetzen, damit er es erneut einrichten kann.
+
+| Deine Rolle | Du kannst 2FA zurücksetzen für |
+|---|---|
+| **Team Owner** | Alle Nutzer – einschließlich anderer Team Owner, Manager und dich selbst |
+| **Manager** | Nutzer unterhalb der Manager-Ebene: Admin, User, Dashboard, API & Services, Migration, LLM Labs |
+
+<Callout>
+  Wenn du 2FA teamweit deaktivierst, müssen Nutzer, die 2FA bereits eingerichtet hatten, ihre 2FA weiterhin **individuell zurückgesetzt** bekommen – von einem Team Owner oder Manager – bevor sie sich ohne 2FA anmelden können.
+</Callout>
+
+## Kontosperr-Richtlinie
+
+Um sich vor Brute-Force-Login-Versuchen zu schützen, sperrt AIDA Konten nach zu vielen fehlgeschlagenen Versuchen. Die Standardwerte gelten über alle Teams hinweg:
+
+| Einstellung | Standard |
+|---|---|
+| **Ungültige Versuche vor Sperrung** | 5 |
+| **Sperrdauer** | 30 Minuten |
+| **Mindestzeit zwischen Versuchen** | 60 Sekunden |
+
+Team Owner und Manager können die maximalen Versuche und die Sperrdauer unter **Team Settings → Security** anpassen.

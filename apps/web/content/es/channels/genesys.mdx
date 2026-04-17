@@ -1,0 +1,59 @@
+---
+title: Canal de WhatsApp
+description: Cómo integrar tu bot de AIDA con WhatsApp para gestionar conversaciones con clientes.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Canal de WhatsApp
+
+AIDA soporta WhatsApp como canal de mensajería, permitiendo a tu bot gestionar conversaciones con clientes en WhatsApp directamente.
+
+## Configurar el canal de WhatsApp
+
+<Steps>
+
+### Abre Go-Live
+
+Haz clic en **Go Live** en la barra lateral del menú.
+
+### Ve a la pestaña de WhatsApp
+
+Navega a la sección **WhatsApp** en la página Go-Live.
+
+### Genera una URL
+
+Haz clic en **[Generate URL]** para crear tu endpoint de integración con WhatsApp.
+
+### Configura WhatsApp
+
+Haz clic en **[How to configure]** para ver los pasos detallados de configuración. Sigue las instrucciones para conectar tu cuenta de WhatsApp Business al endpoint generado de AIDA.
+
+</Steps>
+
+## Habilitar / deshabilitar WhatsApp
+
+El toggle de WhatsApp en la página Go-Live te permite activar o desactivar el canal de WhatsApp al instante.
+
+| Estado | Comportamiento |
+|---|---|
+| **Toggle ON** | El bot gestiona todos los mensajes entrantes de WhatsApp con normalidad |
+| **Toggle OFF (script generado)** | Las sesiones en curso continúan; los usuarios pueden seguir enviando solicitudes de agente hasta que la sesión se cierre automáticamente. Los nuevos mensajes reciben un **mensaje offline** |
+| **Toggle OFF (sin script)** | El toggle está deshabilitado; se muestra una notificación |
+
+<Callout type="warning">
+  El mensaje offline es **editable** — haz clic fuera del campo tras editar y el mensaje se guarda automáticamente.
+</Callout>
+
+<Callout>
+  Las interacciones mientras WhatsApp está deshabilitado **no** se incluyen en los datos de entrenamiento. Solo se contabilizan en **Total Conversations** en Live Data y Analytics.
+</Callout>
+
+## Quién puede gestionar el canal de WhatsApp
+
+Solo los siguientes roles pueden habilitar/deshabilitar la integración con WhatsApp:
+
+- App Admin
+- Team Owner
+- Manager
+- AIDA Admin

@@ -1,0 +1,75 @@
+---
+title: Integrationsprobleme
+description: Lösungen für Probleme bei Web-, Voice- und WhatsApp-Integrationen.
+---
+
+import { Callout } from 'nextra/components'
+
+# Integrationsprobleme
+
+Wenn dein Bot auf einem bestimmten Kanal nicht erscheint oder nicht antwortet, arbeite die unten stehenden Prüfungen für diesen Kanal durch.
+
+## Web / App (Chatbot-Widget)
+
+### Das Chat-Widget erscheint nicht
+
+1. Öffne **Go-Live** in AIDA und bestätige, dass der **Enable-Schalter** für Web/App auf **ON** steht.
+2. Kopiere das Integrations-Skript erneut aus **Go-Live → Show script** – deine Seite könnte einen veralteten Snippet enthalten.
+3. Öffne die Browser-Konsole deiner Seite und suche nach Skript-Fehlern.
+4. Stelle sicher, dass das Chat-Fenster nicht durch eine Content-Security-Policy oder einen Ad-Blocker blockiert wird.
+
+### Der Bot lädt, aber alle Antworten sind Fallbacks
+
+Das bedeutet meist, dass der Classifier deaktiviert ist. Öffne [Bot-Einstellungen → Classifier](/bot-settings/classifier) und aktiviere ihn. Bis der erste Trainingszyklus abgeschlossen ist, kann es weiterhin zu Fallbacks kommen.
+
+### Meine Multi-Build-Quelle zeigt meine Änderung nicht
+
+- Klicke auf **Refresh** auf der Go-Live-Seite – Builds müssen abgeschlossen sein, bevor Änderungen greifen.
+- Eine Quelle mit Status **In Progress** liefert den neuen Inhalt noch nicht aus. Warte auf **Build Ready**.
+- Veröffentliche die konkrete Quelle über **Publish Builds** erneut, falls der Build stecken zu bleiben scheint.
+
+## Voice (AudioCodes)
+
+### Der Anruf wird sofort getrennt
+
+- Prüfe, dass deine AudioCodes-Konfiguration auf die URL zeigt, die unter **Go-Live → Voice** generiert wurde.
+- Bestätige, dass der **Voice-Schalter** auf der Go-Live-Seite **ON** ist. Ist er aus, werden neue eingehende Anrufe mit der Offline-Nachricht getrennt.
+- Wenn du Voice gerade erst aktiviert hast, gib der Route ein paar Minuten zum Propagieren.
+
+### Laufende Anrufe laufen weiter, neue Anrufe schlagen fehl
+
+Das ist so beabsichtigt, wenn der Voice-Schalter deaktiviert ist – laufende Anrufe werden abgeschlossen, neue Anrufe erhalten die Offline-Nachricht. Aktiviere den Schalter erneut, um die Annahme neuer Anrufe wiederherzustellen.
+
+## WhatsApp
+
+### Neue WhatsApp-Nachrichten werden nicht vom Bot beantwortet
+
+1. Öffne **Go-Live → WhatsApp** und bestätige, dass der Schalter auf **ON** steht.
+2. Wenn das Integrations-Skript noch nie generiert wurde, ist der Schalter deaktiviert – klicke zuerst auf **Generate URL**.
+3. Bestehende Sitzungen funktionieren weiter, wenn der Schalter aus ist; nur neue Nachrichten erhalten die Offline-Auto-Antwort.
+
+### Die Offline-Nachricht ist falsch
+
+Bearbeite sie direkt auf der Go-Live-Seite. Klicke nach dem Bearbeiten außerhalb des Feldes, und die neue Nachricht wird automatisch gespeichert.
+
+## Bot-Status zeigt „Indexing failed"
+
+Bei DocBrain-Bots bedeutet das, dass der Indexierungsjob fehlgeschlagen ist. Versuche:
+
+1. Öffne die DocBrain-Seite deines Bots.
+2. Indexiere die Quelldokumente neu.
+3. Prüfe, ob deine Quellen zugänglich sind (URLs, die Authentifizierung erfordern, werden nicht indexiert).
+4. Bleibt der Fehler bestehen, kontaktiere deinen AIDA-Administrator oder den EnterpriseBot-Support mit der Bot-ID.
+
+<Callout>
+  Interaktionen, die stattfinden, während ein Kanal deaktiviert ist, werden **nicht** in die Trainingsdaten aufgenommen. Sie erscheinen nur unter Gesamtkonversationen in Live-Daten und Analytics.
+</Callout>
+
+## Immer noch nicht gelöst?
+
+Sammle Folgendes, bevor du den Support kontaktierst:
+
+- Bot-ID (aus Bot Settings → Bot Info)
+- Betroffener/e Kanal/Kanäle (Web, Voice, WhatsApp)
+- Eine konkrete Session-ID, in der das Problem aufgetreten ist (kopiere sie aus Training)
+- Exakte Fehlermeldung, falls eine in der UI erscheint

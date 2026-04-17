@@ -1,0 +1,89 @@
+---
+title: Calidad y entrenamiento del bot
+description: Cómo mejorar la calidad de respuesta del bot, gestionar las solicitudes no gestionadas y solucionar problemas del Classifier.
+---
+
+import { Callout } from 'nextra/components'
+
+# Calidad y entrenamiento del bot
+
+## Entrenar tu bot
+
+La página **Train Conversation** muestra todas las conversaciones que han ocurrido entre usuarios y tu bot. Úsala para validar, configurar o mejorar las respuestas del bot.
+
+Navega ahí haciendo clic en **[Train conversation]** en la barra lateral del menú.
+
+### Filtros de conversación
+
+| Filtro | Qué muestra |
+|---|---|
+| **Real conversations** *(por defecto)* | Solo conversaciones desde la página Go-Live |
+| **All chats** | Conversaciones desde Go-Live + la ventana de chat interna |
+| **Unhandled requests** | Consultas que el bot no pudo gestionar (enrutadas al Default Fallback) |
+
+## Solicitudes no gestionadas
+
+Cuando un usuario pregunta algo que el bot no reconoce, la consulta se enruta al intent **Default Fallback** y se registra en **Unhandled requests**.
+
+**Para corregir solicitudes no gestionadas:**
+
+1. Ve a **Train conversation → Unhandled requests**.
+2. Para cada consulta no gestionada, elige una acción:
+   - **Validate** — confirmar que el intent asignado del bot era correcto.
+   - **Configure** — asignar la consulta al intent correcto desde el desplegable y luego haz clic en **Save**.
+   - **Ignore** — marcar la consulta como que no requiere acción.
+
+<Callout>
+  Validate y Configure cuentan para **Trained queries** e **Intent accuracy**. Ignorar una consulta no afecta a estas métricas.
+
+  **Intent accuracy** = Validated ÷ (Validated + Configured) × 100
+</Callout>
+
+## Problemas del Classifier
+
+El **Classifier** controla cómo AIDA empareja las consultas del usuario con intents usando Machine Learning (ML) y ElasticSearch (ES).
+
+### Cuando el Classifier está deshabilitado
+
+El Classifier está **deshabilitado por defecto** para los nuevos bots. Cuando está deshabilitado:
+
+- Todas las consultas de usuario se enrutan al intent **Default Fallback** (incluidas las consultas con triggers coincidentes)
+- La sección **Triggers** en la página Intents está bloqueada
+- La columna **Training Status** y los filtros en la página Training están ocultos
+- Los botones **Configure**, **Validate** e **Ignore** están deshabilitados para la mayoría de respuestas
+- La opción **Intent explainer** en la ventana de pruebas está oculta
+
+<Callout type="warning">
+  Cuando el Classifier está deshabilitado, las respuestas de intent solo funcionan con **eventos** — no con entrada de texto del usuario coincidente con triggers.
+</Callout>
+
+### Cómo habilitar el Classifier
+
+1. Ve a **Bot Settings** (desde el menú lateral).
+2. Haz clic en la pestaña **Classifier**.
+3. Activa **Enable Classifier** en ON.
+
+Una vez habilitado, la clasificación basada en ML y el refresco de ElasticSearch estarán activos para el bot.
+
+## Deep links para compartir problemas
+
+Los deep links te permiten compartir un enlace directo a un intent, entidad o sesión de entrenamiento específica con compañeros de equipo.
+
+| Recurso | Cómo copiar |
+|---|---|
+| **Intent** | Haz clic en el icono de copiar junto al nombre del intent en la página Intents |
+| **Entidad** | Haz clic en el icono de copiar junto al nombre de la entidad en la página Entities |
+| **Sesión de entrenamiento** | Haz clic en el icono de copiar en la sesión de la página Training |
+
+<Callout>
+  Los deep links solo son accesibles por usuarios **dentro del mismo equipo** con el rol apropiado. Abrir un deep link para un recurso eliminado o el recurso de otro equipo redirige a la página Bot List.
+</Callout>
+
+## Referencia de Bot Settings
+
+| Ajuste | Ubicación | Qué hace |
+|---|---|---|
+| Enable Classifier | Bot Settings → Classifier | Activa el emparejamiento de intents con ML + ES |
+| Multilingual | Bot Settings → Bot info | Traduce las consultas del usuario y/o las respuestas |
+| DocBrain configs | Bot Settings → DocBrain configs | Configura los ajustes de QA basado en documentos |
+| Bot name | Bot Settings → Bot info | Nombre del bot editable (el nombre de la organización y el idioma son fijos) |

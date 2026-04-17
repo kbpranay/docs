@@ -1,0 +1,99 @@
+---
+title: Entités
+description: Définissez les termes et valeurs spécifiques que votre bot doit reconnaître.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Entités (Legacy)
+
+<Callout type="warning">
+  **Progressivement supprimé d'ici fin 2026.** Les entités sont dépréciées. Les nouveaux agents extraient des informations structurées à partir d'une entrée utilisateur libre via le LLM lui-même — aucune définition d'entité requise. Voir [Créer votre premier agent](/getting-started/first-bot).
+</Callout>
+
+Une **entité** est une information spécifique extraite de ce que dit un utilisateur. Dans le message *"Quel temps fait-il en Inde aujourd'hui ?"*, les entités sont :
+
+- `Inde` — un **emplacement**
+- `Aujourd'hui` — une **date**
+
+Une entité par défaut — `Chatbot` — est créée automatiquement lors de la création d'un bot.
+
+## Structure
+
+Les entités comportent trois niveaux :
+
+```
+Entité → Sous-entités → Synonymes
+```
+
+- L'**entité** est la catégorie de plus haut niveau (par exemple, `Location` ou `Temperature`).
+- Les **sous-entités** sont les valeurs spécifiques que vous souhaitez apparier (pour `Location` : `City`, `State`, `Country`).
+- Les **synonymes** sont des formulations alternatives que les utilisateurs pourraient dire pour chaque sous-entité (pour `Temperature` : `Temp`, `Heat`, `Degrees`).
+
+<Callout>
+  Chaque entité doit avoir **au moins une sous-entité** avant de pouvoir être enregistrée.
+</Callout>
+
+## Créer une entité
+
+<Steps>
+
+### Ouvrez la page Entities
+
+Cliquez sur **Entities** dans le menu latéral.
+
+### Ajoutez une nouvelle entité
+
+Cliquez sur **[Add]** et saisissez le nom de l'entité.
+
+### Ajoutez une sous-entité
+
+Saisissez un nom de référence/sous-entité.
+
+### Ajoutez des synonymes
+
+Ajoutez des synonymes en appuyant sur **Enter** après chacun.
+
+### Ajoutez d'autres sous-entités si nécessaire
+
+Cliquez sur **[Add sub-entity]** pour ajouter des sous-entités supplémentaires.
+
+### Enregistrer
+
+Cliquez sur **Save**.
+
+</Steps>
+
+## Modifier les sous-entités
+
+Lorsque vous modifiez le nom d'une sous-entité, le nom d'origine est automatiquement conservé comme synonyme. Cela permet de maintenir la reconnaissance du bot rétrocompatible.
+
+## Supprimer
+
+- Supprimer une **sous-entité** : cliquez sur l'icône de suppression sur la ligne de cette sous-entité, puis Save.
+- Supprimer un **synonyme** : cliquez sur la **×** de ce synonyme, puis Save.
+
+## Importer des sous-entités depuis un CSV
+
+Cliquez sur **[Import Sub-entities]**, téléversez votre CSV et rafraîchissez.
+
+Règles du CSV :
+
+- Si la colonne **Synonyms** est vide, les noms de sous-entités sont traités comme des synonymes.
+- Si la colonne **Sub-entity** est vide, l'import échoue avec une erreur.
+
+## Exporter les sous-entités
+
+Cliquez sur **[Export Sub-entities]** pour télécharger vos définitions d'entités au format CSV.
+
+<Callout>
+  L'export est réservé aux rôles **SSE Admin** et **Team Owner**.
+</Callout>
+
+## Rechercher des entités
+
+La liste Entities est triée par ordre alphabétique et comporte un champ de recherche en haut pour trouver rapidement une entité spécifique.
+
+## Tester des entités
+
+Une bulle de fenêtre de chat en bas à droite de la page Entities vous permet de tester comment votre bot reconnaît les entités avant la mise en ligne.

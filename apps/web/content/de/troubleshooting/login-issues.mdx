@@ -1,0 +1,92 @@
+---
+title: Login- & Zugriffsprobleme
+description: Lösungen für Login-Probleme, Kontosperren, Passwort-Zurücksetzungen und SSO-Probleme in AIDA.
+---
+
+import { Callout } from 'nextra/components'
+
+# Login- & Zugriffsprobleme
+
+## Passwort vergessen
+
+Wenn du dein Passwort vergessen hast, nutze den Self-Service-Reset-Ablauf:
+
+1. Klicke auf dem Login-Bildschirm auf **[Forgot Password]**.
+2. Gib deine registrierte E-Mail-Adresse ein.
+3. Schau in deinem Posteingang nach einer E-Mail zum Passwort-Reset.
+4. Klicke auf den Link in der E-Mail und gib dein neues Passwort ein.
+5. Du erhältst eine Bestätigungs-E-Mail, sobald das Passwort erfolgreich geändert wurde.
+
+## Kontosperre
+
+AIDA sperrt Konten nach zu vielen fehlgeschlagenen Login-Versuchen, um unbefugten Zugriff zu verhindern.
+
+**Standard-Sperreinstellungen (global für alle Teams):**
+
+| Einstellung | Standardwert |
+|---|---|
+| Ungültige Versuche vor Sperre | **5** |
+| Sperrdauer | **30 Minuten** |
+| Mindestzeit zwischen Versuchen | **60 Sekunden** |
+
+Nach Überschreiten der Versuchsgrenze ist dein Konto gesperrt und eine Meldung wird angezeigt. Warte die Sperrzeit (standardmäßig 30 Minuten) ab, bevor du es erneut versuchst.
+
+<Callout type="warning">
+  Ist dein Konto auch nach Ablauf der Sperrzeit noch gesperrt, wende dich an deinen Team Owner oder AIDA-Admin.
+</Callout>
+
+Dein Team Owner kann die Sperr-Policy unter **Team Settings → Security** anpassen.
+
+## SSO-Login-Probleme
+
+AIDA unterstützt Single Sign-On (SSO) via Gmail (Google), Microsoft und Okta.
+
+**Wenn der SSO-Login fehlschlägt:**
+
+1. Bestätige, dass SSO für AIDA in deiner Organisation aktiviert ist.
+2. Prüfe, dass deine SSO-E-Mail mit deiner AIDA-Konto-E-Mail übereinstimmt.
+3. Probiere als Fallback den E-Mail-/Passwort-Login.
+4. Bitte deinen Team Owner, die SSO-Konfiguration zu verifizieren.
+
+## Einladung & einem Team beitreten
+
+Wenn du eine Teameinladung erhalten hast, aber nicht beitreten kannst:
+
+1. Schau in deinem Posteingang nach einer E-Mail mit einem **Join Team**-Button.
+2. Klicke auf **Join Team** – das leitet dich zur Passwort-Einstellung weiter.
+3. Ist der Einladungslink abgelaufen, bitte deinen Team Owner, eine neue Einladung zu senden.
+
+## Session-Ablauf
+
+Wenn deine Session während der Nutzung von AIDA abläuft:
+
+- Wirst du auf die Re-Login-Seite umgeleitet.
+- Nach dem erneuten Login wirst du in dasselbe **Team** geführt, in dem du vor dem Session-Ablauf warst.
+
+## Zwei-Faktor-Authentifizierung (2FA)
+
+Wenn 2FA für dein Team aktiviert ist und du dich nicht einloggen kannst:
+
+1. Gib E-Mail und Passwort wie gewohnt ein.
+2. Klicke bei Aufforderung auf **[Setup]**, um 2FA einzurichten (nur beim ersten Mal).
+3. Gib den Authentifizierungs-Code ein, der an deine E-Mail gesendet wurde.
+4. Scanne den QR-Code mit deiner Authenticator-App.
+5. Klicke auf **[Go to Sign in]**, um die Einrichtung abzuschließen.
+
+Bei späteren Logins öffne deine Authenticator-App und gib den aktuellen Code ein.
+
+<Callout>
+  2FA gilt global für dein Konto – sie ist nicht teamspezifisch.
+</Callout>
+
+## Zugriff auf bestimmte Seiten nicht möglich
+
+Wenn du eine Seite oder ein Feature nicht aufrufen kannst, hat deine Rolle möglicherweise keine Berechtigung.
+
+| Rolle | Eingeschränkte Seiten |
+|---|---|
+| AIDA User | User Rights, Create Bot, Team Settings |
+| AIDA Dashboard | Alle Seiten außer Live Data, Analytics, My Profile, Account, Timezone |
+| AIDA Admin | Kann keine Nutzer aktivieren/deaktivieren/löschen; kein Zugriff auf Team Settings |
+
+Wende dich an deinen Team Owner, um bei Bedarf eine Rollenänderung anzufordern.

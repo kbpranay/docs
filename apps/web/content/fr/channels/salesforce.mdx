@@ -1,0 +1,92 @@
+---
+title: Canal Web et App
+description: Comment déployer votre chatbot AIDA sur un site web ou une application web à l'aide du script d'intégration Go-Live.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Canal Web et App
+
+Déployez votre bot AIDA sur n'importe quel site web ou application web à l'aide du script d'intégration Go-Live.
+
+## Obtenir le script d'intégration
+
+<Steps>
+
+### Ouvrez Go-Live
+
+Cliquez sur **Go Live** dans la barre latérale pour ouvrir la page Go-Live.
+
+### Trouvez la section Web/Apps
+
+La section **Web/Apps** affiche l'URL de votre bot.
+
+### Ouvrez le bot
+
+Cliquez sur **[Open in tab]** pour ouvrir directement l'URL du bot dans un nouvel onglet.
+
+### Récupérez le script
+
+Cliquez sur **[Show script]** pour afficher le snippet d'intégration JavaScript. Copiez-collez-le dans le HTML de votre site web pour intégrer le chatbot.
+
+</Steps>
+
+## Multi-Build Sources
+
+Multi-Build Sources vous permet de créer plusieurs déploiements du même bot — par exemple, avec différentes langues pour différentes régions.
+
+**Qui peut l'utiliser :** rôles Team Owner, Manager et Admin.
+
+### Ajouter une nouvelle source
+
+<Steps>
+
+### Cliquez sur Add Source
+
+Sur la page Go-Live, cliquez sur le bouton **Add Source** sous la source par défaut (Web/Apps).
+
+### Saisissez les détails de la source
+
+Dans la fenêtre **Add New Source** :
+- Saisissez un **Source Name**
+- Sélectionnez une **Language** dans le menu déroulant (par défaut la langue de base du bot)
+
+### Publiez
+
+Cliquez sur **Publish** pour démarrer la construction.
+
+### Attendez la fin de la construction
+
+Cliquez sur **Refresh** pour mettre à jour le statut de la construction. Le statut passe de **In Progress** → **Build Ready**.
+
+</Steps>
+
+Une fois ajoutées, les sources apparaissent dans l'ordre de création. Chaque carte de source affiche le **Source Name**, la **Language Key** et un **Status Icon**.
+
+### Gérer les sources
+
+Après la construction d'une source :
+
+| Action | Comment |
+|---|---|
+| Ouvrir le bot | Cliquez sur **[Open Bot]** sur la carte de la source |
+| Voir le script d'intégration | Cliquez sur **"Show script"** |
+| Supprimer une source | Cliquez sur **"Delete"** *(désactivé lorsque la construction est In Progress)* |
+
+### Nom de source dans l'URL du bot
+
+Lors de l'ouverture de Go-Live pour une source spécifique, le nom de la source est ajouté à l'URL du bot comme paramètre de requête :
+
+```
+https://your-bot-url.com/?source=SourceName
+```
+
+Cela vous permet de tracer la source d'origine d'une conversation dans les pages Training, Live Data et Analytics.
+
+### Publier plusieurs builds à la fois
+
+Cliquez sur **Publish Builds** (à côté du bouton Refresh) pour ouvrir la fenêtre **Publish Build**. Sélectionnez les sources à reconstruire, puis cliquez sur **Publish**.
+
+<Callout type="info">
+  Les sources ajoutées via Multi-Build apparaissent comme options de filtre dans la page Training, Live Data et Analytics.
+</Callout>

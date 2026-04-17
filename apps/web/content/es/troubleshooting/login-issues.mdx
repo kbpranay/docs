@@ -1,0 +1,92 @@
+---
+title: Problemas de acceso y cuenta
+description: Soluciones para problemas de inicio de sesión, bloqueos de cuenta, restablecimiento de contraseña y problemas de SSO en AIDA.
+---
+
+import { Callout } from 'nextra/components'
+
+# Problemas de acceso y cuenta
+
+## Contraseña olvidada
+
+Si no recuerdas tu contraseña, usa el flujo de autorrestablecimiento:
+
+1. En la pantalla de login, haz clic en **[Forgot Password]**.
+2. Introduce tu dirección de email registrada.
+3. Revisa tu bandeja de entrada en busca de un email de restablecimiento de contraseña.
+4. Haz clic en el enlace del email e introduce tu nueva contraseña.
+5. Recibirás un email de confirmación una vez que la contraseña se haya cambiado con éxito.
+
+## Bloqueo de cuenta
+
+AIDA bloquea las cuentas tras demasiados intentos fallidos de inicio de sesión para evitar accesos no autorizados.
+
+**Ajustes de bloqueo por defecto (aplicados globalmente a todos los equipos):**
+
+| Ajuste | Valor por defecto |
+|---|---|
+| Intentos inválidos antes del bloqueo | **5** |
+| Duración del bloqueo | **30 minutos** |
+| Tiempo mínimo entre intentos | **60 segundos** |
+
+Tras exceder el límite de intentos, tu cuenta se bloquea y se muestra un mensaje. Espera a que pase el periodo de bloqueo (30 minutos por defecto) antes de intentarlo de nuevo.
+
+<Callout type="warning">
+  Si tu cuenta sigue bloqueada tras el periodo de bloqueo, contacta a tu Team Owner o AIDA Admin.
+</Callout>
+
+Tu Team Owner puede ajustar la política de bloqueo desde **Team Settings → Security**.
+
+## Problemas de inicio de sesión con SSO
+
+AIDA soporta Single Sign-On (SSO) a través de Gmail (Google), Microsoft y Okta.
+
+**Si el login SSO falla:**
+
+1. Confirma que tu organización tiene SSO habilitado para AIDA.
+2. Verifica que tu email de SSO coincida con el email de tu cuenta AIDA.
+3. Prueba el login con email/contraseña como alternativa.
+4. Contacta a tu Team Owner para verificar la configuración SSO.
+
+## Invitación y unirse a un equipo
+
+Si recibiste una invitación al equipo pero no puedes unirte:
+
+1. Revisa tu bandeja de entrada en busca de un email con un botón **Join Team**.
+2. Haz clic en **Join Team** — esto te redirige para establecer tu contraseña.
+3. Si el enlace de la invitación ha expirado, pide a tu Team Owner que envíe una nueva invitación.
+
+## Expiración de sesión
+
+Si tu sesión expira mientras usas AIDA:
+
+- Serás redirigido a la página de re-login.
+- Tras volver a iniciar sesión, serás dirigido al **mismo equipo** en el que estabas antes de que expirase la sesión.
+
+## Autenticación en dos pasos (2FA)
+
+Si 2FA está habilitado para tu equipo y no puedes iniciar sesión:
+
+1. Introduce tu email y contraseña como de costumbre.
+2. Cuando se te indique, haz clic en **[Setup]** para configurar 2FA (solo la primera vez).
+3. Introduce el código de autenticación enviado a tu email.
+4. Escanea el código QR con tu app Authenticator.
+5. Haz clic en **[Go to Sign in]** para completar la configuración.
+
+En los inicios de sesión posteriores, abre tu app Authenticator e introduce el código actual.
+
+<Callout>
+  2FA se aplica globalmente a tu cuenta — no es específico del equipo.
+</Callout>
+
+## No puedo acceder a ciertas páginas
+
+Si no puedes acceder a una página o función, es posible que tu rol no tenga permiso.
+
+| Rol | Páginas restringidas |
+|---|---|
+| AIDA User | User Rights, Create Bot, Team Settings |
+| AIDA Dashboard | Todas las páginas excepto Live Data, Analytics, My Profile, Account, Timezone |
+| AIDA Admin | No puede activar/desactivar/eliminar usuarios; no puede acceder a Team Settings |
+
+Contacta a tu Team Owner para solicitar un cambio de rol si lo necesitas.

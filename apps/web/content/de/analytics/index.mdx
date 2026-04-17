@@ -1,0 +1,37 @@
+---
+title: Analytics
+description: Konversationen, Antwortqualität und Intent-Genauigkeit messen.
+---
+
+import { Cards } from 'nextra/components'
+
+# Analytics
+
+Die Analytics-Tools von AIDA zeigen dir, wie dein Bot tatsächlich abschneidet – wie viele Konversationen er bearbeitet, wie oft Nutzer an Agenten eskaliert werden und wo Intents danebengehen.
+
+<Cards>
+  <Cards.Card title="Live-Daten" href="/analytics/live-data" arrow />
+  <Cards.Card title="Berichte & Insights" href="/analytics/reports-insights" arrow />
+</Cards>
+
+## Worauf du achten solltest
+
+Die wichtigsten Metriken für die Bot-Qualität:
+
+- **Sitzungen mit Agenten-Anforderungen** – steigt dieser Wert, verliert dein Bot an Sicherheit
+- **Intent-Genauigkeit** – wie oft der Classifier richtig liegt
+- **Durchschnittliche Konversationsdauer** – sehr kurz = Bot gibt auf; sehr lang = Nutzer hängt fest
+- **Feedback-Bewertungen** – direktes Signal von Nutzern
+- **Top-unbearbeitete Anfragen** – der schnellste Backlog zum Beheben
+
+## Filtern
+
+Alle Analytics-Ansichten können gefiltert werden nach:
+
+- **Source** – Webpage, App, Others, LLM lab
+- **Kanal** – Chatbot, Voice, WhatsApp, Agent Assist, Facebook
+- **Zeitraum** – bis zu 7 Tage am Stück
+
+## Export
+
+Eine Schaltfläche **Download** exportiert alle Query-Logs des aktuellen Filters nach Excel. Nutze das für längere Analysen in deinen eigenen BI-Tools.

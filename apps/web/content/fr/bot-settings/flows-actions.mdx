@@ -1,0 +1,65 @@
+---
+title: Flux et actions
+description: Connectez votre bot à Blitzico, AIDA Flows et à des actions de bot personnalisées.
+---
+
+import { Callout } from 'nextra/components'
+
+# Flux et actions
+
+Les actions permettent à une intention de déclencher quelque chose au-delà d'une simple réponse texte — un flux Blitzico, un AIDA Flow, une recherche dans la base de connaissances ou un comportement de bot prédéfini comme le transfert vers un agent.
+
+Les actions sont configurées par intention dans la section **Response → Action** d'une intention.
+
+## Types d'action
+
+| Action | Ce qu'elle fait |
+|---|---|
+| **DocBrain** | Récupérer une réponse depuis des documents indexés. Voir [DocBrain](/intents-entities/docbrain). |
+| **Blitzico** | Exécuter un flux low-code Blitzico. Nécessite un route ID valide. |
+| **Flows** | Exécuter un AIDA Flow. Même schéma de route ID que Blitzico. |
+| **Others** | Actions de bot standard comme `speakToAgent` ou `lead_contact_details`. |
+
+## Blitzico et AIDA Flows
+
+Blitzico et AIDA Flows utilisent tous deux un système de route ID pour relier l'intention au flux.
+
+**Créer un nouveau flux :**
+
+1. Dans Response → Action de l'intention, sélectionnez **Blitzico** ou **Flows**.
+2. Sélectionnez l'instance cible depuis le menu déroulant.
+3. Cliquez sur **Create new flow** — un nouveau route ID est généré.
+4. Cliquez sur **Redirect to Blitz** (ou **Redirect to Flow**) pour ouvrir l'éditeur de flux dans le produit cible.
+
+**Utiliser un flux existant :**
+
+1. Copiez le route ID depuis l'intention ou le flux existant.
+2. Collez-le dans le champ **Route ID** de votre nouvelle intention.
+3. Cliquez sur **[Verify]**.
+
+Un ID valide transforme le libellé du bouton en **"Redirect to Blitz"** ou **"Redirect to Flow"** selon le type d'action que vous utilisez.
+
+<Callout type="warning">
+  Le route ID doit appartenir à la **même instance** que votre destination. Coller un ID d'une autre instance affiche *"Not a valid blitzico action"*.
+</Callout>
+
+## Actions de bot standard
+
+La catégorie "Others" couvre les comportements de bot intégrés. Saisissez le nom de l'action, appuyez sur **Enter**, puis **Save**.
+
+Exemples courants :
+
+- **`speakToAgent`** — transférer la conversation à un agent humain (nécessite un routage d'agent configuré)
+- **`lead_contact_details`** — capturer et afficher les coordonnées de l'utilisateur
+
+Chaque action standard a un effet spécifique défini au niveau du produit. Consultez votre administrateur AIDA pour la liste complète des actions disponibles dans votre déploiement.
+
+## Supprimer une action
+
+Cliquez sur **Remove action** dans l'onglet Response de l'intention. Une boîte de dialogue de confirmation évite toute suppression accidentelle.
+
+## Apply to all
+
+Le bouton **Apply to all** propage la configuration d'action actuelle sur tous les types de réponses (Generic, WhatsApp, Voice, URL, Custom). Cela **écrase** toute action déjà définie sur ces canaux — utilisez-le lorsque vous voulez un comportement identique partout.
+
+Une icône bleue apparaît dans les onglets d'en-tête (Triggers, Parameters, Response) lorsque du contenu enregistré existe, vous donnant un aperçu visuel rapide de ce qui a été configuré.

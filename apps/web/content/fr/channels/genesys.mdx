@@ -1,0 +1,59 @@
+---
+title: Canal WhatsApp
+description: Comment intégrer votre bot AIDA à WhatsApp pour gérer les conversations clients.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Canal WhatsApp
+
+AIDA prend en charge WhatsApp comme canal de messagerie, permettant à votre bot de gérer directement les conversations clients sur WhatsApp.
+
+## Configurer le canal WhatsApp
+
+<Steps>
+
+### Ouvrez Go-Live
+
+Cliquez sur **Go Live** dans la barre latérale.
+
+### Allez sur l'onglet WhatsApp
+
+Naviguez vers la section **WhatsApp** sur la page Go-Live.
+
+### Générez une URL
+
+Cliquez sur **[Generate URL]** pour créer votre endpoint d'intégration WhatsApp.
+
+### Configurez WhatsApp
+
+Cliquez sur **[How to configure]** pour les étapes détaillées de configuration. Suivez les instructions pour connecter votre compte WhatsApp Business à l'endpoint AIDA généré.
+
+</Steps>
+
+## Activer / Désactiver WhatsApp
+
+Le commutateur WhatsApp sur la page Go-Live vous permet d'activer ou de désactiver instantanément le canal WhatsApp.
+
+| État | Comportement |
+|---|---|
+| **Toggle ON** | Le bot gère normalement tous les messages WhatsApp entrants |
+| **Toggle OFF (script généré)** | Les sessions en cours continuent ; les utilisateurs peuvent encore envoyer des demandes d'agent jusqu'à la fermeture automatique de la session. Les nouveaux messages reçoivent un **message hors ligne** |
+| **Toggle OFF (pas de script)** | Le commutateur est désactivé ; une notification est affichée |
+
+<Callout type="warning">
+  Le message hors ligne est **modifiable** — cliquez en dehors du champ après modification et le message est sauvegardé automatiquement.
+</Callout>
+
+<Callout>
+  Les interactions pendant que WhatsApp est désactivé ne sont **pas** incluses dans les données d'entraînement. Elles sont uniquement comptabilisées dans **Total Conversations** dans Live Data et Analytics.
+</Callout>
+
+## Qui peut gérer le canal WhatsApp
+
+Seuls les rôles suivants peuvent activer/désactiver l'intégration WhatsApp :
+
+- App Admin
+- Team Owner
+- Manager
+- AIDA Admin

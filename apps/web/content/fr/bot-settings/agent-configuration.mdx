@@ -1,0 +1,171 @@
+---
+title: Configuration de l'agent
+description: Affinez les prompts, le modèle, les outils, la voix et les paramètres de langue de votre agent après l'assistant initial.
+---
+
+import { Callout } from 'nextra/components'
+
+# Configuration de l'agent
+
+Une fois l'[assistant Premiers pas](/getting-started/first-bot) terminé, vous atterrissez sur le panneau **Agent Configuration**. C'est ici que vous affinez tout ce que l'assistant a mis en place pour vous — prompts, modèle, outils, comportement vocal et prise en charge des langues.
+
+La bannière en haut de la page affiche votre **Agent mode** (Standard ou Realtime Voice). Vous pouvez changer de mode depuis le menu déroulant si nécessaire.
+
+Le panneau comporte **cinq onglets** : **Prompts**, **Model**, **Tools**, **Voice**, **Language**.
+
+## Prompts
+
+Définissez les instructions et les consignes de comportement que votre agent utilise.
+
+
+**Welcome Prompt**
+
+Le message d'ouverture que l'agent envoie au début d'une conversation. L'assistant le pré-remplit à partir du message de bienvenue écrit à l'étape 2 — vous pouvez le modifier, le traduire ou le réécrire entièrement ici.
+
+**Instructions / Prompt**
+
+Le prompt système principal qui pilote le comportement de l'agent. L'assistant le génère automatiquement à partir de votre saisie "What should your AI assistant do?". Un prompt généré typique comprend :
+
+- L'identité de l'agent (nom, entreprise)
+- Les capacités principales (ce qu'il doit répondre, ce qu'il doit faire)
+- Des instructions pas à pas pour les conversations courantes
+- Des consignes de ton et de style
+- Des règles d'escalade (quand transférer à un humain)
+
+**Enhance prompt**
+
+Les deux champs de prompt disposent d'un bouton **Enhance prompt**. Cliquez dessus pour demander au LLM d'AIDA d'améliorer le prompt existant — ajouter de la clarté, combler les garde-fous manquants, resserrer la formulation.
+
+<Callout>
+  Relancez **Enhance prompt** chaque fois que vous ajoutez de nouveaux outils ou modifiez la portée de l'agent. Cela permet de garder les instructions synchronisées avec les capacités actuelles de l'agent.
+</Callout>
+
+## Model
+
+Configurez le modèle d'IA et les paramètres de base qui alimentent votre agent.
+
+
+**Model**
+
+Choisissez le LLM qui fait tourner l'agent. Les modèles disponibles dépendent de votre workspace et du mode (Standard vs Realtime Voice). Les options typiques incluent :
+
+- `vertex_ai/gemini-live-2.5-flash-native-audio/europe-west8` — Gemini Live (Realtime Voice)
+- `azure/azure/gpt-4o-mini-realtime-preview/global` — GPT-4o mini realtime (Realtime Voice)
+- `azure/gpt-realtime-1.5/global` — GPT realtime 1.5 (Realtime Voice)
+- `azure/gpt-realtime-mini/global` — GPT realtime mini (Realtime Voice)
+- ...et d'autres (recherchables via le menu déroulant)
+
+Le menu déroulant affiche un badge **Total count** qui indique combien de modèles sont accessibles à votre équipe.
+
+**History Configuration**
+
+Contrôlez la quantité d'historique de conversation que l'agent conserve dans son contexte.
+
+| Paramètre | Ce qu'il fait | Valeur par défaut |
+|---|---|---|
+| **Trigger tokens** | Lorsque le contexte total atteint ce nombre de tokens, AIDA commence à tronquer les messages plus anciens | 15 000 |
+| **Target tokens** | Après troncature, le contexte est réduit à cette taille | 10 000 |
+
+<Callout type="info">
+  Lorsque le contexte atteint la limite **Trigger**, AIDA supprime automatiquement les données de conversation plus anciennes jusqu'à ce qu'il ne reste plus que les **Target** tokens les plus récents. Cela permet à l'agent de rester réactif même lors de conversations très longues.
+</Callout>
+
+## Tools
+
+Ajoutez des outils externes et des intégrations pour étendre les capacités de votre agent.
+
+
+L'onglet Tools est l'endroit où vous branchez votre agent au monde extérieur — API, bases de données, bases de connaissances et plus. Les outils configurés pour votre équipe apparaissent dans la liste déroulante **search and add tools**.
+
+### Ajouter un outil
+
+Cliquez sur le bouton **+** à côté du champ de recherche pour ouvrir la boîte de dialogue **Add Tools**.
+
+
+**Champs :**
+
+| Champ | Description |
+|---|---|
+| **Tool Type** | `API Tool`, `KB Tool`, `Table Tool`, `File Tool`, `SQL Tool`, `Webpage Tool` |
+| **Tool Name** | Identifiant court que l'agent utilise pour référencer cet outil |
+| **Description** | Ce que fait l'outil — aide l'agent à décider quand l'appeler |
+| **Method** | Pour les API tools : `GET`, `POST`, etc. |
+| **URL** | Pour les API tools : l'endpoint |
+| **Response Type** | Comment parser la réponse (`Text`, `JSON`, etc.) |
+| **Timeout** | Secondes max à attendre avant d'abandonner (par défaut `60`) |
+
+Cliquez sur **Save** pour ajouter l'outil. Il apparaît immédiatement dans la liste des outils disponibles de l'agent.
+
+<Callout>
+  Pour la référence complète de configuration — incluant les configs KB, Table, File, SQL et Webpage — voir [Intégrations de données et outils](/integrations/data-tools).
+</Callout>
+
+### Gérer les outils
+
+- **Search and add tools** — le menu déroulant permet de rechercher par nom des outils existants configurés au niveau de l'équipe
+- **Sélectionner/désélectionner** — les agents peuvent piocher dans la bibliothèque d'outils de l'équipe, afin qu'un même outil puisse être réutilisé entre agents
+- Les outils ajoutés ici sont disponibles pour l'agent à l'exécution — le LLM décide quand appeler chacun en fonction de la description et de l'intention utilisateur
+
+## Voice
+
+Configurez les paramètres speech-to-text et text-to-speech pour les interactions vocales.
+
+
+**Voice**
+
+La voix TTS avec laquelle l'agent parle. La valeur par défaut de l'assistant est `Puck`. Cliquez sur la pastille de voix pour la changer — chaque modèle prend en charge un ensemble de voix différent.
+
+**Silence Timeout**
+
+Durée (en millisecondes) pendant laquelle l'agent attend que l'utilisateur ait fini de parler avant de répondre. La valeur par défaut est `300`. Des valeurs plus faibles rendent l'agent plus réactif ; des valeurs plus élevées réduisent le risque d'interrompre un utilisateur en pleine réflexion.
+
+### Barge In Controls
+
+Permet aux utilisateurs d'interrompre l'agent pendant qu'il répond. Deux commutateurs indépendants :
+
+| Commutateur | Effet lorsqu'il est ON |
+|---|---|
+| **Agent Responses** | L'utilisateur peut parler par-dessus l'agent en cours de réponse — l'agent s'arrête et écoute |
+| **Platform Messages** | L'utilisateur peut interrompre les annonces de la plateforme (musique d'attente, mentions légales, etc.) |
+
+<Callout>
+  Pour les agents conversationnels, laisser **Agent Responses** activé est généralement le bon choix — cela rend l'agent naturel plutôt que rigide. Laissez **Platform Messages** désactivé sauf raison spécifique d'autoriser l'interruption des mentions obligatoires.
+</Callout>
+
+## Language
+
+Configurez les préférences de langue et contrôlez les langues que votre agent comprend et parle.
+
+
+**Language Control**
+
+Le commutateur maître. Lorsqu'il est ON, l'agent applique les paramètres de langue ci-dessous (traduit l'entrée utilisateur, restreint les réponses aux langues prises en charge). Lorsqu'il est OFF, l'agent utilise la langue que produit le modèle sous-jacent.
+
+**Primary Languages**
+
+La ou les langues par défaut parlées par l'agent. Pré-remplie depuis l'assistant avec votre sélection de l'étape 2. Vous pouvez ajouter d'autres langues principales via le menu déroulant **Choose a language…**.
+
+**Supported Languages**
+
+Langues supplémentaires que l'agent reconnaît et dans lesquelles il peut répondre. Utilisez ceci pour les déploiements multilingues où les utilisateurs peuvent écrire dans plusieurs langues mais vous voulez que l'agent réponde de manière appropriée.
+
+<Callout type="info">
+  Primary vs. Supported :
+  - **Primary** — l'agent utilise ces langues par défaut au démarrage d'une conversation
+  - **Supported** — l'agent suit l'utilisateur et bascule s'il écrit dans l'une de celles-ci
+</Callout>
+
+## Publication
+
+Le bouton **Publish** en haut à droite valide vos modifications sur l'agent en production. Cliquez sur la flèche déroulante à côté pour publier vers un environnement spécifique si vous en avez plusieurs (staging, production).
+
+Le bouton **Talk to assistant** lance un test rapide de chat pour valider les modifications avant publication.
+
+## Pages associées
+
+| Tâche | Où |
+|---|---|
+| Créer un tout nouvel agent | [Créer votre premier agent](/getting-started/first-bot) |
+| Configurer les outils avancés (KB, SQL, etc.) | [Intégrations de données et outils](/integrations/data-tools) |
+| Déployer sur le web / la voix / WhatsApp | [Canaux](/channels) |
+| Comprendre le Classifier (Legacy) | [Bot Settings → Classifier](/bot-settings/classifier) |

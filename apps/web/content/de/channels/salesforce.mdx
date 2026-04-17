@@ -1,0 +1,92 @@
+---
+title: Web- & App-Kanal
+description: Wie du deinen AIDA-Chatbot per Go-Live-Integrations-Skript auf einer Website oder Web-App deployst.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Web- & App-Kanal
+
+Deploye deinen AIDA-Bot per Go-Live-Integrations-Skript auf einer beliebigen Website oder Web-Anwendung.
+
+## Das Integrations-Skript abrufen
+
+<Steps>
+
+### Go-Live öffnen
+
+Klicke in der Seitenmenüleiste auf **Go Live**, um die Go-Live-Seite zu öffnen.
+
+### Den Bereich Web/Apps finden
+
+Der Bereich **Web/Apps** zeigt die URL deines Bots.
+
+### Den Bot öffnen
+
+Klicke auf **[Open in tab]**, um die Bot-URL direkt in einem neuen Browser-Tab zu öffnen.
+
+### Das Skript holen
+
+Klicke auf **[Show script]**, um das JavaScript-Integrations-Snippet einzusehen. Kopiere und füge es in das HTML deiner Website ein, um den Chatbot einzubetten.
+
+</Steps>
+
+## Multi-Build-Quellen
+
+Multi-Build-Quellen erlauben, mehrere Deployments desselben Bots zu erstellen – zum Beispiel mit unterschiedlichen Sprachen für verschiedene Regionen.
+
+**Wer darf es nutzen:** Rollen Team Owner, Manager und Admin.
+
+### Eine neue Quelle hinzufügen
+
+<Steps>
+
+### Auf Add Source klicken
+
+Klicke auf der Go-Live-Seite unter der Standardquelle (Web/Apps) auf die Schaltfläche **Add Source**.
+
+### Quelldetails eingeben
+
+Im Popup **Add New Source**:
+- Gib einen **Source Name** ein
+- Wähle eine **Sprache** aus dem Dropdown (Standard ist die Basissprache des Bots)
+
+### Veröffentlichen
+
+Klicke auf **Publish**, um den Build zu starten.
+
+### Auf Abschluss des Builds warten
+
+Klicke auf **Refresh**, um den Build-Status zu aktualisieren. Der Status geht von **In Progress** → **Build Ready**.
+
+</Steps>
+
+Nach dem Hinzufügen erscheinen Quellen in Erstellungsreihenfolge. Jede Quellkarte zeigt **Source Name**, **Language Key** und ein **Statussymbol**.
+
+### Quellen verwalten
+
+Nachdem eine Quelle gebaut wurde:
+
+| Aktion | Wie |
+|---|---|
+| Bot öffnen | Klicke auf **[Open Bot]** auf der Quellkarte |
+| Integrations-Skript ansehen | Klicke auf **„Show script"** |
+| Quelle löschen | Klicke auf **„Delete"** *(deaktiviert, solange der Build läuft)* |
+
+### Quellname in der Bot-URL
+
+Beim Öffnen von Go-Live für eine bestimmte Quelle wird der Quellname als Query-Parameter an die Bot-URL angehängt:
+
+```
+https://your-bot-url.com/?source=SourceName
+```
+
+Das erlaubt dir, in den Seiten Training, Live-Daten und Analytics zu verfolgen, aus welcher Quelle eine Konversation stammt.
+
+### Mehrere Builds gleichzeitig veröffentlichen
+
+Klicke auf **Publish Builds** (neben der Refresh-Schaltfläche), um das Popup **Publish Build** zu öffnen. Wähle die Quellen aus, die du neu bauen möchtest, und klicke dann auf **Publish**.
+
+<Callout type="info">
+  Über Multi-Build hinzugefügte Quellen erscheinen als Filteroptionen in den Seiten Training, Live-Daten und Analytics.
+</Callout>

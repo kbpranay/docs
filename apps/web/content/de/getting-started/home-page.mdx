@@ -1,0 +1,86 @@
+---
+title: Leitfaden zur Startseite
+description: Die Bot-Startseite und die Anzeige des Fertigstellungsprozentsatzes verstehen.
+---
+
+import { Callout } from 'nextra/components'
+
+# Leitfaden zur Startseite
+
+Nach dem Öffnen eines Bots landest du auf dessen **Startseite** – einer Übersicht über alles, was du konfigurieren musst, um den Bot live zu schalten. Eine Fortschrittsleiste rechts zeigt an, wie vollständig dein Bot ist.
+
+## Das Seitenmenü
+
+Klicke auf die drei Linien oben, um die **Seitenmenüleiste** zu öffnen, die dir erlaubt, zwischen Seiten zu wechseln:
+
+- Home
+- Intents
+- Entitäten
+- Train conversation
+- Live data / Analytics
+- Bot-Einstellungen
+- Go Live
+
+Jede Seite hat ihren eigenen Leitfaden an anderer Stelle in diesem Help Center.
+
+## Der Fertigstellungsprozentsatz
+
+Der Prozentsatz oben auf der Startseite zeigt an, wie viel der wesentlichen Einrichtung erledigt ist. Er funktioniert unterschiedlich, je nachdem, ob dein Bot DocBrain verwendet.
+
+### Standard-Bots (ohne DocBrain)
+
+| Schritt | Fortschritt |
+|---|---|
+| Bot erstellt | 0 % |
+| Chat-UI anpassen | +25 % |
+| Begrüßungsnachricht konfigurieren | +25 % |
+| Go-Live | +25 % |
+| **Gesamt ohne DocBrain** | **75 %** |
+
+Wenn du später DocBrain-Daten hinzufügst, ändert sich die Aufteilung:
+
+| Schritt | Fortschritt |
+|---|---|
+| Chat-UI anpassen | 20 % |
+| Begrüßungsnachricht konfigurieren | 20 % |
+| Auf Website einbetten *(empfohlen)* | 20 % |
+| Datenquelle(n) verwalten und verarbeiten | 20 % |
+| Prompt konfigurieren | 20 % |
+| **Gesamt mit DocBrain** | **100 %, sobald die Indexierung abgeschlossen ist** |
+
+<Callout>
+  **Prompt konfigurieren** ist nur für DocBrain-Bots freigeschaltet. Bei regulären Bots ist die Option deaktiviert.
+</Callout>
+
+### DocBrain-Bots
+
+| Schritt | Fortschritt |
+|---|---|
+| Bot erstellt, Indexierung läuft | 0 % |
+| Indexierung abgeschlossen (DocBrain testen) | +20 % |
+| Chat-UI anpassen | +20 % |
+| Begrüßungsnachricht konfigurieren | +20 % |
+| Go-Live | +20 % |
+| Prompt konfigurieren | +20 % |
+| **Gesamt** | **100 %** |
+
+## Schnell-Links auf der Startseite
+
+Die Startseite zeigt Shortcuts zu den Dingen, die du am häufigsten als Nächstes konfigurierst. Jede Karte verlinkt auf die vollständige Seite für diese Einstellung:
+
+| Karte | Was sie öffnet |
+|---|---|
+| **Kein DocBrain hinzugefügt** | RAG Configs – vorhandenes DocBrain hinzufügen oder ein neues erstellen |
+| **DocBrain-Name** *(wenn hinzugefügt)* | Die DocBrain-Seite für deine indexierten Inhalte |
+| **Chat-UI anpassen** | Editor für das Chatbot-Aussehen |
+| **Begrüßungsnachricht konfigurieren** | Der Intent `default_welcome` |
+| **Auf Website einbetten** | Go-Live-Seite mit Integrations-Skript |
+| **Datenquelle(n) verwalten** | DocBrain-Datenquellen |
+| **Prompt konfigurieren** | RAG-Forge-Prompt-Editor *(nur DocBrain)* |
+| **Go Live / Go Live empfohlen** | Go-Live-Seite |
+
+Ein grünes Häkchen erscheint, sobald der Schritt abgeschlossen ist.
+
+## Was „bereit zum Go-Live" bedeutet
+
+Der Status deines Bots ändert sich zu **„Dein Bot ist jetzt bereit zum Go-Live"**, sobald alle verpflichtenden Kriterien erfüllt sind – was je nach Bot-Typ variiert. Behalte die Statuskarte rechts auf der Startseite im Blick, um den aktuellen Zustand zu sehen.

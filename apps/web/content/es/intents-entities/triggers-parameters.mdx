@@ -1,0 +1,111 @@
+---
+title: Triggers y parámetros
+description: Entrena tu bot con frases de ejemplo y recoge información de los usuarios con parámetros.
+---
+
+import { Callout, Steps, Tabs } from 'nextra/components'
+
+# Triggers y parámetros (Legacy)
+
+<Callout type="warning">
+  **Se retirarán a finales de 2026.** Los triggers y parámetros son parte del sistema legacy de intents. Los nuevos bots definen el comportamiento mediante [prompts del agente](/bot-settings/agent-configuration#prompts) y [tool calling](/bot-settings/agent-configuration#tools) — no triggers.
+</Callout>
+
+Los triggers son las frases de ejemplo que entrenan tu bot. Los parámetros son las piezas de información que tu bot recoge durante una conversación.
+
+## Triggers
+
+Un trigger es una frase de ejemplo del usuario que le enseña a AIDA "cuando alguien diga algo así, empareja con este intent."
+
+<Callout type="info">
+  Añade **al menos 50 triggers por intent** para una clasificación fiable. Los triggers pueden ser largos o cortos — lo que importa es que sean formulaciones realistas del objetivo del usuario.
+</Callout>
+
+### Tres formas de añadir triggers
+
+<Tabs items={['Manualmente', 'Auto-generar', 'Importar CSV']}>
+  <Tabs.Tab>
+
+Haz clic en la entrada **Add triggers**, escribe la frase y pulsa **Enter**. Guarda el intent. Un icono de origen aparece junto a los triggers añadidos manualmente.
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+
+1. Haz clic en **[Auto-generate trigger]**.
+2. Introduce una entrada de usuario de ejemplo.
+3. Haz clic en **Generate** — AIDA sugiere formulaciones similares.
+4. Selecciona o deselecciona las sugerencias.
+5. Haz clic en **[Add Triggers]**.
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+
+Haz clic en **[Import triggers]** y luego arrastra y suelta o sube un archivo CSV.
+
+Para importar triggers para **varios intents a la vez**, haz clic en el desplegable junto al botón **[Add]** en la lista principal de Intents y sube un CSV multi-intent.
+
+  </Tabs.Tab>
+</Tabs>
+
+### Editar y eliminar
+
+Pasa el cursor sobre un trigger para revelar los iconos de lápiz (editar) y papelera (eliminar) en el borde derecho del trigger.
+
+### Exportar triggers
+
+Haz clic en **[Export triggers]** para descargar todos los triggers del intent como un CSV. El botón solo es visible cuando existen triggers.
+
+<Callout>
+  La exportación está restringida a los roles **AIDA Admin** y **Team Owner**.
+</Callout>
+
+---
+
+## Parámetros
+
+Los parámetros son los datos que tu bot necesita recoger antes de poder responder. Por ejemplo, un intent "Reservar un vuelo" necesita un destino, una fecha y un número de viajeros.
+
+Cada parámetro requiere:
+
+- **Parameter Name** — el identificador que referenciarás en la respuesta
+- **Entity** — define qué tipo de valor es válido (ver [Sys entities](#tipos-de-entidad-sys) más abajo)
+- **Prompt** — el mensaje que el bot envía para pedir el valor al usuario
+
+El toggle **Required** debe estar en ON para que el campo Prompt sea editable. Si la respuesta del usuario no coincide con la entidad esperada, el bot vuelve a preguntar el prompt.
+
+### Cuatro tipos de parámetro
+
+Los **parámetros Normal** están limitados a un intent. Usa entidades de sistema o entidades personalizadas que hayas definido.
+
+Los **parámetros Convo** muestran las respuestas del usuario dentro de una respuesta. Pueden reutilizarse entre intents.
+
+- Sintaxis: `convo:parameterName`
+- Referéncialo en una respuesta con tildes: `~convo:parameterName~`
+- Para reutilizar globalmente, defínelo en el Intent A, copia el nombre del parámetro y pégalo en la respuesta del Intent B.
+
+Los **parámetros Context** conectan varios intents en un flujo.
+
+- Sintaxis: `contextName:parameterName`
+- En el intent **primario**: añade un nombre Context Out, añade el parámetro de contexto, activa **Required: ON**.
+- En el intent **secundario**: añade el mismo nombre de contexto y parámetro, activa **Required: OFF**, y referéncialo en la respuesta como `~contextName:parameterName~`.
+
+Los **parámetros Pre-filled** extraen valores desde fuera de la conversación — variables globales, local storage, session storage, cookies, parámetros de consulta de URL, scripts o clics de botón.
+
+- Definidos en Botforge (nombre de variable + nombre de parámetro)
+- Añadidos al intent `default_welcome` en el lado de AIDA
+- Los valores se resuelven **antes** de que se active `default_welcome`
+- Puedes asignar valores a través de la pestaña Network al abrir la URL Go-Live
+
+### Tipos de entidad Sys
+
+Al añadir un parámetro, puedes usar estas entidades definidas por el sistema:
+
+| Entidad | Empareja |
+|---|---|
+| `sys_any` | Cualquier tipo de dato |
+| `sys_number` | Solo valores numéricos |
+| `sys_currency` | Números con un símbolo de moneda |
+| `sys_date` | Valores de fecha (hoy, mañana, fechas específicas) |
+| `sys_email` | Direcciones de email correctamente formateadas |
+
+Para algo más específico — como nombres de producto o listas de ciudades — usa una [entidad personalizada](/intents-entities/entities).

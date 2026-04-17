@@ -1,0 +1,109 @@
+---
+title: Ajustes del equipo
+description: Configura el nombre del equipo, la autenticación en dos pasos y las políticas de bloqueo de cuenta.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Ajustes del equipo
+
+Team Settings contiene todo lo que se aplica a todo tu equipo — el nombre visible del equipo, la autenticación en dos pasos (2FA) y la política de bloqueo para inicios de sesión fallidos.
+
+Ábrelo desde **Team Settings** en la navegación.
+
+## Actualizar el nombre del equipo
+
+<Steps>
+
+### Abre Team Settings → Details
+
+Haz clic en la pestaña **Team settings** y luego abre la sección **Details**.
+
+### Edita el nombre del equipo
+
+Haz clic en el campo del nombre del equipo y cambia el valor.
+
+### Guarda
+
+Haz clic en **[Save]**. *(Usa **Reset** para descartar los cambios sin guardar.)*
+
+</Steps>
+
+<Callout>
+  El **Organization name** y el **Team ID** se establecen al crear el equipo y no se pueden cambiar después. Solo el nombre del equipo es editable.
+</Callout>
+
+## Autenticación en dos pasos (2FA)
+
+2FA añade un segundo paso de verificación al iniciar sesión — además de una contraseña, los usuarios deben introducir un código generado por una app Authenticator (Google Authenticator, Authy, 1Password, etc.).
+
+### Habilitar 2FA para el equipo
+
+<Steps>
+
+### Abre Team Settings → Security
+
+Haz clic en **Team settings** y luego en **Security**.
+
+### Activa 2FA
+
+Activa el toggle **2FA**.
+
+### Guarda
+
+Haz clic en **[Save]**.
+
+</Steps>
+
+Una vez habilitado, todos los miembros del equipo que inicien sesión verán un botón **[Setup]** en lugar de **[Sign In]** hasta que completen la configuración de 2FA.
+
+### Configurar 2FA (flujo del usuario final)
+
+<Steps>
+
+### Introduce email y contraseña
+
+Introduce las credenciales como siempre.
+
+### Haz clic en Setup
+
+Haz clic en **[Setup]** cuando se te indique.
+
+### Introduce el código del email
+
+Se envía un código de autenticación al email del usuario. Introdúcelo y haz clic en **[Validate]**.
+
+### Escanea el código QR
+
+Escanea el código QR mostrado con una app Authenticator.
+
+### Ve a Sign In
+
+Haz clic en **[Go to Sign in]**. Los futuros inicios de sesión requerirán un código basado en tiempo de la app Authenticator.
+
+</Steps>
+
+### Restablecer el 2FA de otro usuario
+
+Si un usuario pierde el acceso a su Authenticator (teléfono nuevo, dispositivo perdido), un admin puede restablecer su 2FA para que pueda volver a configurarlo.
+
+| Tu rol | Puedes restablecer 2FA para |
+|---|---|
+| **Team Owner** | Todos los usuarios — incluidos otros Team Owners, Managers y tú mismo |
+| **Manager** | Usuarios por debajo del nivel Manager: Admin, User, Dashboard, API & Services, Migration, LLM Labs |
+
+<Callout>
+  Si desactivas 2FA a nivel del equipo, los usuarios que ya hayan configurado 2FA aún necesitarán que un Team Owner o Manager **restablezca individualmente** su 2FA antes de poder iniciar sesión sin él.
+</Callout>
+
+## Política de bloqueo de cuenta
+
+Para proteger contra intentos de inicio de sesión por fuerza bruta, AIDA bloquea las cuentas tras demasiados intentos fallidos. Los valores por defecto se aplican a todos los equipos:
+
+| Ajuste | Por defecto |
+|---|---|
+| **Intentos inválidos antes del bloqueo** | 5 |
+| **Duración del bloqueo** | 30 minutos |
+| **Tiempo mínimo entre intentos** | 60 segundos |
+
+El Team Owner y el Manager pueden ajustar el número máximo de intentos y la duración del bloqueo desde **Team Settings → Security**.

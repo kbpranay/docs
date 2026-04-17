@@ -1,0 +1,146 @@
+---
+title: Informes e insights
+description: Métricas agregadas, gráficos de tendencias y logs exportables para tu bot.
+---
+
+import { Callout } from 'nextra/components'
+
+# Informes e insights
+
+La página Reports & Insights (Analytics Beta) te ofrece métricas agregadas de conversaciones, transferencias a agente, feedback y rendimiento de intents. Cada tarjeta también tiene un enlace **View Detailed Insights** que abre un desglose por hora o por día.
+
+## Cambio porcentual
+
+Cada tarjeta de datos muestra el cambio respecto al periodo anterior:
+
+```
+Change % = (Current − Previous) ÷ Previous × 100
+```
+
+Un **verde `+`** significa que la métrica subió; un **rojo `−`** significa que bajó.
+
+## Métricas de conversación
+
+### Recuento total de conversaciones
+
+Se registra un recuento cada vez que un usuario hace clic en el botón de la ventana del chatbot.
+
+### Conversaciones reales
+
+Sesiones creadas a través de la URL Go-Live donde el usuario envió al menos un mensaje. Esta es tu medida más fiable de la interacción real con el bot.
+
+### Recuento medio de conversaciones reales (por hora)
+
+```
+Avg = Total conversations in hour ÷ ((end date − start date) + 1)
+```
+
+## Métricas de mensajes del usuario
+
+### Mensajes totales del usuario
+
+Cuenta los mensajes enviados por los usuarios tanto en conversaciones con el bot como con un agente.
+
+### Mensajes medios del usuario
+
+```
+Avg user messages = count per hour-day ÷ ((end date − start date) + 1)
+```
+
+## Métricas de solicitudes de agente
+
+### Solicitudes totales de agente
+
+Cuenta cada solicitud de transferencia a un agente humano — ya sea por chatbot o por voz.
+
+### % de sesiones con solicitud de agente
+
+```
+% = (Unique agent requests sent) ÷ (Total real conversations) × 100
+```
+
+### Solicitudes de agente exitosas vs. no exitosas
+
+- **Exitosas** — el agente envió al menos un mensaje durante la sesión.
+- **No exitosas** — el usuario abandonó tras la solicitud, o el agente se unió sin enviar un mensaje.
+
+## Métricas de entrenamiento y precisión
+
+### Consultas entrenadas
+
+Número de consultas validadas o configuradas en la [página de entrenamiento](/intents-entities/train-conversations). Las consultas ignoradas no cuentan.
+
+### % de precisión de intent
+
+```
+Accuracy = Validated ÷ (Validated + Configured) × 100
+```
+
+## Métricas de feedback
+
+### Calificación media del bot
+
+```
+Bot Avg Rating = Total session feedback rating count ÷ Total number of session feedbacks
+```
+
+### Calificación media de feedback de conversación
+
+```
+Avg conv feedback = Total rating count ÷ Total number of feedback responses
+```
+
+Las calificaciones usan una escala de 1–5:
+
+| Puntuación | Etiqueta |
+|---|---|
+| 5 | Excelente |
+| 4 | Buena |
+| 3 | Media |
+| 2 | Mala |
+| 1 | Pésima |
+
+## Duración de conversación
+
+### Duración media de conversación
+
+```
+Avg Duration = Total duration of real conversations ÷ Number of real conversations
+```
+
+La duración se mide desde el primer mensaje de una sesión hasta el último, considerando mensajes de usuario, bot y agente en conjunto.
+
+## Ranking de intents
+
+La sección **Intent ranking** muestra los 10 intents más activados, excluyendo los por defecto y los de small-talk. Se muestran variantes para:
+
+- Intents con sentimiento positivo
+- Intents con sentimiento negativo
+- Intents de solicitud de agente
+
+### % de ranking de intent
+
+```
+Ranking % = (Count of a particular intent triggered) ÷ (Total intents triggered) × 100
+```
+
+### Estadísticas de intent
+
+Cada intent muestra:
+
+- **Trigger count** — con qué frecuencia se ha emparejado
+- **Exit percentage** — con qué frecuencia las sesiones terminaron en este intent
+
+### Porcentaje de salida
+
+```
+Exit % = (Sessions ended in that intent) ÷ (Total sum of intent exit count) × 100
+```
+
+<Callout>
+  Los recuentos de salida son visibles en la exportación descargada en CSV/Excel pero no en la UI — descarga el log completo de consultas para analizar las salidas en detalle.
+</Callout>
+
+## Exportar
+
+Haz clic en **Download** en cualquier informe para obtener una exportación completa de los logs de consulta del filtro actual en formato Excel.

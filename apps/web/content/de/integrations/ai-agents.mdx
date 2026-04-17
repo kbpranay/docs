@@ -1,0 +1,159 @@
+---
+title: KI & Agenten
+description: LLM-, RAG-, Summariser-, Classifier-, Entity-Extraction- und vollständig autonome Agentic-AI-Knoten.
+---
+
+import { Callout } from 'nextra/components'
+
+# KI & Agenten
+
+Flows integrieren sieben Arten von KI-Knoten, von einfachen LLM-Aufrufen bis hin zu autonomen Agenten, die mehrstufige Aktionen planen.
+
+## LLM-Knoten
+
+Ruft einen LLM-Service mit einem System-Prompt auf und gibt entweder **Success** oder **Otherwise** zurück.
+
+**System Prompt** steuert Ton, Stil, Kontext und Sicherheitsrichtlinien.
+
+**Advanced Setup:**
+
+- Model
+- Temperature (0–1 – höher = kreativer)
+- Max Output Tokens
+- Request Timeout
+- Retries
+- PII-Handhabung
+- Chat Context
+
+**Outputs:**
+- **Success** – LLM hat normal geantwortet
+- **Otherwise** – keine LLM-Antwort
+- **Catch Error** – Ausführungsfehler aufgetreten
+
+## RAG-Knoten
+
+Kombiniert Echtzeit-Wissensabruf (DocBrain, EnterpriseBots patentierte Technologie) mit LLM-Generierung – reduziert Halluzinationen, indem die Antwort in deinen indexierten Dokumenten verankert wird.
+
+**Zwei Modi:**
+- **RAGForge** – die vorhandene RAG-Konfiguration des Bots wiederverwenden, mit Option **Override Config**
+- **Custom** – LLM und Konfiguration selbst wählen
+
+**General Config:**
+
+- `allow_links`, `allow_smalltalk`, `allow_comparison`
+- `add_current_date` (mit Zeitzone)
+- `use_bullet_points`, `use_titles`
+- **Basic Prompt** / **Fallback Event**
+- **Only LLM Reference URLs** / **Reset Context**
+
+**UI-Elemente:**
+- Gallery Card, Picture Card
+- Show Reference URLs (mit Topk URLs + Reference Title)
+
+**Hallucination Check:**
+- Schalter + Fallback-Event
+- Optionaler **LLM Validator** (separates Modell + System-Prompt)
+
+**Advanced Setup:**
+- **Method** – `Gpt_mix_train_faq+para`, `Gpt_mix_train_faq` oder `Mix_train_faq`
+- **Type** – Semantisch oder Keyword
+- Max Output Tokens, Request Timeout, Topk, Show score
+- Intent Context, Context Length
+- Slack Notification + Channel-ID
+
+**Guardrails:**
+
+| Eingabe-Regeln | Ausgabe-Regeln |
+|---|---|
+| Länge der Nutzer-Nachricht begrenzen | Rule / Prompt Leak Detection |
+| Prompt-Injection-Erkennung | Blacklist |
+| Blacklist |  |
+| Abkürzungen ausschreiben |  |
+
+**PII Anonymiser:**
+- Schalter Anonymise PII
+- PII-Typ wählen (Query oder All)
+- Standard-Masken: IBAN, Telefon, E-Mail, Personennamen
+- Eigene Werte per Regex oder Keyword
+
+## Summariser
+
+Verdichtet große Eingaben zu einer kurzen Zusammenfassung über den LLM-Summariser-Service. Gibt **Success** oder **Otherwise** zurück.
+
+**Die Konfiguration entspricht dem LLM-Knoten** plus einem **Context limit** (sichtbar, wenn Chat Context an ist; ausgeblendet, wenn aus).
+
+Der System-Prompt steuert Stil, Länge, Format und Genauigkeit.
+
+## Classifier
+
+Kategorisiert Eingaben mit NLP über Kontext, Semantik und Ton.
+
+**Konfiguriert über:**
+- **Topic** – die Hauptkategorie
+- **Description** – optionaler Kontext zum Topic
+- **Variation** – alternative Schlüsselwörter oder Phrasen für das Topic
+
+**Advanced Setup:** dieselben Felder wie beim LLM-Knoten (Model, System Prompt, Temperature, Max Output Tokens, Request Timeout, Retries, PII, Chat Context, Context limit).
+
+## LLM Entity Extraction
+
+Extrahiert strukturierte Entitäten (Namen, Daten, Orte, Beträge) aus unstrukturiertem Text über den LLM-NER-Service.
+
+**Konfiguriert über:**
+- **Entity Name** – was extrahiert werden soll
+- **Description** – Kontext zur Steuerung der Extraktion
+
+Das Advanced Setup entspricht dem LLM-Knoten.
+
+## Agentic AI
+
+Ein **Agent** ist ein digitaler Teamkollege, der selbstständig denken, planen und handeln kann – nicht nur einzelne Fragen beantworten.
+
+**Fähigkeiten des Agenten:**
+- **Memory** – vergangene Interaktionen erinnern
+- **Reasoning** – mehrstufige Aktionen planen
+- **Tool use** – externe Tools aufrufen, um Informationen zu holen oder Aktionen auszuführen
+- **Execution** – Pläne Ende-zu-Ende durchführen
+
+**Tool-Typen**, die dein Agent nutzen kann:
+
+| Tool | Was es tut |
+|---|---|
+| **API** | Externe Services aufrufen (CRM, Ticketing, Zahlungen, Übersetzung) |
+| **KB** | Ein DocBrain / eine Knowledge Base als Referenzquelle nutzen (RAG-Stil) |
+| **Table** | Strukturierte CSV-Daten per SQL-ähnlicher Abfrage durchsuchen |
+| **File** | PDF-Inhalte lesen, um Antworten zu generieren |
+| **SQL** | Read-only SQL-Queries auf verbundenen Datenbanken ausführen |
+| **Webpage** | Live-Webseiten-Inhalte abrufen und lesen (Angebote, Rabatte, Live-Updates) |
+
+Siehe [Daten- & Tool-Integrationen](/integrations/data-tools) für die Einrichtungsdetails zu jedem Tool-Typ.
+
+### Einen Agenten erstellen
+
+1. Gehe zur Seite **Agents** → klicke auf **Create**.
+2. Fülle aus:
+   - **Name**
+   - **Description** – Anweisungen in natürlicher Sprache für den Agenten
+   - **Enhance Prompt** – die Beschreibung automatisch ausbauen
+   - **Expected Output** – das Format, das du zurück haben möchtest
+   - **Tools** – welche Tools der Agent verwenden darf
+3. **Advanced Setup:** Model, Add history to messages, Number of history responses, Add datetime to instructions, Timezone, Tool Call Limit, Markdown.
+4. Klicke auf **Create**.
+
+### Einen Agenten in einem Flow verwenden
+
+<Callout>
+  Ziehe auf der Flows-Seite einen **Agentic AI**-Knoten aus der AI-Tools-Palette. Du kannst entweder direkt **Create Agent** (gleiche Felder wie oben) oder im Dropdown **Select Agent** einen bestehenden Agenten auswählen, was die Konfiguration des Knotens automatisch ausfüllt.
+</Callout>
+
+### Response-Pipeline
+
+Wenn ein Agent läuft, kannst du jeden Schritt inspizieren:
+
+| Bereich | Zeigt |
+|---|---|
+| **Request Details** | Intent, Action, verwendetes LLM, Message ID, Response Time, Agent Prompt |
+| **Tools Added** | Liste konfigurierter Tools + ihre Parameter |
+| **Response Section (pro Tool-Call)** | System Prompt, Context, Result (an Tools übergebene Argumente), LLM Response |
+
+Das erleichtert das Debuggen der Entscheidungen eines Agenten erheblich – du siehst genau, worauf er geachtet hat, was er aufgerufen hat und was er bei jedem Schritt zurückgegeben hat.

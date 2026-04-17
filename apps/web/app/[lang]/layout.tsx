@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import { Head } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
-import { Footer, Layout, Navbar } from 'nextra-theme-docs'
+import { Footer, Layout, Navbar, LocaleSwitch } from 'nextra-theme-docs'
 import 'nextra-theme-docs/style.css'
-import './globals.css'
+import '../globals.css'
 import type { FC, ReactNode } from 'react'
 
 export const metadata: Metadata = {
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     template: '%s – AIDA Help Center',
   },
   description:
-    'Official help center for AIDA – Artificial Intelligence Digital Assistance. Find guides, answers, and troubleshooting.',
+    'Official help center for AIDA – Artificial Intelligence Digital Assistance.',
 }
 
 const Logo = () => (
@@ -36,24 +36,34 @@ const Logo = () => (
   </span>
 )
 
-const RootLayout: FC<{ children: ReactNode }> = async ({ children }) => {
-  const pageMap = await getPageMap()
+type Props = {
+  children: ReactNode
+  params: Promise<{ lang: string }>
+}
+
+const RootLayout: FC<Props> = async ({ children, params }) => {
+  const { lang } = await params
+  const pageMap = await getPageMap(`/${lang}`)
 
   return (
-    <html lang="en" dir="ltr" suppressHydrationWarning>
+    <html lang={lang} dir="ltr" suppressHydrationWarning>
       <Head faviconGlyph="🤖" />
       <body>
         <Layout
           navbar={
-            <Navbar
-              logo={<Logo />}
-              projectLink="https://enterprisebot.ai"
-            />
+            <Navbar logo={<Logo />} projectLink="https://enterprisebot.ai">
+              <LocaleSwitch lite />
+            </Navbar>
           }
+          i18n={[
+            { locale: 'en', name: 'English' },
+            { locale: 'de', name: 'Deutsch' },
+            { locale: 'fr', name: 'Français' },
+            { locale: 'es', name: 'Español' },
+          ]}
           pageMap={pageMap}
-          docsRepositoryBase="https://github.com/your-org/aida-docs/tree/main/apps/web/content"
+          docsRepositoryBase="https://github.com/kbpranay/docs/tree/main/apps/web/content"
           sidebar={{ defaultMenuCollapseLevel: 1, toggleButton: true }}
-          feedback={{ content: 'Was this page helpful? Contact support →', labels: 'feedback' }}
           editLink="Edit this page"
           footer={
             <Footer>

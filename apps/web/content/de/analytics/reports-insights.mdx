@@ -1,0 +1,146 @@
+---
+title: Berichte & Insights
+description: Aggregierte Metriken, Trenddiagramme und exportierbare Logs für deinen Bot.
+---
+
+import { Callout } from 'nextra/components'
+
+# Berichte & Insights
+
+Die Seite Berichte & Insights (Analytics Beta) liefert dir aggregierte Metriken für Konversationen, Agenten-Übergaben, Feedback und Intent-Performance. Jede Karte hat außerdem einen Link **View Detailed Insights**, der eine stündliche oder tägliche Aufschlüsselung öffnet.
+
+## Prozentuale Veränderung
+
+Jede Datenkarte zeigt die Veränderung gegenüber dem vorherigen Zeitraum:
+
+```
+Change % = (Current − Previous) ÷ Previous × 100
+```
+
+Ein **grünes `+`** bedeutet, die Metrik ist gestiegen; ein **rotes `−`** bedeutet, sie ist gefallen.
+
+## Konversationsmetriken
+
+### Gesamtzahl der Konversationen
+
+Ein Zähler wird jedes Mal erhöht, wenn ein Nutzer auf den Chatbot-Fensterbutton klickt.
+
+### Reale Konversationen
+
+Sitzungen, die über die Go-Live-URL erstellt wurden und in denen der Nutzer mindestens eine Nachricht gesendet hat. Das ist dein zuverlässigstes Maß für tatsächliches Bot-Engagement.
+
+### Durchschnittliche Anzahl realer Konversationen (stündlich)
+
+```
+Avg = Total conversations in hour ÷ ((end date − start date) + 1)
+```
+
+## Metriken zu Nutzer-Nachrichten
+
+### Gesamtzahl der Nutzer-Nachrichten
+
+Zählt die von Nutzern gesendeten Nachrichten sowohl in Bot- als auch in Agenten-Konversationen.
+
+### Durchschnittliche Nutzer-Nachrichten
+
+```
+Avg user messages = count per hour-day ÷ ((end date − start date) + 1)
+```
+
+## Metriken zu Agenten-Anforderungen
+
+### Gesamtzahl der Agenten-Anforderungen
+
+Zählt jede Anfrage zur Übergabe an einen menschlichen Agenten – ob per Chatbot oder Voice.
+
+### Sitzungen mit Agenten-Anforderung %
+
+```
+% = (Unique agent requests sent) ÷ (Total real conversations) × 100
+```
+
+### Erfolgreiche vs. erfolglose Agenten-Anforderungen
+
+- **Erfolgreich** – der Agent hat während der Sitzung mindestens eine Nachricht gesendet.
+- **Erfolglos** – der Nutzer hat die Sitzung nach der Anfrage verlassen, oder der Agent ist beigetreten, ohne eine Nachricht zu senden.
+
+## Trainings- & Genauigkeitsmetriken
+
+### Trainierte Queries
+
+Anzahl der Queries, die auf der [Trainingsseite](/intents-entities/train-conversations) validiert oder konfiguriert wurden. Ignorierte Queries zählen nicht.
+
+### Intent-Genauigkeit %
+
+```
+Accuracy = Validated ÷ (Validated + Configured) × 100
+```
+
+## Feedback-Metriken
+
+### Durchschnittliche Bot-Bewertung
+
+```
+Bot Avg Rating = Total session feedback rating count ÷ Total number of session feedbacks
+```
+
+### Durchschnittliche Konversations-Feedback-Bewertung
+
+```
+Avg conv feedback = Total rating count ÷ Total number of feedback responses
+```
+
+Bewertungen verwenden eine Skala von 1–5:
+
+| Punktzahl | Bezeichnung |
+|---|---|
+| 5 | Hervorragend |
+| 4 | Gut |
+| 3 | Durchschnittlich |
+| 2 | Schlecht |
+| 1 | Sehr schlecht |
+
+## Konversationsdauer
+
+### Durchschnittliche Konversationsdauer
+
+```
+Avg Duration = Total duration of real conversations ÷ Number of real conversations
+```
+
+Die Dauer wird von der ersten bis zur letzten Nachricht einer Sitzung gemessen, über Nutzer-, Bot- und Agenten-Nachrichten hinweg kombiniert.
+
+## Intent-Ranking
+
+Der Abschnitt **Intent-Ranking** zeigt die 10 am häufigsten ausgelösten Intents, wobei Standard- und Small-Talk-Intents ausgeschlossen sind. Varianten werden angezeigt für:
+
+- Intents mit positiver Stimmung
+- Intents mit negativer Stimmung
+- Intents mit Agenten-Anforderung
+
+### Intent-Ranking %
+
+```
+Ranking % = (Count of a particular intent triggered) ÷ (Total intents triggered) × 100
+```
+
+### Intent-Statistiken
+
+Jeder Intent zeigt:
+
+- **Trigger-Anzahl** – wie oft er gematcht wurde
+- **Exit-Prozentsatz** – wie oft Sitzungen auf diesem Intent endeten
+
+### Exit-Prozentsatz
+
+```
+Exit % = (Sessions ended in that intent) ÷ (Total sum of intent exit count) × 100
+```
+
+<Callout>
+  Exit-Zahlen sind im heruntergeladenen CSV/Excel-Export sichtbar, aber nicht in der UI – lade das vollständige Query-Log herunter, um Exits im Detail zu analysieren.
+</Callout>
+
+## Export
+
+Klicke in einem beliebigen Bericht auf **Download**, um einen vollständigen Export der Query-Logs für den aktuellen Filter im Excel-Format zu erhalten.

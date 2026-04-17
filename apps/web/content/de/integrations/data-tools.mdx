@@ -1,0 +1,133 @@
+---
+title: Daten- & Tool-Integrationen
+description: Verbinde Agenten mit APIs, Wissensdatenbanken, Datenbanken, Dateien und Webseiten.
+---
+
+import { Callout } from 'nextra/components'
+
+# Daten- & Tool-Integrationen
+
+Agentic-AI-Knoten können sechs Tool-Typen nutzen, um außerhalb des Flows echte Daten zu holen. Jedes Tool hat seine eigene Konfiguration – einmal eingerichtet, dann aus jedem Agenten referenzierbar.
+
+## API-Tool
+
+Rufe einen beliebigen externen Service als Tool auf – CRM-Lookups, Ticket-Erstellung, Zahlungen, Übersetzung usw.
+
+**Konfiguration:**
+
+| Feld | Beschreibung |
+|---|---|
+| Tool Type | `API` |
+| Tool Name | Kurzer Identifier |
+| Description | Was das Tool tut (hilft dem Agenten zu entscheiden, wann er es nutzen soll) |
+| Method | `GET` oder `POST` |
+| URL | Der Endpunkt |
+| Response Type | Erwartetes Antwortformat |
+| Timeout | Request-Timeout |
+| Headers | Name/Wert-Paare |
+| Cookies | Cookie-Werte |
+
+**Parameter** (jeder API-Aufruf kann mehrere enthalten):
+
+| Feld | Beschreibung |
+|---|---|
+| Name | Parametername |
+| Description | Was der Agent hier eintragen soll |
+| Select Type | `string`, `number`, `integer` oder `boolean` |
+| Required | Ob dieser Parameter verpflichtend ist |
+| Query Parameter | Wenn true, wird als `?name=value` angehängt; wenn false, geht in den Body |
+
+## KB-Tool (Knowledge Base)
+
+Lass den Agenten aus einem DocBrain / einer Knowledge Base lesen – ähnlich einem RAG-Lookup, aber auf Tool-Call-Granularität nutzbar.
+
+**Konfiguration:**
+
+- **Tool Type** – `KB`
+- **Tool Name** und **Description**
+- **Choose DocBrain** – welche Knowledge Base abgefragt wird
+- **Index ID** – bis zu 3 anzeigbar; eine einzelne Index-ID wird automatisch ausgewählt
+- Schalter **Auto-use Latest Index ID** – immer den neuesten Index abfragen
+
+**Advanced:**
+
+- **Type** – Semantisch oder Keyword
+- **Method** – eine von drei `Gpt_mix`-Varianten
+- **TopK** – Anzahl abzurufender Ergebnisse
+- **Filtered Search** – Filtern nach Doc ID, Source ID, URL, Original URL oder Doc Type
+
+## Table-Tool
+
+Strukturierte Daten aus einer CSV-Datei abfragen.
+
+**Konfiguration:**
+
+- Eine **.csv-Datei** hochladen (max. 5 MB)
+- Für jeden Header konfigurieren:
+  - **Name**
+  - **Description**
+  - **Match Type** – Exact oder Close
+  - **Type** – String, Category, Datetime, Integer, Float oder Boolean
+
+Der Agent kann dann SQL-ähnliche Abfragen gegen die Tabelle in natürlicher Sprache ausführen.
+
+## File-Tool
+
+Lass den Agenten Inhalte aus PDF-Dokumenten lesen.
+
+**Konfiguration:**
+
+- Nur PDF
+- Bis zu **5 Dateien**, je **5 MB**, weniger als **10 Seiten** pro Datei
+
+Nutze das File-Tool für Referenzdokumente, die dein Agent braucht – Policy-PDFs, Einseiter, Produktblätter.
+
+## SQL-Tool
+
+Führe Read-only-SQL gegen eine verbundene Datenbank aus.
+
+**Konfiguration:**
+
+- **DB URL** – muss ein **Read-only**-Connection-String sein
+- Für jede Tabelle, die der Agent abfragen darf, definiere:
+  - **Table Name**
+  - **Metadata Description** – hilft dem Agenten zu verstehen, wann und wie er diese Tabelle abfragt
+
+<Callout type="warning">
+  Das SQL-Tool akzeptiert nur **Read-only**-DB-URLs. Gib ihm keine Verbindung, die deine Daten verändern kann – die Query-Pläne des Agenten sind probabilistisch.
+</Callout>
+
+## Webpage-Tool
+
+Live-Webseiten-Inhalte abrufen und lesen – perfekt für Seiten, die sich häufig ändern (Preisseiten, Angebote, Status-Dashboards).
+
+**Konfiguration:**
+
+- **Tool Name** und **Description**
+- **Webpage URL**
+- **Cache Minutes** – gecachte Inhalte werden diese Anzahl Minuten wiederverwendet, bevor neu geladen wird, damit du die Zielseite nicht überlastest
+
+Nutze das für Seiten, deren Inhalt sich in Minuten oder Stunden ändert, aber bei jedem Query neu zu laden verschwendend wäre.
+
+---
+
+## Umgebungsvariablen
+
+Wiederverwendbare Werte, die in allen Knoten des Projekts zugänglich sind – API-Keys, Konfigurationswerte, Standardparameter.
+
+**Variablen definieren:**
+
+Öffne im Workspace-Header **Flow Environment Variables** → **Add Variables**. Gib für jede Variable Name, Wert und Typ an.
+
+**Variablen referenzieren:**
+
+| Knotentyp | Wie referenzieren |
+|---|---|
+| **Change** | Manipulation über globale Envs in den Operationen des Change-Knotens |
+| **Switch** | Bedingtes Routing auf Env-Werten |
+| **Template** | `{{env.Name}}` für dynamische Ersetzung verwenden |
+| **Function** | `env.get("Name")` in benutzerdefiniertem JavaScript verwenden |
+
+<Callout>
+  Bewahre API-Keys und Secrets in Umgebungsvariablen auf, statt sie in Knoten hart zu kodieren. Env-Variablen sind die richtige Schicht für Werte, die sich pro Umgebung unterscheiden (dev, staging, prod).
+</Callout>

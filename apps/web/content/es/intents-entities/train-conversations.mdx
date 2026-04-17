@@ -1,0 +1,95 @@
+---
+title: Entrenar conversaciones
+description: Revisa qué han preguntado los usuarios a tu bot y mejora la precisión de los intents con el tiempo.
+---
+
+import { Callout } from 'nextra/components'
+
+# Entrenar conversaciones (Legacy)
+
+<Callout type="warning">
+  **Se retirará a finales de 2026.** Train Conversations es para bots legacy basados en intents. Los agentes mejoran mediante la iteración del prompt y el refinamiento de herramientas en lugar de validación de triggers — ver [Configuración del agente → Prompts](/bot-settings/agent-configuration#prompts).
+</Callout>
+
+La página Training es donde mejoras tu bot después de salir en vivo. Muestra cada conversación que ha ocurrido — lo que dijo el usuario, cómo lo clasificó el bot y qué respuesta se devolvió. Puedes validar las clasificaciones correctas, corregir las equivocadas o ignorar el ruido.
+
+Accede a ella haciendo clic en **Train conversation** en el menú lateral.
+
+## Filtrar conversaciones
+
+La lista de sesiones tiene tres filtros principales:
+
+| Filtro | Muestra |
+|---|---|
+| **Real conversations** *(por defecto)* | Solo las conversaciones desde la URL Go-Live en vivo |
+| **All chats** | Conversaciones Go-Live + conversaciones de prueba internas de la ventana de chat |
+| **Unhandled requests** | Consultas que emparejaron el intent `default_fallback` |
+
+Filtros adicionales te permiten acotar por:
+
+- **User Source** — webpage, app, LLM lab, etc.
+- **User Channel** — chatbot, voice, WhatsApp, agent assist
+- **Session ID** — saltar directo a una sesión específica
+- **Number of chats** — filtrar por longitud de conversación
+- **Ratings** — Excelente (5), Buena (4), Media (3), Mala (2), Pésima (1)
+- **Average conversation rating** — suma de ratings ÷ número de respuestas de feedback
+- **Date & time** — Hoy, Ayer o Últimos 7 días *(rango máximo de 7 días)*
+- **Training status** — Trained, Incomplete o Not trained
+- **Feedback rating & comment**
+
+## Solicitudes no gestionadas
+
+Cuando AIDA no puede emparejar una consulta de usuario con ningún intent, recurre a `default_fallback` y registra el mensaje aquí. Revisar las solicitudes no gestionadas es la forma más rápida de detectar huecos en tu cobertura de intents.
+
+**Para corregir solicitudes no gestionadas:**
+
+1. Filtra por **Unhandled requests**.
+2. Para cada consulta, elige una acción:
+   - **Validate** — el intent asignado del bot era correcto (para casos donde quieras confirmar que incluso un fallback era la decisión correcta).
+   - **Configure** — asigna la consulta al intent correcto y luego **Save**. La consulta se añade como trigger a ese intent.
+   - **Ignore** — omitir sin tomar acción.
+
+## Validate, Configure, Ignore
+
+Cada respuesta del bot en cada sesión puede gestionarse de tres formas:
+
+- **Validate** — la respuesta vino del intent correcto. La sesión se marca como Trained/Validated.
+- **Configure** — el intent era incorrecto. Elige el intent correcto del desplegable, haz clic en **Save** y la respuesta se añade a ese intent con un icono de origen de página de entrenamiento.
+- **Ignore** — omitir sin entrenar. Útil para ruido, consultas de prueba o mensajes que genuinamente no necesitan un intent.
+
+## Training status
+
+El estado de una sesión refleja cuánto de ella se ha gestionado:
+
+| Estado | Significado |
+|---|---|
+| **Trained** | Cada consulta de la sesión ha sido validada, configurada o ignorada |
+| **Incomplete** | Algunas consultas gestionadas, otras aún pendientes |
+| **Not trained** | Ninguna consulta de la sesión ha sido gestionada |
+
+## Métricas de precisión
+
+Dos métricas siguen tu progreso de entrenamiento:
+
+- **Trained queries** = recuento de Validated + Configured
+- **Intent accuracy %** = Validated ÷ (Validated + Configured) × 100
+
+<Callout>
+  **Las consultas ignoradas no cuentan** para consultas entrenadas ni precisión de intent. Solo las consultas validadas y configuradas mueven la métrica.
+</Callout>
+
+## Exportar logs de entrenamiento
+
+Haz clic en el botón de descarga/exportación para obtener un CSV de las sesiones filtradas actualmente.
+
+Campos exportados:
+
+- User Source
+- User Channel
+- Session ID
+- Number of chats
+- Feedback rating + comment
+- Date & time
+- Training status
+
+Solo se exportan las sesiones que coinciden con tu filtro actual — usa los filtros para acotar la descarga.

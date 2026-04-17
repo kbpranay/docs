@@ -1,0 +1,127 @@
+---
+title: Nodos de inicio, lógica y desarrollo
+description: Nodos Start, lógica de ramificación, transformaciones de datos, REST APIs, JavaScript personalizado, delays, depuración y enlazado de flows.
+---
+
+import { Callout } from 'nextra/components'
+
+# Nodos de inicio, lógica y desarrollo
+
+Los nodos Start son como comienza un flow. Los nodos de lógica ramifican el flow. Los nodos Dev lo conectan con sistemas externos. Los nodos Link unen flows entre sí.
+
+## Start: nodo Start
+
+El nodo **Start** te permite activar un flow manualmente inyectando datos — típicamente usado para pruebas o cuando el flow se inicia desde dentro de AIDA en lugar de por un llamador externo.
+
+**Ajustes:**
+
+- **Input type** — haz clic en el desplegable de timestamp para cambiar entre `string`, `number` o cualquier otro tipo soportado
+- **Repeat function** — vuelve a emitir el mismo mensaje a un intervalo fijo (útil para flows estilo health-check o triggers programados)
+
+## Start: Trigger via API
+
+**Trigger via API** permite a sistemas externos iniciar un flow golpeando un endpoint. Úsalo para webhooks, automatización entre sistemas o integrar flows de AIDA en una plataforma de orquestación existente.
+
+**Ajustes:**
+
+| Campo | Opciones |
+|---|---|
+| **Type** | REST o SOAP |
+| **Method** | GET, POST, PUT o PATCH |
+| **URL** | El endpoint que golpeará tu llamador externo |
+
+<Callout type="info">
+  Empareja **Trigger via API** al inicio de tu flow con un nodo **API Response** (ver abajo) al final — el API Response envía la salida del flow de vuelta al llamador de forma síncrona.
+</Callout>
+
+## Lógica: If/Else
+
+Evalúa reglas sobre los datos entrantes y reenvía a la salida coincidente.
+
+**Con qué puedes emparejar:**
+- Una propiedad del mensaje
+- Contexto del flow / contexto global
+- Variable de entorno
+- Una expresión JSONata
+
+Las reglas se evalúan de arriba abajo. Puedes opcionalmente **detener en la primera coincidencia** (de lo contrario, todas las ramas coincidentes se disparan).
+
+## Lógica: Change
+
+Transforma datos en el sitio antes de pasar el mensaje adelante.
+
+**Operaciones:**
+
+| Operación | Efecto |
+|---|---|
+| **Set** | Asignar o actualizar un valor |
+| **Change** | Transformar un valor existente |
+| **Move** | Reubicar un valor de una propiedad a otra |
+| **Delete** | Eliminar una propiedad |
+
+## Lógica: Template
+
+Genera una cadena dinámica a partir de `msg.payload` usando plantillas **Mustache** por defecto (puedes desactivar Mustache si quieres texto crudo).
+
+Toma el objeto `msg` entrante más una cadena de plantilla y produce un `msg` con la propiedad rellenada.
+
+**Ejemplo:** `Hola {{name}}, tu pedido {{orderId}} está confirmado.`
+
+---
+
+## Dev: REST API
+
+Llama a cualquier endpoint HTTP desde un flow.
+
+**Métodos:** GET, POST, PUT, DELETE
+
+**Opciones de autenticación:**
+
+| Auth | Campos |
+|---|---|
+| **Basic** | Username + Password |
+| **Bearer** | Token |
+| **OAuth2** | Grant type (Client credentials / Password / otro), Access token URL, Client ID, Client Secret, Scope |
+
+**Query parameters** — pares clave/valor añadidos a la URL para filtrado, ordenamiento o paginación.
+
+## Dev: Function
+
+Ejecuta JavaScript personalizado. El mensaje entrante se pasa como un objeto `msg`, con el cuerpo en `msg.payload`. Usa esto para transformaciones demasiado complejas para Change o Template, o para llamar a utilidades de Node.js.
+
+## Dev: API Response
+
+Gestiona la respuesta que regresa de una llamada API. Se usa principalmente en flows que fueron activados por API (ver la opción Trigger via API del nodo Start).
+
+## Dev: Delay
+
+Pausa el flow o limita la tasa de paso de mensajes.
+
+**Propiedades:**
+- **Delay (ms)** — cuánto esperar; puede ser sobrescrito por una propiedad en el `msg` entrante
+- **Reset** — limpia todos los mensajes retenidos
+- **Flush** — envía todos los mensajes retenidos inmediatamente
+
+## Dev: Debug
+
+Registra `msg.payload` (los datos principales) y el objeto `msg` completo (metadatos) para que puedas inspeccionar el estado durante el desarrollo.
+
+<Callout>
+  Deja un nodo Debug en flows complejos mientras estás iterando — puedes deshabilitar su salida con un solo clic sin eliminarlo, y volver a habilitarlo cuando lo necesites.
+</Callout>
+
+---
+
+## Link: Flow In / Flow Out
+
+**Flow In** es un punto de entrada que permite que datos, señales o control pasen entre nodos. Es como construyes flows modulares y componibles — un flow principal puede transferir a un subflow en un Flow Out y retomarlo en el Flow In correspondiente.
+
+**Flow Out** es el punto de salida emparejado con un Flow In. Usa pares Flow In/Out para:
+
+- Reutilizar lógica común entre varios flows
+- Dividir un flow complejo en piezas digeribles
+- Probar secciones individuales de forma aislada
+
+## Dev: Comment
+
+Un nodo de anotación que no se ejecuta. Arrástralo desde la paleta Dev, haz doble clic para editar. Usa los comentarios con generosidad — tu yo del futuro te agradecerá al yo del presente cuando estés depurando flows seis meses después.

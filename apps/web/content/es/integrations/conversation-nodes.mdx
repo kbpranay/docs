@@ -1,0 +1,129 @@
+---
+title: Nodos de conversación
+description: Recoge entradas y muestra UI conversacional rica — Ask User, Gallery Card, Form Card, Picture Card, Video Card, Suggestions, Speak to Agent, LLM Classifier.
+---
+
+import { Callout } from 'nextra/components'
+
+# Nodos de conversación
+
+Los nodos de conversación (CONV) impulsan el ida y vuelta visible de la conversación — pidiendo información a los usuarios, mostrando tarjetas enriquecidas y ramificando según las respuestas del usuario.
+
+## Ask User
+
+Pide al usuario una entrada de texto libre y guarda la respuesta en una variable.
+
+**Campos:**
+- **Message** — el prompt que ve el usuario
+- **Conditions** — reglas de validación sobre la respuesta
+- **Fallback Message** — se muestra cuando falla la validación
+- **Variable** — dónde se almacena la respuesta
+- **Suggestions** — chips de respuesta rápida opcionales
+- **Show text area** — alterna entre un textarea completo y una entrada de una sola línea
+
+## Gallery Card
+
+Un carrusel deslizable horizontalmente de tarjetas — bueno para catálogos de productos, listas de opciones o sugerencias de artículos.
+
+**Por tarjeta:**
+- Card Image URL
+- Float Image URL
+- Title
+- Subtitle
+- Description
+- Add Button (por tarjeta, admite varios)
+
+**Rodeando el carrusel:**
+- Message Before Card
+- Message After Card
+- Suggestions
+- Fallback Message
+- Variable
+- Show text area
+
+## Form Card
+
+Un formulario estructurado en línea en el chat — permite a los usuarios enviar varios campos a la vez con validación.
+
+**Tipos de campo:**
+
+| Campo | Usar para |
+|---|---|
+| Header | Agrupación visual |
+| TextField | Texto de una sola línea |
+| Email | Direcciones de email (auto-validadas) |
+| Text Area | Texto multilínea |
+| Date Picker | Fechas |
+| Time Picker | Horas |
+| Numeric | Números |
+| Dropdown select | Elección única de una lista |
+| Checkbox group | Múltiples elecciones |
+| Radio button | Elección única, todas las opciones visibles |
+
+**Action Buttons** admite **Label**, **Validation text** y texto **Help** por botón. La configuración circundante incluye Message before/after card, Mandatory message y Show text area.
+
+## Picture Card
+
+Muestra una o más imágenes con texto opcional alrededor.
+
+**Campos:**
+- Message Before Card
+- Picture (Image URL)
+- Add card — añadir más imágenes
+- Message After Card
+- Suggestions
+- Fallback Message
+- Variable
+- Show text area
+
+## Video Card
+
+Integra un vídeo mediante una URL — ideal para tutoriales, demos o contenido de onboarding.
+
+**Campos:**
+- Message Before Card
+- Video cards (añadir Card Video URL por tarjeta)
+- Message After Card
+- Suggestions
+- Fallback Message
+- Variable
+- Show text area
+
+## Suggestion
+
+Un nodo ligero que presenta chips de respuesta rápida. Útil para menús cortos o prompts de seguimiento.
+
+**Campos:**
+- Message
+- Suggestions
+- Fallback Message
+- Variable
+- Show text area
+
+## Speak to an Agent
+
+Transfiere la conversación a un agente en vivo mediante un chip de sugerencia. El texto mostrado al usuario se adapta según el estado de disponibilidad del agente en vivo.
+
+**Campos:**
+- Suggestions
+- Fallback Message
+- Show text area
+
+## LLM Classifier
+
+Usa un LLM para clasificar la respuesta del usuario en uno de varios topics y ramificar el flow en consecuencia.
+
+**Campos:**
+- **Question** — qué preguntar al usuario
+- **Description** — contexto opcional
+- **Topic(s)** — cada topic define una rama de salida
+- **Topic Description** — ayuda al LLM a elegir el topic correcto
+- **Fallback Message** — se muestra cuando ningún topic coincide
+- **Enable Fallback flow** — añade una salida **LLM Fallback Flow** con un **Maximum Retry Limit** (1–5, por defecto 3)
+- **Variable** — almacena qué topic fue elegido
+- **Topic(s) variables** — almacenamiento de variable por topic
+- **Show text area**
+
+<Callout type="warning">
+  Sin el fallback flow habilitado, el flow termina tras **4 reintentos** con un mensaje por defecto de AIDA. Habilita el fallback flow para cualquier classifier donde quieras una recuperación elegante frente a una clasificación incorrecta.
+</Callout>

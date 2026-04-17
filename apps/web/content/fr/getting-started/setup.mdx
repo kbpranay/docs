@@ -1,0 +1,140 @@
+---
+title: Connexion et configuration du compte
+description: Comment se connecter, s'inscrire, réinitialiser votre mot de passe et gérer votre compte AIDA.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Connexion et configuration du compte
+
+## Connexion
+
+Pour accéder à AIDA, naviguez vers l'URL de votre instance AIDA et connectez-vous avec vos identifiants.
+
+<Steps>
+
+### Saisissez votre adresse e-mail
+
+Sur l'écran de connexion, saisissez votre **Email** et cliquez sur **Next**.
+
+Vous pouvez également vous connecter via Single Sign-On (SSO) :
+- **Gmail** (Google)
+- **Microsoft**
+- **Okta**
+
+### Saisissez votre mot de passe
+
+Sur l'écran suivant, saisissez votre mot de passe pour terminer la connexion.
+
+</Steps>
+
+## Mot de passe oublié
+
+Si vous avez oublié votre mot de passe :
+
+<Steps>
+
+### Cliquez sur Forgot Password
+
+Sur l'écran de connexion, cliquez sur le lien **[Forgot Password]**.
+
+### Saisissez votre e-mail enregistré
+
+Saisissez votre adresse e-mail enregistrée et soumettez le formulaire. Vous recevrez un e-mail avec un lien de réinitialisation du mot de passe.
+
+### Définissez votre nouveau mot de passe
+
+Cliquez sur le lien dans l'e-mail et définissez un nouveau mot de passe. Une fois changé, vous recevrez un e-mail de confirmation.
+
+</Steps>
+
+## Verrouillage du compte
+
+AIDA applique des mesures de sécurité pour les tentatives de connexion échouées. Les paramètres de verrouillage s'appliquent globalement à toutes les équipes.
+
+**Valeurs par défaut :**
+- **Tentatives :** 5 tentatives invalides avant verrouillage
+- **Durée du verrouillage :** 30 minutes
+- **Temps minimum entre tentatives :** 60 secondes
+
+Après avoir dépassé le nombre de tentatives autorisées, votre compte sera verrouillé et un message s'affichera. Attendez l'expiration de la période de verrouillage avant de réessayer.
+
+## Inscription
+
+Les nouveaux Team Owners peuvent créer un compte directement depuis l'écran de connexion.
+
+<Steps>
+
+### Démarrez l'inscription
+
+Cliquez sur le bouton **Signup** sur l'écran de connexion.
+
+### Saisissez vos détails
+
+Remplissez votre **Email**, **First name** et **Last name**, puis cliquez sur **Create my account**.
+
+### Définissez un mot de passe
+
+Créez un mot de passe fort et cliquez sur **Next**.
+
+### Configurez votre équipe
+
+Saisissez votre **Team name**, **Organization name** et **Designation**, puis cliquez sur **Submit**.
+
+</Steps>
+
+Après soumission, vous recevrez un e-mail de confirmation. Une fois approuvé, cliquez sur le bouton **Login** dans l'e-mail pour accéder à AIDA. L'utilisateur inscrit se voit automatiquement attribuer le rôle **Team Owner**.
+
+## Connexion avec plusieurs équipes
+
+Si vous êtes membre de plusieurs équipes, vous serez dirigé vers une page **Team Selection** après la connexion. Cette page affiche toutes vos équipes sous forme de cartes indiquant le nom de l'équipe, l'ID et une option de copie.
+
+- Cliquez sur une carte d'équipe pour entrer dans l'espace de travail de cette équipe.
+- Utilisez le champ de recherche pour trouver une équipe par nom.
+
+## Créer une nouvelle équipe
+
+Tout utilisateur AIDA enregistré peut créer une nouvelle équipe.
+
+<Steps>
+
+### Allez sur Team Selection
+
+Après la connexion, vous serez dirigé vers la page Team Selection.
+
+### Cliquez sur Create
+
+Cliquez sur le bouton **Create** sur la page Team Selection.
+
+### Saisissez les détails de l'équipe
+
+Saisissez le **Team name** et le **Organization name**, puis cliquez sur **Submit**.
+
+</Steps>
+
+Vous serez automatiquement connecté à la nouvelle équipe et redirigé vers la page **Create Bot**. Vous êtes le **Team Owner** de toute équipe que vous créez.
+
+<Callout>
+**Notes multi-équipes :**
+1. Les actions telles que la révocation, la désactivation et la suppression d'utilisateurs sont spécifiques à l'équipe.
+2. L'authentification à deux facteurs (2FA) n'est pas spécifique à l'équipe — elle s'applique globalement à votre compte.
+3. Lorsqu'une session expire et que vous vous reconnectez, vous serez redirigé vers la dernière équipe dans laquelle vous étiez.
+</Callout>
+
+## Déconnexion
+
+<Steps>
+
+### Ouvrez le menu déroulant du profil
+
+Cliquez sur l'**icône de profil** dans l'en-tête en haut à droite.
+
+### Cliquez sur Logout
+
+Sélectionnez **Logout** dans le menu déroulant.
+
+### Confirmez la déconnexion
+
+Une invite de confirmation apparaîtra prévenant que les modifications non enregistrées seront perdues. Cliquez sur **Confirm** pour vous déconnecter, ou fermez la boîte de dialogue pour revenir à l'application.
+
+</Steps>

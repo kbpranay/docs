@@ -1,0 +1,46 @@
+---
+title: Liens profonds
+description: Partagez des liens directs vers des intentions, entités et sessions d'entraînement spécifiques.
+---
+
+import { Callout } from 'nextra/components'
+
+# Liens profonds
+
+Les liens profonds vous permettent de partager une URL directe vers une intention, une entité ou une session d'entraînement spécifique. Toute personne de votre équipe avec le bon rôle peut cliquer sur le lien et accéder directement à cette ressource — aucune navigation requise.
+
+## Où les liens profonds sont disponibles
+
+| Zone | Ce que le lien profond ouvre | Actions disponibles |
+|---|---|---|
+| **Intentions** | Une intention spécifique sur la page Intents | Read, Update, Delete |
+| **Entités** | Une entité spécifique sur la page Entities | Read, Update, Delete |
+| **Sessions** | Une session d'entraînement spécifique sur la page Training | Validate, Configure, Ignore |
+
+## Copier un lien profond
+
+Chaque ressource dispose d'une **icône de copie** à côté de son nom :
+
+- **Intention :** Sur la page Intents, cliquez sur l'icône de copie à côté du nom de l'intention dans la liste.
+- **Entité :** Sur la page Entities, cliquez sur l'icône de copie à côté du nom de l'entité.
+- **Session :** Sur la page Training, cliquez sur l'icône de copie sur la ligne de session à partager.
+
+Le lien est copié dans votre presse-papiers. Collez-le dans Slack, un e-mail ou tout endroit où vous souhaitez le partager.
+
+## Liens profonds pour les sessions d'entraînement
+
+Lorsque quelqu'un ouvre un lien profond de session, le champ **Session ID** sur la page Training est pré-rempli avec l'ID. AIDA l'utilise pour récupérer et afficher uniquement cette session spécifique.
+
+## Qui peut utiliser les liens profonds
+
+<Callout>
+  Les liens profonds ne fonctionnent que pour les utilisateurs dans la **même équipe** ayant accès à cette ressource. L'ouverture d'un lien vers une ressource supprimée, une ressource d'une autre équipe ou lorsque vous n'avez pas le rôle requis vous redirige vers la page Bot List avec une erreur.
+</Callout>
+
+Après avoir ouvert un lien profond, naviguer ailleurs remplace le lien profond par l'URL par défaut de la nouvelle page.
+
+## Quand les liens profonds ne fonctionnent pas
+
+- **Erreur et redirection vers Bot List :** la ressource a été supprimée, appartient à une autre équipe ou votre rôle n'autorise pas l'accès
+- **"Session not found" :** l'ID de session dans le lien profond ne correspond à aucune session d'entraînement (peut avoir été purgée après expiration de la rétention)
+- **Le lien s'ouvre mais rien n'apparaît :** votre rôle n'a peut-être pas d'accès en lecture à ce type de ressource — demandez à votre Team Owner de vérifier vos autorisations

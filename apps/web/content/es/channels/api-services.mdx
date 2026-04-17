@@ -1,0 +1,93 @@
+---
+title: API y servicios
+description: Habilita y gestiona las APIs expuestas por AIDA para tus bots.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# API y servicios
+
+La página **API & Services** permite a los admins de equipo activar o desactivar servicios de IA individuales para los bots del equipo, y ver las API keys necesarias para integrarlos con sistemas externos.
+
+Accede a ella desde la página Accounts. Disponible para los roles **Team Owner** y **Manager**.
+
+## Servicios disponibles
+
+| Servicio | Propósito |
+|---|---|
+| **LLM Service** | Llamadas a LLM de propósito general para respuestas del bot |
+| **LLM Classifier** | Clasificación de intents basada en ML |
+| **LLM NES** | Búsqueda de entidades nombradas |
+| **LLM Lab** | Espacio de trabajo experimental para ajuste de prompts y modelos |
+| **LLM Summarizer** | Resumir entradas de usuario o documentos largos |
+| **Text Generator** | Generar texto libre para intents específicos |
+| **RAG Service** | Generación aumentada por recuperación para DocBrain |
+| **LLM Insights** | Analytics impulsados por IA sobre conversaciones |
+| **Agent Service** | Habilitar flujos de transferencia a agente |
+| **PDF Extractor** | Extraer texto de PDFs subidos para DocBrain |
+
+## Habilitar un servicio
+
+<Steps>
+
+### Abre API & Services
+
+Ve a **Accounts → API & Services**.
+
+### Selecciona el servicio
+
+Haz clic en el servicio que quieres habilitar.
+
+### Activa el toggle
+
+Pon el toggle del servicio en **ON**.
+
+### Genera e introduce el OTP
+
+Haz clic en **Generate OTP** — se envía un código por email al Team Owner. Introdúcelo en el campo.
+
+### Confirma
+
+Haz clic en **Confirm**. Aparece un diálogo con la API Key y un icono de copia — copia la clave al portapapeles.
+
+</Steps>
+
+<Callout type="warning">
+  **Se requiere confirmación OTP** para cada acción de habilitar/deshabilitar. Asegúrate de que tu Team Owner tenga acceso al email antes de empezar.
+</Callout>
+
+## Deshabilitar un servicio
+
+<Steps>
+
+### Abre API & Services
+
+Ve a la página y encuentra el servicio activo.
+
+### Abre el menú
+
+Haz clic en los **[...]** (puntos) junto al servicio.
+
+### Activa Disable
+
+Selecciona **Disable** en el menú.
+
+### Confirma con OTP
+
+Mismo flujo de OTP que al habilitar — Generate OTP, introducir, Confirm.
+
+</Steps>
+
+## Ver una API key existente
+
+1. Ve a la página **API & Services**.
+2. Haz clic en el enlace **Key** del servicio activo que quieres ver.
+3. Copia la clave con el icono de copiar.
+
+<Callout>
+  Las API keys son secretos. Guárdalas en un gestor de contraseñas o en el almacén de secretos de tu infraestructura — no en código fuente ni en documentos compartidos.
+</Callout>
+
+## Aprender más sobre un servicio
+
+Cada tarjeta de servicio enlaza a su documentación detallada. Haz clic en el nombre del servicio para abrir la referencia completa — formatos de request/response, límites de tasa y ejemplos de payload.

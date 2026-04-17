@@ -1,0 +1,75 @@
+---
+title: Problèmes d'intégration
+description: Solutions pour les problèmes d'intégration Web, Voix et WhatsApp.
+---
+
+import { Callout } from 'nextra/components'
+
+# Problèmes d'intégration
+
+Si votre bot n'apparaît pas ou ne répond pas sur un canal spécifique, parcourez les vérifications ci-dessous pour ce canal.
+
+## Web / App (widget chatbot)
+
+### Le widget de chat n'apparaît pas
+
+1. Ouvrez **Go-Live** dans AIDA et confirmez que le **commutateur Enable** pour Web/App est sur **ON**.
+2. Recopiez le script d'intégration depuis **Go-Live → Show script** — votre page peut avoir un snippet obsolète.
+3. Ouvrez la console du navigateur sur votre site et recherchez des erreurs de script.
+4. Confirmez que la fenêtre de chat n'est pas bloquée par une politique de sécurité de contenu ou un ad blocker.
+
+### Le bot se charge mais toutes les réponses sont du fallback
+
+Cela signifie généralement que le Classifier est désactivé. Ouvrez [Bot Settings → Classifier](/bot-settings/classifier) et activez-le. Jusqu'à la fin du premier cycle d'entraînement, vous pouvez continuer à voir des fallbacks.
+
+### Ma source Multi-Build ne reflète pas mes modifications
+
+- Cliquez sur **Refresh** sur la page Go-Live — les builds doivent se terminer avant que les modifications ne se propagent.
+- Une source marquée **In Progress** ne servira pas encore le nouveau contenu. Attendez **Build Ready**.
+- Republiez la source spécifique à l'aide de **Publish Builds** si le build semble bloqué.
+
+## Voice (AudioCodes)
+
+### L'appel se déconnecte immédiatement
+
+- Vérifiez que votre configuration AudioCodes pointe vers l'URL générée sous **Go-Live → Voice**.
+- Confirmez que le **commutateur Voice** sur la page Go-Live est sur **ON**. Lorsqu'il est désactivé, les nouveaux appels entrants sont déconnectés avec le message hors ligne.
+- Si vous venez d'activer Voice, laissez quelques minutes au routage pour se propager.
+
+### Les appels en cours continuent mais les nouveaux appels échouent
+
+C'est le comportement attendu lorsque le commutateur Voice est désactivé — les appels en cours se terminent, les nouveaux appels reçoivent le message hors ligne. Réactivez le commutateur pour restaurer la prise en charge des nouveaux appels.
+
+## WhatsApp
+
+### Les nouveaux messages WhatsApp ne sont pas traités par le bot
+
+1. Ouvrez **Go-Live → WhatsApp** et confirmez que le commutateur est sur **ON**.
+2. Si le script d'intégration n'a jamais été généré, le commutateur est désactivé — cliquez d'abord sur **Generate URL**.
+3. Les sessions existantes continuent de fonctionner lorsque le commutateur est désactivé ; seuls les nouveaux messages reçoivent la réponse automatique hors ligne.
+
+### Le message hors ligne est incorrect
+
+Modifiez-le directement sur la page Go-Live. Cliquez en dehors du champ après modification et le nouveau message est sauvegardé automatiquement.
+
+## Le statut du bot indique "indexing failed"
+
+Pour les bots DocBrain, cela signifie que le job d'indexation a échoué. Essayez :
+
+1. Ouvrez la page DocBrain de votre bot.
+2. Réindexez les documents source.
+3. Vérifiez que vos sources sont accessibles (les URL nécessitant une authentification ne seront pas indexées).
+4. Si l'erreur persiste, contactez votre administrateur AIDA ou le support EnterpriseBot avec l'ID du bot.
+
+<Callout>
+  Les interactions qui se produisent pendant qu'un canal est désactivé ne sont **pas** incluses dans les données d'entraînement. Elles n'apparaissent que dans Total Conversations sous Live Data et Analytics.
+</Callout>
+
+## Toujours bloqué ?
+
+Essayez de rassembler ces éléments avant de contacter le support :
+
+- ID du bot (depuis Bot Settings → Bot Info)
+- Canal(s) affecté(s) (Web, Voice, WhatsApp)
+- Un ID de session spécifique où le problème s'est produit (copiez-le depuis Training)
+- Message d'erreur exact s'il en apparaît un dans l'UI

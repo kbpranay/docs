@@ -1,0 +1,70 @@
+---
+title: Erste Schritte mit AIDA
+description: Plattformüberblick, Nutzerrollen und alles, was du vor dem Start wissen musst.
+---
+
+import { Callout, Cards } from 'nextra/components'
+
+# Erste Schritte mit AIDA
+
+AIDA – Artificial Intelligence Digital Assistance – ist eine Plattform zum Erstellen von Chatbots, die echte Kundenkonversationen führen. Dieser Abschnitt führt dich durch die Grundlagen.
+
+<Cards>
+  <Cards.Card title="Login & Kontoeinrichtung" href="/getting-started/setup" arrow />
+  <Cards.Card title="Deinen ersten Bot erstellen" href="/getting-started/first-bot" arrow />
+  <Cards.Card title="Leitfaden zur Startseite" href="/getting-started/home-page" arrow />
+</Cards>
+
+## Wie AIDA Nutzer versteht
+
+AIDA verwendet zwei Techniken – oft in Kombination – um herauszufinden, was ein Nutzer fragt:
+
+- **Machine Learning (ML)**-Klassifikation gleicht die Formulierung des Nutzers mit Beispielsätzen (Triggern) ab, die du definierst. Sie ist nachsichtig – „Wie setze ich mein Passwort zurück?" und „Mein Passwort funktioniert nicht mehr" können beide auf denselben Intent verweisen.
+- **Elasticsearch Exact-Match** greift, wenn die Eingabe des Nutzers wörtlich mit einem vordefinierten Trigger übereinstimmt. Das ist schneller und deterministisch.
+
+Wenn der Classifier deaktiviert ist, lösen nur Ereignisse Antworten aus – siehe [Bot-Einstellungen → Classifier](/bot-settings/classifier), wann du ihn aktivieren solltest.
+
+Zusätzlich ermöglicht **DocBrain** dem Bot, Fragen aus von dir indexierten Dokumenten zu beantworten, ohne jede Antwort von Hand zu formulieren. Siehe [DocBrain](/intents-entities/docbrain).
+
+## Nutzerrollen
+
+Die Berechtigungen in AIDA sind rollenbasiert. Jeder Nutzer erhält eine oder mehrere Rollen, die festlegen, was er sehen und tun kann.
+
+| Rolle | Zugriff |
+|---|---|
+| **Team Owner** | Vollzugriff auf alles, einschließlich Teamlöschung |
+| **Manager** | Wie Team Owner, außer dass Löschoperationen (Bot, Nutzer, KB) deaktiviert sind |
+| **AIDA Admin** | Alle Seiten außer Nutzerrechte (aktivieren/deaktivieren/löschen) und Team-Einstellungen. Kann die Rollen AIDA User und AIDA Dashboard zuweisen |
+| **AIDA User** | Alle Seiten außer Nutzerrechte, Bot erstellen und Team-Einstellungen |
+| **AIDA Dashboard** | Nur Lesen: Live-Daten, Analytics, Profil, Konto, Zeitzone, Logout |
+| **AIDA LLM Lab Admin** | Nur LLM Lab + RAG Config. Einladung nur durch Team Owner/Manager |
+| **API & Services** | Vollzugriff auf den Tab APIs & Services sowie die Konten-Seite |
+| **Migrations** | Vollzugriff auf den Tab Migrations und die Konten-Seite |
+
+<Callout>
+  **AIDA User** und **AIDA Dashboard** können keine neuen Bots erstellen. Sie können nur bestehende bearbeiten (bzw. im Fall von Dashboard nur Analytics ansehen).
+</Callout>
+
+## Die obere Navigationsleiste
+
+Zwei Dinge befinden sich im Header oben rechts:
+
+- **Help Bot / LLM Bot** – ein in das Produkt integrierter Chatbot, der Fragen zu AIDA selbst beantwortet. Klicke auf das Symbol, um ihn zu öffnen.
+- **Mega Menu** – ein Raster aus Team-Konfigurationen und EB-Apps (BotForge, Product Engine, Blitzico, LiveChat usw.). Was du siehst, hängt von deiner Rolle ab.
+
+| Rolle | Im Mega Menu sichtbare Apps |
+|---|---|
+| Team Owner | Alle Produkte |
+| AIDA Admin | Botforge, Product Engine, Blitzico |
+| AIDA User | Product Engine, Blitzico |
+| AIDA Dashboard | Nur Blitzico |
+
+<Callout type="info">
+  Das Öffnen eines anderen Produkts über das Mega Menu erfordert keine erneute Anmeldung – deine AIDA-Sitzung bleibt bestehen.
+</Callout>
+
+## Wie es weitergeht
+
+1. **Neu bei AIDA?** Beginne mit [Login & Kontoeinrichtung](/getting-started/setup).
+2. **Bereit zum Bauen?** Folge [Deinen ersten Bot erstellen](/getting-started/first-bot).
+3. **Das Dashboard erkunden?** Siehe [Leitfaden zur Startseite](/getting-started/home-page).

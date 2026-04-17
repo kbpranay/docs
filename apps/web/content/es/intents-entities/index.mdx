@@ -1,0 +1,48 @@
+---
+title: Intents y entidades
+description: Enseña a tu bot qué quieren decir los usuarios y los términos específicos que usan.
+---
+
+import { Callout, Cards } from 'nextra/components'
+
+# Intents y entidades (Legacy)
+
+<Callout type="warning">
+  **Se retirarán a finales de 2026.** Los intents, triggers y entidades están obsoletos. Los bots existentes siguen funcionando, pero todos los nuevos bots deben usar el [modelo Agentic AI](/getting-started/first-bot). Consulta [Configuración del agente](/bot-settings/agent-configuration) para el equivalente moderno.
+</Callout>
+
+Los intents y entidades son la forma legacy en que AIDA entendía lo que querían tus usuarios.
+
+- **Un intent** captura el objetivo de un usuario — reservar un vuelo, consultar el saldo de una cuenta, escalar a un agente.
+- **Una entidad** captura las piezas específicas de información dentro del mensaje de un usuario — una ciudad, una fecha, un importe.
+
+Cuantos más intents y entidades definas, más fiablemente tu bot elegirá la respuesta correcta.
+
+<Cards>
+  <Cards.Card title="Intents" href="/intents-entities/intents" arrow />
+  <Cards.Card title="Triggers y parámetros" href="/intents-entities/triggers-parameters" arrow />
+  <Cards.Card title="Entidades" href="/intents-entities/entities" arrow />
+  <Cards.Card title="DocBrain" href="/intents-entities/docbrain" arrow />
+  <Cards.Card title="Entrenar conversaciones" href="/intents-entities/train-conversations" arrow />
+  <Cards.Card title="Explicador de intents" href="/intents-entities/intent-explainer" arrow />
+</Cards>
+
+## Cómo trabajan juntos
+
+Cuando un usuario envía un mensaje, AIDA:
+
+1. **Clasifica** el mensaje en el intent coincidente más cercano usando el clasificador ML y la búsqueda por coincidencia exacta.
+2. **Extrae** cualquier entidad referenciada en el mensaje.
+3. **Responde** con la respuesta configurada para ese intent, sustituyendo los valores de las entidades donde sea necesario.
+
+Si ningún intent coincide, el mensaje cae al intent Default Fallback y se registra en [Unhandled requests](/intents-entities/train-conversations#solicitudes-no-gestionadas).
+
+## Por dónde empezar
+
+Si estás creando un nuevo bot, recomendamos este orden:
+
+1. Enumera los 10–20 principales objetivos del usuario que tu bot debería gestionar → cada uno se convierte en un **intent**.
+2. Para cada intent, escribe al menos 50 frases de ejemplo que los usuarios podrían usar → estos son los **triggers**.
+3. Identifica piezas variables en esas frases (nombres, fechas, cantidades) → defínelas como **entidades**.
+4. Añade **parámetros** para recoger la información que el bot necesita antes de responder.
+5. Sal en vivo y luego refina usando la [página de entrenamiento](/intents-entities/train-conversations).

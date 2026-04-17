@@ -1,0 +1,103 @@
+---
+title: Workspace
+description: Navigiere den Flow-Builder – Knoten hinzufügen, deployen, exportieren/importieren, debuggen und Hotkeys effizient nutzen.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Workspace
+
+Der Flow-Workspace ist der Ort, an dem du die eigentliche Automatisierung baust – ziehe Knoten aus der Palette, verdrahte sie und deploye.
+
+## Knoten hinzufügen und verbinden
+
+- **Hinzufügen:** Ziehe einen Knoten aus der linken Seitenleisten-Palette auf den Workspace.
+- **Verbinden:** Klicke auf den kleinen Verbindungs-Kreis am Quellknoten und ziehe eine Leitung zum nächsten Knoten.
+
+## Einen Flow deployen
+
+<Steps>
+
+### Deinen Flow speichern
+
+Klicke oben im Workspace auf **Save Flow**. Speichern behält deine Arbeit, aber der Flow ist noch nicht live.
+
+### Auf Deploy klicken
+
+Die Schaltfläche **Deploy** ist oben rechts. Ein Klick darauf überträgt deine Änderungen in die Live-Umgebung.
+
+</Steps>
+
+<Callout>
+  **Save ≠ Deploy.** Du kannst beliebig lange Entwurfsversionen eines Flows speichern. Nur ein Deploy schiebt sie in den Live-Bot.
+</Callout>
+
+### In eine andere Instanz deployen
+
+Hat dein Team mehrere Instanzen (z. B. Staging und Produktion), kannst du denselben Flow über diese hinweg deployen:
+
+<Steps>
+
+### Den Flow speichern
+
+Speichere ihn in deiner aktuellen Instanz.
+
+### Auf den Deploy-Dropdown-Pfeil klicken
+
+Neben der Schaltfläche **Deploy**.
+
+### Choose Instance
+
+Klicke auf **Choose Instance → Confirm**, dann wähle die Zielinstanz.
+
+### Deploy
+
+Klicke auf **Deploy**, um den Flow in diese Instanz zu schieben.
+
+</Steps>
+
+## Export und Import
+
+**Export** aus dem oberen Header:
+
+| Option | Was sie tut |
+|---|---|
+| **Export as Blitzico File** | Den Flow als Blitzico-kompatible Datei herunterladen |
+| **Export Flow** | Den vollständigen Flow als JSON herunterladen oder kopieren |
+| **Export Selected Nodes** | Nur die ausgewählten Knoten herunterladen oder kopieren |
+
+**Import** über die Schaltfläche Import – wähle eine Datei aus oder füge einen Flow-JSON-Snippet ein, dann klicke auf **Import**.
+
+## Flow-Logs
+
+Öffne **Flow History** aus dem oberen Header. Klicke auf **Export Logs**, um eine CSV jedes Deployments und Änderungs-Events herunterzuladen.
+
+## Kommentare
+
+Ziehe einen **Comment**-Knoten aus dem Dev-Bereich hinein, um deinen Flow zu annotieren. Doppelklicke auf den Knoten, um den Kommentartext umzubenennen oder zu bearbeiten. Kommentare werden nicht ausgeführt – sie existieren rein zur Dokumentation.
+
+## Navigation auf dem Canvas
+
+| Funktion | Wie |
+|---|---|
+| **Vollbild** | Klicke auf das Vollbild-Symbol im Workspace-Header. Erneut klicken, um zu beenden. |
+| **Minimap** | Symbol unten links – zeigt eine herausgezoomte Übersicht. Ziehen zum Schwenken. |
+| **Workspace sperren** | Schloss-Symbol unten links verhindert versehentliche Änderungen. |
+| **Zoom** | Mit Maus/Trackpad scrollen oder die Zoom-Buttons unten links verwenden. Ein Reset-Button stellt den Standard wieder her. |
+| **Multi-Auswahl** | **Shift** + Klick halten oder halten und ziehen, um eine Box-Auswahl zu treffen. Ermöglicht Bulk-Move/Delete/Copy. |
+
+## Debuggen in Picture-in-Picture
+
+Wähle einen Flow aus, klicke auf das **Debug**-Symbol (unten rechts), um das Debug-Fenster zu öffnen. Klicke auf das **Extension**-Symbol für zusätzliche Debug-Funktionen.
+
+<Callout type="warning">
+  Picture-in-Picture-Debugging funktioniert **nur im Chrome-Browser**. Firefox und Safari unterstützen die Funktion nicht.
+</Callout>
+
+## Hotkeys
+
+| Modifier | macOS | Windows / Linux |
+|---|---|---|
+| Primärer Modifier | **⌘ (Command)** | **Ctrl** |
+
+Hotkeys folgen Standardmustern – kombiniere den obigen Modifier mit gängigen Shortcuts (Kopieren, Einfügen, Rückgängig, Alles auswählen), um die Flow-Bearbeitung zu beschleunigen.

@@ -1,0 +1,56 @@
+---
+title: Intent Explainer
+description: Voyez pourquoi AIDA a classé une requête utilisateur dans une intention spécifique — mot par mot.
+---
+
+import { Callout } from 'nextra/components'
+
+# Intent Explainer (Legacy)
+
+<Callout type="warning">
+  **Progressivement supprimé d'ici fin 2026.** Intent Explainer est un outil de débogage pour le classifier ML legacy. Les agents s'expliquent à travers leurs traces de raisonnement — aucun explainer séparé n'est nécessaire. Voir [Configuration de l'agent](/bot-settings/agent-configuration).
+</Callout>
+
+Intent Explainer est un outil de débogage qui révèle *pourquoi* le classifier ML a associé une requête utilisateur à une intention particulière. C'est le moyen le plus rapide de diagnostiquer les problèmes de classification et d'améliorer vos données d'entraînement.
+
+## Où le trouver
+
+Ouvrez n'importe quelle page d'intention et cherchez l'**icône de bulle de chat** dans le coin inférieur droit. Cliquez dessus pour ouvrir la fenêtre de chat de test, puis activez **Intent Explainer**.
+
+<Callout>
+  Intent Explainer est **uniquement disponible pour la classification ML**. Il ne fonctionne pas lorsque [le Classifier](/bot-settings/classifier) est désactivé, ni pour les déclencheurs de correspondance exacte Elasticsearch.
+</Callout>
+
+## Lire le résultat
+
+Lorsque vous saisissez une requête de test avec Intent Explainer activé, chaque mot de la requête est surligné en fonction de son impact sur la classification :
+
+| Surlignage | Signification |
+|---|---|
+| **Vert** | Impact positif — ce mot a poussé le classifier vers l'intention associée |
+| **Rouge** | Impact négatif — ce mot a éloigné le classifier de l'intention associée |
+| **Aucun surlignage** | Pas d'impact significatif |
+| **`[UNK]`** | Token que le classifier n'a pas reconnu |
+
+Survolez n'importe quel mot surligné pour voir le **score d'attribution** numérique pour l'intention principale — à quel point ce token a influencé la décision.
+
+## Marqueurs de résolution d'entité
+
+Vous verrez également des symboles spéciaux dans la sortie expliquée :
+
+- `~##~` marque où le classifier a découpé la requête pour la résolution d'entité
+- `~` marque une valeur d'entité résolue
+
+Cela révèle comment le classifier a tokenisé l'entrée avant d'exécuter la classification.
+
+## L'utiliser pendant l'entraînement
+
+Intent Explainer fonctionne très bien aux côtés de la [page d'entraînement](/intents-entities/train-conversations). Les sessions où Intent Explainer a été activé sont marquées d'une icône spéciale dans la vue de filtre **All chats**.
+
+**Un workflow typique :**
+
+1. Repérez une requête dans Training qui a été classée dans la mauvaise intention.
+2. Copiez le message de l'utilisateur.
+3. Ouvrez l'intention *correcte* et collez la requête dans Intent Explainer.
+4. Lisez l'attribution mot par mot pour voir quels mots trompent le classifier.
+5. Ajustez vos déclencheurs — ajoutez des formulations plus claires, supprimez les ambiguës — jusqu'à ce que l'explication corresponde à vos attentes.

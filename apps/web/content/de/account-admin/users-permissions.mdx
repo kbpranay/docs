@@ -1,0 +1,135 @@
+---
+title: Nutzer & Berechtigungen
+description: Nutzer einladen, Rollen zuweisen und Team-Mitgliedschaften in AIDA verwalten.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Nutzer & Berechtigungen
+
+Die Seite **User Rights** ist der Ort, an dem du Zugriffe für alle im Team hinzufügst, entfernst und verwaltest. Sie ist für die Rollen **AIDA Admin**, **Manager** und **Team Owner** zugänglich.
+
+<Callout>
+**Die Grundregeln:**
+- Nur ein Team Owner kann Nutzer deaktivieren oder löschen
+- Manager können deaktivieren, aber nicht löschen
+- Niemand kann Rollen eines Team Owners widerrufen, deaktivieren oder neu zuweisen
+- Manager können weder andere Manager noch den Team Owner bearbeiten
+- Die Nutzerliste zeigt 20 Nutzer pro Seite, alphabetisch sortiert
+</Callout>
+
+## Wer darf wen einladen
+
+| Deine Rolle | Du kannst einladen |
+|---|---|
+| **Team Owner** | Jede Rolle – AIDA, LiveChat, ERA, Insights Lab, Manager, API & Services, Migrations |
+| **Manager** | API & Services, AIDA, LiveChat, ERA, Insights Lab *(aber keine anderen Manager oder Team Owner)* |
+| **AIDA Admin** | AIDA User, AIDA Dashboard |
+
+## Einen neuen Nutzer einladen
+
+<Steps>
+
+### User Rights öffnen
+
+Klicke in der Navigation auf **[User rights]**.
+
+### Auf Invite klicken
+
+Klicke auf die Schaltfläche **[Invite]**.
+
+### Details ausfüllen
+
+Gib **E-Mail**, **Vorname** und **Nachname** des Nutzers ein.
+
+### Eine Rolle zuweisen
+
+Wähle die Rolle(n) aus, die du vergeben möchtest. Wählst du für ein Produkt eine Admin-Rolle, werden alle niedrigeren Rollen für dieses Produkt automatisch ausgewählt und können nicht abgewählt werden.
+
+### Die Einladung senden
+
+Klicke auf **[Send invite]**.
+
+</Steps>
+
+Der eingeladene Nutzer erhält eine E-Mail mit einer Schaltfläche **Join Team**. Ein Klick darauf führt ihn zu einer Seite, auf der er sein Passwort festlegt und die Registrierung abschließt.
+
+## Rollen eines Nutzers widerrufen
+
+Das Widerrufen der Rollen eines Nutzers verhindert, dass er sich anmelden kann. Alle Rollen werden in einer einzigen Aktion entfernt – du kannst sie später wieder zuweisen.
+
+<Steps>
+
+### User Rights öffnen → den Nutzer finden
+
+Finde die Nutzerkarte in der Liste.
+
+### Das Menü öffnen
+
+Klicke auf das **[...]** auf der Nutzerkarte.
+
+### Rechte widerrufen
+
+Klicke auf **[Revoke rights]** und dann im Popup auf **[Confirm]**.
+
+</Steps>
+
+Der Nutzer erhält eine Bestätigungs-E-Mail, die die widerrufenen Rollen auflistet.
+
+## Einen Nutzer deaktivieren
+
+<Steps>
+
+### User Rights öffnen → den Nutzer finden
+
+Gleicher Ausgangspunkt wie beim Widerrufen.
+
+### Deaktivieren
+
+Klicke auf das **[...]** auf der Nutzerkarte, dann auf **[Deactivate user]** und bestätige.
+
+</Steps>
+
+<Callout type="info">
+  Deaktivierte Nutzer behalten ihre Rollenzuweisungen. Bei der Reaktivierung werden die vorherigen Rollen automatisch wiederhergestellt – keine Neuzuweisung erforderlich.
+</Callout>
+
+## Einen deaktivierten Nutzer reaktivieren
+
+<Steps>
+
+### Nach deaktivierten Nutzern filtern
+
+Klicke auf den Filter **Show users** und wähle **Deactivated user list**.
+
+### Reaktivieren
+
+Klicke auf **[...]** auf der Nutzerkarte → **[Activate User]** → **[Confirm]**.
+
+</Steps>
+
+## Team-Eigentum übertragen
+
+Ein Team Owner kann das Eigentum an einen seiner Manager abgeben.
+
+<Steps>
+
+### Den Manager in User Rights finden
+
+Navigiere zu User Rights und finde den Manager, den du befördern möchtest.
+
+### Die Übertragung starten
+
+Klicke auf **[Transfer Ownership]** auf der Nutzerkarte des Managers und bestätige.
+
+### Mit OTP verifizieren
+
+Ein OTP wird an die E-Mail des aktuellen Team Owners gesendet. Gib ihn ein und klicke auf **Confirm**.
+
+### Erneut anmelden
+
+Klicke auf **Re-login** und melde dich erneut an. Der ausgewählte Manager wird zum Team Owner, und der vorherige Team Owner wird zum Manager.
+
+</Steps>
+
+Für teamweite Einstellungen – 2FA, Sperrrichtlinien, Teamname – siehe [Team-Einstellungen](/account-admin/team-settings).

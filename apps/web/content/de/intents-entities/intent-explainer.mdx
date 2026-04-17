@@ -1,0 +1,56 @@
+---
+title: Intent Explainer
+description: Sieh, warum AIDA eine Nutzer-Query einem bestimmten Intent zugeordnet hat – Wort für Wort.
+---
+
+import { Callout } from 'nextra/components'
+
+# Intent Explainer (Legacy)
+
+<Callout type="warning">
+  **Wird bis Ende 2026 eingestellt.** Intent Explainer ist ein Debug-Tool für den Legacy-ML-Classifier. Agenten erklären sich über ihre Reasoning-Traces selbst – kein separater Explainer nötig. Siehe [Agenten-Konfiguration](/bot-settings/agent-configuration).
+</Callout>
+
+Intent Explainer ist ein Debug-Tool, das aufzeigt, *warum* der ML-Classifier eine Nutzer-Query einem bestimmten Intent zugeordnet hat. Es ist der schnellste Weg, Klassifikationsprobleme zu diagnostizieren und deine Trainingsdaten zu verbessern.
+
+## Wo du es findest
+
+Öffne eine beliebige Intent-Seite und suche unten rechts das **Chat-Bubble-Symbol**. Klicke darauf, um das Test-Chatfenster zu öffnen, und aktiviere dann **Intent Explainer**.
+
+<Callout>
+  Intent Explainer ist **nur für ML-Klassifikation** verfügbar. Er funktioniert nicht, wenn [der Classifier](/bot-settings/classifier) deaktiviert ist oder bei Exact-Match-Elasticsearch-Triggern.
+</Callout>
+
+## Die Ausgabe lesen
+
+Wenn du eine Test-Query mit aktiviertem Intent Explainer eingibst, wird jedes Wort der Query anhand seines Einflusses auf die Klassifikation hervorgehoben:
+
+| Markierung | Bedeutung |
+|---|---|
+| **Grün** | Positiver Einfluss – dieses Wort hat den Classifier in Richtung des gematchten Intents gedrückt |
+| **Rot** | Negativer Einfluss – dieses Wort hat den Classifier vom gematchten Intent weggedrückt |
+| **Keine Markierung** | Kein signifikanter Einfluss |
+| **`[UNK]`** | Token, den der Classifier nicht erkannt hat |
+
+Fahre über ein markiertes Wort, um den numerischen **Attribution-Score** für den Top-Intent zu sehen – wie stark dieser Token die Entscheidung beeinflusst hat.
+
+## Entitätsauflösungs-Marker
+
+Du siehst in der erklärten Ausgabe auch spezielle Symbole:
+
+- `~##~` markiert, wo der Classifier die Query für die Entitätsauflösung getrennt hat
+- `~` markiert einen aufgelösten Entitätswert
+
+Diese zeigen, wie der Classifier die Eingabe vor der Klassifikation tokenisiert hat.
+
+## Nutzung im Training
+
+Intent Explainer funktioniert hervorragend zusammen mit der [Trainingsseite](/intents-entities/train-conversations). Sitzungen, bei denen Intent Explainer aktiv war, werden mit einem speziellen Symbol in der Filteransicht **All chats** markiert.
+
+**Ein typischer Workflow:**
+
+1. Bemerke in Training eine Query, die in den falschen Intent klassifiziert wurde.
+2. Kopiere die Nachricht des Nutzers.
+3. Öffne den *richtigen* Intent und füge die Query in den Intent Explainer ein.
+4. Lies die Wort-für-Wort-Attribution, um zu sehen, welche Wörter den Classifier in die Irre führen.
+5. Passe deine Trigger an – füge klarere Formulierungen hinzu, entferne verwirrende – bis die Erklärung deiner Erwartung entspricht.

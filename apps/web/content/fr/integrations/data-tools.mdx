@@ -1,0 +1,133 @@
+---
+title: Intégrations de données et outils
+description: Connectez des agents à des API, bases de connaissances, bases de données, fichiers et pages web.
+---
+
+import { Callout } from 'nextra/components'
+
+# Intégrations de données et outils
+
+Les nœuds Agentic AI peuvent utiliser six types d'outils pour sortir du flux et récupérer des données réelles. Chaque outil dispose de sa propre configuration — configurez-le une fois, puis référencez-le depuis n'importe quel agent.
+
+## API tool
+
+Appelez n'importe quel service externe en tant qu'outil — recherches CRM, création de tickets, paiements, traduction, etc.
+
+**Configuration :**
+
+| Champ | Description |
+|---|---|
+| Tool Type | `API` |
+| Tool Name | Identifiant court |
+| Description | Ce que fait l'outil (aide l'agent à décider quand l'utiliser) |
+| Method | `GET` ou `POST` |
+| URL | L'endpoint |
+| Response Type | Format de réponse attendu |
+| Timeout | Délai d'expiration de la requête |
+| Headers | Paires nom/valeur |
+| Cookies | Valeurs de cookies |
+
+**Paramètres** (chaque appel API peut en prendre plusieurs) :
+
+| Champ | Description |
+|---|---|
+| Name | Nom du paramètre |
+| Description | Ce que l'agent doit mettre ici |
+| Select Type | `string`, `number`, `integer` ou `boolean` |
+| Required | Si ce paramètre est obligatoire |
+| Query Parameter | Si true, ajouté comme `?name=value` ; si false, va dans le body |
+
+## KB (Knowledge Base) tool
+
+Permet à l'agent de lire depuis un DocBrain / une base de connaissances — similaire à une recherche RAG mais utilisable à la granularité d'un appel d'outil.
+
+**Configuration :**
+
+- **Tool Type** — `KB`
+- **Tool Name** et **Description**
+- **Choose DocBrain** — quelle base de connaissances interroger
+- **Index ID** — jusqu'à 3 peuvent être affichés ; un seul index ID est auto-sélectionné
+- Commutateur **Auto-use Latest Index ID** — toujours interroger l'index le plus récent
+
+**Avancé :**
+
+- **Type** — Semantic ou Keyword
+- **Method** — l'une des trois variantes `Gpt_mix`
+- **TopK** — nombre de résultats à récupérer
+- **Filtered Search** — filtrer par Doc ID, Source ID, URL, Original URL ou Doc Type
+
+## Table tool
+
+Interrogez des données structurées contenues dans un fichier CSV.
+
+**Configuration :**
+
+- Téléversez un **fichier .csv** (5 Mo max)
+- Pour chaque en-tête, configurez :
+  - **Name**
+  - **Description**
+  - **Match Type** — Exact ou Close
+  - **Type** — String, Category, Datetime, Integer, Float ou Boolean
+
+L'agent peut alors exécuter des requêtes de type SQL sur la table en utilisant le langage naturel.
+
+## File tool
+
+Permet à l'agent de lire le contenu de documents PDF.
+
+**Configuration :**
+
+- PDF uniquement
+- Jusqu'à **5 fichiers**, **5 Mo** chacun, moins de **10 pages** par fichier
+
+Utilisez File tool pour les documents de référence dont votre agent a besoin — PDF de politiques, fiches synthétiques, fiches produit.
+
+## SQL tool
+
+Exécutez des requêtes SQL en lecture seule sur une base de données connectée.
+
+**Configuration :**
+
+- **DB URL** — doit être une chaîne de connexion en **lecture seule**
+- Pour chaque table que l'agent peut interroger, définissez :
+  - **Table Name**
+  - **Metadata description** — aide l'agent à comprendre quand et comment interroger cette table
+
+<Callout type="warning">
+  L'outil SQL n'accepte que des URL de BD en **lecture seule**. Ne lui donnez pas une connexion pouvant modifier vos données — les plans de requête de l'agent sont probabilistes.
+</Callout>
+
+## Webpage tool
+
+Récupérez et lisez le contenu d'une page web en direct — parfait pour les pages qui changent fréquemment (pages de tarification, offres, tableaux de bord d'état).
+
+**Configuration :**
+
+- **Tool Name** et **Description**
+- **Webpage URL**
+- **Cache Minutes** — le contenu mis en cache est réutilisé pendant ce nombre de minutes avant une nouvelle récupération, afin de ne pas surcharger le site cible
+
+Utilisez-le pour des pages dont le contenu change en minutes ou en heures mais où récupérer à chaque requête serait du gaspillage.
+
+---
+
+## Variables d'environnement
+
+Valeurs réutilisables accessibles dans tous les nœuds du projet — clés API, valeurs de config, paramètres par défaut.
+
+**Définir des variables :**
+
+Depuis l'en-tête du workspace, ouvrez **Flow Environment Variables** → **Add Variables**. Pour chaque variable, fournissez un Name, Value et Type.
+
+**Référencer des variables :**
+
+| Type de nœud | Comment référencer |
+|---|---|
+| **Change** | Manipuler via les envs globales dans les opérations du nœud Change |
+| **Switch** | Routage conditionnel sur les valeurs env |
+| **Template** | Utilisez `{{env.Name}}` pour la substitution dynamique |
+| **Function** | Utilisez `env.get("Name")` dans du JavaScript personnalisé |
+
+<Callout>
+  Conservez les clés API et secrets dans des variables d'environnement plutôt que de les coder en dur dans les nœuds. Les variables env sont la bonne couche pour les valeurs qui changent par environnement (dev, staging, prod).
+</Callout>

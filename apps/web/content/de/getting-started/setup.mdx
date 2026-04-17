@@ -1,0 +1,140 @@
+---
+title: Login & Kontoeinrichtung
+description: Wie du dich anmeldest, registrierst, dein Passwort zurücksetzt und dein AIDA-Konto verwaltest.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Login & Kontoeinrichtung
+
+## Anmelden
+
+Um auf AIDA zuzugreifen, navigiere zur URL deiner AIDA-Instanz und melde dich mit deinen Zugangsdaten an.
+
+<Steps>
+
+### Gib deine E-Mail-Adresse ein
+
+Gib auf dem Login-Bildschirm deine **E-Mail** ein und klicke auf **Next**.
+
+Du kannst dich auch per Single Sign-On (SSO) anmelden:
+- **Gmail** (Google)
+- **Microsoft**
+- **Okta**
+
+### Gib dein Passwort ein
+
+Gib auf dem nächsten Bildschirm dein Passwort ein, um die Anmeldung abzuschließen.
+
+</Steps>
+
+## Passwort vergessen
+
+Wenn du dein Passwort vergessen hast:
+
+<Steps>
+
+### Klicke auf Passwort vergessen
+
+Klicke auf dem Login-Bildschirm auf den Link **[Forgot Password]**.
+
+### Gib deine registrierte E-Mail ein
+
+Gib deine registrierte E-Mail-Adresse ein und sende das Formular ab. Du erhältst eine E-Mail mit einem Link zum Zurücksetzen des Passworts.
+
+### Lege dein neues Passwort fest
+
+Klicke auf den Link in der E-Mail und lege ein neues Passwort fest. Nach der Änderung erhältst du eine Bestätigungs-E-Mail.
+
+</Steps>
+
+## Kontosperrung
+
+AIDA setzt Sicherheitsmaßnahmen für fehlgeschlagene Anmeldeversuche durch. Die Sperreinstellungen gelten global über alle Teams hinweg.
+
+**Standardwerte:**
+- **Versuche:** 5 ungültige Versuche vor der Sperrung
+- **Sperrdauer:** 30 Minuten
+- **Mindestzeit zwischen Versuchen:** 60 Sekunden
+
+Nach Überschreiten der zulässigen Versuche wird dein Konto gesperrt und eine Meldung angezeigt. Warte, bis die Sperrzeit abgelaufen ist, bevor du es erneut versuchst.
+
+## Registrierung
+
+Neue Team Owner können direkt vom Login-Bildschirm aus ein Konto erstellen.
+
+<Steps>
+
+### Registrierung starten
+
+Klicke auf die Schaltfläche **Signup** auf dem Login-Bildschirm.
+
+### Gib deine Daten ein
+
+Fülle **E-Mail**, **Vorname** und **Nachname** aus und klicke dann auf **Create my account**.
+
+### Lege ein Passwort fest
+
+Erstelle ein sicheres Passwort und klicke auf **Next**.
+
+### Richte dein Team ein
+
+Gib **Team name**, **Organization name** und **Designation** ein und klicke dann auf **Submit**.
+
+</Steps>
+
+Nach dem Absenden erhältst du eine Bestätigungs-E-Mail. Sobald die Freigabe erfolgt ist, klicke in der E-Mail auf **Login**, um auf AIDA zuzugreifen. Der registrierte Nutzer erhält automatisch die Rolle **Team Owner**.
+
+## Login mit mehreren Teams
+
+Wenn du Mitglied mehrerer Teams bist, wirst du nach der Anmeldung auf eine **Team-Auswahlseite** weitergeleitet. Diese Seite zeigt alle deine Teams als Karten mit Teamname, ID und einer Kopieroption.
+
+- Klicke auf eine beliebige Teamkarte, um den Workspace dieses Teams zu betreten.
+- Nutze das Suchfeld, um ein Team per Namen zu finden.
+
+## Ein neues Team erstellen
+
+Jeder registrierte AIDA-Nutzer kann ein neues Team erstellen.
+
+<Steps>
+
+### Zur Team-Auswahl gehen
+
+Nach dem Login wirst du zur Team-Auswahlseite weitergeleitet.
+
+### Auf Create klicken
+
+Klicke auf der Team-Auswahlseite auf die Schaltfläche **Create**.
+
+### Team-Details eingeben
+
+Gib **Team name** und **Organization name** ein und klicke dann auf **Submit**.
+
+</Steps>
+
+Du wirst automatisch in das neue Team eingeloggt und auf die Seite **Create Bot** weitergeleitet. Du bist **Team Owner** jedes Teams, das du erstellst.
+
+<Callout>
+**Hinweise zu mehreren Teams:**
+1. Aktionen wie das Widerrufen, Deaktivieren und Löschen von Nutzern sind teamspezifisch.
+2. Zwei-Faktor-Authentifizierung (2FA) ist nicht teamspezifisch – sie gilt global für dein Konto.
+3. Wenn eine Sitzung abläuft und du dich erneut anmeldest, wirst du zu dem Team zurückgeführt, in dem du zuletzt warst.
+</Callout>
+
+## Abmelden
+
+<Steps>
+
+### Öffne das Profil-Dropdown
+
+Klicke auf das **Profilsymbol** oben rechts im Header.
+
+### Klicke auf Logout
+
+Wähle **Logout** aus dem Dropdown.
+
+### Bestätige die Abmeldung
+
+Eine Bestätigungsaufforderung erscheint und warnt, dass nicht gespeicherte Änderungen verloren gehen. Klicke auf **Confirm**, um dich abzumelden, oder schließe den Dialog, um zur App zurückzukehren.
+
+</Steps>

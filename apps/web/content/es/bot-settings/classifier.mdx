@@ -1,0 +1,72 @@
+---
+title: Clasificador
+description: Cómo AIDA empareja los mensajes de usuario con los intents, y cuándo habilitarlo o deshabilitarlo.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Clasificador
+
+El **Classifier** es el motor que empareja los mensajes del usuario con los intents usando Machine Learning (ML) y Elasticsearch (ES).
+
+## Estado por defecto para nuevos bots
+
+Para todos los bots recién creados, el **Classifier está deshabilitado por defecto**. Es una decisión intencional — puedes activarlo solo cuando tengas suficientes datos de entrenamiento para que la clasificación sea fiable.
+
+Cuando creas un nuevo bot, AIDA muestra esta nota:
+
+> *"La clasificación es una función opcional y está deshabilitada por defecto. Habilita el Classifier desde Bot Settings."*
+
+Los nuevos bots vienen solo con tres intents de sistema por defecto — `default_welcome`, `default_reset` y `default_fallback`.
+
+## Qué ocurre cuando el Classifier está deshabilitado
+
+Cuando el Classifier está desactivado, la mayoría de funciones que dependen de la clasificación están ocultas o bloqueadas:
+
+| Área | Comportamiento con Classifier en OFF |
+|---|---|
+| **Consultas de usuario** | Todas las consultas se enrutan al intent Fallback — incluso las que tienen triggers coincidentes |
+| **Respuestas de intent** | Solo se activan por **eventos**, no por texto del usuario |
+| **Intents page → Triggers** | Bloqueado con un overlay: *"Cannot access triggers — Classifier is disabled"* |
+| **Intents search filter** | La opción "Intents by Response" se elimina |
+| **Intent Explainer** | Oculto de la ventana de pruebas |
+| **Training page → Training Status column** | Deshabilitada (columna y filtro ocultos) |
+| **Training page → botones Configure/Validate/Ignore** | Deshabilitados para la mayoría de respuestas |
+| **Botón Configure** | Permanece activo solo para respuestas de Flows, Blitzico y LLM |
+| **Fallback responses** | Muestran la razón *"NO ENGINE ENABLED"* en el popup Configure Response |
+
+## Habilitar el Classifier
+
+<Steps>
+
+### Abre Bot Settings
+
+Haz clic en **Bot Settings** en el menú lateral.
+
+### Ve a la pestaña Classifier
+
+Haz clic en la pestaña **Classifier**.
+
+### Activa el toggle
+
+Activa **Enable Classifier**.
+
+</Steps>
+
+Habilitar el Classifier activa inmediatamente el entrenamiento de ML y un refresco de Elasticsearch. Todos los intents existentes se procesan y se activan.
+
+<Callout type="info">
+  Tras habilitarlo, dale al primer ciclo de entrenamiento unos minutos para completarse. Después podrás acceder a Triggers, validar respuestas desde la página de entrenamiento y usar Intent Explainer.
+</Callout>
+
+## Cuándo habilitar el Classifier
+
+**Mantenlo deshabilitado si:**
+- Estás construyendo un bot dirigido puramente por eventos (un asistente de formulario, un bot basado en flows).
+- Tienes menos de ~50 triggers por intent y no quieres clasificaciones falsas.
+- Usas el bot como un pass-through a Flows o Blitzico.
+
+**Habilítalo una vez que:**
+- Hayas añadido al menos 50 triggers por intent.
+- Hayas definido al menos 5–10 intents distintos.
+- Quieras que el bot maneje texto libre del usuario más allá de coincidencias exactas de triggers.

@@ -1,0 +1,72 @@
+---
+title: Classifier
+description: Wie AIDA Nutzernachrichten auf Intents abbildet und wann du ihn aktivieren oder deaktivieren solltest.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Classifier
+
+Der **Classifier** ist die Engine, die Nutzernachrichten mit Machine Learning (ML) und Elasticsearch (ES) auf Intents abbildet.
+
+## Standardzustand für neue Bots
+
+Bei allen neu erstellten Bots ist der **Classifier standardmäßig deaktiviert**. Das ist bewusst gewählt – du kannst ihn erst aktivieren, wenn du genug Trainingsdaten hast, um zuverlässig zu klassifizieren.
+
+Beim Erstellen eines neuen Bots zeigt AIDA diesen Hinweis:
+
+> *„Classification is an optional feature and is disabled by default. Enable the Classifier from Bot Settings."*
+
+Neue Bots kommen mit nur drei System-Default-Intents – `default_welcome`, `default_reset` und `default_fallback`.
+
+## Was passiert, wenn der Classifier deaktiviert ist
+
+Wenn der Classifier aus ist, werden die meisten klassifizierungsgetriebenen Funktionen ausgeblendet oder gesperrt:
+
+| Bereich | Verhalten bei deaktiviertem Classifier |
+|---|---|
+| **Nutzer-Queries** | Alle Queries laufen in den Fallback-Intent – auch jene mit passenden Triggern |
+| **Intent-Antworten** | Werden nur durch **Events** ausgelöst, nicht durch Nutzertext |
+| **Intents-Seite → Triggers** | Gesperrt mit Overlay: *„Cannot access triggers — Classifier is disabled"* |
+| **Intents-Suchfilter** | Die Option „Intents by Response" wird entfernt |
+| **Intent Explainer** | Im Testfenster ausgeblendet |
+| **Trainingsseite → Spalte Trainingsstatus** | Deaktiviert (Spalte und Filter ausgeblendet) |
+| **Trainingsseite → Schaltflächen Configure/Validate/Ignore** | Für die meisten Antworten deaktiviert |
+| **Schaltfläche Configure** | Bleibt nur aktiv für Flows, Blitzico und LLM-Antworten |
+| **Fallback-Antworten** | Zeigen den Grund *„NO ENGINE ENABLED"* im Configure-Response-Popup |
+
+## Den Classifier aktivieren
+
+<Steps>
+
+### Bot Settings öffnen
+
+Klicke im Seitenmenü auf **Bot Settings**.
+
+### Zum Classifier-Tab gehen
+
+Klicke auf den Tab **Classifier**.
+
+### Aktivieren
+
+Aktiviere **Enable Classifier**.
+
+</Steps>
+
+Die Aktivierung löst sofort ML-Training und einen Elasticsearch-Refresh aus. Alle bestehenden Intents werden verarbeitet und aktiviert.
+
+<Callout type="info">
+  Gib dem ersten Trainingszyklus nach der Aktivierung ein paar Minuten zum Abschluss. Danach kannst du auf Triggers zugreifen, Antworten von der Trainingsseite validieren und den Intent Explainer nutzen.
+</Callout>
+
+## Wann du den Classifier aktivieren solltest
+
+**Lass ihn aus, wenn:**
+- Du einen Bot baust, der rein ereignisgetrieben läuft (Formular-Assistent, flow-basierter Bot).
+- Du weniger als etwa 50 Trigger pro Intent hast und keine Falschklassifikationen willst.
+- Du den Bot als Durchleitung zu Flows oder Blitzico verwendest.
+
+**Aktiviere ihn, sobald:**
+- Du mindestens 50 Trigger pro Intent hinzugefügt hast.
+- Du mindestens 5–10 eindeutige Intents definiert hast.
+- Du möchtest, dass der Bot freien Nutzertext jenseits exakter Trigger-Matches verarbeitet.

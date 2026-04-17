@@ -1,0 +1,48 @@
+---
+title: Intentions et entités
+description: Apprenez à votre bot ce que veulent dire les utilisateurs et les termes spécifiques qu'ils utilisent.
+---
+
+import { Callout, Cards } from 'nextra/components'
+
+# Intentions et entités (Legacy)
+
+<Callout type="warning">
+  **Progressivement supprimé d'ici fin 2026.** Les intentions, déclencheurs et entités sont dépréciés. Les bots existants continuent de fonctionner, mais tous les nouveaux bots devraient utiliser le [modèle Agentic AI](/getting-started/first-bot). Voir [Configuration de l'agent](/bot-settings/agent-configuration) pour l'équivalent moderne.
+</Callout>
+
+Les intentions et les entités sont la manière historique dont AIDA comprenait ce que veulent vos utilisateurs.
+
+- **Une intention** capture l'objectif de l'utilisateur — réserver un vol, vérifier le solde d'un compte, être transféré à un agent.
+- **Une entité** capture les informations spécifiques dans le message de l'utilisateur — une ville, une date, un montant.
+
+Plus vous définissez d'intentions et d'entités, plus votre bot choisira la bonne réponse de manière fiable.
+
+<Cards>
+  <Cards.Card title="Intentions" href="/intents-entities/intents" arrow />
+  <Cards.Card title="Déclencheurs et paramètres" href="/intents-entities/triggers-parameters" arrow />
+  <Cards.Card title="Entités" href="/intents-entities/entities" arrow />
+  <Cards.Card title="DocBrain" href="/intents-entities/docbrain" arrow />
+  <Cards.Card title="Entraîner les conversations" href="/intents-entities/train-conversations" arrow />
+  <Cards.Card title="Intent Explainer" href="/intents-entities/intent-explainer" arrow />
+</Cards>
+
+## Comment ils fonctionnent ensemble
+
+Lorsqu'un utilisateur envoie un message, AIDA :
+
+1. **Classe** le message dans l'intention la plus proche à l'aide du classifier ML et de la recherche par correspondance exacte.
+2. **Extrait** les entités référencées dans le message.
+3. **Répond** avec la réponse configurée pour cette intention, en substituant les valeurs d'entité lorsque nécessaire.
+
+Si aucune intention ne correspond, le message bascule vers l'intention Default Fallback et est consigné dans les [requêtes non traitées](/intents-entities/train-conversations#unhandled-requests).
+
+## Par où commencer
+
+Si vous construisez un nouveau bot, nous recommandons cet ordre :
+
+1. Listez les 10–20 principaux objectifs utilisateur que votre bot doit gérer → chacun devient une **intention**.
+2. Pour chaque intention, rédigez au moins 50 phrases d'exemple que les utilisateurs pourraient utiliser → ce sont les **déclencheurs**.
+3. Identifiez les éléments variables dans ces phrases (noms, dates, montants) → définissez-les comme **entités**.
+4. Ajoutez des **paramètres** pour collecter les informations dont le bot a besoin avant de répondre.
+5. Mettez en ligne, puis affinez à l'aide de la [page d'entraînement](/intents-entities/train-conversations).

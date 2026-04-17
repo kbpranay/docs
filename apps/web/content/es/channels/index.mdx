@@ -1,0 +1,51 @@
+---
+title: Resumen de canales
+description: Publica tu bot de AIDA en la web, canales de voz o WhatsApp — y gestiona el acceso API para llamadores externos.
+---
+
+import { Callout, Cards } from 'nextra/components'
+
+# Canales
+
+Los canales son donde tu bot realmente habla con los usuarios. AIDA incluye tres canales conversacionales más una superficie programática API.
+
+<Cards>
+  <Cards.Card title="Web y app" href="/channels/salesforce" arrow />
+  <Cards.Card title="Voz (AudioCodes)" href="/channels/zendesk" arrow />
+  <Cards.Card title="WhatsApp" href="/channels/genesys" arrow />
+  <Cards.Card title="API y servicios" href="/channels/api-services" arrow />
+</Cards>
+
+<Callout type="info">
+  **Canales vs. Integraciones** — piensa en los canales como la *superficie* donde los usuarios se encuentran con tu bot (un widget web, una llamada telefónica, WhatsApp). Para conectar tu bot con sistemas externos como CRMs, bases de datos o APIs personalizadas, consulta **[Integraciones (Flows)](/integrations)**.
+</Callout>
+
+## Gestionar un canal
+
+Cada canal tiene un toggle de habilitar/deshabilitar en la página Go-Live. Solo **App Admin**, **Team Owner**, **Manager** y **AIDA Admin** pueden cambiar el estado.
+
+| Canal | Comportamiento cuando está deshabilitado |
+|---|---|
+| **Web/App (Chatbot)** | El widget de chat deja de cargar para las nuevas sesiones. Las conversaciones en curso continúan hasta que se refresca la página. |
+| **WhatsApp** | Las sesiones en curso continúan y los usuarios pueden seguir enviando solicitudes de agente hasta que la sesión se cierre automáticamente. Los nuevos mensajes reciben un mensaje offline. |
+| **Voice** | Las llamadas en curso proceden con normalidad. Las nuevas llamadas entrantes se desconectan y reciben un mensaje offline. |
+
+<Callout>
+  El mensaje offline para Voice y WhatsApp es **editable**. Haz clic fuera del campo tras editar para guardar automáticamente.
+
+  Las interacciones que ocurren mientras un canal está deshabilitado no se incluyen en los datos de entrenamiento — solo se contabilizan en **Total Conversations** en Live Data y Analytics.
+</Callout>
+
+## Preparación del bot
+
+El estado de tu bot en la Home Page te dice qué queda antes de que pueda salir en vivo:
+
+| Estado | Status mostrado |
+|---|---|
+| Creado desde cero / intents prediseñados | In Progress |
+| Indexación de DocBrain fallida | Indexing Failed |
+| Todos los criterios obligatorios cumplidos | Your bot is now ready to go live |
+
+## Acceder a Go-Live
+
+Haz clic en **Go-Live** en el menú lateral, o pulsa el botón **Go-Live Recommended** en la Home Page.

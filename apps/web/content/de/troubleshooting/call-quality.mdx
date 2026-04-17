@@ -1,0 +1,89 @@
+---
+title: Bot-Qualität & Training
+description: Wie du die Antwortqualität deines Bots verbesserst, unbearbeitete Anfragen handhabst und Classifier-Probleme behebst.
+---
+
+import { Callout } from 'nextra/components'
+
+# Bot-Qualität & Training
+
+## Deinen Bot trainieren
+
+Die Seite **Train Conversation** zeigt alle Konversationen, die zwischen Nutzern und deinem Bot stattgefunden haben. Nutze sie, um Antworten des Bots zu validieren, zu konfigurieren oder zu verbessern.
+
+Navigiere dorthin, indem du in der Seitenmenüleiste auf **[Train conversation]** klickst.
+
+### Konversationsfilter
+
+| Filter | Was er zeigt |
+|---|---|
+| **Reale Konversationen** *(Standard)* | Nur Konversationen von der Go-Live-Seite |
+| **Alle Chats** | Konversationen von Go-Live + internem Chat-Fenster |
+| **Unbearbeitete Anfragen** | Queries, die der Bot nicht bearbeiten konnte (zum Default Fallback geleitet) |
+
+## Unbearbeitete Anfragen
+
+Wenn ein Nutzer etwas fragt, das der Bot nicht erkennt, wird die Query an den Intent **Default Fallback** geleitet und unter **Unhandled requests** protokolliert.
+
+**So behebst du unbearbeitete Anfragen:**
+
+1. Gehe zu **Train conversation → Unhandled requests**.
+2. Wähle für jede unbearbeitete Query eine Aktion:
+   - **Validate** – bestätige, dass der vom Bot zugewiesene Intent korrekt war.
+   - **Configure** – weise die Query dem richtigen Intent aus dem Dropdown zu und klicke auf **Save**.
+   - **Ignore** – markiere die Query als nicht aktionsbedürftig.
+
+<Callout>
+  Validate und Configure zählen zu **Trainierten Queries** und **Intent-Genauigkeit**. Das Ignorieren einer Query beeinflusst diese Metriken nicht.
+
+  **Intent accuracy** = Validated ÷ (Validated + Configured) × 100
+</Callout>
+
+## Classifier-Probleme
+
+Der **Classifier** steuert, wie AIDA Nutzer-Queries auf Intents abbildet – mit Machine Learning (ML) und ElasticSearch (ES).
+
+### Wenn der Classifier deaktiviert ist
+
+Der Classifier ist bei neuen Bots **standardmäßig deaktiviert**. Wenn deaktiviert:
+
+- Alle Nutzer-Queries laufen in den Intent **Default Fallback** (auch Queries mit passenden Triggern)
+- Der Bereich **Triggers** auf der Intents-Seite ist gesperrt
+- Die Spalte **Training Status** und die Filter auf der Trainingsseite sind ausgeblendet
+- Die Schaltflächen **Configure**, **Validate** und **Ignore** sind für die meisten Antworten deaktiviert
+- Die Option **Intent explainer** im Testfenster ist ausgeblendet
+
+<Callout type="warning">
+  Wenn der Classifier deaktiviert ist, funktionieren Intent-Antworten nur mit **Events** – nicht mit Nutzer-Text, der auf Trigger matcht.
+</Callout>
+
+### Den Classifier aktivieren
+
+1. Gehe zu **Bot Settings** (aus dem Seitenmenü).
+2. Klicke auf den Tab **Classifier**.
+3. Schalte **Enable Classifier** auf ON.
+
+Nach der Aktivierung sind die ML-basierte Klassifikation und der ElasticSearch-Refresh für den Bot aktiv.
+
+## Deep Links zum Teilen von Problemen
+
+Deep Links erlauben dir, einen direkten Link zu einem bestimmten Intent, einer Entität oder einer Trainings-Sitzung mit Teamkollegen zu teilen.
+
+| Ressource | Wie kopieren |
+|---|---|
+| **Intent** | Klicke auf das Kopiersymbol neben dem Intent-Namen auf der Intents-Seite |
+| **Entität** | Klicke auf das Kopiersymbol neben dem Entitätsnamen auf der Entitäten-Seite |
+| **Trainings-Sitzung** | Klicke auf das Kopiersymbol an der Sitzung auf der Trainingsseite |
+
+<Callout>
+  Deep Links sind nur für Nutzer **im selben Team** mit der passenden Rolle zugänglich. Das Öffnen eines Deep Links für eine gelöschte Ressource oder eine Ressource eines anderen Teams leitet zur Bot-Listen-Seite um.
+</Callout>
+
+## Referenz: Bot-Einstellungen
+
+| Einstellung | Ort | Was sie tut |
+|---|---|---|
+| Enable Classifier | Bot Settings → Classifier | Aktiviert ML + ES Intent-Matching |
+| Multilingual | Bot Settings → Bot info | Übersetzt Nutzer-Queries und/oder Antworten |
+| DocBrain configs | Bot Settings → DocBrain configs | Konfiguriert Einstellungen für dokumentbasiertes QA |
+| Bot Name | Bot Settings → Bot info | Editierbarer Bot-Name (Org-Name und Sprache sind fest) |

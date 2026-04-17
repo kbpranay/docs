@@ -1,0 +1,109 @@
+---
+title: Paramètres d'équipe
+description: Configurez le nom de l'équipe, l'authentification à deux facteurs et les politiques de verrouillage des comptes.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Paramètres d'équipe
+
+Team Settings contient tout ce qui s'applique à l'ensemble de votre équipe — le nom d'affichage de l'équipe, l'authentification à deux facteurs (2FA) et la politique de verrouillage en cas de connexions échouées.
+
+Ouvrez-le depuis **Team Settings** dans la navigation.
+
+## Mettre à jour le nom de l'équipe
+
+<Steps>
+
+### Ouvrez Team Settings → Details
+
+Cliquez sur l'onglet **Team settings**, puis ouvrez la section **Details**.
+
+### Modifiez le nom de l'équipe
+
+Cliquez sur le champ du nom de l'équipe et modifiez la valeur.
+
+### Enregistrer
+
+Cliquez sur **[Save]**. *(Utilisez **Reset** pour annuler les modifications non enregistrées.)*
+
+</Steps>
+
+<Callout>
+  Le **Organization name** et le **Team ID** sont définis à la création de l'équipe et ne peuvent pas être modifiés par la suite. Seul le nom de l'équipe est modifiable.
+</Callout>
+
+## Authentification à deux facteurs (2FA)
+
+La 2FA ajoute une deuxième étape de vérification à la connexion — en plus du mot de passe, les utilisateurs doivent également saisir un code généré par une application d'authentification (Google Authenticator, Authy, 1Password, etc.).
+
+### Activer la 2FA pour l'équipe
+
+<Steps>
+
+### Ouvrez Team Settings → Security
+
+Cliquez sur **Team settings**, puis sur **Security**.
+
+### Activez la 2FA
+
+Activez le commutateur **2FA**.
+
+### Enregistrer
+
+Cliquez sur **[Save]**.
+
+</Steps>
+
+Une fois activée, chaque membre d'équipe voit un bouton **[Setup]** au lieu de **[Sign In]** jusqu'à ce qu'il termine la configuration de la 2FA.
+
+### Configuration de la 2FA (flux utilisateur final)
+
+<Steps>
+
+### Saisissez e-mail et mot de passe
+
+Entrez vos identifiants comme d'habitude.
+
+### Cliquez sur Setup
+
+Cliquez sur **[Setup]** lorsque cela est demandé.
+
+### Saisissez le code reçu par e-mail
+
+Un code d'authentification est envoyé par e-mail à l'utilisateur. Saisissez-le et cliquez sur **[Validate]**.
+
+### Scannez le QR code
+
+Scannez le QR code affiché avec une application d'authentification.
+
+### Allez sur Sign In
+
+Cliquez sur **[Go to Sign in]**. Les connexions futures nécessiteront un code temporel provenant de l'application d'authentification.
+
+</Steps>
+
+### Réinitialiser la 2FA d'un autre utilisateur
+
+Si un utilisateur perd l'accès à son application d'authentification (nouveau téléphone, appareil perdu), un administrateur peut réinitialiser sa 2FA pour qu'il puisse la reconfigurer.
+
+| Votre rôle | Vous pouvez réinitialiser la 2FA pour |
+|---|---|
+| **Team Owner** | Tous les utilisateurs — y compris les autres Team Owners, Managers et vous-même |
+| **Manager** | Les utilisateurs de niveau inférieur à Manager : Admin, User, Dashboard, API & Services, Migration, LLM Labs |
+
+<Callout>
+  Si vous désactivez la 2FA à l'échelle de l'équipe, les utilisateurs ayant déjà configuré la 2FA doivent tout de même voir leur 2FA **réinitialisée individuellement** par un Team Owner ou un Manager avant de pouvoir se connecter sans elle.
+</Callout>
+
+## Politique de verrouillage des comptes
+
+Pour se protéger contre les tentatives de connexion par force brute, AIDA verrouille les comptes après un trop grand nombre de tentatives échouées. Les valeurs par défaut s'appliquent à toutes les équipes :
+
+| Paramètre | Valeur par défaut |
+|---|---|
+| **Tentatives invalides avant verrouillage** | 5 |
+| **Durée du verrouillage** | 30 minutes |
+| **Temps minimum entre les tentatives** | 60 secondes |
+
+Le Team Owner et le Manager peuvent ajuster le nombre maximum de tentatives et la durée du verrouillage depuis **Team Settings → Security**.

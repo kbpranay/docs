@@ -1,0 +1,76 @@
+---
+title: Mehrsprachig
+description: Ermögliche deinem Bot, in der bevorzugten Sprache des Nutzers zu verstehen und zu antworten.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Mehrsprachig
+
+AIDAs Mehrsprachigkeitsfunktion übersetzt Nutzernachrichten für die Klassifikation in die Basissprache des Bots und übersetzt Bot-Antworten zurück in die Sprache des Nutzers. Das erlaubt einem einzelnen Bot, Nutzer in vielen Sprachen zu bedienen, ohne Intents zu duplizieren.
+
+Mehrsprachigkeit ist verfügbar für die Rollen **Admin**, **Team Owner** und **Manager**.
+
+## Zwei Schalter
+
+| Schalter | Effekt bei AN |
+|---|---|
+| **User Query** | Die Nachricht des Nutzers wird vor dem Senden an den Classifier in die Basissprache des Bots übersetzt |
+| **Response** | Die Antwort des Bots wird vor der Anzeige zurück in die Sprache des Nutzers übersetzt |
+
+Du kannst einen, beide oder keinen aktivieren – je nachdem, ob der Bot Eingaben in anderen Sprachen akzeptieren, in anderen Sprachen antworten oder beides soll.
+
+## Unterstützte Antworttypen
+
+Die Übersetzung gilt für alle diese Antworttypen:
+
+- Intent-Antwort
+- Antwort mit Vorschlägen
+- Antwort mit Parametern
+- Antwort mit Gallery-Card
+- Antwort mit Picture-Card
+- DocBrain-Antwort
+- LLM-Antwort
+- Omega-Cards
+- Blitzico-Antwort
+- Blitzico-Konversations-Knoten
+- AIDA Flows
+
+## LLM-Einstellungen
+
+Mehrsprachigkeit nutzt ein LLM zur Übersetzung. Du kannst konfigurieren:
+
+| Einstellung | Bereich | Standard |
+|---|---|---|
+| **Model** | Aus dem Dropdown wählen | — |
+| **Prompt** | Editierbares Template | — |
+| **Timeout** | 5 – 180 Sekunden | 30 |
+| **Temperature** | 0 – 1 | 0.2 |
+
+Niedrigere Temperature-Werte erzeugen vorhersehbarere, wörtliche Übersetzungen; höhere Werte erlauben kreativere Formulierungen auf die Gefahr von Bedeutungsverschiebung. **0.2 ist ein sicherer Standard** für den Helpdesk-Einsatz.
+
+## Mehrsprachigkeit aktivieren
+
+<Steps>
+
+### Zu Bot Settings gehen
+
+Klicke im Seitenmenü auf **Bot Settings**.
+
+### Multilingual öffnen
+
+Klicke auf den Bereich Multilingual.
+
+### Den/die benötigten Schalter aktivieren
+
+Aktiviere **User Query** und/oder **Response**.
+
+### Mit OTP bestätigen
+
+Ein OTP wird an die E-Mail des Team Owners gesendet. Gib ihn zur Bestätigung ein.
+
+</Steps>
+
+<Callout type="warning">
+  OTP-Bestätigung ist jedes Mal erforderlich, wenn du Mehrsprachigkeitsfunktionen aktivierst. Stelle sicher, dass dein Team Owner vorher Zugriff auf seine E-Mails hat.
+</Callout>

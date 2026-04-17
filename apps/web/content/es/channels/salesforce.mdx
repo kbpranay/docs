@@ -1,0 +1,92 @@
+---
+title: Canal web y app
+description: Cómo desplegar tu chatbot de AIDA en un sitio web o aplicación web usando el script de integración Go-Live.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Canal web y app
+
+Despliega tu bot de AIDA en cualquier sitio web o aplicación web usando el script de integración Go-Live.
+
+## Obtener el script de integración
+
+<Steps>
+
+### Abre Go-Live
+
+Haz clic en **Go Live** en la barra lateral del menú para abrir la página Go-Live.
+
+### Encuentra la sección Web/Apps
+
+La sección **Web/Apps** muestra la URL de tu bot.
+
+### Abre el bot
+
+Haz clic en **[Open in tab]** para abrir la URL del bot directamente en una nueva pestaña del navegador.
+
+### Obtén el script
+
+Haz clic en **[Show script]** para ver el snippet de integración JavaScript. Cópialo y pégalo en el HTML de tu sitio web para integrar el chatbot.
+
+</Steps>
+
+## Multi-Build Sources
+
+Multi-Build Sources te permite crear varios despliegues del mismo bot — por ejemplo, con diferentes idiomas para diferentes regiones.
+
+**Quién puede usarlo:** los roles Team Owner, Manager y Admin.
+
+### Añadir una nueva fuente
+
+<Steps>
+
+### Haz clic en Add Source
+
+En la página Go-Live, haz clic en el botón **Add Source** debajo de la fuente por defecto (Web/Apps).
+
+### Introduce los detalles de la fuente
+
+En el popup **Add New Source**:
+- Introduce un **Source Name**
+- Selecciona un **Language** del desplegable (por defecto el idioma base del bot)
+
+### Publica
+
+Haz clic en **Publish** para iniciar la build.
+
+### Espera a que la build se complete
+
+Haz clic en **Refresh** para actualizar el estado de la build. El estado progresa de **In Progress** → **Build Ready**.
+
+</Steps>
+
+Una vez añadidas, las fuentes aparecen en el orden de creación. Cada tarjeta de fuente muestra el **Source Name**, **Language Key** y un **Status Icon**.
+
+### Gestionar fuentes
+
+Después de construirse una fuente:
+
+| Acción | Cómo |
+|---|---|
+| Abrir el bot | Haz clic en **[Open Bot]** en la tarjeta de la fuente |
+| Ver el script de integración | Haz clic en **"Show script"** |
+| Eliminar una fuente | Haz clic en **"Delete"** *(deshabilitado mientras la build esté In Progress)* |
+
+### Source Name en la URL del bot
+
+Al abrir Go-Live para una fuente específica, el nombre de la fuente se añade a la URL del bot como parámetro de consulta:
+
+```
+https://your-bot-url.com/?source=SourceName
+```
+
+Esto te permite rastrear de qué fuente provino una conversación en las páginas de Training, Live Data y Analytics.
+
+### Publicar varias builds a la vez
+
+Haz clic en **Publish Builds** (junto al botón Refresh) para abrir el popup **Publish Build**. Selecciona las fuentes que quieras reconstruir y haz clic en **Publish**.
+
+<Callout type="info">
+  Las fuentes añadidas mediante Multi-Build aparecen como opciones de filtro en las páginas Training, Live Data y Analytics.
+</Callout>

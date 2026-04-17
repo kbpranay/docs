@@ -1,0 +1,48 @@
+---
+title: Cuenta y administración
+description: Todo lo relacionado con tu cuenta, miembros del equipo, permisos y migraciones.
+---
+
+import { Cards } from 'nextra/components'
+
+# Cuenta y administración
+
+Esta sección cubre los ajustes de tu cuenta personal y la administración global del equipo.
+
+<Cards>
+  <Cards.Card title="Perfil y contraseña" href="/account-admin/profile" arrow />
+  <Cards.Card title="Usuarios y permisos" href="/account-admin/users-permissions" arrow />
+  <Cards.Card title="Ajustes del equipo" href="/account-admin/team-settings" arrow />
+  <Cards.Card title="Migración" href="/account-admin/migration" arrow />
+</Cards>
+
+## El desplegable de perfil de un vistazo
+
+El menú de perfil en la esquina superior derecha muestra:
+
+- Tu nombre visible
+- Tu email
+- El equipo con el que estás conectado actualmente *(con un botón para copiar el ID del equipo)*
+- **Switch Team** — cambia de equipo sin cerrar sesión
+- **My Profile** — consulta tus roles, edita el nombre
+- **Account** — cambia la contraseña, cambia la zona horaria
+- **Logout**
+
+## Quién puede hacer qué
+
+| Acción | Roles permitidos |
+|---|---|
+| Invitar usuarios | Team Owner, Manager, AIDA Admin |
+| Revocar roles de usuario | Team Owner, Manager, AIDA Admin |
+| Desactivar un usuario | Team Owner, Manager |
+| Eliminar un usuario | Solo Team Owner |
+| Restablecer el 2FA de otro usuario | Team Owner (todos); Manager (por debajo del nivel Manager) |
+| Transferir la propiedad del equipo | Solo Team Owner |
+| Actualizar el nombre del equipo | Team Owner, Manager |
+| Configurar la política de bloqueo | Team Owner, Manager |
+| Habilitar API services | Team Owner, Manager |
+| Migrar bots y artefactos | Team Owner, Manager, rol Migrations |
+
+## Cambiar de equipo
+
+Si perteneces a varios equipos, haz clic en tu perfil en la esquina superior derecha y elige **Switch Team** para saltar entre ellos — sin necesidad de cerrar sesión. También puedes usar la página de selección de equipo que aparece justo después de iniciar sesión.

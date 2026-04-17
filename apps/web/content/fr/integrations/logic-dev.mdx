@@ -1,0 +1,127 @@
+---
+title: Nœuds Start, Logic et Dev
+description: Nœuds Start, logique de branchement, transformations de données, API REST, JavaScript personnalisé, délais, débogage et liaison de flux.
+---
+
+import { Callout } from 'nextra/components'
+
+# Nœuds Start, Logic et Dev
+
+Les nœuds Start marquent le début d'un flux. Les nœuds Logic créent des branches. Les nœuds Dev le relient à des systèmes externes. Les nœuds Link assemblent des flux entre eux.
+
+## Start : nœud Start
+
+Le nœud **Start** vous permet de déclencher un flux manuellement en injectant des données — typiquement utilisé pour les tests ou lorsque le flux est démarré depuis AIDA plutôt que par un appelant externe.
+
+**Paramètres :**
+
+- **Input type** — cliquez sur le menu déroulant du timestamp pour basculer entre `string`, `number` ou tout autre type pris en charge
+- **Repeat function** — réémet le même message à intervalle défini (utile pour des flux de type health-check ou des déclencheurs planifiés)
+
+## Start : Trigger via API
+
+**Trigger via API** permet à des systèmes externes de démarrer un flux en appelant un endpoint. Utilisez-le pour des webhooks, de l'automatisation inter-systèmes ou pour intégrer les flux AIDA à une plateforme d'orchestration existante.
+
+**Paramètres :**
+
+| Champ | Options |
+|---|---|
+| **Type** | REST ou SOAP |
+| **Method** | GET, POST, PUT ou PATCH |
+| **URL** | L'endpoint que votre appelant externe atteindra |
+
+<Callout type="info">
+  Associez **Trigger via API** au début de votre flux avec un nœud **API Response** (voir ci-dessous) à la fin — l'API Response renvoie la sortie du flux à l'appelant de manière synchrone.
+</Callout>
+
+## Logic : If/Else
+
+Évalue des règles sur les données entrantes et route vers la sortie correspondante.
+
+**Ce que vous pouvez apparier :**
+- Une propriété de message
+- Contexte de flux / contexte global
+- Variable d'environnement
+- Une expression JSONata
+
+Les règles sont évaluées de haut en bas. Vous pouvez optionnellement **arrêter au premier match** (sinon toutes les branches qui matchent sont déclenchées).
+
+## Logic : Change
+
+Transforme les données sur place avant de transmettre le message.
+
+**Opérations :**
+
+| Opération | Effet |
+|---|---|
+| **Set** | Affecter ou mettre à jour une valeur |
+| **Change** | Transformer une valeur existante |
+| **Move** | Déplacer une valeur d'une propriété à une autre |
+| **Delete** | Supprimer une propriété |
+
+## Logic : Template
+
+Génère une chaîne dynamique à partir de `msg.payload` en utilisant **Mustache** par défaut (vous pouvez désactiver Mustache pour obtenir du brut).
+
+Prend l'objet `msg` entrant plus une chaîne de template et produit un `msg` avec la propriété peuplée.
+
+**Exemple :** `Hello {{name}}, your order {{orderId}} is confirmed.`
+
+---
+
+## Dev : REST API
+
+Appelez n'importe quel endpoint HTTP depuis un flux.
+
+**Méthodes :** GET, POST, PUT, DELETE
+
+**Options d'authentification :**
+
+| Auth | Champs |
+|---|---|
+| **Basic** | Username + Password |
+| **Bearer** | Token |
+| **OAuth2** | Type de grant (Client credentials / Password / autre), Access token URL, Client ID, Client Secret, Scope |
+
+**Query parameters** — paires clé/valeur ajoutées à l'URL pour filtrer, trier ou paginer.
+
+## Dev : Function
+
+Exécute du JavaScript personnalisé. Le message entrant est passé en tant qu'objet `msg`, avec le body sur `msg.payload`. Utilisez-le pour des transformations trop complexes pour Change ou Template, ou pour appeler des utilitaires Node.js.
+
+## Dev : API Response
+
+Gère la réponse revenant d'un appel API. Utilisé principalement dans les flux déclenchés par API (voir l'option Trigger via API du nœud Start).
+
+## Dev : Delay
+
+Met le flux en pause ou limite le débit de messages.
+
+**Propriétés :**
+- **Delay (ms)** — combien de temps attendre ; peut être écrasé par une propriété sur le `msg` entrant
+- **Reset** — efface tous les messages retenus
+- **Flush** — envoie tous les messages retenus immédiatement
+
+## Dev : Debug
+
+Consigne `msg.payload` (les données principales) et l'objet `msg` complet (métadonnées) pour que vous puissiez inspecter l'état pendant le développement.
+
+<Callout>
+  Laissez un nœud Debug dans les flux complexes pendant que vous itérez — vous pouvez désactiver sa sortie d'un seul clic sans le supprimer, et la réactiver au besoin.
+</Callout>
+
+---
+
+## Link : Flow In / Flow Out
+
+**Flow In** est un point d'entrée qui permet aux données, signaux ou contrôle de passer entre les nœuds. C'est ainsi que vous construisez des flux modulaires et composables — un flux principal peut basculer vers un sous-flux à un Flow Out et le reprendre au Flow In correspondant.
+
+**Flow Out** est le point de sortie associé à un Flow In. Utilisez des paires Flow In/Out pour :
+
+- Réutiliser une logique commune entre plusieurs flux
+- Décomposer un flux complexe en morceaux digestibles
+- Tester des sections individuelles en isolation
+
+## Dev : Comment
+
+Un nœud d'annotation non exécutable. Faites-le glisser depuis la palette Dev, double-cliquez pour éditer. Utilisez les commentaires libéralement — votre vous du futur vous remerciera lors du débogage des flux six mois plus tard.

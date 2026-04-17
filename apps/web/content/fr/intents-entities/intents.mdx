@@ -1,0 +1,127 @@
+---
+title: Intentions
+description: Comment créer, modifier et organiser les intentions dans AIDA.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Intentions (Legacy)
+
+<Callout type="warning">
+  **Progressivement retirées d'ici fin 2026.** Les intentions sont obsolètes — tous les nouveaux bots doivent utiliser [les agents avec tool calling](/getting-started/first-bot) à la place. Cette page est conservée pour les équipes qui maintiennent des bots existants basés sur les intentions.
+</Callout>
+
+Une **intention** est l'objectif derrière ce que dit un utilisateur. « Je veux ouvrir un nouveau compte » et « Comment m'inscrire ? » sont deux formulations différentes de la même intention.
+
+Lorsque AIDA crée un bot, quelques intentions système sont ajoutées automatiquement (par exemple `default_welcome`, `default_fallback` et `default_consecutive_fallback`). Elles peuvent être modifiées mais **ne peuvent pas être supprimées**.
+
+## Créer une intention
+
+<Steps>
+
+### Ouvrir la page Intentions
+
+Cliquez sur **Intents** dans le menu latéral. Vous verrez les intentions existantes dans la liste.
+
+### Ajouter une nouvelle intention
+
+Cliquez sur **[Add]**, saisissez un nom d'intention descriptif et cliquez sur **[Save]**.
+
+### Ajouter des déclencheurs
+
+Ouvrez l'intention et ajoutez des exemples de phrases utilisateur dans la section Triggers. Voir [Déclencheurs et paramètres](/intents-entities/triggers-parameters).
+
+### Configurer une réponse
+
+Passez à l'onglet Response et ajoutez la réponse que votre bot doit fournir. Voir [Réponses](#responses).
+
+</Steps>
+
+<Callout>
+  Nommez les intentions d'après l'objectif de l'utilisateur, pas d'après l'action du bot. `AccountOpening` est plus clair que `ShowSignupForm`.
+</Callout>
+
+## Modification et suppression
+
+Ouvrez l'intention, cliquez sur le champ du nom pour le modifier, puis **Save**. Pour supprimer une intention, cliquez sur **[Delete]** à côté de Save.
+
+Les intentions par défaut et événements par défaut définis par le système peuvent être modifiés mais pas supprimés.
+
+## Exemple : un bot de banque de détail
+
+Un bot pour une banque de détail pourrait inclure des intentions comme :
+
+| Intention | Objectif |
+|---|---|
+| `AccountOpening` | Guider l'utilisateur dans l'ouverture d'un nouveau compte |
+| `CreditCardQueries` | Répondre aux questions sur les cartes de crédit |
+| `LoanInformation` | Fournir des informations sur les produits de prêt |
+| `AccountClosure` | Gérer les demandes de fermeture de compte |
+
+## Réponses
+
+Chaque intention a une réponse configurée. Une réponse peut inclure :
+
+- **Réponse textuelle** — texte brut, avec `<newMessage>` pour diviser un message en plusieurs bulles
+- **Image** — JPEG, PNG ou SVG jusqu'à 2 Mo (rapport d'aspect recommandé 3:2)
+- **Carte galerie** — une carte avec un titre, un sous-titre, une description et jusqu'à 3 boutons
+- **Suggestions** — puces cliquables qui correspondent aux déclencheurs d'une autre intention
+- **Action** — un comportement du bot comme `speakToAgent`, une recherche DocBrain, ou un flow Blitzico/AIDA
+
+Les réponses peuvent être configurées par canal :
+
+| Canal | Prend en charge |
+|---|---|
+| Generic | Action, réponse, image, carte galerie, suggestions |
+| WhatsApp | Action, réponse, image, suggestions *(pas de carte galerie)* |
+| Voice | Action, réponse uniquement |
+| URL | Clé + chemin URL + options de réponse complètes |
+| Custom | Clé + options de réponse complètes |
+
+Seuls les canaux **Custom** et **URL** prennent en charge la répétition ; les autres sont à sélection unique. Generic s'adapte automatiquement en fonction de l'endroit où le bot est déployé.
+
+## Actions
+
+Les actions permettent à une intention de déclencher quelque chose au-delà d'une réponse textuelle :
+
+- **DocBrain** — récupérer une réponse à partir de documents indexés
+- **Blitzico** — exécuter un flow Blitzico (nécessite un ID de route valide)
+- **Flows** — exécuter un flow AIDA (même modèle d'ID de route)
+- **Autres** — actions standard du bot comme `speakToAgent` ou `lead_contact_details`
+
+Pour Blitzico et Flows, vous pouvez copier un ID de route depuis un autre bot et cliquer sur **[Verify]** pour le valider — un ID valide transforme le bouton en **« Redirect to Blitz »** ou **« Redirect to Flow »**.
+
+<Callout type="warning">
+  Les ID de route doivent provenir de la **même instance** que votre destination. Coller un ID provenant d'une instance différente affiche « Not a valid blitzico action ».
+</Callout>
+
+## Contexte : relier les intentions entre elles
+
+Utilisez **Context Out** et **Context In** pour connecter des intentions en un flux.
+
+- Définissez un nom **Context Out** sur l'intention parente.
+- Définissez un **Context In** correspondant sur l'intention enfant (même texte, sans espaces, sensible à la casse).
+- L'intention enfant ne se déclenchera que si la parente a été déclenchée dans la même session.
+
+Ceci est utile pour les flux multi-étapes où l'ordre importe.
+
+## Événements
+
+Les **événements** vous permettent de déclencher une intention sans que l'utilisateur ne tape quoi que ce soit — par exemple, afficher un message de bienvenue à l'ouverture de la fenêtre de chat.
+
+Ajoutez un événement en saisissant son nom dans le champ **Event** en haut de la page de l'intention, en appuyant sur Entrée et en enregistrant. Sur les intentions normales, les événements nécessitent une logique de bot-connector pour se déclencher.
+
+Un événement spécial, `default_consecutive_fallback`, se déclenche après un nombre configurable de réponses de fallback consécutives. La valeur par défaut est de **3 fallbacks consécutifs** pour les bots génériques ; les bots personnalisés peuvent modifier cela depuis Botforge.
+
+## Intentions préconçues
+
+Les intentions préconçues sont des intentions prêtes à l'emploi avec des déclencheurs et des entités que vous pouvez appliquer à n'importe quel bot, nouveau ou existant. Voir [Intentions préconçues](/intents-entities/intents#pre-built-intents-library).
+
+### Ajouter des intentions préconçues à un bot existant
+
+1. Allez sur la page **Intents**.
+2. Cliquez sur la liste déroulante à côté de **[Add]** → **[Add pre-built intents]**.
+3. Cliquez sur **[Add]** à côté de chaque intention préconçue que vous souhaitez.
+4. Cliquez sur **[Proceed]**.
+5. Saisissez les valeurs de référence requises → **[Proceed]**.
+6. Cliquez sur **Go to intents page** pour confirmer.

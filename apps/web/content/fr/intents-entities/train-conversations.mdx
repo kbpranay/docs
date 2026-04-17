@@ -1,0 +1,95 @@
+---
+title: Entraîner les conversations
+description: Examinez ce que les utilisateurs ont demandé à votre bot et améliorez la précision des intentions au fil du temps.
+---
+
+import { Callout } from 'nextra/components'
+
+# Entraîner les conversations (Legacy)
+
+<Callout type="warning">
+  **Progressivement supprimé d'ici fin 2026.** Train Conversations concerne les bots legacy basés sur les intentions. Les agents s'améliorent par itération du prompt et affinement des outils plutôt que par validation de déclencheurs — voir [Configuration de l'agent → Prompts](/bot-settings/agent-configuration#prompts).
+</Callout>
+
+La page d'entraînement est l'endroit où vous améliorez votre bot après sa mise en ligne. Elle affiche chaque conversation qui a eu lieu — ce que l'utilisateur a dit, comment le bot l'a classé et quelle réponse a été renvoyée. Vous pouvez valider les classifications correctes, corriger les mauvaises ou ignorer le bruit.
+
+Accédez-y en cliquant sur **Train conversation** dans le menu latéral.
+
+## Filtrer les conversations
+
+La liste des sessions dispose de trois filtres principaux :
+
+| Filtre | Affiche |
+|---|---|
+| **Real conversations** *(par défaut)* | Conversations uniquement depuis l'URL Go-Live en direct |
+| **All chats** | Conversations Go-Live + conversations de test internes à la fenêtre de chat |
+| **Unhandled requests** | Requêtes qui ont atteint l'intention `default_fallback` |
+
+Des filtres supplémentaires vous permettent d'affiner par :
+
+- **User Source** — webpage, app, LLM lab, etc.
+- **User Channel** — chatbot, voice, WhatsApp, agent assist
+- **Session ID** — accéder directement à une session spécifique
+- **Number of chats** — filtrer par longueur de conversation
+- **Ratings** — Excellent (5), Good (4), Average (3), Bad (2), Poor (1)
+- **Average conversation rating** — somme des notes ÷ nombre de réponses de feedback
+- **Date & time** — Today, Yesterday ou Last 7 days *(plage maximale de 7 jours)*
+- **Training status** — Trained, Incomplete ou Not trained
+- **Feedback rating & comment**
+
+## Requêtes non traitées
+
+Lorsque AIDA ne peut pas associer une requête utilisateur à une intention, elle bascule vers `default_fallback` et consigne le message ici. Examiner les requêtes non traitées est le moyen le plus rapide de repérer les lacunes dans la couverture de vos intentions.
+
+**Pour corriger les requêtes non traitées :**
+
+1. Filtrez sur **Unhandled requests**.
+2. Pour chaque requête, choisissez une action :
+   - **Validate** — l'intention assignée par le bot était correcte (pour les cas où vous voulez confirmer que même un fallback était le bon choix).
+   - **Configure** — affecter la requête à la bonne intention, puis **Save**. La requête est ajoutée comme déclencheur à cette intention.
+   - **Ignore** — passer sans prendre de mesure.
+
+## Validate, Configure, Ignore
+
+Chaque réponse du bot dans chaque session peut être traitée de l'une des trois manières :
+
+- **Validate** — la réponse provenait de la bonne intention. La session est marquée comme Trained/Validated.
+- **Configure** — l'intention était incorrecte. Choisissez la bonne intention dans le menu déroulant, cliquez sur **Save**, et la réponse est ajoutée à cette intention avec une icône de source training-page.
+- **Ignore** — passer sans entraîner. Utile pour le bruit, les requêtes de test ou les messages qui n'ont vraiment pas besoin d'une intention.
+
+## Statut d'entraînement
+
+Le statut d'une session reflète la quantité d'actions qui y ont été effectuées :
+
+| Statut | Signification |
+|---|---|
+| **Trained** | Chaque requête de la session a été validée, configurée ou ignorée |
+| **Incomplete** | Certaines requêtes traitées, d'autres encore en attente |
+| **Not trained** | Aucune requête de la session n'a été traitée |
+
+## Métriques de précision
+
+Deux métriques suivent votre progression d'entraînement :
+
+- **Trained queries** = décompte Validated + Configured
+- **Intent accuracy %** = Validated ÷ (Validated + Configured) × 100
+
+<Callout>
+  **Les requêtes ignorées ne comptent pas** dans les trained queries ni dans la précision d'intention. Seules les requêtes validées et configurées font bouger la métrique.
+</Callout>
+
+## Exporter les logs d'entraînement
+
+Cliquez sur le bouton download/export pour obtenir un CSV des sessions actuellement filtrées.
+
+Champs exportés :
+
+- User Source
+- User Channel
+- Session ID
+- Number of chats
+- Feedback rating + comment
+- Date & time
+- Training status
+
+Seules les sessions correspondant à votre filtre actuel sont exportées — utilisez les filtres pour cadrer le téléchargement.

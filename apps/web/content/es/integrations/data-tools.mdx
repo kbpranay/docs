@@ -1,0 +1,133 @@
+---
+title: Integraciones de datos y herramientas
+description: Conecta los agentes a APIs, bases de conocimiento, bases de datos, archivos y páginas web.
+---
+
+import { Callout } from 'nextra/components'
+
+# Integraciones de datos y herramientas
+
+Los nodos Agentic AI pueden usar seis tipos de herramienta para llegar más allá del flow y obtener datos reales. Cada herramienta tiene su propia configuración — configúrala una vez y luego referéncialas desde cualquier agente.
+
+## Herramienta API
+
+Llama a cualquier servicio externo como herramienta — búsquedas en CRM, creación de tickets, pagos, traducción, etc.
+
+**Configuración:**
+
+| Campo | Descripción |
+|---|---|
+| Tool Type | `API` |
+| Tool Name | Identificador corto |
+| Description | Qué hace la herramienta (ayuda al agente a decidir cuándo usarla) |
+| Method | `GET` o `POST` |
+| URL | El endpoint |
+| Response Type | Formato de respuesta esperado |
+| Timeout | Timeout de la petición |
+| Headers | Pares nombre/valor |
+| Cookies | Valores de cookie |
+
+**Parámetros** (cada llamada API puede tomar varios):
+
+| Campo | Descripción |
+|---|---|
+| Name | Nombre del parámetro |
+| Description | Qué debe poner el agente aquí |
+| Select Type | `string`, `number`, `integer` o `boolean` |
+| Required | Si este parámetro es obligatorio |
+| Query Parameter | Si es true, se añade como `?name=value`; si es false, va en el cuerpo |
+
+## Herramienta KB (base de conocimiento)
+
+Permite al agente leer desde una DocBrain / base de conocimiento — similar a una búsqueda RAG pero usable con granularidad de tool-call.
+
+**Configuración:**
+
+- **Tool Type** — `KB`
+- **Tool Name** y **Description**
+- **Choose DocBrain** — qué base de conocimiento consultar
+- **Index ID** — pueden mostrarse hasta 3; un único index ID se autoselecciona
+- Toggle **Auto-use Latest Index ID** — siempre consultar el índice más reciente
+
+**Avanzado:**
+
+- **Type** — Semantic o Keyword
+- **Method** — una de tres variantes `Gpt_mix`
+- **TopK** — número de resultados a recuperar
+- **Filtered Search** — filtrar por Doc ID, Source ID, URL, Original URL o Doc Type
+
+## Herramienta Table
+
+Consulta datos estructurados guardados en un archivo CSV.
+
+**Configuración:**
+
+- Sube un **archivo .csv** (máx 5 MB)
+- Para cada cabecera, configura:
+  - **Name**
+  - **Description**
+  - **Match Type** — Exact o Close
+  - **Type** — String, Category, Datetime, Integer, Float o Boolean
+
+El agente puede entonces ejecutar consultas tipo SQL contra la tabla usando lenguaje natural.
+
+## Herramienta File
+
+Permite al agente leer contenido de documentos PDF.
+
+**Configuración:**
+
+- Solo PDF
+- Hasta **5 archivos**, **5 MB** cada uno, menos de **10 páginas** por archivo
+
+Usa la herramienta File para documentos de referencia que tu agente necesita — PDFs de políticas, fichas de una página, hojas de producto.
+
+## Herramienta SQL
+
+Ejecuta SQL de solo lectura contra una base de datos conectada.
+
+**Configuración:**
+
+- **DB URL** — debe ser una cadena de conexión de **solo lectura**
+- Para cada tabla que el agente puede consultar, define:
+  - **Table Name**
+  - **Metadata description** — ayuda al agente a entender cuándo y cómo consultar esta tabla
+
+<Callout type="warning">
+  La herramienta SQL solo acepta URLs de BD **de solo lectura**. No le des una conexión que pueda mutar tus datos — los planes de consulta del agente son probabilísticos.
+</Callout>
+
+## Herramienta Webpage
+
+Obtén y lee contenido web en vivo — perfecto para páginas que cambian con frecuencia (páginas de precios, ofertas, paneles de estado).
+
+**Configuración:**
+
+- **Tool Name** y **Description**
+- **Webpage URL**
+- **Cache Minutes** — el contenido cacheado se reutiliza durante tantos minutos antes de una nueva obtención, para que no saturen el sitio de destino
+
+Úsalo para páginas donde el contenido cambia en minutos u horas pero volver a obtenerlo en cada consulta sería desperdicio.
+
+---
+
+## Variables de entorno
+
+Valores reutilizables accesibles en todos los nodos del proyecto — API keys, valores de configuración, parámetros por defecto.
+
+**Definir variables:**
+
+Desde la cabecera del workspace, abre **Flow Environment Variables** → **Add Variables**. Para cada variable, proporciona un Name, Value y Type.
+
+**Referenciar variables:**
+
+| Tipo de nodo | Cómo referenciar |
+|---|---|
+| **Change** | Manipula mediante global envs en las operaciones del nodo Change |
+| **Switch** | Enrutamiento condicional sobre valores de env |
+| **Template** | Usa `{{env.Name}}` para sustitución dinámica |
+| **Function** | Usa `env.get("Name")` dentro de JavaScript personalizado |
+
+<Callout>
+  Guarda las API keys y secretos en variables de entorno en lugar de codificarlos dentro de los nodos. Las env variables son la capa adecuada para valores que cambian por entorno (dev, staging, prod).
+</Callout>

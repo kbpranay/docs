@@ -1,0 +1,76 @@
+---
+title: Multilingue
+description: Permettez à votre bot de comprendre et répondre dans la langue préférée de l'utilisateur.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Multilingue
+
+La fonctionnalité multilingue d'AIDA traduit les messages utilisateur dans la langue de base du bot pour la classification, puis retraduit les réponses du bot dans la langue de l'utilisateur. Cela permet à un seul bot de servir des utilisateurs dans de nombreuses langues sans dupliquer les intentions.
+
+Le multilingue est disponible pour les rôles **Admin**, **Team Owner** et **Manager**.
+
+## Deux commutateurs
+
+| Commutateur | Effet lorsqu'il est ON |
+|---|---|
+| **User Query** | Le message de l'utilisateur est traduit dans la langue de base du bot avant d'être envoyé au classifier |
+| **Response** | La réponse du bot est retraduite dans la langue de l'utilisateur avant d'être affichée |
+
+Vous pouvez activer l'un, les deux ou aucun — selon que vous vouliez que le bot accepte une entrée dans d'autres langues, réponde dans d'autres langues ou les deux.
+
+## Types de réponses pris en charge
+
+La traduction s'applique à tous ces types de réponses :
+
+- Intent response
+- Response with suggestions
+- Response with parameters
+- Response with gallery card
+- Response with picture card
+- DocBrain response
+- LLM response
+- Omega cards
+- Blitzico response
+- Blitzico conversation nodes
+- AIDA flows
+
+## Paramètres LLM
+
+Le multilingue utilise un LLM pour la traduction. Vous pouvez configurer :
+
+| Paramètre | Plage | Valeur par défaut |
+|---|---|---|
+| **Model** | Choisir dans le menu déroulant | — |
+| **Prompt** | Modèle éditable | — |
+| **Timeout** | 5 – 180 secondes | 30 |
+| **Temperature** | 0 – 1 | 0.2 |
+
+Des valeurs de température plus faibles produisent des traductions plus prévisibles et littérales ; des valeurs plus élevées permettent une formulation plus créative au risque d'une dérive de sens. **0.2 est une valeur par défaut sûre** pour un usage help-desk.
+
+## Activer le multilingue
+
+<Steps>
+
+### Allez dans Bot Settings
+
+Cliquez sur **Bot Settings** depuis le menu latéral.
+
+### Ouvrez Multilingual
+
+Cliquez sur la section Multilingual.
+
+### Activez le(s) commutateur(s) nécessaire(s)
+
+Activez **User Query** et/ou **Response**.
+
+### Confirmez avec l'OTP
+
+Un OTP est envoyé à l'adresse e-mail du Team Owner. Saisissez-le pour confirmer.
+
+</Steps>
+
+<Callout type="warning">
+  La confirmation par OTP est requise chaque fois que vous activez des fonctionnalités multilingues. Assurez-vous que votre Team Owner a accès à ses e-mails avant de commencer.
+</Callout>

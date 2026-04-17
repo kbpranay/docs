@@ -1,0 +1,106 @@
+---
+title: Migration
+description: Transférez des bots, des flux et d'autres artefacts entre des environnements AIDA.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Migration
+
+La migration vous permet de déplacer des artefacts — bots, flux, bases de connaissances et plus — d'un environnement AIDA à un autre. Les cas d'usage typiques sont la promotion d'un bot du staging vers la production, ou le clonage d'un bot entre équipes à des fins de test.
+
+Accédez-y via **Team Configs → Migration**. Disponible pour les rôles **Team Owner**, **Manager** et les utilisateurs ayant le rôle **Migrations**.
+
+## Ce que vous pouvez migrer
+
+| Artefact | Notes |
+|---|---|
+| **Bot** | Bot complet avec intentions, entités et données d'entraînement |
+| **BotForge** | La configuration visuelle BotForge du bot |
+| **Company Templates** | Modèles partagés entre bots |
+| **DocBrain** | Documents indexés + Question Bank + paramètres KB Forge. Re-parsés automatiquement après transfert |
+| **Flows** | AIDA Flows. L'équipe de destination doit disposer d'au moins 1 instance Flow |
+| **KB Forge** | Configurations de la base de connaissances. Fonctionne entre langues |
+| **RAG Forge** | Configurations RAG. Fonctionne entre langues de bot ; bascule sur le modèle par défaut de l'équipe si le modèle personnalisé n'est pas disponible |
+| **Tags & Templates** | Définitions de tags et modèles de réponses |
+
+## Avant de commencer
+
+Assurez-vous d'avoir :
+
+1. Le **jeton d'accès** de l'équipe source (depuis la page Accounts de l'équipe source).
+2. L'**ID d'équipe** de l'équipe source.
+3. Le **Source Bot ID** (ou autre ID d'artefact) que vous souhaitez migrer.
+4. Un **nom de tâche** clair pour identifier cette migration.
+
+<Callout type="warning">
+  Un **Task Name** unique est requis pour activer le bouton **Initiate Migration**. Sans lui, le bouton reste désactivé.
+</Callout>
+
+## Exécuter une migration
+
+<Steps>
+
+### Ouvrez la page Migration
+
+Allez dans **Team Configs → Migration** et cliquez sur **Create**.
+
+### Remplissez les champs requis
+
+| Champ | À saisir |
+|---|---|
+| **Task Name** | Un identifiant unique pour cette migration |
+| **Environment** | Environnement source (liste déroulante des environnements disponibles) |
+| **Team's Access Token** | Jeton d'accès de l'équipe source |
+| **Team ID** | ID de l'équipe source |
+| **Choose Artefact** | Bot / BotForge / Company Templates / DocBrain / Flows / KB Forge / RAG Forge / Tags & Templates |
+| **Source Bot ID** | ID du bot (ou artefact) à migrer |
+
+### Ajoutez des e-mails de notification *(facultatif)*
+
+L'utilisateur qui initie la migration est notifié par défaut. Vous pouvez ajouter jusqu'à **5 e-mails supplémentaires**, séparés par des virgules, pour notifier d'autres utilisateurs.
+
+### Cliquez sur Initiate Migration
+
+Confirmez pour démarrer. Une fenêtre **"Migration Initiated"** s'affiche.
+
+### Surveillez l'e-mail de statut
+
+Vous (et toute adresse notifiée) recevez un e-mail lorsque la migration se termine ou échoue.
+
+</Steps>
+
+## Erreurs courantes
+
+| Message d'erreur | Signification |
+|---|---|
+| **Invalid access token** | Jeton manquant ou ne correspondant pas à l'équipe source |
+| **Invalid Team ID** | L'ID d'équipe n'existe pas dans l'environnement sélectionné |
+| **Not a valid source id** | L'ID de bot n'existe pas dans l'équipe source |
+| **Source data not found** | L'ID de bot existe mais vous n'avez pas l'autorisation, ou il se trouve dans une autre équipe |
+
+Si une migration échoue, AIDA envoie un e-mail **Migration Failed** depuis l'adresse de l'équipe de support et consigne l'échec sur la page Migration.
+
+## Remarques spécifiques aux artefacts
+
+**Migration DocBrain** — Après la migration, DocBrain est automatiquement re-parsé. Les paramètres Question Bank et KB Forge sont transférés avec le DocBrain.
+
+**Migration Flow** — L'équipe de destination doit disposer d'au moins une instance Flow configurée. Une case à cocher optionnelle **Update all node URLs** réécrit les URL des nœuds pendant la migration.
+
+**Migration KB Forge** — L'équipe de destination doit disposer d'au moins une KB configurée. Les migrations KB Forge fonctionnent entre langues.
+
+**Migration RAG Forge** — Fonctionne entre langues de bot. Si le modèle de langue personnalisé utilisé dans la source n'est pas disponible dans la destination, AIDA bascule sur le modèle par défaut de l'équipe de destination.
+
+## Journal des migrations
+
+Chaque migration apparaît sur la page Migration principale avec ces champs — tous copiables en un clic :
+
+- Task Name
+- Source Team ID
+- Source Bot ID
+- Destination Bot ID
+- Source Environment
+- Artefact
+- Timestamp
+
+Utilisez le journal pour auditer ce qui a été migré, ou pour récupérer des ID en vue d'une migration répétée.

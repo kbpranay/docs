@@ -1,0 +1,56 @@
+---
+title: Explicador de intents
+description: Ve por qué AIDA clasificó una consulta del usuario en un intent específico — palabra por palabra.
+---
+
+import { Callout } from 'nextra/components'
+
+# Explicador de intents (Legacy)
+
+<Callout type="warning">
+  **Se retirará a finales de 2026.** Intent Explainer es una herramienta de depuración para el clasificador ML legacy. Los agentes se explican a sí mismos a través de sus trazas de razonamiento — sin necesidad de un explainer separado. Ver [Configuración del agente](/bot-settings/agent-configuration).
+</Callout>
+
+Intent Explainer es una herramienta de depuración que revela *por qué* el clasificador ML emparejó una consulta del usuario con un intent particular. Es la forma más rápida de diagnosticar problemas de clasificación y mejorar tus datos de entrenamiento.
+
+## Dónde encontrarlo
+
+Abre cualquier página de intent y busca el **icono de bocadillo de chat** en la esquina inferior derecha. Haz clic en él para abrir la ventana de chat de pruebas, luego activa **Intent Explainer**.
+
+<Callout>
+  Intent Explainer solo está disponible para **clasificación ML**. No funciona cuando [el Classifier](/bot-settings/classifier) está deshabilitado, ni para triggers de coincidencia exacta de Elasticsearch.
+</Callout>
+
+## Leer la salida
+
+Cuando escribes una consulta de prueba con Intent Explainer habilitado, cada palabra de la consulta se resalta según su impacto en la clasificación:
+
+| Resaltado | Significado |
+|---|---|
+| **Verde** | Impacto positivo — esta palabra empujó al clasificador hacia el intent emparejado |
+| **Rojo** | Impacto negativo — esta palabra empujó al clasificador lejos del intent emparejado |
+| **Sin resaltado** | Sin impacto significativo |
+| **`[UNK]`** | Token que el clasificador no reconoció |
+
+Pasa el cursor sobre cualquier palabra resaltada para ver la **puntuación de atribución** numérica para el intent principal — cuánto influyó ese token en la decisión.
+
+## Marcadores de resolución de entidad
+
+También verás símbolos especiales en la salida explicada:
+
+- `~##~` marca dónde el clasificador dividió la consulta para la resolución de entidades
+- `~` marca un valor de entidad resuelto
+
+Estos revelan cómo el clasificador tokenizó la entrada antes de ejecutar la clasificación.
+
+## Usarlo en el entrenamiento
+
+Intent Explainer funciona muy bien junto con la [página de entrenamiento](/intents-entities/train-conversations). Las sesiones donde Intent Explainer estaba habilitado se marcan con un icono especial en la vista de filtro **All chats**.
+
+**Un flujo típico:**
+
+1. Detecta una consulta en Training que fue clasificada en el intent incorrecto.
+2. Copia el mensaje del usuario.
+3. Abre el intent *correcto* y pega la consulta en el Intent Explainer.
+4. Lee la atribución palabra por palabra para ver qué palabras están despistando al clasificador.
+5. Ajusta tus triggers — añade formulaciones más claras, elimina las confusas — hasta que la explicación coincida con tu expectativa.

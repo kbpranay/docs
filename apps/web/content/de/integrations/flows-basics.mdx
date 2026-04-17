@@ -1,0 +1,100 @@
+---
+title: Flow-Verwaltung
+description: Flows in deinem AIDA-Workspace erstellen, benennen, löschen, sperren und durchsuchen.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Flow-Verwaltung
+
+Jeder Flow beginnt als Eintrag auf der Flow-Übersichtsseite. Von dort aus kannst du Flows erstellen, umbenennen, löschen, sperren und durchsuchen.
+
+## Einen Flow erstellen
+
+<Steps>
+
+### Flows-Seite öffnen
+
+Klicke auf der Bot-Auswahlseite oder im Mega Menu in der oberen Navigation auf **Flows**.
+
+### Auf + Create klicken
+
+Der Dialog **Create Flow** wird geöffnet.
+
+### Dem Flow einen Namen geben
+
+Gib einen aussagekräftigen Namen ein und konfiguriere die Instanz, auf der der Flow deployt werden soll.
+
+### Speichern
+
+Klicke auf **Save**. Der neue Flow erscheint in der Liste und öffnet den Workspace, sodass du Knoten hinzufügen kannst.
+
+</Steps>
+
+Du kannst einen Flow auch von innerhalb eines Intents erstellen – öffne **Response → Action**, wähle **Flow** aus dem Dropdown und erstelle entweder einen neuen oder füge eine bestehende Route ID ein.
+
+## Einen Flow umbenennen
+
+<Steps>
+
+### Das Flow-Menü öffnen
+
+Klicke auf das Meatball-Menü (drei Punkte) neben dem Flow in der Liste.
+
+### Edit Name wählen
+
+Aktualisiere den Namen im Prompt und bestätige.
+
+</Steps>
+
+## Einen Flow löschen
+
+<Steps>
+
+### Das Flow-Menü öffnen
+
+Klicke auf die drei Punkte neben dem Flow.
+
+### Delete Flow
+
+Klicke auf **Delete Flow** und bestätige im Popup.
+
+</Steps>
+
+<Callout type="warning">
+  Das Löschen eines Flows entfernt ihn dauerhaft. Alle Intents oder übergeordneten Flows, die die Route ID dieses Flows referenzieren, funktionieren dann nicht mehr.
+</Callout>
+
+## Einen Flow sperren
+
+Einen Flow zu sperren versetzt ihn in den Nur-Lese-Modus – niemand kann ihn bearbeiten, bis er entsperrt ist. Das ist nützlich für Produktions-Flows, die nicht ohne Review geändert werden sollen.
+
+<Steps>
+
+### Das Flow-Menü öffnen
+
+Klicke auf die drei Punkte neben dem Flow.
+
+### Lock Flow
+
+Klicke auf **Lock Flow** und bestätige.
+
+</Steps>
+
+<Callout>
+  Wenn ein Flow von einem Nutzer gesperrt ist, wird das Meatball-Menü **für andere Nutzer ausgeblendet** – sie können versehentlich keine Aktionen auf einem gesperrten Flow ausführen. Die Person, die ihn gesperrt hat (oder jeder Admin), kann ihn über dasselbe Menü wieder entsperren.
+</Callout>
+
+## Flows durchsuchen
+
+Das Feld **Search Flow** oben auf der Flows-Seite filtert die Liste während des Tippens. Treffer werden sofort hervorgehoben – kein Enter nötig.
+
+## Änderungshistorie
+
+Jeder Flow behält ein umfassendes Änderungslog, das zeigt:
+
+- Wer jede Änderung vorgenommen hat
+- Wann sie passiert ist
+- Was geändert wurde
+
+Du kannst einen Flow über das History-Panel auf eine vorherige Version zurücksetzen. Zugriff erfolgt über den oberen Header des Workspaces.

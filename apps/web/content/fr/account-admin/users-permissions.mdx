@@ -1,0 +1,135 @@
+---
+title: Utilisateurs et autorisations
+description: Invitez des utilisateurs, attribuez des rôles et gérez l'appartenance à l'équipe dans AIDA.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Utilisateurs et autorisations
+
+La page **User Rights** est l'endroit où vous ajoutez, supprimez et gérez les accès pour tous les membres de votre équipe. Elle est accessible aux rôles **AIDA Admin**, **Manager** et **Team Owner**.
+
+<Callout>
+**Les règles de base :**
+- Seul un Team Owner peut désactiver ou supprimer des utilisateurs
+- Les Managers peuvent désactiver, mais pas supprimer
+- Personne ne peut révoquer, désactiver ou réattribuer les rôles d'un Team Owner
+- Les Managers ne peuvent pas agir sur d'autres Managers ni sur le Team Owner
+- La liste des utilisateurs affiche 20 utilisateurs par page, triés par ordre alphabétique
+</Callout>
+
+## Qui peut inviter qui
+
+| Votre rôle | Vous pouvez inviter |
+|---|---|
+| **Team Owner** | Tous les rôles — AIDA, LiveChat, ERA, Insights Lab, Manager, API & Services, Migrations |
+| **Manager** | API & Services, AIDA, LiveChat, ERA, Insights Lab *(mais pas d'autres Managers ni le Team Owner)* |
+| **AIDA Admin** | AIDA User, AIDA Dashboard |
+
+## Inviter un nouvel utilisateur
+
+<Steps>
+
+### Ouvrez User Rights
+
+Cliquez sur **[User rights]** dans la navigation.
+
+### Cliquez sur Invite
+
+Cliquez sur le bouton **[Invite]**.
+
+### Remplissez les détails
+
+Saisissez l'**Email**, le **First name** et le **Last name** de l'utilisateur.
+
+### Attribuez un rôle
+
+Sélectionnez le ou les rôles que vous souhaitez accorder. Si vous choisissez un rôle de niveau admin pour un produit, tous les rôles inférieurs pour ce produit sont automatiquement cochés et ne peuvent pas être décochés.
+
+### Envoyez l'invitation
+
+Cliquez sur **[Send invite]**.
+
+</Steps>
+
+L'utilisateur invité reçoit un e-mail avec un bouton **Join Team**. En cliquant dessus, il accède à une page où il définit son mot de passe et complète son inscription.
+
+## Révoquer les rôles d'un utilisateur
+
+La révocation des rôles d'un utilisateur l'empêche de se connecter. Tous les rôles sont supprimés en une seule action — vous pourrez les réattribuer plus tard.
+
+<Steps>
+
+### Ouvrez User Rights → trouvez l'utilisateur
+
+Repérez la carte de l'utilisateur dans la liste.
+
+### Ouvrez le menu
+
+Cliquez sur le **[...]** de la carte utilisateur.
+
+### Révoquez les droits
+
+Cliquez sur **[Revoke rights]**, puis sur **[Confirm]** dans la fenêtre contextuelle.
+
+</Steps>
+
+L'utilisateur reçoit un e-mail de confirmation listant les rôles révoqués.
+
+## Désactiver un utilisateur
+
+<Steps>
+
+### Ouvrez User Rights → trouvez l'utilisateur
+
+Même point de départ que pour la révocation.
+
+### Désactivez
+
+Cliquez sur le **[...]** de la carte utilisateur, puis sur **[Deactivate user]**, et confirmez.
+
+</Steps>
+
+<Callout type="info">
+  Les utilisateurs désactivés conservent leurs attributions de rôles. Lors de la réactivation, les rôles précédents sont automatiquement restaurés — aucune réattribution nécessaire.
+</Callout>
+
+## Réactiver un utilisateur désactivé
+
+<Steps>
+
+### Filtrez sur les utilisateurs désactivés
+
+Cliquez sur le filtre **Show users** et sélectionnez **Deactivated user list**.
+
+### Réactivez
+
+Cliquez sur **[...]** sur la carte utilisateur → **[Activate User]** → **[Confirm]**.
+
+</Steps>
+
+## Transférer la propriété de l'équipe
+
+Un Team Owner peut transmettre la propriété à l'un de ses Managers.
+
+<Steps>
+
+### Trouvez le Manager dans User Rights
+
+Naviguez vers User Rights et localisez le Manager que vous souhaitez promouvoir.
+
+### Lancez le transfert
+
+Cliquez sur **[Transfer Ownership]** sur la carte utilisateur du Manager et confirmez.
+
+### Vérifiez avec l'OTP
+
+Un OTP est envoyé à l'adresse e-mail du Team Owner actuel. Saisissez-le et cliquez sur **Confirm**.
+
+### Reconnectez-vous
+
+Cliquez sur **Re-login** et reconnectez-vous. Le Manager sélectionné devient le Team Owner, et l'ancien Team Owner devient un Manager.
+
+</Steps>
+
+Pour les paramètres à l'échelle de l'équipe — 2FA, politiques de verrouillage, nom de l'équipe — voir [Paramètres d'équipe](/account-admin/team-settings).

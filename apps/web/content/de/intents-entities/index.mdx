@@ -1,0 +1,48 @@
+---
+title: Intents & Entitäten
+description: Bringe deinem Bot bei, was Nutzer meinen, und welche konkreten Begriffe sie verwenden.
+---
+
+import { Callout, Cards } from 'nextra/components'
+
+# Intents & Entitäten (Legacy)
+
+<Callout type="warning">
+  **Wird bis Ende 2026 eingestellt.** Intents, Trigger und Entitäten sind veraltet. Bestehende Bots funktionieren weiterhin, aber alle neuen Bots sollten das [Agentic-AI-Modell](/getting-started/first-bot) verwenden. Siehe [Agenten-Konfiguration](/bot-settings/agent-configuration) für das moderne Äquivalent.
+</Callout>
+
+Intents und Entitäten waren der Legacy-Weg, über den AIDA verstand, was deine Nutzer wollen.
+
+- **Ein Intent** erfasst das Ziel eines Nutzers – einen Flug buchen, einen Kontostand prüfen, an einen Agenten eskalieren.
+- **Eine Entität** erfasst die konkreten Informationsteile in der Nachricht eines Nutzers – eine Stadt, ein Datum, einen Betrag.
+
+Je mehr Intents und Entitäten du definierst, desto zuverlässiger wählt dein Bot die richtige Antwort.
+
+<Cards>
+  <Cards.Card title="Intents" href="/intents-entities/intents" arrow />
+  <Cards.Card title="Trigger & Parameter" href="/intents-entities/triggers-parameters" arrow />
+  <Cards.Card title="Entitäten" href="/intents-entities/entities" arrow />
+  <Cards.Card title="DocBrain" href="/intents-entities/docbrain" arrow />
+  <Cards.Card title="Konversationen trainieren" href="/intents-entities/train-conversations" arrow />
+  <Cards.Card title="Intent Explainer" href="/intents-entities/intent-explainer" arrow />
+</Cards>
+
+## Wie sie zusammenspielen
+
+Wenn ein Nutzer eine Nachricht sendet, macht AIDA:
+
+1. **Klassifiziert** die Nachricht mit dem ML-Classifier und der Exact-Match-Suche in den am besten passenden Intent.
+2. **Extrahiert** alle in der Nachricht referenzierten Entitäten.
+3. **Antwortet** mit der für diesen Intent konfigurierten Antwort und ersetzt Entitätswerte nach Bedarf.
+
+Passt kein Intent, fällt die Nachricht auf den Default-Fallback-Intent zurück und wird unter [Unbearbeitete Anfragen](/intents-entities/train-conversations#unhandled-requests) protokolliert.
+
+## Wo du anfangen solltest
+
+Wenn du einen neuen Bot baust, empfehlen wir diese Reihenfolge:
+
+1. Liste die 10–20 wichtigsten Nutzerziele auf, die dein Bot bearbeiten soll → jedes wird zu einem **Intent**.
+2. Schreibe für jeden Intent mindestens 50 Beispielformulierungen, die Nutzer verwenden könnten → das sind **Trigger**.
+3. Identifiziere variable Bestandteile in diesen Formulierungen (Namen, Daten, Beträge) → definiere sie als **Entitäten**.
+4. Füge **Parameter** hinzu, um Informationen zu sammeln, die der Bot vor der Antwort braucht.
+5. Gehe live und verfeinere anschließend über die [Trainingsseite](/intents-entities/train-conversations).

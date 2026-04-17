@@ -1,0 +1,46 @@
+---
+title: Deep links
+description: Comparte enlaces directos a intents, entidades y sesiones de entrenamiento específicas.
+---
+
+import { Callout } from 'nextra/components'
+
+# Deep links
+
+Los deep links te permiten compartir una URL directa a un intent, entidad o sesión de entrenamiento específica. Cualquier persona de tu equipo con el rol adecuado puede hacer clic en el enlace y saltar directo a ese recurso — sin necesidad de navegar.
+
+## Dónde están disponibles los deep links
+
+| Área | Qué abre el deep link | Acciones disponibles |
+|---|---|---|
+| **Intents** | Un intent específico en la página Intents | Leer, Actualizar, Eliminar |
+| **Entities** | Una entidad específica en la página Entities | Leer, Actualizar, Eliminar |
+| **Sessions** | Una sesión de entrenamiento específica en la página Training | Validate, Configure, Ignore |
+
+## Copiar un deep link
+
+Cada recurso tiene un **icono de copiar** junto a su nombre:
+
+- **Intent:** En la página Intents, haz clic en el icono de copiar junto al nombre del intent en la lista.
+- **Entidad:** En la página Entities, haz clic en el icono de copiar junto al nombre de la entidad.
+- **Sesión:** En la página Training, haz clic en el icono de copiar en la fila de la sesión que quieras compartir.
+
+El enlace se copia a tu portapapeles. Pégalo en Slack, email o donde quieras compartirlo.
+
+## Deep links para sesiones de entrenamiento
+
+Cuando alguien abre un deep link de sesión, la entrada **Session ID** en la página Training se rellena previamente con el ID. AIDA lo usa para obtener y mostrar solo esa sesión específica.
+
+## Quién puede usar deep links
+
+<Callout>
+  Los deep links solo funcionan para usuarios en el **mismo equipo** con acceso a ese recurso. Abrir un enlace para un recurso eliminado, un recurso de otro equipo o cuando no tienes el rol requerido te redirige a la página Bot List con un error.
+</Callout>
+
+Tras abrir un deep link, navegar a cualquier otra parte reemplaza el deep link con la URL por defecto de la nueva página.
+
+## Cuando los deep links no funcionan
+
+- **Error y redirección a Bot List:** el recurso fue eliminado, pertenece a otro equipo o tu rol no permite el acceso
+- **"Session not found":** el session ID del deep link no coincide con ninguna sesión de entrenamiento (puede haber sido purgada tras la expiración de la retención)
+- **El enlace se abre pero no aparece nada:** tu rol puede no tener acceso de lectura a este tipo de recurso — pide a tu Team Owner que compruebe tus permisos

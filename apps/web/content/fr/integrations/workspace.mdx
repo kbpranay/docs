@@ -1,0 +1,103 @@
+---
+title: Espace de travail
+description: Naviguez dans le constructeur de flux — ajoutez des nœuds, déployez, exportez/importez, déboguez et utilisez les raccourcis clavier efficacement.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Espace de travail
+
+L'espace de travail Flows est l'endroit où vous construisez l'automatisation réelle — faites glisser des nœuds depuis la palette, connectez-les entre eux et déployez.
+
+## Ajouter et connecter des nœuds
+
+- **Ajouter :** faites glisser un nœud depuis la palette de la barre latérale gauche et déposez-le sur l'espace de travail.
+- **Connecter :** cliquez sur le petit cercle de point de connexion sur le nœud source et tracez un fil jusqu'au nœud suivant.
+
+## Déployer un flux
+
+<Steps>
+
+### Enregistrez votre flux
+
+Cliquez sur **Save Flow** en haut du workspace. L'enregistrement conserve votre travail, mais le flux n'est pas encore en direct.
+
+### Cliquez sur Deploy
+
+Le bouton **Deploy** se trouve dans le coin supérieur droit. En cliquant dessus, vos modifications sont appliquées à l'environnement en direct.
+
+</Steps>
+
+<Callout>
+  **Save ≠ Deploy.** Vous pouvez sauvegarder indéfiniment des versions brouillons d'un flux. Seul un déploiement les pousse vers le bot en direct.
+</Callout>
+
+### Déployer vers une autre instance
+
+Si votre équipe a plusieurs instances (par ex. staging et production), vous pouvez déployer le même flux sur chacune :
+
+<Steps>
+
+### Enregistrez le flux
+
+Enregistrez-le dans votre instance actuelle.
+
+### Cliquez sur la flèche déroulante Deploy
+
+À côté du bouton **Deploy**.
+
+### Choose Instance
+
+Cliquez sur **Choose Instance → Confirm**, puis sélectionnez l'instance cible.
+
+### Déployez
+
+Cliquez sur **Deploy** pour pousser le flux vers cette instance.
+
+</Steps>
+
+## Exporter et importer
+
+**Export** depuis l'en-tête supérieur :
+
+| Option | Ce qu'elle fait |
+|---|---|
+| **Export as Blitzico File** | Télécharger le flux sous forme de fichier compatible Blitzico |
+| **Export Flow** | Télécharger ou copier le flux complet au format JSON |
+| **Export Selected Nodes** | Télécharger ou copier uniquement les nœuds sélectionnés |
+
+**Import** via le bouton Import — sélectionnez un fichier, ou collez un snippet JSON de flux, puis cliquez sur **Import**.
+
+## Logs de flux
+
+Ouvrez **Flow History** depuis l'en-tête supérieur. Cliquez sur **Export Logs** pour télécharger un CSV de chaque déploiement et événement de modification.
+
+## Commentaires
+
+Déposez un nœud **Comment** depuis la section Dev pour annoter votre flux. Double-cliquez sur le nœud pour renommer ou modifier le texte du commentaire. Les commentaires sont non exécutables — ils existent uniquement pour la documentation.
+
+## Naviguer sur le canvas
+
+| Fonctionnalité | Comment |
+|---|---|
+| **Fullscreen** | Cliquez sur l'icône plein écran dans l'en-tête du workspace. Cliquez à nouveau pour quitter. |
+| **Mini map** | Icône en bas à gauche — affiche un aperçu dézoomé. Faites glisser à l'intérieur pour vous déplacer. |
+| **Lock workspace** | L'icône de cadenas en bas à gauche empêche les modifications accidentelles. |
+| **Zoom** | Faites défiler avec la souris/trackpad, ou utilisez les boutons de zoom en bas à gauche. Un bouton de reset restaure la valeur par défaut. |
+| **Multi-select** | Maintenez **Shift** + cliquez, ou maintenez et faites glisser pour sélectionner une zone. Permet de déplacer/supprimer/copier en masse. |
+
+## Debug en Picture-in-Picture
+
+Sélectionnez un flux, cliquez sur l'icône **Debug** (en bas à droite) pour ouvrir la fenêtre de débogage. Cliquez sur l'icône **Extension** pour des fonctionnalités de débogage supplémentaires.
+
+<Callout type="warning">
+  Le débogage Picture-in-Picture est **uniquement disponible dans Chrome**. Firefox et Safari ne prennent pas en charge cette fonctionnalité.
+</Callout>
+
+## Raccourcis clavier
+
+| Modificateur | macOS | Windows / Linux |
+|---|---|---|
+| Modificateur principal | **⌘ (Command)** | **Ctrl** |
+
+Les raccourcis suivent les schémas standard — combinez le modificateur ci-dessus avec les raccourcis courants (copier, coller, annuler, tout sélectionner) pour accélérer l'édition de flux.

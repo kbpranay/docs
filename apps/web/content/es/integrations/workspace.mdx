@@ -1,0 +1,103 @@
+---
+title: Espacio de trabajo
+description: Navega el constructor de flows — añade nodos, despliega, exporta/importa, depura y usa atajos eficientemente.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Espacio de trabajo
+
+El workspace de Flows es donde construyes la automatización real — arrastra nodos desde la paleta, cáblalos entre sí y despliega.
+
+## Añadir y conectar nodos
+
+- **Añadir:** arrastra un nodo desde la paleta de la barra lateral izquierda y suéltalo en el workspace.
+- **Conectar:** haz clic en el pequeño círculo del punto de conexión en el nodo origen y dibuja un cable al siguiente nodo.
+
+## Desplegar un flow
+
+<Steps>
+
+### Guarda tu flow
+
+Haz clic en **Save Flow** en la parte superior del workspace. Guardar mantiene tu trabajo, pero el flow aún no está en vivo.
+
+### Haz clic en Deploy
+
+El botón **Deploy** está en la esquina superior derecha. Al hacer clic, se aplican tus cambios al entorno en vivo.
+
+</Steps>
+
+<Callout>
+  **Save ≠ Deploy.** Puedes guardar versiones borrador de un flow de forma indefinida. Solo un deploy las envía al bot en vivo.
+</Callout>
+
+### Desplegar en otra instancia
+
+Si tu equipo tiene varias instancias (por ejemplo, staging y producción), puedes desplegar el mismo flow entre ellas:
+
+<Steps>
+
+### Guarda el flow
+
+Guárdalo en tu instancia actual.
+
+### Haz clic en la flecha desplegable Deploy
+
+Junto al botón **Deploy**.
+
+### Elige Instance
+
+Haz clic en **Choose Instance → Confirm** y luego selecciona la instancia de destino.
+
+### Despliega
+
+Haz clic en **Deploy** para enviar el flow a esa instancia.
+
+</Steps>
+
+## Exportar e importar
+
+**Exportar** desde la cabecera superior:
+
+| Opción | Qué hace |
+|---|---|
+| **Export as Blitzico File** | Descarga el flow como un archivo compatible con Blitzico |
+| **Export Flow** | Descarga o copia el flow completo como JSON |
+| **Export Selected Nodes** | Descarga o copia solo los nodos que seleccionaste |
+
+**Importar** mediante el botón Import — selecciona un archivo, o pega un snippet JSON de flow, y luego haz clic en **Import**.
+
+## Logs de flow
+
+Abre **Flow History** desde la cabecera superior. Haz clic en **Export Logs** para descargar un CSV de cada evento de despliegue y cambio.
+
+## Comentarios
+
+Arrastra un nodo **Comment** desde la sección Dev para anotar tu flow. Haz doble clic en el nodo para renombrar o editar el texto del comentario. Los comentarios no se ejecutan — existen puramente para documentación.
+
+## Navegar por el canvas
+
+| Característica | Cómo |
+|---|---|
+| **Pantalla completa** | Haz clic en el icono de pantalla completa en la cabecera del workspace. Haz clic de nuevo para salir. |
+| **Mini mapa** | Icono en la parte inferior izquierda — muestra un resumen alejado. Arrastra dentro para desplazarte. |
+| **Bloquear workspace** | El icono de candado en la parte inferior izquierda previene cambios accidentales. |
+| **Zoom** | Desplázate con ratón/trackpad, o usa los botones de zoom en la parte inferior izquierda. Un botón de reset restaura el valor por defecto. |
+| **Multiselección** | Mantén **Shift** + clic, o mantén y arrastra para seleccionar por caja. Permite mover/eliminar/copiar en bloque. |
+
+## Depurar en Picture-in-Picture
+
+Selecciona un flow, haz clic en el icono **Debug** (parte inferior derecha) para abrir la ventana de debug. Haz clic en el icono **Extension** para características adicionales de debug.
+
+<Callout type="warning">
+  La depuración Picture-in-Picture es **solo del navegador Chrome**. Firefox y Safari no soportan la función.
+</Callout>
+
+## Atajos
+
+| Modificador | macOS | Windows / Linux |
+|---|---|---|
+| Modificador principal | **⌘ (Command)** | **Ctrl** |
+
+Los atajos siguen patrones estándar — combina el modificador anterior con los atajos comunes (copiar, pegar, deshacer, seleccionar todo) para acelerar la edición de flows.
