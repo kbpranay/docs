@@ -1,0 +1,171 @@
+---
+title: Agent Configuration
+description: Fine-tune your agent's prompts, model, tools, voice, and language settings after the initial wizard.
+---
+
+import { Callout } from 'nextra/components'
+
+# Agent Configuration
+
+After you finish the [Getting Started wizard](/getting-started/first-bot), you land on the **Agent Configuration** panel. This is where you fine-tune everything the wizard set up for you — prompts, model, tools, voice behavior, and language support.
+
+The banner at the top of the page shows your **Agent mode** (Standard or Realtime Voice). You can switch modes from the dropdown if needed.
+
+The panel has **five tabs**: **Prompts**, **Model**, **Tools**, **Voice**, **Language**.
+
+## Prompts
+
+Define the instructions and behavior guidelines your agent uses.
+
+
+**Welcome Prompt**
+
+The opening message the agent sends when a conversation starts. The wizard seeds this based on the welcome message you wrote in Step 2 — you can edit, translate, or completely rewrite it here.
+
+**Instructions / Prompt**
+
+The core system prompt that drives agent behavior. The wizard auto-generates this from your "What should your AI assistant do?" input. A typical generated prompt includes:
+
+- The agent's identity (name, company)
+- Primary capabilities (what it should answer, what it should do)
+- Step-by-step instructions for common conversations
+- Tone and style guidelines
+- Escalation rules (when to hand off to a human)
+
+**Enhance prompt**
+
+Both prompt fields have an **Enhance prompt** button. Click it to ask AIDA's LLM to improve the existing prompt — add clarity, fill in missing guardrails, tighten up wording.
+
+<Callout>
+  Re-run **Enhance prompt** any time you add new tools or change the agent's scope. It keeps instructions in sync with the agent's current capabilities.
+</Callout>
+
+## Model
+
+Configure the AI model and core settings that power your agent.
+
+
+**Model**
+
+Pick the LLM that runs the agent. Available models depend on your workspace and mode (Standard vs Realtime Voice). Typical options include:
+
+- `vertex_ai/gemini-live-2.5-flash-native-audio/europe-west8` — Gemini Live (Realtime Voice)
+- `azure/azure/gpt-4o-mini-realtime-preview/global` — GPT-4o mini realtime (Realtime Voice)
+- `azure/gpt-realtime-1.5/global` — GPT realtime 1.5 (Realtime Voice)
+- `azure/gpt-realtime-mini/global` — GPT realtime mini (Realtime Voice)
+- ...and more (searchable via the dropdown)
+
+The dropdown shows a **Total count** badge so you know how many models your team has access to.
+
+**History Configuration**
+
+Control how much conversation history the agent keeps in context.
+
+| Setting | What it does | Default |
+|---|---|---|
+| **Trigger tokens** | When the total context reaches this token count, AIDA starts trimming older messages | 15,000 |
+| **Target tokens** | After trimming, the context is shrunk down to this size | 10,000 |
+
+<Callout type="info">
+  When the context reaches the **Trigger** limit, AIDA automatically removes older conversation data until only the most recent **Target** tokens remain. This keeps the agent responsive even in very long conversations.
+</Callout>
+
+## Tools
+
+Add external tools and integrations to extend your agent's capabilities.
+
+
+The Tools tab is where you plug your agent into the outside world — APIs, databases, knowledge bases, and more. Tools configured for your team appear in the **search and add tools** dropdown.
+
+### Adding a tool
+
+Click the **+** button next to the search field to open the **Add Tools** dialog.
+
+
+**Fields:**
+
+| Field | Description |
+|---|---|
+| **Tool Type** | `API Tool`, `KB Tool`, `Table Tool`, `File Tool`, `SQL Tool`, `Webpage Tool` |
+| **Tool Name** | Short identifier the agent uses to reference this tool |
+| **Description** | What the tool does — helps the agent decide when to call it |
+| **Method** | For API tools: `GET`, `POST`, etc. |
+| **URL** | For API tools: the endpoint |
+| **Response Type** | How to parse the response (`Text`, `JSON`, etc.) |
+| **Timeout** | Max seconds to wait before giving up (default `60`) |
+
+Click **Save** to add the tool. It immediately appears in the agent's available tool list.
+
+<Callout>
+  For the complete setup reference — including KB, Table, File, SQL, and Webpage tool configs — see [Data & Tool Integrations](/integrations/data-tools).
+</Callout>
+
+### Managing tools
+
+- **Search and add tools** — the dropdown lets you search by name for existing tools configured at the team level
+- **Select/deselect** — agents can pick from the team tool library, so the same tool can be reused across agents
+- Tools added here are available to the agent at runtime — the LLM decides when to call each one based on the description and user intent
+
+## Voice
+
+Configure speech-to-text and text-to-speech settings for voice interactions.
+
+
+**Voice**
+
+The TTS voice the agent speaks with. Default from the wizard is `Puck`. Click the voice chip to change it — each model supports a different set of voices.
+
+**Silence Timeout**
+
+How long (in milliseconds) the agent waits after the user stops speaking before replying. Default is `300`. Lower values make the agent feel snappier; higher values reduce the chance of interrupting a user mid-thought.
+
+### Barge In Controls
+
+Let users interrupt the agent while it's responding. Two independent toggles:
+
+| Toggle | Effect when ON |
+|---|---|
+| **Agent Responses** | User can speak over the agent mid-response — the agent stops and listens |
+| **Platform Messages** | User can interrupt platform-level announcements (hold music, disclaimers, etc.) |
+
+<Callout>
+  For conversational agents, leaving **Agent Responses** on is usually the right call — it makes the agent feel natural instead of stiff. Leave **Platform Messages** off unless you have a specific reason to allow interruption of mandatory disclaimers.
+</Callout>
+
+## Language
+
+Configure language preferences and control which languages your agent understands and speaks.
+
+
+**Language Control**
+
+The master toggle. When ON, the agent enforces the language settings below (translates user input, restricts responses to supported languages). When OFF, the agent uses whatever language the underlying model produces.
+
+**Primary Languages**
+
+The default language(s) the agent speaks. Seeded from the wizard with your Step 2 selection. You can add more primary languages via the **Choose a language…** dropdown.
+
+**Supported Languages**
+
+Additional languages the agent recognizes and can respond in. Use this for multilingual deployments where users might write in any of several languages but you want the agent to respond appropriately.
+
+<Callout type="info">
+  Primary vs. Supported:
+  - **Primary** — the agent defaults to these languages when starting a conversation
+  - **Supported** — the agent will follow the user's lead and switch if they write in one of these
+</Callout>
+
+## Publishing
+
+The **Publish** button in the top-right commits your changes to the live agent. Click the dropdown arrow next to it to publish to a specific environment if you have multiple (staging, production).
+
+The **Talk to assistant** button launches a quick test chat so you can validate changes before publishing.
+
+## Related pages
+
+| Task | Where |
+|---|---|
+| Build a brand-new agent | [Creating Your First Agent](/getting-started/first-bot) |
+| Configure advanced tools (KB, SQL, etc.) | [Data & Tool Integrations](/integrations/data-tools) |
+| Deploy to web / voice / WhatsApp | [Channels](/channels) |
+| Understand the Classifier (Legacy) | [Bot Settings → Classifier](/bot-settings/classifier) |

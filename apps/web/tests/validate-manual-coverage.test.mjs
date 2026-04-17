@@ -58,6 +58,14 @@ const COVERAGE_MAP = [
   ['deep-link',             'troubleshooting/deep-links.mdx'],
   ['intent explainer',      'intents-entities/intent-explainer.mdx'],
   // Flows / Integrations (from Flows User Manual v4.12.x)
+  // Agentic migration (2026-04-17)
+  ['agent',                 'getting-started/first-bot.mdx'],
+  ['agent configuration',   'bot-settings/agent-configuration.mdx'],
+  ['prompts',               'bot-settings/agent-configuration.mdx'],
+  ['tools',                 'bot-settings/agent-configuration.mdx'],
+  ['voice',                 'bot-settings/agent-configuration.mdx'],
+  ['language',              'bot-settings/agent-configuration.mdx'],
+  // Flows
   ['flows',                 'integrations/index.mdx'],
   ['flow management',       'integrations/flows-basics.mdx'],
   ['workspace',             'integrations/workspace.mdx'],

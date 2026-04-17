@@ -1,7 +1,6 @@
 export default {
   index: { title: 'Home', display: 'hidden' },
   'getting-started': 'Getting Started',
-  'intents-entities': 'Intents & Entities',
   'bot-settings': 'Bot Settings',
   channels: 'Channels',
   integrations: 'Integrations (Flows)',
@@ -9,4 +8,5 @@ export default {
   'account-admin': 'Account & Admin',
   troubleshooting: 'Troubleshooting',
   faq: 'FAQ',
+  'intents-entities': 'Intents & Entities (Legacy)',
 }

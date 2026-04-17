@@ -11,15 +11,25 @@ import { Callout } from 'nextra/components'
 
 ### What is AIDA?
 
-AIDA — Artificial Intelligence Digital Assistance — is a platform for building chatbots that handle real customer conversations. It combines Machine Learning intent classification, Elasticsearch exact-match triggers, a document-QA layer called DocBrain, and **Flows** — a visual integration builder for connecting bots to external systems. Bots can be deployed on websites, voice channels (AudioCodes), and WhatsApp.
+AIDA — Artificial Intelligence Digital Assistance — is a platform for building AI **agents** that handle real customer conversations. An agent combines a system prompt, a connected set of tools (APIs, knowledge bases, databases), and an LLM. Agents can be deployed on websites, voice channels (AudioCodes), and WhatsApp. AIDA also includes **Flows** — a visual builder for complex multi-step automation.
 
-### What's the difference between Intents, Entities, and DocBrain?
+### Are intents still supported?
 
-- **Intents** are the goals users have (book a flight, reset a password). You train them with example phrases called triggers.
-- **Entities** are the specific pieces of information users mention — dates, locations, names.
-- **DocBrain** indexes your existing documents and answers questions from them, skipping the need to hand-author every response.
+Intents, triggers, and entities are **deprecated and will be phased out by end of 2026**. Existing intent-based bots continue to work, but:
 
-See [Intents & Entities](/intents-entities) for the full picture.
+- All **new bots** should be built using the [Agent wizard](/getting-started/first-bot)
+- If you're maintaining a legacy bot, see [Intents & Entities (Legacy)](/intents-entities)
+- Migration guidance: prompts replace intents, tool calling replaces triggers + parameters, the LLM replaces entity extraction
+
+### What's an agent made of?
+
+Three things:
+
+1. **Prompts** — the welcome prompt users see and the system prompt (Instructions/Prompt) that steers behavior
+2. **Tools** — optional external capabilities (API, KB, Table, File, SQL, Webpage)
+3. **Model** — the underlying LLM (Gemini Live, GPT-realtime variants, etc.)
+
+Configure all three from [Agent Configuration](/bot-settings/agent-configuration).
 
 ### What roles are available?
 

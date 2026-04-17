@@ -1,124 +1,100 @@
 ---
-title: Creating Your First Bot
-description: Step-by-step guide to creating your first chatbot in AIDA using DocBrain or Intents & Entities.
+title: Creating Your First Agent
+description: Build your first AIDA agent using the new 3-step wizard — choose a mode, add company info, and test it live.
 ---
 
-import { Callout, Steps, Tabs } from 'nextra/components'
+import { Callout, Steps } from 'nextra/components'
 
-# Creating Your First Bot
+# Creating Your First Agent
 
-## The Bots Page
+AIDA has moved to an **Agentic AI** model. Instead of building chatbots from intents, triggers, and entities, you now create an **agent** with a system prompt, connected tools, and a model. AIDA walks you through it in a three-step wizard.
 
-After selecting a team, you will land on the **Bots Page** which shows all bots created within that team. Click any bot card to open it.
+<Callout type="warning">
+  **Intents are being deprecated.** Existing intent-based bots continue to work, but all new bots should be built as agents. Intents, triggers, and entities will be fully phased out by **end of 2026**. See [Intents & Entities (Legacy)](/intents-entities) if you're maintaining an existing bot.
+</Callout>
 
-- **Search:** Use the search field to find a bot by name.
-- **Show all bots:** After entering a bot, use the **Show all bots** option at any time to return to the Bots Page.
+## Step 1 — Agent Mode
 
-## Creating a New Bot
+Choose how your agent interacts with users.
 
-Click the **[+ Create Bot]** button on the Bots Page or from the bot dropdown list. You will be offered two creation paths:
+| Mode | When to pick it |
+|---|---|
+| **Standard** | Text-based assistants with Speech-to-Text (STT) and Text-to-Speech (TTS) support. Great when flexibility and tool usage are priorities. Can be used as a flow node (node settings only). Guardrails still under development. |
+| **Realtime Voice** | Low-latency, real-time voice interactions using natural speech. Optimized for phone calls and live conversations — input and output flow seamlessly with minimal delay. Ideal for conversational AI that mimics human-like interactions. Guardrails and PII are still under development and not yet enforced. |
 
-<Tabs items={['Create with DocBrain', 'Create with Intents & Entities']}>
-  <Tabs.Tab>
+<Callout>
+  If your agent needs to call external tools (APIs, knowledge bases, databases), pick **Standard** — it has full tool-calling support today.
+</Callout>
 
-### Create Bot Using DocBrain
+Click **Continue** after selecting.
 
-DocBrain lets your bot answer questions from indexed documents. The wizard has three steps:
+## Step 2 — Company Info
+
+Teach your agent about your business. AIDA uses this information to build a default system prompt, so the more specific you are here, the less you'll edit later.
+
+The form asks for: **Agent Name**, **Primary Language**, **Company Name**, **Website URL**, **Welcome message**, and a short description of **what your AI assistant should do**.
 
 <Steps>
 
-#### Define Bot
+### Name your agent
 
-Enter the **bot name**, **organization name**, and select the **language**. Click **Next**.
+**Agent Name** — a friendly name users will see (e.g., `Alex`, `Sarah`, `Jordan`).
 
-#### Choose Source
+### Pick a primary language
 
-Select the type of data source for DocBrain and enter a DocBrain name. You can either:
-- Link an **existing DocBrain** already in your account, or
-- Create a **new DocBrain** from scratch.
+**Primary Language** — the language your agent speaks by default. You can add supported languages later from the Language tab.
 
-Click **Next** (or **Prev** to go back).
+### Add company details
 
-#### Choose Language Model *(optional)*
+- **Company Name** — used in the agent's introduction
+- **Website URL** — lets the agent reference your website in responses
 
-Select the DocBrain model type you want to use for response generation.
+### Write a welcome message
 
-Click **Start Indexing** once all mandatory fields are complete.
+**Welcome message** — describe how your agent should greet users. One or two sentences is enough. Example: *"Hi, I'm Alex from Acme. I can help with order status, returns, and product questions."*
 
-</Steps>
+### Describe what the agent should do
 
-  </Tabs.Tab>
-  <Tabs.Tab>
+**What should your AI assistant do?** — plain-English description of the agent's responsibilities. AIDA auto-generates a detailed system prompt from this, so be specific.
 
-### Create Bot Using Intents & Entities
+Example input:
 
-This path gives you full control over bot training through intents and entities.
-
-Fill in the following fields:
-- **Name your bot** — the bot's display name
-- **Short description** — a brief summary of the bot's purpose
-- **Organization name** — your organization's name
-- **Language** — defaults to English
-
-Then choose a starting option:
-
-**Build from scratch** — creates the bot with default system intents (Default Welcome, Default Reset, Default Fallback).
-
-**Add pre-built intents** — lets you browse and add predefined intents from the library:
-
-<Steps>
-
-#### Open the pre-built intents panel
-
-Click **[Add pre-built intents]** to browse available intent packages.
-
-#### Select intents
-
-Click **[Add]** next to each intent package you want to include. Added intents appear in the **Added pre-built intents** list.
-
-#### Confirm and create
-
-Click **[Proceed]**, enter any required reference values, then click **[Proceed]** again. Your bot is created with the selected intents.
+> *Answer customer questions, book appointments, take orders, and check order status.*
 
 </Steps>
 
-  </Tabs.Tab>
-</Tabs>
+Click **Continue** to provision the agent.
 
-## Bot Completion Progress
+## Step 3 — Test It
 
-The Home Page shows a **completion percentage** for each bot. Here's how it's calculated:
+AIDA spins up your agent with a default model and voice and hands you a live test console that shows the agent's key details next to an interactive preview.
 
-**Standard (non-DocBrain) bots:**
+You'll see:
 
-| Action completed | Progress |
-|---|---|
-| Bot created | 0% |
-| Customize Chat UI | +25% |
-| Configure welcome message | +25% |
-| Go-Live | +25% |
-| **Total** | **75%** (100% once DocBrain is indexed, if added) |
+- **Model** — the LLM powering the agent (for Realtime Voice, typically Gemini Live or a GPT-realtime variant)
+- **Voice Name** — the TTS/Realtime voice (e.g., `Puck`)
+- **Language** — the primary language you picked
 
-**DocBrain bots:**
+**Try it:**
 
-| Action completed | Progress |
-|---|---|
-| Bot created, indexing in progress | 0% |
-| Indexing complete (Test DocBrain) | +20% |
-| Customize Chat UI | +20% |
-| Configure welcome message | +20% |
-| Go-Live | +20% |
-| Configure prompt | +20% |
-| **Total** | **100%** |
-
-## Customizing Your Bot's Look
-
-Click **Customize Chat UI** on the Home Page to personalize the bot's chat interface appearance — colors, avatar, welcome text, and more. Changes are reflected in real time in the preview panel on the right.
-
-## Going Live
-
-Once you've configured your bot, click **Go-Live** (or the **Go-live Recommended** button on the Home Page) to deploy it. See the [Integrations](/channels) section for deployment options including Web/App, Voice, and WhatsApp.
+- Hit the **mic** to start talking (Realtime Voice) or type into the chat (Standard)
+- Wait for the **Ready to talk** indicator to go green
+- Ask your agent something it should handle based on your description
 
 <Callout type="info">
-  Your bot status will show **"Your bot is now ready to go live"** once all mandatory criteria are met.
+  **Realtime Voice tips:**
+  - Speak clearly and naturally — the agent responds when you finish a thought
+  - Use a quiet environment for best transcription quality
 </Callout>
+
+When you're ready to fine-tune, click **Go to Agent Configuration**. See the full [Agent Configuration](/bot-settings/agent-configuration) reference for prompts, model, tools, voice, and language settings.
+
+## What's next?
+
+| If you want to... | Go to |
+|---|---|
+| Edit the prompt, change model, tune tokens | [Agent Configuration](/bot-settings/agent-configuration) |
+| Connect the agent to external systems | [Integrations (Flows)](/integrations) |
+| Publish the agent on web / voice / WhatsApp | [Channels](/channels) |
+| Measure agent performance | [Analytics](/analytics) |
+| Invite teammates | [Users & Permissions](/account-admin/users-permissions) |

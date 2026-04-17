@@ -3,11 +3,15 @@ title: Intents & Entities
 description: Teach your bot what users mean and the specific terms they use.
 ---
 
-import { Cards } from 'nextra/components'
+import { Callout, Cards } from 'nextra/components'
 
-# Intents & Entities
+# Intents & Entities (Legacy)
 
-Intents and entities are how AIDA understands what your users want.
+<Callout type="warning">
+  **Being phased out by end of 2026.** Intents, triggers, and entities are deprecated. Existing bots continue to work, but all new bots should use the [Agentic AI model](/getting-started/first-bot). See [Agent Configuration](/bot-settings/agent-configuration) for the modern equivalent.
+</Callout>
+
+Intents and entities are the legacy way AIDA understood what your users want.
 
 - **An intent** captures a user's goal — booking a flight, checking an account balance, escalating to an agent.
 - **An entity** captures the specific pieces of information inside a user's message — a city, a date, an amount.
