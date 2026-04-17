@@ -1,13 +1,38 @@
 ---
-title: Logic & Dev Nodes
-description: Branch flows, transform data, call REST APIs, run custom JavaScript, pause, and debug.
+title: Start, Logic & Dev Nodes
+description: Start nodes, branching logic, data transforms, REST APIs, custom JavaScript, delays, debugging, and flow linking.
 ---
 
 import { Callout } from 'nextra/components'
 
-# Logic & Dev Nodes
+# Start, Logic & Dev Nodes
 
-Logic nodes branch the flow. Dev nodes glue it to external systems. Link nodes stitch flows together.
+Start nodes are how a flow begins. Logic nodes branch the flow. Dev nodes glue it to external systems. Link nodes stitch flows together.
+
+## Start: Start node
+
+The **Start** node lets you trigger a flow manually by injecting data — typically used for testing or when the flow is started from inside AIDA rather than by an external caller.
+
+**Settings:**
+
+- **Input type** — click the timestamp dropdown to change between `string`, `number`, or any other supported type
+- **Repeat function** — re-emits the same message at a set interval (useful for health-check-style flows or scheduled triggers)
+
+## Start: Trigger via API
+
+**Trigger via API** lets external systems kick off a flow by hitting an endpoint. Use it for webhooks, cross-system automation, or integrating AIDA flows into an existing orchestration platform.
+
+**Settings:**
+
+| Field | Options |
+|---|---|
+| **Type** | REST or SOAP |
+| **Method** | GET, POST, PUT, or PATCH |
+| **URL** | The endpoint your external caller will hit |
+
+<Callout type="info">
+  Pair **Trigger via API** at the start of your flow with an **API Response** node (see below) at the end — the API Response sends the flow's output back to the caller synchronously.
+</Callout>
 
 ## Logic: If/Else
 

@@ -4,6 +4,6 @@ export default {
   workspace: 'Workspace',
   'ai-agents': 'AI & Agents',
   'conversation-nodes': 'Conversation Nodes',
-  'logic-dev': 'Logic & Dev Nodes',
+  'logic-dev': 'Start, Logic & Dev Nodes',
   'data-tools': 'Data & Tool Integrations',
 }
