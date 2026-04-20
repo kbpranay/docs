@@ -1,11 +1,15 @@
 ---
-title: Classifier
-description: How AIDA matches user messages to intents, and when to enable or disable it.
+title: Classifier (Legacy)
+description: Legacy engine that matches user messages to intents. Replaced by agent tool calling.
 ---
 
 import { Callout, Steps } from 'nextra/components'
 
-# Classifier
+# Classifier (Legacy)
+
+<Callout type="warning">
+  **Deprecated — being phased out by end of 2026.** The Classifier only exists to serve **intent-based** bots, which are themselves legacy. New bots should be built as [Agents](/getting-started/first-bot) — agents decide what to do (including when to trigger a flow) via **tool calling**, not classification.
+</Callout>
 
 The **Classifier** is the engine that matches user messages to intents using Machine Learning (ML) and Elasticsearch (ES).
 

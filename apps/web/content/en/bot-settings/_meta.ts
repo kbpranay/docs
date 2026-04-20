@@ -4,5 +4,5 @@ export default {
   'bot-info': 'Bot Info',
   classifier: 'Classifier (Legacy)',
   multilingual: 'Multilingual',
-  'flows-actions': 'Flows & Actions',
+  'flows-actions': 'Flows & Actions (Legacy)',
 }

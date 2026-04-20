@@ -36,11 +36,20 @@ Use Flows to:
 
 ## How Flows fit with the rest of AIDA
 
-- **Intents & Entities** understand what a user *wants* → route to a flow
+- **Agents** decide what a user needs and call the right tool — a flow is just one kind of tool they can invoke
 - **Flows** execute the integration logic → call systems, fetch data, generate responses
 - **Channels** deliver the final response to the user (web widget, voice, WhatsApp)
 
-From an intent, you can launch a flow as a response action: open the intent's **Response → Action** panel, pick **Flow** from the dropdown, and either create a new flow or paste an existing route ID.
+**Two agent modes can trigger a flow as a tool:**
+
+- **Standard (cascaded) agents** — text + STT/TTS, the LLM plans and calls the flow like any other tool
+- **Realtime Voice-to-Voice agents** — low-latency voice (Gemini Live, GPT-realtime); the agent invokes the flow mid-conversation without leaving the voice session
+
+Register the flow on the agent from [Agent Configuration → Tools](/bot-settings/agent-configuration#tools) and give it a clear description so the agent knows when to call it.
+
+<Callout type="warning">
+  **Legacy path — Intents & Entities.** Intents routed to a flow via a **Response → Action** route ID. This still works for existing intent-based bots but is **deprecated and being phased out by end of 2026**. New bots should launch flows from agent tool calls. See [Intents & Entities (Legacy)](/intents-entities).
+</Callout>
 
 <Callout type="info">
   **Channels vs. Integrations** — [Channels](/channels) are where your bot *talks* to users (Web, Voice, WhatsApp). Integrations (this section) are how your bot *connects to external systems* via Flows.
@@ -53,4 +62,4 @@ Two routes from AIDA:
 1. **Bot Selection page** → click **Flows**
 2. **Mega Menu** (top navigation bar) → **Flows**
 
-You can also access a specific flow by pasting its route ID into an Intent → Response → Action.
+On the modern agent-based path, flows are wired up as tools on the agent — see [Agent Configuration → Tools](/bot-settings/agent-configuration#tools). For legacy intent-based bots, you can still access a specific flow by pasting its route ID into an Intent → Response → Action.

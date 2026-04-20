@@ -146,13 +146,28 @@ See [Data & Tool Integrations](/integrations/data-tools) for setup details on ea
   On the Flows page, drag an **Agentic AI** node from the AI Tools palette. You can either **Create Agent** directly (same fields as above) or pick an existing agent from the **Select Agent** dropdown, which auto-populates the node's config.
 </Callout>
 
+### Triggering a flow from an agent (tool call)
+
+Agents can also go the other direction — **call a flow as a tool**. Register the flow as a tool on the agent from [Agent Configuration → Tools](/bot-settings/agent-configuration#tools) and give it a clear description. The LLM will decide when to invoke the flow based on the user's request.
+
+This works identically across both agent modes:
+
+| Agent mode | How the flow is triggered |
+|---|---|
+| **Standard (cascaded)** | Text + STT/TTS agents plan and invoke the flow as one of several tool calls |
+| **Realtime Voice-to-Voice** | Low-latency voice agents (Gemini Live, GPT-realtime) invoke the flow mid-conversation without leaving the voice session |
+
+<Callout type="warning">
+  **Legacy trigger — intents.** Flows used to be triggered by routing an intent's **Response → Action** to the flow's route ID. This still works for existing intent-based bots but is **deprecated and being phased out by end of 2026**. New bots should use agent tool calls. See [Flow Management → How flows get triggered](/integrations/flows-basics#how-flows-get-triggered).
+</Callout>
+
 ### Response pipeline
 
 When an agent runs, you can inspect each step:
 
 | Section | Shows |
 |---|---|
-| **Request Details** | Intent, Action, LLM used, Message ID, Response Time, Agent Prompt |
+| **Request Details** | Intent *(legacy field, populated only for intent-triggered runs)*, Action, LLM used, Message ID, Response Time, Agent Prompt |
 | **Tools Added** | List of configured tools + their parameters |
 | **Response Section (per tool call)** | System Prompt, Context, Result (args passed to tools), LLM Response |
 

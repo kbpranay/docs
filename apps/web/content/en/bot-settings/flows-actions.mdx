@@ -1,13 +1,19 @@
 ---
-title: Flows & Actions
-description: Connect your bot to Blitzico, AIDA Flows, and custom bot actions.
+title: Flows & Actions (Legacy)
+description: Legacy intent-based actions — Blitzico, AIDA Flows, and custom bot actions. New bots should trigger flows via agent tool calls.
 ---
 
 import { Callout } from 'nextra/components'
 
-# Flows & Actions
+# Flows & Actions (Legacy)
 
-Actions let an intent trigger something beyond a text reply — a Blitzico flow, an AIDA Flow, a knowledge lookup, or a predefined bot behavior like handoff to an agent.
+<Callout type="warning">
+  **Deprecated — being phased out by end of 2026.** This page describes how **intents** trigger flows and bot actions via the **Response → Action** panel. That is the legacy path.
+
+  **The modern path is agent tool calling.** Both **Standard (cascaded)** agents and **Realtime Voice-to-Voice** agents can trigger a flow by calling it as a tool — no intent required. See [Agent Configuration → Tools](/bot-settings/agent-configuration#tools), [AI & Agents](/integrations/ai-agents), and [Flow Management](/integrations/flows-basics#how-flows-get-triggered).
+</Callout>
+
+Actions let a **legacy intent** trigger something beyond a text reply — a Blitzico flow, an AIDA Flow, a knowledge lookup, or a predefined bot behavior like handoff to an agent.
 
 Actions are configured per-intent in the **Response → Action** section of an intent.
 

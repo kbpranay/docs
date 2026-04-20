@@ -9,6 +9,24 @@ import { Callout, Steps } from 'nextra/components'
 
 Every flow starts as an entry on the Flows listing page. From there you can create, rename, delete, lock, and search for flows.
 
+## How flows get triggered
+
+Flows can be launched in three ways. **Agent tool calls are the current, recommended approach**; intent-action triggers are kept only for legacy, intent-based bots.
+
+| Trigger | Mode | Status |
+|---|---|---|
+| **Agent (Standard / cascaded)** calls the flow as a tool | Text + STT/TTS agents that plan, then invoke tools step-by-step | **Recommended** |
+| **Agent (Realtime Voice-to-Voice)** calls the flow as a tool | Low-latency voice agents (Gemini Live, GPT-realtime) invoking tools mid-conversation | **Recommended** |
+| **Intent → Response → Action** routes to the flow via route ID | Legacy intent-based bots only | **Deprecated** — being phased out by end of 2026 |
+
+<Callout type="info">
+  **Agents trigger flows via tool calls.** Register the flow as a tool on the agent (see [Agent Configuration → Tools](/bot-settings/agent-configuration#tools) and [AI & Agents](/integrations/ai-agents)). Both **cascaded/Standard** agents and **Realtime Voice-to-Voice** agents can invoke flows the same way — the LLM decides when to call the flow based on the tool's description and the user's request, then the flow runs and returns its result to the agent.
+</Callout>
+
+<Callout type="warning">
+  **Intents are deprecated.** The "trigger a flow from inside an intent" pattern described below remains only for teams maintaining legacy bots. For new work, build an [Agent](/getting-started/first-bot) and expose the flow as a tool.
+</Callout>
+
 ## Creating a flow
 
 <Steps>
@@ -30,6 +48,16 @@ Enter a descriptive name and configure the instance where the flow should deploy
 Click **Save**. The new flow appears in the list and opens the workspace so you can start adding nodes.
 
 </Steps>
+
+### Creating a flow from an agent (recommended)
+
+Open your agent in [Agent Configuration → Tools](/bot-settings/agent-configuration#tools), add the flow as a tool, and give it a clear **Description** so the agent knows when to call it. This works identically for **Standard (cascaded)** agents and **Realtime Voice-to-Voice** agents.
+
+### Creating a flow from inside an intent (legacy)
+
+<Callout type="warning">
+  Applies to legacy, intent-based bots only. New bots should trigger flows via agent tool calls (above).
+</Callout>
 
 You can also create a flow from inside an intent — open **Response → Action**, select **Flow** from the dropdown, and either create a new one or paste an existing route ID.
 
@@ -62,7 +90,7 @@ Click **Delete Flow** and confirm in the popup.
 </Steps>
 
 <Callout type="warning">
-  Deleting a flow removes it permanently. Any intents or parent flows that reference this flow's route ID will stop working.
+  Deleting a flow removes it permanently. Any agents that have this flow registered as a tool — and any legacy intents or parent flows that reference the flow's route ID — will stop working.
 </Callout>
 
 ## Locking a flow
