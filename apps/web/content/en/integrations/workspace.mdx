@@ -9,6 +9,40 @@ import { Callout, Steps } from 'nextra/components'
 
 The Flows workspace is where you build the actual automation — drag nodes from the palette, wire them together, and deploy.
 
+## Node palette (left sidebar)
+
+The left-hand sidebar groups all node types into six categories. Click a category icon to expand it and drag a node onto the canvas.
+
+| Category | Nodes | Reference |
+|---|---|---|
+| **Start** | Start, Trigger via API | [Start, Logic & Dev Nodes → Start](/integrations/logic-dev#start-start-node) |
+| **AI tools** <sup>α</sup> | LLM, RAG, Summariser, Classifier, LLM Entity Extraction, Agentic AI | [AI & Agents](/integrations/ai-agents) |
+| **Conv** (Conversation) | Ask User, Gallery Card, Form Card, Picture Card, Video Card, Suggestion, Speak to an Agent, LLM Classifier | [Conversation Nodes](/integrations/conversation-nodes) |
+| **Dev** | Comment, REST API, Function, Delay, API response, Debug | [Start, Logic & Dev Nodes → Dev](/integrations/logic-dev#dev-rest-api) |
+| **Logic** | If/Else, Change, Template | [Start, Logic & Dev Nodes → Logic](/integrations/logic-dev#logic-ifelse) |
+| **Link** | Flow In, Flow Out | [Start, Logic & Dev Nodes → Link](/integrations/logic-dev#link-flow-in--flow-out) |
+
+<Callout type="info">
+  The **α** (alpha) badge on **AI tools** indicates the category is in active development — capabilities expand frequently and some behaviors are still being stabilized.
+</Callout>
+
+## Workspace header (top bar)
+
+The icons across the top of the workspace, left-to-right:
+
+| Icon | Name | What it does |
+|---|---|---|
+| 🔍 | **Search** | Find a node, variable, or label inside the current flow |
+| ⚙️ | **Flow Environment Variables** | Opens the **Flow Env Variable** dialog — see [Flow environment variables](#flow-environment-variables) below |
+| ⬇ | **Export** | Download the flow as JSON, a Blitzico file, or just the selected nodes |
+| \|×\| | **Auto-align nodes** | Tidy up node positions on the canvas |
+| ⬆ | **Import** | Opens the **Import Flow** dialog — see [Importing a flow](#importing-a-flow) below |
+| ⛶ | **Fullscreen** | Expand the workspace to fill the browser window |
+| **Save Flow** | Save | Persist changes as a draft (not live) |
+| **Deploy ▾** | Deploy | Push to the live environment; the dropdown lets you deploy to another instance |
+
+The bottom-left corner has zoom (+ / −), fullscreen, **lock workspace**, and **mini-map** controls.
+
 ## Adding and connecting nodes
 
 - **Add:** drag a node from the left-hand sidebar palette and drop it onto the workspace.
@@ -66,7 +100,36 @@ Click **Deploy** to push the flow to that instance.
 | **Export Flow** | Download or copy the full flow as JSON |
 | **Export Selected Nodes** | Download or copy just the nodes you selected |
 
-**Import** via the Import button — select a file, or paste a flow JSON snippet, then click **Import**.
+### Importing a flow
+
+Click the **Import** (⬆) icon in the header to open the **Import Flow** dialog.
+
+- **Paste flow json** — paste a JSON payload straight into the textarea
+- **Select File to Import** — pick a `.json` file exported earlier (or a Blitzico file)
+
+Click **Import** to drop the nodes onto the canvas, or **Cancel** to dismiss.
+
+## Flow environment variables
+
+Click the **⚙ Flow Environment Variables** icon in the header to open the **Flow Env Variable** dialog. These values live on the flow itself — they're accessible to every node in this flow but not shared across flows.
+
+<Steps>
+
+### Open the dialog
+
+Click the ⚙ icon in the workspace header.
+
+### Add a variable
+
+Click **+ Add** and enter a Name, Value, and Type.
+
+### Save
+
+Click **Save** to persist. You'll see the callout *"Variables defined are specific to this flow"* — intentional, to remind you these aren't team-wide.
+
+</Steps>
+
+Reference them from nodes as described in [Data & Tool Integrations → Environment variables](/integrations/data-tools#environment-variables).
 
 ## Flow logs
 

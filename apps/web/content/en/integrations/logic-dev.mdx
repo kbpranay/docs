@@ -69,6 +69,12 @@ Takes the incoming `msg` object plus a template string and outputs a `msg` with 
 
 ---
 
+Dev nodes are listed in the order they appear in the palette.
+
+## Dev: Comment
+
+A non-executing annotation node. Drag it in from the Dev palette, double-click to edit. Use comments liberally — future-you will thank present-you when debugging flows six months later.
+
 ## Dev: REST API
 
 Call any HTTP endpoint from a flow.
@@ -89,10 +95,6 @@ Call any HTTP endpoint from a flow.
 
 Runs custom JavaScript. The incoming message is passed in as a `msg` object, with the body on `msg.payload`. Use this for transformations too complex for Change or Template, or for calling Node.js utilities.
 
-## Dev: API Response
-
-Handles the response coming back from an API call. Used mostly in flows that were triggered via API (see the Start node's Trigger via API option).
-
 ## Dev: Delay
 
 Pauses the flow, or rate-limits message throughput.
@@ -101,6 +103,10 @@ Pauses the flow, or rate-limits message throughput.
 - **Delay (ms)** — how long to wait; can be overridden by a property on the incoming `msg`
 - **Reset** — clears all held messages
 - **Flush** — sends all held messages immediately
+
+## Dev: API response
+
+Handles the response coming back from an API call. Used mostly in flows that were triggered via API (see the Start node's Trigger via API option).
 
 ## Dev: Debug
 
@@ -114,14 +120,13 @@ Logs `msg.payload` (the primary data) and the full `msg` object (metadata) so yo
 
 ## Link: Flow In / Flow Out
 
-**Flow In** is an entry point that lets data, signals, or control pass between nodes. It's how you build modular, composable flows — a main flow can hand off to a sub-flow at a Flow Out and pick it back up at the corresponding Flow In.
+The **Link** palette contains two nodes that stitch flows together:
 
-**Flow Out** is the exit point paired with a Flow In. Use Flow In/Out pairs to:
+- **Flow In** — an entry point that lets data, signals, or control pass between nodes. Pair it with a Flow Out in another flow to build modular, composable automations.
+- **Flow Out** — the exit point paired with a Flow In.
+
+Use Flow In / Flow Out pairs to:
 
 - Reuse common logic across multiple flows
 - Break a complex flow into digestible pieces
 - Test individual sections in isolation
-
-## Dev: Comment
-
-A non-executing annotation node. Drag it in from the Dev palette, double-click to edit. Use comments liberally — future-you will thank present-you when debugging flows six months later.
