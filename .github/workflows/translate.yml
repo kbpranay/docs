@@ -1,0 +1,73 @@
+name: Translate docs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/web/content/en/**/*.mdx'
+      - 'apps/web/i18n/glossary.json'
+      - 'apps/web/i18n/callout-labels.json'
+      - 'apps/web/scripts/translate.ts'
+  workflow_dispatch:
+    inputs:
+      all:
+        description: 'Translate every EN file, ignoring the diff'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        locale: [de, fr, es]
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: apps/web/package-lock.json
+
+      - name: Install dependencies
+        working-directory: apps/web
+        run: npm ci
+
+      - name: Run translator
+        working-directory: apps/web
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GIT_BASE: ${{ github.event.before || 'HEAD^' }}
+        run: |
+          if [ "${{ github.event.inputs.all }}" = "true" ]; then
+            npx tsx scripts/translate.ts --locale ${{ matrix.locale }} --all
+          else
+            npx tsx scripts/translate.ts --locale ${{ matrix.locale }}
+          fi
+
+      - name: Open pull request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: translate/${{ matrix.locale }}
+          title: 'Translations: ${{ matrix.locale }}'
+          commit-message: 'Translate changed EN docs to ${{ matrix.locale }}'
+          body: |
+            Auto-generated translations for **${{ matrix.locale }}** produced by `scripts/translate.ts`.
+
+            The translator runs Claude Sonnet 4.6 with prompt caching on the glossary-seeded system prompt, translates only files that changed since the previous commit, and rejects any output that fails structural validation (frontmatter keys, code blocks, link URLs, anchor fragments, imports, JSX component counts).
+
+            Please review the wording and merge. If anything drifted from terminology that should be locked, add it to `apps/web/i18n/glossary.json` (protected terms) or `apps/web/i18n/callout-labels.json` (callout labels) and re-run.
+          labels: translations,automated
+          add-paths: |
+            apps/web/content/${{ matrix.locale }}/**
+            apps/web/i18n/memory/${{ matrix.locale }}.json

@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "description": "Zendesk-style callout label prefixes per locale. Claude translates occurrences of these English labels (in bold, with trailing colon) to the locale equivalent inside <Callout> bodies.",
+  "labels": {
+    "en": { "Note": "Note", "Tip": "Tip", "Important": "Important", "Warning": "Warning" },
+    "de": { "Note": "Hinweis", "Tip": "Tipp", "Important": "Wichtig", "Warning": "Warnung" },
+    "fr": { "Note": "Remarque", "Tip": "Astuce", "Important": "Important", "Warning": "Avertissement" },
+    "es": { "Note": "Nota", "Tip": "Consejo", "Important": "Importante", "Warning": "Advertencia" }
+  }
+}
