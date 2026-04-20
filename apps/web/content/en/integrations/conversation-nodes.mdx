@@ -1,13 +1,13 @@
 ---
 title: Conversation nodes
-description: Use Ask User, Gallery Card, Form Card, Picture Card, Video Card, Suggestion, Speak to an Agent, and LLM Classifier to collect input and render rich conversational UI.
+description: Use Ask User, Gallery Card, Form Card, Picture Card, Speak to an Agent, Suggestion, Video Card, and LLM Classifier to collect input and render rich conversational UI.
 ---
 
 import { Callout } from 'nextra/components'
 
 # Conversation nodes
 
-Conversation nodes — shown as **Conv** in the palette — drive the visible back-and-forth of the conversation. You use them to prompt users for input, render rich cards, and branch based on how the user replies.
+Conversation nodes — shown as **Conv** in the palette — drive the visible back-and-forth of the conversation. You use them to prompt users for input, render rich cards, and branch based on how the user replies. The nodes are listed below in the order they appear in the palette.
 
 **In this article**
 
@@ -16,9 +16,9 @@ Conversation nodes — shown as **Conv** in the palette — drive the visible ba
 - [Gallery Card node](#gallery-card-node)
 - [Form Card node](#form-card-node)
 - [Picture Card node](#picture-card-node)
-- [Video Card node](#video-card-node)
-- [Suggestion node](#suggestion-node)
 - [Speak to an Agent node](#speak-to-an-agent-node)
+- [Suggestion node](#suggestion-node)
+- [Video Card node](#video-card-node)
 - [LLM Classifier node](#llm-classifier-node)
 - [Related articles](#related-articles)
 
@@ -98,18 +98,14 @@ Use the **Picture Card** node to display one or more images with optional surrou
 - Variable
 - Show text area
 
-## Video Card node
+## Speak to an Agent node
 
-Use the **Video Card** node to embed a video — perfect for walkthroughs, demos, or onboarding content.
+Use the **Speak to an Agent** node to hand the conversation off to a live agent using a suggestion chip. The text shown to the user adapts based on the live agent's availability status.
 
 **Fields:**
 
-- Message Before Card
-- Video cards (add a Card Video URL for each card)
-- Message After Card
 - Suggestions
 - Fallback Message
-- Variable
 - Show text area
 
 ## Suggestion node
@@ -124,14 +120,18 @@ Use the **Suggestion** node as a lightweight way to present quick-reply chips �
 - Variable
 - Show text area
 
-## Speak to an Agent node
+## Video Card node
 
-Use the **Speak to an Agent** node to hand the conversation off to a live agent using a suggestion chip. The text shown to the user adapts based on the live agent's availability status.
+Use the **Video Card** node to embed a video — perfect for walkthroughs, demos, or onboarding content.
 
 **Fields:**
 
+- Message Before Card
+- Video cards (add a Card Video URL for each card)
+- Message After Card
 - Suggestions
 - Fallback Message
+- Variable
 - Show text area
 
 ## LLM Classifier node
