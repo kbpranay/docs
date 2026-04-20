@@ -1,21 +1,29 @@
 ---
-title: Flows & Actions (Legacy)
-description: Legacy intent-based actions — Blitzico, AIDA Flows, and custom bot actions. New bots should trigger flows via agent tool calls.
+title: Flows and actions (Legacy)
+description: Configure legacy intent-based actions — Blitzico, AIDA Flows, and standard bot actions. New bots should trigger flows via agent tool calls.
 ---
 
 import { Callout } from 'nextra/components'
 
-# Flows & Actions (Legacy)
+# Flows and actions (Legacy)
 
 <Callout type="warning">
-  **Deprecated — being phased out by end of 2026.** This page describes how **intents** trigger flows and bot actions via the **Response → Action** panel. That is the legacy path.
+  **Important — this feature is deprecated.** This article describes how **intents** trigger flows and bot actions through the **Response → Action** panel. That is the legacy path and is being phased out by the end of 2026.
 
-  **The modern path is agent tool calling.** Both **Standard (cascaded)** agents and **Realtime Voice-to-Voice** agents can trigger a flow by calling it as a tool — no intent required. See [Agent Configuration → Tools](/bot-settings/agent-configuration#tools), [AI & Agents](/integrations/ai-agents), and [Flow Management](/integrations/flows-basics#how-flows-get-triggered).
+  **The current, recommended path is agent tool calling.** Both **Standard (cascaded)** agents and **Realtime Voice-to-Voice** agents trigger a flow by calling it as a tool — no intent required. See [Configuring your agent → Tools](/bot-settings/agent-configuration#tools), [AI and agent nodes](/integrations/ai-agents), and [Managing flows in AIDA → How flows get triggered](/integrations/flows-basics#how-flows-get-triggered).
 </Callout>
 
-Actions let a **legacy intent** trigger something beyond a text reply — a Blitzico flow, an AIDA Flow, a knowledge lookup, or a predefined bot behavior like handoff to an agent.
+**Actions** let a legacy intent trigger something beyond a text reply — a Blitzico flow, an AIDA Flow, a knowledge lookup, or a predefined bot behavior like handing off to a live agent. You configure actions per intent from the **Response → Action** section.
 
-Actions are configured per-intent in the **Response → Action** section of an intent.
+**In this article**
+
+- [Action types](#action-types)
+- [Configuring a Blitzico or AIDA Flow action](#configuring-a-blitzico-or-aida-flow-action)
+- [Using an existing flow](#using-an-existing-flow)
+- [Configuring a standard bot action](#configuring-a-standard-bot-action)
+- [Removing an action](#removing-an-action)
+- [Applying the same action to all channels](#applying-the-same-action-to-all-channels)
+- [Related articles](#related-articles)
 
 ## Action types
 
@@ -23,49 +31,73 @@ Actions are configured per-intent in the **Response → Action** section of an i
 |---|---|
 | **DocBrain** | Fetch an answer from indexed documents. See [DocBrain](/intents-entities/docbrain). |
 | **Blitzico** | Run a Blitzico low-code flow. Requires a valid route ID. |
-| **Flows** | Run an AIDA Flow. Same route ID pattern as Blitzico. |
+| **Flows** | Run an AIDA Flow. Uses the same route ID pattern as Blitzico. |
 | **Others** | Standard bot actions like `speakToAgent` or `lead_contact_details`. |
 
-## Blitzico & AIDA Flows
+## Configuring a Blitzico or AIDA Flow action
 
-Both Blitzico and AIDA Flows use a route ID system to link the intent to the flow.
+Both Blitzico and AIDA Flows use a **route ID** to link the intent to the flow.
 
-**Creating a new flow:**
+To create a new flow from inside an intent:
 
-1. In the intent's Response → Action, select **Blitzico** or **Flows**.
-2. Select the target instance from the dropdown.
-3. Click **Create new flow** — a new route ID is generated.
-4. Click **Redirect to Blitz** (or **Redirect to Flow**) to open the flow editor in the target product.
+1. Open the intent you want to connect.
+2. Go to the **Response** tab and click **Action**.
+3. Select **Blitzico** or **Flows** from the dropdown.
+4. Choose the target instance.
+5. Click **Create new flow**. A new route ID is generated.
+6. Click **Redirect to Blitz** (or **Redirect to Flow**) to open the flow editor in the target product.
 
-**Using an existing flow:**
+## Using an existing flow
+
+To reuse a flow that already exists:
 
 1. Copy the route ID from the existing intent or flow.
-2. Paste it into the **Route ID** field on your new intent.
-3. Click **[Verify]**.
+2. In your intent's **Response → Action**, paste the route ID into the **Route ID** field.
+3. Click **Verify**.
 
-A valid ID turns the button label into **"Redirect to Blitz"** or **"Redirect to Flow"** depending on which action type you're using.
+A valid ID turns the button label into **Redirect to Blitz** or **Redirect to Flow**, depending on the action type.
 
 <Callout type="warning">
-  The route ID must belong to the **same instance** as your destination. Pasting an ID from a different instance shows *"Not a valid blitzico action"*.
+  **Important:** The route ID must belong to the **same instance** as the destination. Pasting an ID from a different instance shows the error *"Not a valid blitzico action"*.
 </Callout>
 
-## Standard bot actions
+## Configuring a standard bot action
 
-The "Others" action category covers built-in bot behaviors. Type the action name, press **Enter**, then **Save**.
+The **Others** action category covers built-in bot behaviors.
+
+1. Type the action name into the field.
+2. Press **Enter**.
+3. Click **Save**.
 
 Common examples:
 
-- **`speakToAgent`** — hand the conversation off to a human agent (requires agent routing configured)
-- **`lead_contact_details`** — capture and display the user's contact info
+- **`speakToAgent`** — hand the conversation off to a human agent. This requires agent routing to be configured.
+- **`lead_contact_details`** — capture and display the user's contact information.
 
-Each standard action has a specific effect defined at the product level. Consult your AIDA admin for the full list of available actions in your deployment.
+Each standard action has a specific effect defined at the product level. Check with your AIDA admin for the full list of available actions in your deployment.
 
 ## Removing an action
 
-Click **Remove action** on the intent's Response tab. A confirmation dialog prevents accidental removal.
+To remove an action from an intent:
 
-## Apply to all
+1. Open the intent.
+2. Go to the **Response** tab.
+3. Click **Remove action**.
+4. Confirm in the dialog.
 
-The **Apply to all** button propagates the current action configuration across all response types (Generic, WhatsApp, Voice, URL, Custom). This **overrides** any action already set on those channels — use it when you want identical behavior everywhere.
+## Applying the same action to all channels
 
-A blue icon appears in the header tabs (Triggers, Parameters, Response) when saved content exists, giving you a quick visual of what's been configured.
+Use the **Apply to all** button to propagate the current action configuration to every response type — Generic, WhatsApp, Voice, URL, and Custom.
+
+<Callout type="warning">
+  **Warning:** Applying an action to all channels **overrides** any action already set on those channels. Use this only when you want identical behavior everywhere.
+</Callout>
+
+A blue icon appears in the header tabs (Triggers, Parameters, Response) when saved content exists, giving you a quick visual indicator of what's been configured.
+
+## Related articles
+
+- [Managing flows in AIDA](/integrations/flows-basics)
+- [Configuring your agent](/bot-settings/agent-configuration)
+- [Intents (Legacy)](/intents-entities/intents)
+- [DocBrain](/intents-entities/docbrain)

@@ -1,133 +1,159 @@
 ---
-title: Data & Tool Integrations
-description: Connect agents to APIs, knowledge bases, databases, files, and webpages.
+title: Data and tool integrations
+description: Connect agents to APIs, knowledge bases, databases, files, and webpages, and manage flow environment variables.
 ---
 
 import { Callout } from 'nextra/components'
 
-# Data & Tool Integrations
+# Data and tool integrations
 
-Agentic AI nodes can use six tool types to reach outside the flow and fetch real data. Each tool has its own configuration — set it up once, then reference it from any agent.
+Agentic AI nodes can use six types of tool to reach outside the flow and fetch real data. Each tool has its own configuration — set it up once, then reference it from any agent. This article walks you through each tool type and shows you how to manage flow environment variables.
 
-## API tool
+**In this article**
 
-Call any external service as a tool — CRM lookups, ticket creation, payments, translation, etc.
+- [Before you begin](#before-you-begin)
+- [Configuring an API tool](#configuring-an-api-tool)
+- [Configuring a Knowledge Base (KB) tool](#configuring-a-knowledge-base-kb-tool)
+- [Configuring a Table tool](#configuring-a-table-tool)
+- [Configuring a File tool](#configuring-a-file-tool)
+- [Configuring a SQL tool](#configuring-a-sql-tool)
+- [Configuring a Webpage tool](#configuring-a-webpage-tool)
+- [Using environment variables](#using-environment-variables)
+- [Related articles](#related-articles)
+
+## Before you begin
+
+- The SQL tool requires a **read-only** database connection string.
+- The KB tool requires a DocBrain index. See [DocBrain](/intents-entities/docbrain) for how to create one.
+- Make sure you have credentials, URLs, and keys ready before opening the tool configuration dialog.
+
+## Configuring an API tool
+
+Use an **API tool** to call any external service — CRM lookups, ticket creation, payments, translation, and so on.
 
 **Configuration:**
 
 | Field | Description |
 |---|---|
 | Tool Type | `API` |
-| Tool Name | Short identifier |
-| Description | What the tool does (helps the agent decide when to use it) |
-| Method | `GET` or `POST` |
-| URL | The endpoint |
-| Response Type | Expected response format |
-| Timeout | Request timeout |
-| Headers | Name/value pairs |
-| Cookies | Cookie values |
+| Tool Name | Short identifier. |
+| Description | What the tool does. This is what the agent reads to decide when to use it. |
+| Method | `GET` or `POST`. |
+| URL | The endpoint. |
+| Response Type | Expected response format. |
+| Timeout | Request timeout. |
+| Headers | Name/value pairs. |
+| Cookies | Cookie values. |
 
-**Parameters** (each API call can take multiple):
+**Parameters** — each API call can take multiple parameters:
 
 | Field | Description |
 |---|---|
-| Name | Parameter name |
-| Description | What the agent should put here |
-| Select Type | `string`, `number`, `integer`, or `boolean` |
-| Required | Whether this parameter is mandatory |
-| Query Parameter | If true, appends as `?name=value`; if false, goes in the body |
+| Name | Parameter name. |
+| Description | What the agent should put here. |
+| Select Type | `string`, `number`, `integer`, or `boolean`. |
+| Required | Whether this parameter is mandatory. |
+| Query Parameter | If true, appends as `?name=value`. If false, goes in the body. |
 
-## KB (Knowledge Base) tool
+## Configuring a Knowledge Base (KB) tool
 
-Let the agent read from a DocBrain / Knowledge Base — similar to a RAG lookup but usable at tool-call granularity.
+Use a **KB tool** to let the agent read from a DocBrain or Knowledge Base — similar to a RAG lookup, but available at tool-call granularity.
 
 **Configuration:**
 
 - **Tool Type** — `KB`
 - **Tool Name** and **Description**
-- **Choose DocBrain** — which knowledge base to query
-- **Index ID** — up to 3 can be shown; a single index ID is auto-selected
-- **Auto-use Latest Index ID** toggle — always query the most recent index
+- **Choose DocBrain** — the knowledge base the tool should query.
+- **Index ID** — up to 3 can be shown; a single index ID is selected automatically.
+- **Auto-use Latest Index ID** — toggle on to always query the most recent index.
 
-**Advanced:**
+**Advanced settings:**
 
-- **Type** — Semantic or Keyword
-- **Method** — one of three `Gpt_mix` variants
-- **TopK** — number of results to retrieve
-- **Filtered Search** — filter by Doc ID, Source ID, URL, Original URL, or Doc Type
+- **Type** — Semantic or Keyword.
+- **Method** — one of three `Gpt_mix` variants.
+- **TopK** — the number of results to retrieve.
+- **Filtered Search** — filter by Doc ID, Source ID, URL, Original URL, or Doc Type.
 
-## Table tool
+## Configuring a Table tool
 
-Query structured data held in a CSV file.
+Use a **Table tool** to query structured data held in a CSV file.
 
 **Configuration:**
 
-- Upload a **.csv file** (max 5 MB)
-- For each header, configure:
-  - **Name**
-  - **Description**
-  - **Match Type** — Exact or Close
-  - **Type** — String, Category, Datetime, Integer, Float, or Boolean
+1. Upload a **.csv** file (max 5 MB).
+2. For each header, set:
+   - **Name**
+   - **Description**
+   - **Match Type** — Exact or Close.
+   - **Type** — String, Category, Datetime, Integer, Float, or Boolean.
 
 The agent can then run SQL-like queries against the table using natural language.
 
-## File tool
+## Configuring a File tool
 
-Let the agent read content from PDF documents.
+Use a **File tool** to let the agent read content from PDF documents.
 
 **Configuration:**
 
-- PDF only
-- Up to **5 files**, **5 MB** each, fewer than **10 pages** per file
+- PDF format only.
+- Up to **5 files**, **5 MB** each, with fewer than **10 pages** per file.
 
 Use the File tool for reference documents your agent needs — policy PDFs, one-pagers, product sheets.
 
-## SQL tool
+## Configuring a SQL tool
 
-Run read-only SQL against a connected database.
+Use a **SQL tool** to run read-only SQL against a connected database.
 
 **Configuration:**
 
-- **DB URL** — must be a **read-only** connection string
+- **DB URL** — this must be a **read-only** connection string.
 - For each table the agent can query, define:
   - **Table Name**
-  - **Metadata description** — helps the agent understand when and how to query this table
+  - **Metadata description** — helps the agent understand when and how to query the table.
 
 <Callout type="warning">
-  The SQL tool only accepts **read-only** DB URLs. Don't give it a connection that can mutate your data — the agent's query plans are probabilistic.
+  **Warning:** The SQL tool only accepts **read-only** DB URLs. Don't give it a connection that can mutate your data — the agent's query plans are probabilistic and could corrupt state if the database is writeable.
 </Callout>
 
-## Webpage tool
+## Configuring a Webpage tool
 
-Fetch and read live webpage content — perfect for pages that change frequently (pricing pages, offers, status dashboards).
+Use a **Webpage tool** to fetch and read live webpage content. This is ideal for pages that change frequently — pricing pages, offer pages, status dashboards.
 
 **Configuration:**
 
 - **Tool Name** and **Description**
 - **Webpage URL**
-- **Cache Minutes** — cached content is reused for this many minutes before a fresh fetch, so you don't hammer the target site
+- **Cache Minutes** — how long the cached content should be reused before a fresh fetch, so you don't hammer the target site.
 
-Use this for pages where the content changes in minutes or hours but re-fetching on every query would be wasteful.
+Use this tool for pages where the content changes in minutes or hours, but re-fetching on every query would be wasteful.
 
----
+## Using environment variables
 
-## Environment variables
+Flow environment variables are reusable values — API keys, config values, default parameters — accessible across every node in the current flow.
 
-Reusable values accessible across all nodes in the project — API keys, config values, default parameters.
+### Defining a variable
 
-**Defining variables:**
+1. From the workspace header, click the **⚙ Flow Environment Variables** icon.
+2. In the **Flow Env Variable** dialog, click **+ Add**.
+3. Enter a **Name**, **Value**, and **Type** for the variable.
+4. Click **Save**.
 
-From the workspace header, open **Flow Environment Variables** → **Add Variables**. For each variable, provide a Name, Value, and Type.
+### Referencing a variable from a node
 
-**Referencing variables:**
-
-| Node type | How to reference |
+| Node type | How to reference the variable |
 |---|---|
-| **Change** | Manipulate via global envs in the Change node's operations |
-| **Switch** | Conditional routing on env values |
-| **Template** | Use `{{env.Name}}` for dynamic substitution |
-| **Function** | Use `env.get("Name")` inside custom JavaScript |
+| **Change** | Manipulate the value through the Change node's operations using the `env.*` path. |
+| **Switch** | Use the value in a conditional branch. |
+| **Template** | Use `{{env.Name}}` for dynamic substitution. |
+| **Function** | Use `env.get("Name")` inside your custom JavaScript. |
 
 <Callout>
-  Keep API keys and secrets in environment variables rather than hardcoding them into nodes. Env variables are the right layer for values that change per-environment (dev, staging, prod).
+  **Tip:** Keep API keys and secrets in environment variables rather than hardcoding them into nodes. Environment variables are the right layer for values that change per environment — dev, staging, production.
 </Callout>
+
+## Related articles
+
+- [AI and agent nodes](/integrations/ai-agents)
+- [Working in the flow workspace](/integrations/workspace)
+- [Configuring your agent](/bot-settings/agent-configuration)
+- [DocBrain](/intents-entities/docbrain)

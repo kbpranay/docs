@@ -1,26 +1,44 @@
 ---
-title: Start, Logic & Dev Nodes
-description: Start nodes, branching logic, data transforms, REST APIs, custom JavaScript, delays, debugging, and flow linking.
+title: Start, logic, and dev nodes
+description: Use Start and Trigger via API to begin a flow; If/Else, Change, and Template to control and transform data; Comment, REST API, Function, Delay, API response, and Debug for development; and Flow In / Flow Out to link flows together.
 ---
 
 import { Callout } from 'nextra/components'
 
-# Start, Logic & Dev Nodes
+# Start, logic, and dev nodes
 
-Start nodes are how a flow begins. Logic nodes branch the flow. Dev nodes glue it to external systems. Link nodes stitch flows together.
+**Start** nodes are how a flow begins. **Logic** nodes branch and transform data as it moves through the flow. **Dev** nodes connect the flow to external systems and help you debug while you're building. **Link** nodes stitch multiple flows into a single composition.
 
-## Start: Start node
+**In this article**
 
-The **Start** node lets you trigger a flow manually by injecting data — typically used for testing or when the flow is started from inside AIDA rather than by an external caller.
+- [Before you begin](#before-you-begin)
+- [Starting a flow](#starting-a-flow)
+- [Branching and transforming data](#branching-and-transforming-data)
+- [Using dev nodes](#using-dev-nodes)
+- [Linking flows together](#linking-flows-together)
+- [Related articles](#related-articles)
+
+## Before you begin
+
+- You should have a flow open in the workspace. See [Managing flows in AIDA](/integrations/flows-basics).
+- If you're planning to trigger this flow from an external system, know the URL, method, and authentication the caller will use.
+
+## Starting a flow
+
+Every flow begins with a Start node. You can start a flow manually or expose it over HTTP as an API endpoint.
+
+### Start node
+
+Use the **Start** node to trigger a flow manually by injecting data. This is typically used for testing, or when the flow is kicked off from inside AIDA rather than from an external caller.
 
 **Settings:**
 
-- **Input type** — click the timestamp dropdown to change between `string`, `number`, or any other supported type
-- **Repeat function** — re-emits the same message at a set interval (useful for health-check-style flows or scheduled triggers)
+- **Input type** — click the timestamp dropdown to choose `string`, `number`, or another supported type.
+- **Repeat function** — re-emit the same message on a fixed interval. Use this for health checks or scheduled triggers.
 
-## Start: Trigger via API
+### Trigger via API
 
-**Trigger via API** lets external systems kick off a flow by hitting an endpoint. Use it for webhooks, cross-system automation, or integrating AIDA flows into an existing orchestration platform.
+Use **Trigger via API** to let external systems kick off a flow by calling an endpoint. This is how you integrate AIDA flows into webhooks, cross-system automations, and existing orchestration platforms.
 
 **Settings:**
 
@@ -31,55 +49,64 @@ The **Start** node lets you trigger a flow manually by injecting data — typica
 | **URL** | The endpoint your external caller will hit |
 
 <Callout type="info">
-  Pair **Trigger via API** at the start of your flow with an **API Response** node (see below) at the end — the API Response sends the flow's output back to the caller synchronously.
+  **Tip:** Pair a **Trigger via API** node at the start of your flow with an **API response** node (see below) at the end. The API response node sends the flow's output back to the caller synchronously.
 </Callout>
 
-## Logic: If/Else
+## Branching and transforming data
 
-Evaluates rules against incoming data and forwards to the matching output.
+Logic nodes let you make decisions and reshape the data passing through the flow.
 
-**What you can match on:**
+### If/Else
+
+Use the **If/Else** node to evaluate rules against incoming data and forward to the matching output.
+
+You can match on:
+
 - A message property
-- Flow context / global context
-- Environment variable
+- Flow context or global context
+- An environment variable
 - A JSONata expression
 
-Rules evaluate top-to-bottom. You can optionally **stop at the first match** (otherwise all matching branches fire).
+Rules evaluate top to bottom. You can optionally **stop at the first match**; otherwise, every matching branch fires.
 
-## Logic: Change
+### Change
 
-Transforms data in-place before passing the message forward.
+Use the **Change** node to transform data in place before passing the message forward.
 
 **Operations:**
 
 | Operation | Effect |
 |---|---|
-| **Set** | Assign or update a value |
-| **Change** | Transform an existing value |
-| **Move** | Relocate a value from one property to another |
-| **Delete** | Remove a property |
+| **Set** | Assign or update a value. |
+| **Change** | Transform an existing value. |
+| **Move** | Relocate a value from one property to another. |
+| **Delete** | Remove a property. |
 
-## Logic: Template
+### Template
 
-Generates a dynamic string from `msg.payload` using **Mustache** templating by default (you can switch Mustache off if you want raw).
+Use the **Template** node to generate a dynamic string from `msg.payload`. By default it uses **Mustache** templating, but you can switch Mustache off if you want raw output.
 
-Takes the incoming `msg` object plus a template string and outputs a `msg` with the populated property.
+The node takes the incoming `msg` object plus a template string and outputs a `msg` with the populated property.
 
 **Example:** `Hello {{name}}, your order {{orderId}} is confirmed.`
 
----
+## Using dev nodes
 
 Dev nodes are listed in the order they appear in the palette.
 
-## Dev: Comment
+### Comment
 
-A non-executing annotation node. Drag it in from the Dev palette, double-click to edit. Use comments liberally — future-you will thank present-you when debugging flows six months later.
+Use the **Comment** node to leave non-executing annotations on the canvas. Drag it in from the Dev palette, then double-click to edit the text.
 
-## Dev: REST API
+<Callout>
+  **Tip:** Use comments liberally. Future-you — and your teammates — will thank present-you when someone has to debug this flow six months from now.
+</Callout>
 
-Call any HTTP endpoint from a flow.
+### REST API
 
-**Methods:** GET, POST, PUT, DELETE
+Use the **REST API** node to call any HTTP endpoint from a flow.
+
+**Supported methods:** GET, POST, PUT, DELETE.
 
 **Authentication options:**
 
@@ -87,46 +114,53 @@ Call any HTTP endpoint from a flow.
 |---|---|
 | **Basic** | Username + Password |
 | **Bearer** | Token |
-| **OAuth2** | Grant type (Client credentials / Password / other), Access token URL, Client ID, Client Secret, Scope |
+| **OAuth2** | Grant type (Client credentials, Password, and others), Access token URL, Client ID, Client Secret, Scope |
 
-**Query parameters** — key/value pairs appended to the URL for filtering, sorting, or pagination.
+**Query parameters** are key/value pairs appended to the URL for filtering, sorting, or pagination.
 
-## Dev: Function
+### Function
 
-Runs custom JavaScript. The incoming message is passed in as a `msg` object, with the body on `msg.payload`. Use this for transformations too complex for Change or Template, or for calling Node.js utilities.
+Use the **Function** node to run custom JavaScript. The incoming message is passed in as a `msg` object, with the body on `msg.payload`. Use this for transformations too complex for Change or Template, or when you need to call Node.js utilities.
 
-## Dev: Delay
+### Delay
 
-Pauses the flow, or rate-limits message throughput.
+Use the **Delay** node to pause the flow or rate-limit message throughput.
 
 **Properties:**
-- **Delay (ms)** — how long to wait; can be overridden by a property on the incoming `msg`
-- **Reset** — clears all held messages
-- **Flush** — sends all held messages immediately
 
-## Dev: API response
+- **Delay (ms)** — how long to wait. This can be overridden by a property on the incoming `msg`.
+- **Reset** — clear all held messages.
+- **Flush** — send all held messages immediately.
 
-Handles the response coming back from an API call. Used mostly in flows that were triggered via API (see the Start node's Trigger via API option).
+### API response
 
-## Dev: Debug
+Use the **API response** node to handle the response sent back from an API call. This node is used mostly in flows that were triggered via API — see the [Trigger via API](#trigger-via-api) option on the Start node.
 
-Logs `msg.payload` (the primary data) and the full `msg` object (metadata) so you can inspect state during development.
+### Debug
+
+Use the **Debug** node to log `msg.payload` (the primary data) and the full `msg` object (metadata) so you can inspect state while you're developing.
 
 <Callout>
-  Leave a Debug node in complex flows while you're still iterating — you can disable its output with a single click without deleting it, and re-enable when needed.
+  **Tip:** Leave Debug nodes in complex flows while you're iterating. You can disable their output with a single click without deleting them — and re-enable when you need to inspect again.
 </Callout>
 
----
+## Linking flows together
 
-## Link: Flow In / Flow Out
+Use the **Link** palette to stitch flows into a single composition.
 
-The **Link** palette contains two nodes that stitch flows together:
-
-- **Flow In** — an entry point that lets data, signals, or control pass between nodes. Pair it with a Flow Out in another flow to build modular, composable automations.
+- **Flow In** — an entry point that lets data, signals, or control pass between nodes in different flows. Pair it with a Flow Out in another flow to build modular, reusable automations.
 - **Flow Out** — the exit point paired with a Flow In.
 
-Use Flow In / Flow Out pairs to:
+Use Flow In / Flow Out pairs when you want to:
 
-- Reuse common logic across multiple flows
-- Break a complex flow into digestible pieces
-- Test individual sections in isolation
+- Reuse common logic across multiple flows.
+- Break a complex flow into digestible pieces.
+- Test individual sections of a flow in isolation.
+
+## Related articles
+
+- [Managing flows in AIDA](/integrations/flows-basics)
+- [Working in the flow workspace](/integrations/workspace)
+- [AI and agent nodes](/integrations/ai-agents)
+- [Conversation nodes](/integrations/conversation-nodes)
+- [Data and tool integrations](/integrations/data-tools)

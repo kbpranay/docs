@@ -1,166 +1,195 @@
 ---
-title: Workspace
-description: Navigate the flow builder — add nodes, deploy, export/import, debug, and use hotkeys efficiently.
+title: Working in the flow workspace
+description: Learn how to navigate the flow builder — the palette, the header toolbar, saving, deploying, exporting, importing, and debugging.
 ---
 
-import { Callout, Steps } from 'nextra/components'
+import { Callout } from 'nextra/components'
 
-# Workspace
+# Working in the flow workspace
 
-The Flows workspace is where you build the actual automation — drag nodes from the palette, wire them together, and deploy.
+The flow **workspace** is the canvas where you build your automation. You drag nodes in from the left-hand palette, connect them, then save and deploy. This article walks through every part of the workspace UI and the common tasks you perform inside it.
 
-## Node palette (left sidebar)
+**In this article**
 
-The left-hand sidebar groups all node types into six categories. Click a category icon to expand it and drag a node onto the canvas.
+- [Before you begin](#before-you-begin)
+- [The node palette](#the-node-palette)
+- [The workspace header](#the-workspace-header)
+- [Adding and connecting nodes](#adding-and-connecting-nodes)
+- [Saving a flow](#saving-a-flow)
+- [Deploying a flow](#deploying-a-flow)
+- [Deploying to another instance](#deploying-to-another-instance)
+- [Exporting a flow](#exporting-a-flow)
+- [Importing a flow](#importing-a-flow)
+- [Working with flow environment variables](#working-with-flow-environment-variables)
+- [Viewing flow logs](#viewing-flow-logs)
+- [Annotating flows with comments](#annotating-flows-with-comments)
+- [Navigating the canvas](#navigating-the-canvas)
+- [Debugging a flow in Picture-in-Picture](#debugging-a-flow-in-picture-in-picture)
+- [Keyboard shortcuts](#keyboard-shortcuts)
+- [Related articles](#related-articles)
+
+## Before you begin
+
+- You should have already created a flow. If you haven't, see [Managing flows in AIDA](/integrations/flows-basics).
+- You need permission to edit flows in the current workspace. Team Owners and Admins always have access; other roles depend on your team's settings.
+
+## The node palette
+
+The left-hand sidebar groups every node type into six categories. Click a category icon to expand it, then drag a node onto the canvas.
 
 | Category | Nodes | Reference |
 |---|---|---|
-| **Start** | Start, Trigger via API | [Start, Logic & Dev Nodes → Start](/integrations/logic-dev#start-start-node) |
-| **AI tools** <sup>α</sup> | LLM, RAG, Summariser, Classifier, LLM Entity Extraction, Agentic AI | [AI & Agents](/integrations/ai-agents) |
-| **Conv** (Conversation) | Ask User, Gallery Card, Form Card, Picture Card, Video Card, Suggestion, Speak to an Agent, LLM Classifier | [Conversation Nodes](/integrations/conversation-nodes) |
-| **Dev** | Comment, REST API, Function, Delay, API response, Debug | [Start, Logic & Dev Nodes → Dev](/integrations/logic-dev#dev-rest-api) |
-| **Logic** | If/Else, Change, Template | [Start, Logic & Dev Nodes → Logic](/integrations/logic-dev#logic-ifelse) |
-| **Link** | Flow In, Flow Out | [Start, Logic & Dev Nodes → Link](/integrations/logic-dev#link-flow-in--flow-out) |
+| **Start** | Start, Trigger via API | [Start, logic, and dev nodes → Start](/integrations/logic-dev#starting-a-flow) |
+| **AI tools** <sup>α</sup> | LLM, RAG, Summariser, Classifier, LLM Entity Extraction, Agentic AI | [AI and agent nodes](/integrations/ai-agents) |
+| **Conv** (Conversation) | Ask User, Gallery Card, Form Card, Picture Card, Video Card, Suggestion, Speak to an Agent, LLM Classifier | [Conversation nodes](/integrations/conversation-nodes) |
+| **Dev** | Comment, REST API, Function, Delay, API response, Debug | [Start, logic, and dev nodes → Dev](/integrations/logic-dev#using-dev-nodes) |
+| **Logic** | If/Else, Change, Template | [Start, logic, and dev nodes → Logic](/integrations/logic-dev#branching-and-transforming-data) |
+| **Link** | Flow In, Flow Out | [Start, logic, and dev nodes → Link](/integrations/logic-dev#linking-flows-together) |
 
 <Callout type="info">
-  The **α** (alpha) badge on **AI tools** indicates the category is in active development — capabilities expand frequently and some behaviors are still being stabilized.
+  **Note:** The **α** (alpha) badge on the AI tools category means the feature set is still evolving. New capabilities are added regularly and some behaviors are still being stabilized.
 </Callout>
 
-## Workspace header (top bar)
+## The workspace header
 
-The icons across the top of the workspace, left-to-right:
+The icons across the top of the workspace, left to right:
 
 | Icon | Name | What it does |
 |---|---|---|
-| 🔍 | **Search** | Find a node, variable, or label inside the current flow |
-| ⚙️ | **Flow Environment Variables** | Opens the **Flow Env Variable** dialog — see [Flow environment variables](#flow-environment-variables) below |
-| ⬇ | **Export** | Download the flow as JSON, a Blitzico file, or just the selected nodes |
-| \|×\| | **Variables panel** | Open the side panel listing every variable referenced in this flow (flow env vars, global context, message properties) |
-| ⬆ | **Import** | Opens the **Import Flow** dialog — see [Importing a flow](#importing-a-flow) below |
-| ⛶ | **Fullscreen** | Expand the workspace to fill the browser window |
-| **Save Flow** | Save | Persist changes as a draft (not live) |
-| **Deploy ▾** | Deploy | Push to the live environment; the dropdown lets you deploy to another instance |
+| 🔍 | **Search** | Find a node, variable, or label inside the current flow. |
+| ⚙️ | **Flow Environment Variables** | Open the **Flow Env Variable** dialog — see [Working with flow environment variables](#working-with-flow-environment-variables). |
+| ⬇ | **Export** | Download the flow as JSON, as a Blitzico file, or download just the nodes you've selected. |
+| \|×\| | **Variables panel** | Open a side panel listing every variable referenced in the current flow. |
+| ⬆ | **Import** | Open the **Import Flow** dialog — see [Importing a flow](#importing-a-flow). |
+| ⛶ | **Fullscreen** | Expand the workspace to fill the browser window. Click again to exit. |
+| **Save Flow** | Save | Persist your changes as a draft. The flow is not live yet. |
+| **Deploy ▾** | Deploy | Push your changes to the live environment. The dropdown arrow lets you deploy to a different instance. |
 
 The bottom-left corner has zoom (+ / −), fullscreen, **lock workspace**, and **mini-map** controls.
 
 ## Adding and connecting nodes
 
-- **Add:** drag a node from the left-hand sidebar palette and drop it onto the workspace.
-- **Connect:** click the small connection-point circle on the source node and draw a wire to the next node.
+1. Drag a node from the left-hand palette onto the canvas.
+2. Click the small connection-point circle on the source node.
+3. Drag a wire from the source node to the next node's input.
+
+Repeat for each node you want to add.
+
+## Saving a flow
+
+Click **Save Flow** in the header. Saving stores your work as a draft.
+
+<Callout type="info">
+  **Note:** Saving is not the same as deploying. You can save as many draft versions of a flow as you want — none of them affect the live bot until you deploy.
+</Callout>
 
 ## Deploying a flow
 
-<Steps>
+To push your changes to the live environment:
 
-### Save your flow
+1. Click **Save Flow** to save the current state.
+2. Click **Deploy** in the top-right corner.
 
-Click **Save Flow** at the top of the workspace. Saving keeps your work, but the flow isn't live yet.
+Your changes are now live on the bot.
 
-### Click Deploy
+## Deploying to another instance
 
-The **Deploy** button is in the top-right corner. Clicking it applies your changes to the live environment.
+If your team has multiple instances (for example, staging and production), you can deploy the same flow to each.
 
-</Steps>
+1. Save the flow in your current instance.
+2. Click the dropdown arrow next to the **Deploy** button.
+3. Select **Choose Instance** and confirm.
+4. Pick the target instance.
+5. Click **Deploy**.
 
-<Callout>
-  **Save ≠ Deploy.** You can save draft versions of a flow indefinitely. Only a deploy pushes them to the live bot.
-</Callout>
+## Exporting a flow
 
-### Deploying to another instance
-
-If your team has multiple instances (e.g., staging and production), you can deploy the same flow across them:
-
-<Steps>
-
-### Save the flow
-
-Save it in your current instance.
-
-### Click the Deploy dropdown arrow
-
-Next to the **Deploy** button.
-
-### Choose Instance
-
-Click **Choose Instance → Confirm**, then select the target instance.
-
-### Deploy
-
-Click **Deploy** to push the flow to that instance.
-
-</Steps>
-
-## Export and import
-
-**Export** from the top header:
+From the workspace header, click the **Export** (⬇) icon and choose one of the following options.
 
 | Option | What it does |
 |---|---|
-| **Export as Blitzico File** | Download the flow as a Blitzico-compatible file |
-| **Export Flow** | Download or copy the full flow as JSON |
-| **Export Selected Nodes** | Download or copy just the nodes you selected |
+| **Export as Blitzico File** | Download the flow as a Blitzico-compatible file. |
+| **Export Flow** | Download or copy the full flow as JSON. |
+| **Export Selected Nodes** | Download or copy only the nodes you've selected. |
 
-### Importing a flow
+<Callout>
+  **Tip:** Use **Export Selected Nodes** to share reusable sub-flows between teammates without sending the whole flow.
+</Callout>
 
-Click the **Import** (⬆) icon in the header to open the **Import Flow** dialog.
+## Importing a flow
 
-- **Paste flow json** — paste a JSON payload straight into the textarea
-- **Select File to Import** — pick a `.json` file exported earlier (or a Blitzico file)
+To bring a flow in from a file or from a JSON snippet:
 
-Click **Import** to drop the nodes onto the canvas, or **Cancel** to dismiss.
+1. Click the **Import** (⬆) icon in the workspace header. The **Import Flow** dialog opens.
+2. Either:
+   - Paste a flow JSON payload into the **Paste flow json** textarea, or
+   - Click **Select File to Import** and choose a `.json` file (or a Blitzico file) exported earlier.
+3. Click **Import**.
 
-## Flow environment variables
+The nodes drop onto the canvas and you can rearrange or edit them as needed.
 
-Click the **⚙ Flow Environment Variables** icon in the header to open the **Flow Env Variable** dialog. These values live on the flow itself — they're accessible to every node in this flow but not shared across flows.
+## Working with flow environment variables
 
-<Steps>
+Flow environment variables are values that stay with the flow — API keys, configuration defaults, and anything else you want every node in the flow to have access to without hardcoding it.
 
-### Open the dialog
+To open the environment variables dialog:
 
-Click the ⚙ icon in the workspace header.
+1. Click the ⚙ **Flow Environment Variables** icon in the workspace header. The **Flow Env Variable** dialog opens.
+2. Click **+ Add**.
+3. Enter a **Name**, **Value**, and **Type**.
+4. Click **Save**.
 
-### Add a variable
+<Callout type="info">
+  **Note:** Variables defined here are specific to the current flow. They aren't shared with other flows. If you need a value across multiple flows, define it in each one — or handle it at the team level.
+</Callout>
 
-Click **+ Add** and enter a Name, Value, and Type.
+For details on referencing these variables from nodes, see [Data and tool integrations → Environment variables](/integrations/data-tools#using-environment-variables).
 
-### Save
+## Viewing flow logs
 
-Click **Save** to persist. You'll see the callout *"Variables defined are specific to this flow"* — intentional, to remind you these aren't team-wide.
+Open **Flow History** from the top header to see every deployment and change event. Click **Export Logs** to download the history as a CSV file.
 
-</Steps>
+## Annotating flows with comments
 
-Reference them from nodes as described in [Data & Tool Integrations → Environment variables](/integrations/data-tools#environment-variables).
-
-## Flow logs
-
-Open **Flow History** from the top header. Click **Export Logs** to download a CSV of every deployment and change event.
-
-## Comments
-
-Drop a **Comment** node from the Dev section to annotate your flow. Double-click the node to rename or edit the comment text. Comments are non-executing — they exist purely for documentation.
+Drag a **Comment** node from the **Dev** palette onto the canvas, then double-click the node to edit the text. Comment nodes don't execute — they exist only to document the flow for your future self and your teammates.
 
 ## Navigating the canvas
 
-| Feature | How |
+| Feature | How to use it |
 |---|---|
 | **Fullscreen** | Click the fullscreen icon in the workspace header. Click again to exit. |
-| **Mini map** | Icon in the bottom-left — shows a zoomed-out overview. Drag inside to pan. |
-| **Lock workspace** | Lock icon at the bottom-left prevents accidental changes. |
-| **Zoom** | Scroll with mouse/trackpad, or use the zoom buttons bottom-left. A reset button restores default. |
-| **Multi-select** | Hold **Shift** + click, or hold and drag to box-select. Enables bulk move/delete/copy. |
+| **Mini-map** | Click the mini-map icon in the bottom-left to show a zoomed-out overview. Drag inside the mini-map to pan the canvas. |
+| **Lock workspace** | Click the lock icon in the bottom-left to prevent accidental edits. |
+| **Zoom** | Scroll with your mouse or trackpad, or use the zoom buttons in the bottom-left. Click the reset button to return to the default zoom. |
+| **Multi-select** | Hold **Shift** and click multiple nodes, or click and drag an empty area to box-select. Multi-selected nodes can be moved, copied, or deleted in bulk. |
 
-## Debugging in Picture-in-Picture
+## Debugging a flow in Picture-in-Picture
 
-Select a flow, click the **Debug** icon (bottom-right) to open the debug window. Click the **Extension** icon for additional debug features.
+To open the debug window:
+
+1. Select the flow you want to debug.
+2. Click the **Debug** icon in the bottom-right of the workspace.
+3. Click the **Extension** icon for extra debug features.
 
 <Callout type="warning">
-  Picture-in-Picture debugging is **Chrome browser only**. Firefox and Safari don't support the feature.
+  **Important:** Picture-in-Picture debugging is supported in **Chrome** only. Firefox and Safari don't support the underlying browser feature.
 </Callout>
 
-## Hotkeys
+## Keyboard shortcuts
 
-| Modifier | macOS | Windows / Linux |
-|---|---|---|
-| Primary modifier | **⌘ (Command)** | **Ctrl** |
+The workspace uses your platform's standard modifier key:
 
-Hotkeys follow standard patterns — combine the modifier above with common shortcuts (copy, paste, undo, select all) to speed up flow editing.
+| Platform | Primary modifier |
+|---|---|
+| macOS | **⌘ (Command)** |
+| Windows / Linux | **Ctrl** |
+
+Combine the modifier with standard shortcuts (copy, paste, undo, redo, select all) to edit flows quickly.
+
+## Related articles
+
+- [Managing flows in AIDA](/integrations/flows-basics)
+- [AI and agent nodes](/integrations/ai-agents)
+- [Conversation nodes](/integrations/conversation-nodes)
+- [Start, logic, and dev nodes](/integrations/logic-dev)
+- [Data and tool integrations](/integrations/data-tools)

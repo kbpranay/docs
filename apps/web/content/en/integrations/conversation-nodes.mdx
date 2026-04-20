@@ -1,39 +1,60 @@
 ---
-title: Conversation Nodes
-description: Collect input and render rich conversational UI — Ask User, Gallery Card, Form Card, Picture Card, Video Card, Suggestions, Speak to Agent, LLM Classifier.
+title: Conversation nodes
+description: Use Ask User, Gallery Card, Form Card, Picture Card, Video Card, Suggestion, Speak to an Agent, and LLM Classifier to collect input and render rich conversational UI.
 ---
 
 import { Callout } from 'nextra/components'
 
-# Conversation Nodes
+# Conversation nodes
 
-Conversation (CONV) nodes drive the visible back-and-forth of the conversation — prompting users, rendering rich cards, and branching based on user replies.
+Conversation nodes — shown as **Conv** in the palette — drive the visible back-and-forth of the conversation. You use them to prompt users for input, render rich cards, and branch based on how the user replies.
 
-## Ask User
+**In this article**
 
-Prompts the user for free-text input and stores the reply in a variable.
+- [Before you begin](#before-you-begin)
+- [Ask User node](#ask-user-node)
+- [Gallery Card node](#gallery-card-node)
+- [Form Card node](#form-card-node)
+- [Picture Card node](#picture-card-node)
+- [Video Card node](#video-card-node)
+- [Suggestion node](#suggestion-node)
+- [Speak to an Agent node](#speak-to-an-agent-node)
+- [LLM Classifier node](#llm-classifier-node)
+- [Related articles](#related-articles)
+
+## Before you begin
+
+- You should already have a flow open in the workspace. See [Managing flows in AIDA](/integrations/flows-basics).
+- Rich-media cards (Gallery, Picture, Video) need public URLs for their images and videos. Make sure you have those ready.
+
+## Ask User node
+
+Use the **Ask User** node to prompt the user for free-text input and store the reply in a variable.
 
 **Fields:**
-- **Message** — the prompt the user sees
-- **Conditions** — validation rules on the reply
-- **Fallback Message** — shown when validation fails
-- **Variable** — where the reply is stored
-- **Suggestions** — optional quick-reply chips
-- **Show text area** — toggle a full textarea vs a single-line input
 
-## Gallery Card
+- **Message** — the prompt the user sees.
+- **Conditions** — validation rules applied to the reply.
+- **Fallback Message** — shown when validation fails.
+- **Variable** — where the reply is stored.
+- **Suggestions** — optional quick-reply chips.
+- **Show text area** — toggle between a full textarea and a single-line input.
 
-A horizontally swipeable carousel of cards — good for product catalogs, option lists, or article suggestions.
+## Gallery Card node
+
+Use the **Gallery Card** node to display a horizontally swipeable carousel of cards — useful for product catalogs, option lists, or article suggestions.
 
 **Per card:**
+
 - Card Image URL
 - Float Image URL
 - Title
 - Subtitle
 - Description
-- Add Button (per card, supports multiple)
+- Add Button (multiple buttons per card are supported)
 
-**Surrounding the carousel:**
+**Around the carousel:**
+
 - Message Before Card
 - Message After Card
 - Suggestions
@@ -41,9 +62,9 @@ A horizontally swipeable carousel of cards — good for product catalogs, option
 - Variable
 - Show text area
 
-## Form Card
+## Form Card node
 
-A structured form inline in the chat — lets users submit multiple fields at once with validation.
+Use the **Form Card** node to show a structured form inline in the chat. The user submits multiple fields at once, and each field can be validated.
 
 **Field types:**
 
@@ -51,22 +72,23 @@ A structured form inline in the chat — lets users submit multiple fields at on
 |---|---|
 | Header | Visual grouping |
 | TextField | Single-line text |
-| Email | Email addresses (auto-validated) |
+| Email | Email addresses (validated automatically) |
 | Text Area | Multi-line text |
 | Date Picker | Dates |
 | Time Picker | Times |
 | Numeric | Numbers |
 | Dropdown select | Single choice from a list |
 | Checkbox group | Multiple choices |
-| Radio button | Single choice, all options visible |
+| Radio button | Single choice, with every option visible |
 
-**Action Buttons** support **Label**, **Validation text**, and **Help** text per button. Surrounding config includes Message before/after card, Mandatory message, and Show text area.
+Each **Action Button** supports a **Label**, **Validation text**, and **Help** text. The surrounding configuration includes the Message before card, Message after card, Mandatory message, and the Show text area toggle.
 
-## Picture Card
+## Picture Card node
 
-Displays one or more images with optional surrounding text.
+Use the **Picture Card** node to display one or more images with optional surrounding text.
 
 **Fields:**
+
 - Message Before Card
 - Picture (Image URL)
 - Add card — append more images
@@ -76,54 +98,65 @@ Displays one or more images with optional surrounding text.
 - Variable
 - Show text area
 
-## Video Card
+## Video Card node
 
-Embeds a video via a URL — ideal for walkthroughs, demos, or onboarding content.
+Use the **Video Card** node to embed a video — perfect for walkthroughs, demos, or onboarding content.
 
 **Fields:**
+
 - Message Before Card
-- Video cards (add Card Video URL per card)
+- Video cards (add a Card Video URL for each card)
 - Message After Card
 - Suggestions
 - Fallback Message
 - Variable
 - Show text area
 
-## Suggestion
+## Suggestion node
 
-A lightweight node that presents quick-reply chips. Useful for short menus or follow-up prompts.
+Use the **Suggestion** node as a lightweight way to present quick-reply chips — good for short menus or follow-up prompts.
 
 **Fields:**
+
 - Message
 - Suggestions
 - Fallback Message
 - Variable
 - Show text area
 
-## Speak to an Agent
+## Speak to an Agent node
 
-Hands the conversation off to a live agent via a suggestion chip. The text shown to the user adapts based on the live agent's availability status.
+Use the **Speak to an Agent** node to hand the conversation off to a live agent using a suggestion chip. The text shown to the user adapts based on the live agent's availability status.
 
 **Fields:**
+
 - Suggestions
 - Fallback Message
 - Show text area
 
-## LLM Classifier
+## LLM Classifier node
 
-Uses an LLM to classify the user's response into one of several topics and branch the flow accordingly.
+Use the **LLM Classifier** node to ask the user a question, classify their response into one of several topics, and branch the flow accordingly.
 
 **Fields:**
-- **Question** — what to ask the user
-- **Description** — optional context
-- **Topic(s)** — each topic defines an output branch
-- **Topic Description** — helps the LLM pick the right topic
-- **Fallback Message** — shown when no topic matches
-- **Enable Fallback flow** — adds an **LLM Fallback Flow** output with a **Maximum Retry Limit** (1–5, default 3)
-- **Variable** — stores which topic was chosen
-- **Topic(s) variables** — per-topic variable storage
+
+- **Question** — what to ask the user.
+- **Description** — optional context for the classifier.
+- **Topic(s)** — each topic becomes an output branch.
+- **Topic Description** — helps the LLM pick the right topic.
+- **Fallback Message** — shown when no topic matches.
+- **Enable Fallback flow** — adds an **LLM Fallback Flow** output with a **Maximum Retry Limit** (1–5; default is 3).
+- **Variable** — stores the topic that was chosen.
+- **Topic(s) variables** — per-topic variable storage.
 - **Show text area**
 
 <Callout type="warning">
-  Without the fallback flow enabled, the flow terminates after **4 retries** with a default AIDA message. Enable the fallback flow for any classifier where you want graceful recovery from misclassification.
+  **Important:** If you don't enable the fallback flow, the conversation terminates after **4 retries** with a default AIDA message. We recommend enabling the fallback flow on any classifier where you want graceful recovery from misclassification.
 </Callout>
+
+## Related articles
+
+- [Working in the flow workspace](/integrations/workspace)
+- [AI and agent nodes](/integrations/ai-agents)
+- [Start, logic, and dev nodes](/integrations/logic-dev)
+- [Data and tool integrations](/integrations/data-tools)

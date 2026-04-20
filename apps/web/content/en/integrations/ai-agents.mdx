@@ -1,28 +1,48 @@
 ---
-title: AI & Agents
-description: LLM, RAG, Summariser, Classifier, Entity Extraction, and fully autonomous Agentic AI nodes.
+title: AI and agent nodes
+description: Use LLM, RAG, Summariser, Classifier, Entity Extraction, and fully autonomous Agentic AI nodes in your flows.
 ---
 
 import { Callout } from 'nextra/components'
 
-# AI & Agents
+# AI and agent nodes
 
-Flows integrate seven kinds of AI nodes, ranging from simple LLM calls to autonomous agents that plan multi-step actions.
+Flows include seven AI nodes that cover everything from a single LLM call to an autonomous agent that plans and executes multi-step actions. This article explains each node, when to use it, and how to configure it.
 
 <Callout type="info">
-  In the workspace palette, these nodes live under **AI tools** and are marked with an **α (alpha)** badge — the category is under active development, with capabilities being added and stabilized over time.
+  **Note:** In the workspace palette, these nodes live under **AI tools** and are marked with an **α** (alpha) badge. The category is under active development — new capabilities are added regularly and some behaviors are still being stabilized.
 </Callout>
 
-## LLM Node
+**In this article**
 
-Calls an LLM service with a system prompt and returns either a **Success** or **Otherwise** output.
+- [Before you begin](#before-you-begin)
+- [LLM node](#llm-node)
+- [RAG node](#rag-node)
+- [Summariser node](#summariser-node)
+- [Classifier node](#classifier-node)
+- [LLM Entity Extraction node](#llm-entity-extraction-node)
+- [Agentic AI node](#agentic-ai-node)
+- [Creating an agent](#creating-an-agent)
+- [Using an agent in a flow](#using-an-agent-in-a-flow)
+- [Triggering a flow from an agent (tool call)](#triggering-a-flow-from-an-agent-tool-call)
+- [Inspecting an agent's response pipeline](#inspecting-an-agents-response-pipeline)
+- [Related articles](#related-articles)
 
-**System Prompt** controls tone, style, context, and safety guidelines.
+## Before you begin
 
-**Advanced setup:**
+- You should know which LLM your team has access to. The models available in the Model dropdown depend on your workspace and mode (Standard or Realtime Voice).
+- For tools that read from a knowledge base (RAG, KB tool), make sure you have a DocBrain index ready. See [DocBrain](/intents-entities/docbrain) for how to create one.
+
+## LLM node
+
+Use the **LLM** node to call an LLM service with a system prompt and branch on whether the model responds.
+
+**System prompt** controls tone, style, context, and safety guidelines.
+
+**Advanced settings:**
 
 - Model
-- Temperature (0–1 — higher = more creative)
+- Temperature (0–1; higher values produce more creative output)
 - Max Output Tokens
 - Request Timeout
 - Retries
@@ -30,19 +50,21 @@ Calls an LLM service with a system prompt and returns either a **Success** or **
 - Chat Context
 
 **Outputs:**
-- **Success** — LLM responded normally
-- **Otherwise** — no LLM response
-- **Catch Error** — execution error occurred
 
-## RAG Node
+- **Success** — the LLM returned a response.
+- **Otherwise** — the LLM didn't return a response.
+- **Catch Error** — something went wrong during execution.
 
-Combines real-time knowledge retrieval (DocBrain, EnterpriseBot's patented tech) with LLM generation — reducing hallucinations by grounding the response in your indexed documents.
+## RAG node
 
-**Two modes:**
-- **RAGForge** — reuse the bot's existing RAG config, with an **Override Config** option
-- **Custom** — pick the LLM and configuration yourself
+Use the **RAG** node to combine real-time knowledge retrieval with LLM generation. RAG grounds the response in your indexed documents (DocBrain, EnterpriseBot's patented retrieval technology) so the model hallucinates less.
 
-**General config:**
+**Modes:**
+
+- **RAGForge** — reuse the bot's existing RAG config. You can still override specific settings.
+- **Custom** — pick the LLM and the configuration yourself.
+
+**General configuration:**
 
 - `allow_links`, `allow_smalltalk`, `allow_comparison`
 - `add_current_date` (with timezone)
@@ -51,21 +73,24 @@ Combines real-time knowledge retrieval (DocBrain, EnterpriseBot's patented tech)
 - **Only LLM Reference URLs** / **Reset Context**
 
 **UI elements:**
+
 - Gallery Card, Picture Card
-- Show Reference URLs (with Topk URLs + Reference Title)
+- Show Reference URLs (with Topk URLs and Reference Title)
 
 **Hallucination check:**
-- Toggle + fallback event
-- Optional **LLM Validator** (separate model + system prompt)
 
-**Advanced setup:**
+- Toggle + fallback event
+- Optional **LLM Validator** (a separate model with its own system prompt)
+
+**Advanced settings:**
+
 - **Method** — `Gpt_mix_train_faq+para`, `Gpt_mix_train_faq`, or `Mix_train_faq`
 - **Type** — Semantic or Keyword
 - Max Output Tokens, Request Timeout, Topk, Show score
 - Intent Context, Context Length
 - Slack Notification + channel ID
 
-**Guard rails:**
+**Guardrails:**
 
 | Input rules | Output rules |
 |---|---|
@@ -75,104 +100,127 @@ Combines real-time knowledge retrieval (DocBrain, EnterpriseBot's patented tech)
 | Abbreviation expansion |  |
 
 **PII anonymiser:**
+
 - Anonymise PII toggle
 - Choose PII Type (Query or All)
 - Default masks: IBAN, phone, email, person names
 - Custom values via Regex or Keyword
 
-## Summariser
+## Summariser node
 
-Condenses large inputs into a short summary using the LLM Summariser service. Returns **Success** or **Otherwise**.
+Use the **Summariser** node to condense large inputs into a short summary through the LLM Summariser service. It returns **Success** or **Otherwise**.
 
-**Configuration mirrors the LLM node** plus a **Context limit** (visible when Chat Context is on; hidden when off).
+The configuration mirrors the LLM node, plus a **Context limit** field that appears when Chat Context is on.
 
-System prompt controls style, length, format, and accuracy.
+The system prompt controls style, length, format, and accuracy.
 
-## Classifier
+## Classifier node
 
-Categorises inputs using NLP for context, semantics, and tone.
+Use the **Classifier** node to categorise inputs using NLP for context, semantics, and tone.
 
-**Configured via:**
-- **Topic** — the main category
-- **Description** — optional context for the topic
-- **Variation** — alternative keywords or phrases for the topic
+**Configure:**
 
-**Advanced setup:** same fields as the LLM node (Model, System Prompt, Temperature, Max Output Tokens, Request Timeout, Retries, PII, Chat Context, Context limit).
+- **Topic** — the main category.
+- **Description** — optional context for the topic.
+- **Variation** — alternative keywords or phrases for the topic.
 
-## LLM Entity Extraction
+**Advanced settings:** the same fields as the LLM node (Model, System Prompt, Temperature, Max Output Tokens, Request Timeout, Retries, PII handling, Chat Context, Context limit).
 
-Extracts structured entities (names, dates, locations, amounts) from unstructured text using the LLM NER service.
+## LLM Entity Extraction node
 
-**Configured via:**
-- **Entity Name** — what to extract
-- **Description** — context to guide the extraction
+Use the **LLM Entity Extraction** node to pull structured entities — names, dates, locations, amounts — out of unstructured text using the LLM NER service.
 
-Advanced setup matches the LLM node.
+**Configure:**
 
-## Agentic AI
+- **Entity Name** — what to extract.
+- **Description** — context to guide the extraction.
+
+Advanced settings match the LLM node.
+
+## Agentic AI node
 
 An **agent** is a digital teammate that can think, plan, and act autonomously — not just answer a single question.
 
-**Agent capabilities:**
-- **Memory** — remember past interactions
-- **Reasoning** — plan multi-step actions
-- **Tool use** — invoke external tools to gather info or take actions
-- **Execution** — carry out plans end-to-end
+An agent has four capabilities:
 
-**Tool types** your agent can use:
+- **Memory** — remember past interactions.
+- **Reasoning** — plan multi-step actions.
+- **Tool use** — invoke external tools to gather information or take actions.
+- **Execution** — carry plans out end to end.
+
+**Tools your agent can use:**
 
 | Tool | What it does |
 |---|---|
-| **API** | Call external services (CRM, ticketing, payments, translation) |
-| **KB** | Use a DocBrain / Knowledge Base as a reference source (RAG-style) |
-| **Table** | Query structured CSV data with SQL-like queries |
-| **File** | Read PDF content to generate responses |
-| **SQL** | Run read-only SQL queries on connected databases |
-| **Webpage** | Fetch and read live webpage content (offers, discounts, live updates) |
+| **API** | Call external services — CRM, ticketing, payments, translation. |
+| **KB** | Use a DocBrain or Knowledge Base as a reference source (RAG-style). |
+| **Table** | Query structured CSV data with SQL-like queries. |
+| **File** | Read PDF content to generate responses. |
+| **SQL** | Run read-only SQL queries on connected databases. |
+| **Webpage** | Fetch and read live webpage content — offers, discounts, status pages. |
 
-See [Data & Tool Integrations](/integrations/data-tools) for setup details on each tool type.
+For the full setup of each tool type, see [Data and tool integrations](/integrations/data-tools).
 
-### Creating an agent
+## Creating an agent
 
-1. Go to the **Agents** page → click **Create**.
-2. Fill in:
+To create a new agent from the **Agents** page:
+
+1. Open the **Agents** page and click **Create**.
+2. Fill in the following fields:
    - **Name**
-   - **Description** — natural-language instructions for the agent
-   - **Enhance Prompt** — auto-expand the description
-   - **Expected Output** — the format you want back
-   - **Tools** — which tools the agent can use
-3. **Advanced Setup:** Model, Add history to messages, Number of history responses, Add datetime to instructions, Timezone, Tool call limit, Markdown.
+   - **Description** — natural-language instructions for the agent.
+   - **Enhance Prompt** — click to auto-expand the description.
+   - **Expected Output** — the format you want back.
+   - **Tools** — the tools the agent can use.
+3. Review the **Advanced Setup** options: Model, Add history to messages, Number of history responses, Add datetime to instructions, Timezone, Tool call limit, Markdown.
 4. Click **Create**.
 
-### Using an agent in a flow
+## Using an agent in a flow
 
-<Callout>
-  On the Flows page, drag an **Agentic AI** node from the AI Tools palette. You can either **Create Agent** directly (same fields as above) or pick an existing agent from the **Select Agent** dropdown, which auto-populates the node's config.
-</Callout>
+To place an existing agent or create a new one from inside a flow:
 
-### Triggering a flow from an agent (tool call)
+1. Open the flow in the workspace.
+2. Drag an **Agentic AI** node from the **AI tools** palette onto the canvas.
+3. Either:
+   - Click **Create Agent** to define a new agent inline (same fields as the Agents page), or
+   - Pick an existing agent from the **Select Agent** dropdown. The node's configuration is auto-populated.
 
-Agents can also go the other direction — **call a flow as a tool**. Register the flow as a tool on the agent from [Agent Configuration → Tools](/bot-settings/agent-configuration#tools) and give it a clear description. The LLM will decide when to invoke the flow based on the user's request.
+## Triggering a flow from an agent (tool call)
 
-This works identically across both agent modes:
+Agents can also launch flows — register a flow as a tool on the agent and the agent calls it when the conversation needs it.
+
+1. Open **Agent Configuration** for your agent.
+2. Go to the **Tools** tab.
+3. Click **+** to open the **Add Tools** dialog.
+4. Enter a name and a clear **Description** of what the flow does and when the agent should call it.
+5. Finish the rest of the tool configuration and click **Save**.
+
+This works the same way in both agent modes:
 
 | Agent mode | How the flow is triggered |
 |---|---|
-| **Standard (cascaded)** | Text + STT/TTS agents plan and invoke the flow as one of several tool calls |
-| **Realtime Voice-to-Voice** | Low-latency voice agents (Gemini Live, GPT-realtime) invoke the flow mid-conversation without leaving the voice session |
+| **Standard (cascaded)** | The agent plans the response and invokes the flow as one of its tool calls. |
+| **Realtime Voice-to-Voice** | Low-latency voice agents (Gemini Live, GPT-realtime) invoke the flow mid-conversation without leaving the voice session. |
 
 <Callout type="warning">
-  **Legacy trigger — intents.** Flows used to be triggered by routing an intent's **Response → Action** to the flow's route ID. This still works for existing intent-based bots but is **deprecated and being phased out by end of 2026**. New bots should use agent tool calls. See [Flow Management → How flows get triggered](/integrations/flows-basics#how-flows-get-triggered).
+  **Important:** The legacy way to trigger a flow was to route an intent's **Response → Action** to the flow's route ID. This still works for intent-based bots but is being phased out by the end of 2026. New bots should use agent tool calls instead. See [Managing flows in AIDA → How flows get triggered](/integrations/flows-basics#how-flows-get-triggered).
 </Callout>
 
-### Response pipeline
+## Inspecting an agent's response pipeline
 
-When an agent runs, you can inspect each step:
+When an agent runs, you can inspect each step of the pipeline to understand why the agent made the decisions it did.
 
-| Section | Shows |
+| Section | What you see |
 |---|---|
-| **Request Details** | Intent *(legacy field, populated only for intent-triggered runs)*, Action, LLM used, Message ID, Response Time, Agent Prompt |
-| **Tools Added** | List of configured tools + their parameters |
-| **Response Section (per tool call)** | System Prompt, Context, Result (args passed to tools), LLM Response |
+| **Request Details** | Intent *(legacy field — populated only for intent-triggered runs)*, Action, LLM used, Message ID, Response Time, Agent Prompt. |
+| **Tools Added** | The list of tools configured on the agent, including each tool's parameters. |
+| **Response Section (per tool call)** | System Prompt, Context, Result (the arguments passed to the tool), and the LLM's response. |
 
-This makes debugging an agent's decisions much easier — you can see exactly what it looked at, what it called, and what it returned at each step.
+This makes debugging much easier — you can see exactly what the agent looked at, what it called, and what it returned at each step.
+
+## Related articles
+
+- [Managing flows in AIDA](/integrations/flows-basics)
+- [Data and tool integrations](/integrations/data-tools)
+- [Configuring your agent](/bot-settings/agent-configuration)
+- [Creating your first agent](/getting-started/first-bot)
