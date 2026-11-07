@@ -362,7 +362,7 @@ export function HeroScene() {
                     <span className="chip">Person</span>Approval sent to Claims
                   </li>
                   <li>
-                    <span className="chip">QA</span>Scored · 2 met, 1 partly met
+                    <span className="chip">QA</span>2 met · 1 partly met
                   </li>
                 </ul>
               </div>

@@ -3035,6 +3035,7 @@ html:not(.js) .scene__play {
 }
 .mega {
   width: min(820px, 86vw);
+  max-width: calc(100vw - 2 * var(--gutter));
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 .site-nav .mega a,
