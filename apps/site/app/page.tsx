@@ -23,7 +23,7 @@ const startCopy: Record<string, { line: string; does: string[] }> = {
     does: ['Routing', 'Status checks', 'Account changes'],
   },
   'conversation-insights': {
-    line: 'Scores every conversation against your QA scorecard and measures the custom metrics you define in plain language.',
+    line: 'Scores the conversations you include against your QA scorecard and measures the custom metrics you define in plain language.',
     does: ['Your scorecard', 'Custom metrics', 'Ask your data'],
   },
   'agent-assist': {
@@ -192,7 +192,7 @@ export default function Home() {
       <section id="quality" className="section section--white" aria-labelledby="quality-title">
         <div className="container qa">
           <div data-reveal>
-            <p className="kicker">Conversation Insights</p>
+            <p className="kicker">Quality assessment · Conversation Insights</p>
             <h2 id="quality-title" className="h2" style={{ marginTop: 16 }}>
               Score human and AI conversations against <span className="hl">your QA scorecard.</span>
             </h2>

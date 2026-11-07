@@ -104,8 +104,8 @@ export const products: Product[] = [
     icon: 'target',
     name: 'Conversation Insights',
     short: 'Insights',
-    navLine: 'Quality scoring, custom metrics and analytics for every conversation',
-    title: ['Score every conversation. ', { hl: 'Measure what you choose.' }],
+    navLine: 'QA scorecards, coaching and conversation analytics',
+    title: ['Score the conversations you choose. ', { hl: 'Measure what matters to you.' }],
     intro:
       'Quality assessment and conversation analytics in one. Conversations handled by your agents and your AI agents are scored against your QA scorecard, with evidence and a coaching note, and analysed with the metrics you define in plain language: intents, escalation reasons, sentiment, compliance and your own custom KPIs.',
     problem: {
@@ -116,17 +116,17 @@ export const products: Product[] = [
     workflow: [
       { title: 'Capture', body: 'Transcripts of calls and chats from your agents and your AI agents.' },
       { title: 'Score', body: 'Each conversation is checked against your scorecard, criterion by criterion, with evidence.' },
-      { title: 'Measure', body: 'Your custom metrics, intents, escalation reasons and sentiment are applied to every conversation.' },
+      { title: 'Measure', body: 'Your custom metrics, intents, escalation reasons and sentiment are applied to each conversation you include.' },
       { title: 'Explore', body: 'Dashboards and plain-language questions, with drill-down to the transcript behind any number.' },
       { title: 'Act', body: 'Coaching notes for agents, scheduled reports for leaders and the next workload to automate.' },
     ],
     capabilities: [
-      { icon: 'log', title: 'Your scorecards', body: 'Criteria, weights and targets your quality team defines, assigned by rule and versioned.' },
+      { icon: 'log', title: 'Your scorecards', body: 'Criteria, weights and targets your quality team defines, versioned.' },
       { icon: 'eye', title: 'Evidence per score', body: 'Each result points to the moment in the conversation behind it, with a coaching note.' },
       { icon: 'bars', title: 'Custom metrics in plain language', body: 'Describe a KPI in words and it becomes a column you can sort, filter and report on.' },
       { icon: 'pulse', title: 'Ask your data', body: 'Ask questions in plain language and get the answer as a chart.' },
       { icon: 'split', title: 'Why customers escalate', body: 'Intents, escalation reasons and sentiment, so you know what to fix and what to automate next.' },
-      { icon: 'handover', title: 'Human and AI agents', body: 'One quality standard for your agents and your AI agents, with skill gaps by agent and team.' },
+      { icon: 'handover', title: 'Human and AI agents', body: 'One quality standard for your agents and your AI agents.' },
       { icon: 'link', title: 'Drill down to the call', body: 'Every number links to the conversations behind it.' },
       { icon: 'trend', title: 'Reports that arrive', body: 'Configurable dashboards and scheduled PDF and CSV reports.' },
     ],
