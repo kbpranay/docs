@@ -125,7 +125,7 @@ export default function Home() {
             </div>
             <div className="stats">
               {[stats.generaliComprehension, stats.generaliMisrouted].map((st, i) => (
-                <div key={st.id} data-reveal style={{ ['--reveal-delay' as string]: `${120 + i * 120}ms` }}>
+                <div key={st.id} data-reveal style={{ ['--reveal-delay' as string]: `${60 + i * 70}ms` }}>
                   <p className="stat__value">{st.value}</p>
                   <div className="stat__rule" />
                   <p className="stat__label">{st.label}</p>
@@ -174,7 +174,7 @@ export default function Home() {
               See Quality Assessment <Arrow />
             </Link>
           </div>
-          <figure className="scorecard" data-reveal style={{ ['--reveal-delay' as string]: '120ms' }}>
+          <figure className="scorecard" data-reveal style={{ ['--reveal-delay' as string]: '70ms' }}>
             <div className="scorecard__head">
               <span>
                 <b>Claims call · 10:42</b>
@@ -225,7 +225,7 @@ export default function Home() {
                 href={`/platform/${p.slug}`}
                 className="start"
                 data-reveal
-                style={{ ['--reveal-delay' as string]: `${(i % 2) * 100}ms` }}
+                style={{ ['--reveal-delay' as string]: `${(i % 2) * 70}ms` }}
               >
                 <span className="start__icon">
                   <OutlineIcon name={p.icon} size={26} />
@@ -270,7 +270,7 @@ export default function Home() {
                 {quotes.callpoint.customer} · quote refers to an earlier Enterprise Bot product name
               </p>
             </article>
-            <article className="quote-card" data-reveal style={{ ['--reveal-delay' as string]: '100ms' }}>
+            <article className="quote-card" data-reveal style={{ ['--reveal-delay' as string]: '70ms' }}>
               <blockquote>{quotes.swica.quote}</blockquote>
               <p className="cite">
                 <strong>{quotes.swica.person}</strong>
@@ -321,7 +321,7 @@ export default function Home() {
                 <i />
               </span>
             </div>
-            <div className="arch__core" data-reveal style={{ ['--reveal-delay' as string]: '120ms' }}>
+            <div className="arch__core" data-reveal style={{ ['--reveal-delay' as string]: '70ms' }}>
               <div className="arch__core-title">
                 <img src="/eb-logo-on-light.svg" alt="Enterprise Bot" width={150} height={23} loading="lazy" />
                 <span>AI layer</span>
@@ -353,7 +353,7 @@ export default function Home() {
                 <i />
               </span>
             </div>
-            <div className="arch__col" data-reveal style={{ ['--reveal-delay' as string]: '240ms' }}>
+            <div className="arch__col" data-reveal style={{ ['--reveal-delay' as string]: '140ms' }}>
               <p className="arch__title">Your systems</p>
               <div className="arch__box">
                 <b>Contact center</b>
@@ -379,7 +379,7 @@ export default function Home() {
                 <li>Handover into existing queues with a written summary</li>
               </ul>
             </article>
-            <article className="integration" data-reveal style={{ ['--reveal-delay' as string]: '100ms' }}>
+            <article className="integration" data-reveal style={{ ['--reveal-delay' as string]: '70ms' }}>
               <h3>Cisco</h3>
               <p>AI close to your infrastructure, for teams with strict deployment and language requirements.</p>
               <ul>
@@ -387,7 +387,7 @@ export default function Home() {
                 <li>Multilingual voice for regional contact centers</li>
               </ul>
             </article>
-            <article className="integration" data-reveal style={{ ['--reveal-delay' as string]: '200ms' }}>
+            <article className="integration" data-reveal style={{ ['--reveal-delay' as string]: '140ms' }}>
               <h3>SIP and AudioCodes</h3>
               <p>Connects to your existing telephony and session border controllers.</p>
               <ul>
@@ -395,7 +395,7 @@ export default function Home() {
                 <li>Transfers back into your queues with a summary</li>
               </ul>
             </article>
-            <article className="integration" data-reveal style={{ ['--reveal-delay' as string]: '300ms' }}>
+            <article className="integration" data-reveal style={{ ['--reveal-delay' as string]: '210ms' }}>
               <h3>Salesforce and CRMs</h3>
               <p>The record stays the source of truth. The AI writes back what it did and why.</p>
               <ul>
@@ -454,7 +454,7 @@ export default function Home() {
                 </div>
               </div>
             </article>
-            <article className="pillar" data-reveal style={{ ['--reveal-delay' as string]: '100ms' }}>
+            <article className="pillar" data-reveal style={{ ['--reveal-delay' as string]: '70ms' }}>
               <h3>Knowledge</h3>
               <p>
                 Answers come from the documents and pages you approve. When no approved source covers the question, it
@@ -477,7 +477,7 @@ export default function Home() {
                 <span className="chip" style={{ marginTop: 0 }}>CRM note: English</span>
               </div>
             </article>
-            <article className="pillar" data-reveal style={{ ['--reveal-delay' as string]: '100ms' }}>
+            <article className="pillar" data-reveal style={{ ['--reveal-delay' as string]: '70ms' }}>
               <h3>Oversight</h3>
               <p>Every answer, action and handover is logged with the reason, so you can review any conversation.</p>
               <div className="specimen audit" aria-hidden="true">
@@ -514,7 +514,7 @@ export default function Home() {
               { t: 'See it in your stack', d: 'We connect to your contact center, knowledge and one business system in a test setup.' },
               { t: 'Measure, then decide', d: 'Compare resolution, handovers and customer effort against the baseline you set.' },
             ].map((s, i) => (
-              <li key={s.t} className="path__step" data-reveal style={{ ['--reveal-delay' as string]: `${i * 120}ms` }}>
+              <li key={s.t} className="path__step" data-reveal style={{ ['--reveal-delay' as string]: `${i * 70}ms` }}>
                 <div className="path__head">
                   <span className="path__num">{i + 1}</span>
                   <span className="path__dash" aria-hidden="true" />
@@ -540,7 +540,7 @@ export default function Home() {
               scorecard applied to the conversation. Tell us your languages and we will confirm which we can show.
             </p>
           </div>
-          <div className="cta-band__panel" data-reveal style={{ ['--reveal-delay' as string]: '120ms' }}>
+          <div className="cta-band__panel" data-reveal style={{ ['--reveal-delay' as string]: '70ms' }}>
             <ul>
               {['A session tailored to your stack', 'Your languages and request types', 'A clear evaluation plan'].map((t) => (
                 <li key={t}>

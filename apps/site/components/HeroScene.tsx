@@ -58,6 +58,7 @@ const statusIndex = (beat: number) => (beat >= 4 ? 2 : beat === 3 ? 1 : 0)
 
 export function HeroScene() {
   const rootRef = useRef<HTMLDivElement>(null)
+  const fillRef = useRef<HTMLDivElement>(null)
   const elapsed = useRef(0)
   const lastTs = useRef<number | null>(null)
   const raf = useRef<number | null>(null)
@@ -74,7 +75,9 @@ export function HeroScene() {
 
   const apply = useCallback((e: number) => {
     const clamped = Math.min(Math.max(e, 0), TOTAL)
-    rootRef.current?.style.setProperty('--progress', String(clamped / TOTAL))
+    // Set the fill's own transform (not a parent CSS variable) to avoid restyling the whole scene each frame.
+    if (fillRef.current) fillRef.current.style.transform = `scaleX(${clamped / TOTAL})`
+    if (rootRef.current) (rootRef.current as HTMLDivElement & { __ebProgress?: number }).__ebProgress = clamped
     const next = clamped >= TOTAL ? FINAL : stageAt(clamped)
     const prev = stageRef.current
     if (
@@ -199,9 +202,13 @@ export function HeroScene() {
     }
     userPaused.current = false
     if (finished || elapsed.current >= TOTAL) {
+      // The reset is a system response: snap it instead of reverse-fading every beat.
+      const root = rootRef.current
+      root?.setAttribute('data-resetting', 'true')
       elapsed.current = 0
       setFinished(false)
       apply(0)
+      requestAnimationFrame(() => requestAnimationFrame(() => root?.removeAttribute('data-resetting')))
     }
     start()
   }
@@ -377,7 +384,7 @@ export function HeroScene() {
         </button>
         <div className="rail">
           <div className="rail__track" aria-hidden="true">
-            <div className="rail__fill" />
+            <div className="rail__fill" ref={fillRef} />
           </div>
           <div className="rail__beats">
             {BEATS.map((b, i) => {

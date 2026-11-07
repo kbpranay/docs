@@ -77,10 +77,16 @@ const STEPS: { title: string; detail: Record<Channel, string> }[] = [
 export function Journey() {
   const [channel, setChannel] = useState<Channel>('voice')
   const [runs, setRuns] = useState(0)
+  const [via, setVia] = useState<'pointer' | 'key'>('pointer')
+  const [dir, setDir] = useState<1 | -1>(1)
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([])
 
-  const select = (c: Channel) => {
+  const select = (c: Channel, how: 'pointer' | 'key' = 'pointer') => {
     if (c === channel) return
+    const from = CHANNELS.findIndex((x) => x.id === channel)
+    const to = CHANNELS.findIndex((x) => x.id === c)
+    setDir(to > from ? 1 : -1)
+    setVia(how)
     setChannel(c)
     setRuns((r) => r + 1)
   }
@@ -94,11 +100,13 @@ export function Journey() {
     else if (e.key === 'End') next = CHANNELS.length - 1
     else return
     e.preventDefault()
-    select(CHANNELS[next].id)
+    select(CHANNELS[next].id, 'key')
     tabRefs.current[next]?.focus()
   }
 
   const input = INPUT[channel]
+  // Keyboard steps through the tablist swap instantly; pointer changes animate.
+  const animate = runs > 0 && via === 'pointer'
 
   return (
     <div className="journey">
@@ -124,7 +132,7 @@ export function Journey() {
           ))}
         </div>
         <div className="inbox-card" key={channel + '-in'}>
-          <div className={runs ? 'swap' : undefined}>
+          <div className={animate ? 'swap' : undefined} style={{ ['--dir' as string]: dir }}>
             <div className="inbox-card__meta">
               <b>{input.from}</b>
               <span>{input.meta}</span>
@@ -140,7 +148,7 @@ export function Journey() {
         role="tabpanel"
         aria-labelledby={`tab-${channel}`}
         className="pipeline"
-        data-animate={runs ? 'true' : 'false'}
+        data-animate={animate ? 'true' : 'false'}
         key={channel + '-pipe'}
       >
         <div className="pipeline__line" aria-hidden="true">
@@ -153,7 +161,7 @@ export function Journey() {
             </span>
             <div>
               <p className="node__title">{st.title}</p>
-              <p className={'node__detail' + (runs ? ' swap' : '')}>{st.detail[channel]}</p>
+              <p className={'node__detail' + (animate ? ' swap' : '')} style={{ ['--dir' as string]: dir }}>{st.detail[channel]}</p>
             </div>
           </div>
         ))}

@@ -36,8 +36,8 @@
   --section-y: clamp(80px, 10vw, 136px);
 
   /* Motion: micro 120-250 ms, section 300-600 ms. Opacity and transform only. */
-  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
-  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1); /* strong ease-out for UI */
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1); /* strong ease-in-out for on-screen movement */
   --t-micro: 180ms;
   --t-ui: 240ms;
   --t-enter: 480ms;
@@ -128,8 +128,8 @@ ol {
   color: var(--navy);
   font-weight: 600;
   text-decoration: none;
-  transition: top var(--t-micro) var(--ease-out);
 }
+/* Keyboard-only affordance: appears instantly, no motion. */
 .skip-link:focus {
   top: 12px;
 }
@@ -295,13 +295,13 @@ ol {
   text-decoration: none;
   cursor: pointer;
   transition:
-    transform var(--t-micro) var(--ease-out),
-    background-color var(--t-micro) var(--ease-out),
-    border-color var(--t-micro) var(--ease-out),
-    color var(--t-micro) var(--ease-out);
+    transform 160ms var(--ease-out),
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease;
 }
 .btn:active {
-  transform: translateY(1px);
+  transform: scale(0.97);
 }
 .btn--primary {
   background: var(--orange);
@@ -338,9 +338,7 @@ ol {
 .btn .arrow {
   transition: transform var(--t-micro) var(--ease-out);
 }
-.btn:hover .arrow {
-  transform: translateX(3px);
-}
+
 
 .text-link {
   display: inline-flex;
@@ -356,9 +354,7 @@ ol {
 .text-link .arrow {
   transition: transform var(--t-micro) var(--ease-out);
 }
-.text-link:hover .arrow {
-  transform: translateX(3px);
-}
+
 
 /* ---------- Header ---------- */
 .site-header {
@@ -410,7 +406,7 @@ ol {
   font-weight: 500;
   text-decoration: none;
   cursor: pointer;
-  transition: color var(--t-micro) var(--ease-out), background-color var(--t-micro) var(--ease-out);
+  transition: color 150ms ease, background-color 150ms ease;
 }
 .site-nav a:hover,
 .site-nav button.nav-trigger:hover,
@@ -428,6 +424,7 @@ ol {
   position: relative;
 }
 .mega {
+  transform-origin: top left;
   position: absolute;
   top: calc(100% + 10px);
   left: -12px;
@@ -441,20 +438,21 @@ ol {
   grid-template-columns: 1fr 1fr;
   gap: 4px;
   opacity: 0;
-  transform: translateY(-6px);
+  transform: translateY(-4px) scale(0.97);
   visibility: hidden;
+  /* Close is a system response: faster than open. */
   transition:
-    opacity var(--t-ui) var(--ease-out),
-    transform var(--t-ui) var(--ease-out),
-    visibility 0s linear var(--t-ui);
+    opacity 150ms var(--ease-out),
+    transform 150ms var(--ease-out),
+    visibility 0s linear 150ms;
 }
 .mega[data-open='true'] {
   opacity: 1;
   transform: none;
   visibility: visible;
   transition:
-    opacity var(--t-ui) var(--ease-out),
-    transform var(--t-ui) var(--ease-out),
+    opacity 200ms var(--ease-out),
+    transform 200ms var(--ease-out),
     visibility 0s;
 }
 .site-nav .mega a {
@@ -488,7 +486,7 @@ ol {
   font-weight: 500;
   color: var(--on-dark-2);
   text-decoration: none;
-  transition: color var(--t-micro) var(--ease-out);
+  transition: color 150ms ease;
 }
 .site-header__actions .quiet:hover {
   color: var(--white);
@@ -516,7 +514,7 @@ ol {
   width: 18px;
   height: 1.5px;
   background: var(--white);
-  transition: transform var(--t-ui) var(--ease-out), opacity var(--t-micro);
+  transition: transform var(--t-ui) var(--ease-out), opacity var(--t-micro) var(--ease-out);
 }
 .menu-toggle span + span {
   margin-top: 5px;
@@ -1037,10 +1035,7 @@ ol {
   column-gap: 12px;
   padding: 5px 10px 6px 8px;
   border-radius: var(--radius);
-  transition:
-    background-color var(--t-ui) var(--ease-out),
-    opacity var(--t-enter) var(--ease-out),
-    transform var(--t-enter) var(--ease-out);
+  transition: background-color var(--t-ui) var(--ease-out);
 }
 .step::before {
   content: '';
@@ -1205,6 +1200,10 @@ ol {
     transform var(--t-enter) var(--ease-out),
     background-color var(--t-ui) var(--ease-out);
 }
+.scene[data-resetting='true'] [data-beat],
+.scene[data-resetting='true'] .step__tick path {
+  transition: none !important;
+}
 .scene[data-ready='true'] [data-beat].is-on {
   opacity: 1;
   transform: none;
@@ -1269,7 +1268,7 @@ ol {
   background: var(--white);
   color: var(--navy);
   cursor: pointer;
-  transition: border-color var(--t-micro) var(--ease-out), background-color var(--t-micro) var(--ease-out);
+  transition: border-color 150ms ease, background-color 150ms ease;
 }
 .scene__play:hover {
   border-color: var(--navy);
@@ -1319,7 +1318,7 @@ ol {
   cursor: pointer;
   text-align: left;
   min-height: 32px;
-  transition: color var(--t-micro) var(--ease-out);
+  transition: color 150ms ease;
 }
 .rail__beat::before {
   content: '';
@@ -1436,6 +1435,17 @@ html:not(.js) .scene__play {
 }
 
 /* ---------- Reveal on scroll ---------- */
+/* Hover motion only for real pointers (touch fires false hovers on tap). */
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover .arrow,
+  .text-link:hover .arrow {
+    transform: translateX(3px);
+  }
+  .start:hover .start__name .arrow {
+    transform: translateX(6px);
+  }
+}
+
 .js [data-reveal] {
   opacity: 0;
   transform: translateY(16px);
@@ -1659,12 +1669,12 @@ html:not(.js) .scene__play {
   margin-top: 14px;
 }
 .swap {
-  animation: swap-in 340ms var(--ease-out) both;
+  animation: swap-in 220ms var(--ease-out) both;
 }
 @keyframes swap-in {
   from {
     opacity: 0;
-    transform: translateX(14px);
+    transform: translateX(calc(var(--dir, 1) * 8px));
   }
 }
 .pipeline {
@@ -1724,7 +1734,7 @@ html:not(.js) .scene__play {
 }
 .pipeline[data-animate='true'] .node__mark {
   animation: mark-hit 420ms var(--ease-out) both;
-  animation-delay: calc(120ms + var(--i) * 200ms);
+  animation-delay: calc(80ms + var(--i) * 120ms);
 }
 @keyframes mark-hit {
   0% {
@@ -1752,7 +1762,7 @@ html:not(.js) .scene__play {
   margin-top: 4px;
 }
 .node__detail.swap {
-  animation-delay: calc(var(--i) * 60ms);
+  animation-delay: calc(var(--i) * 40ms);
 }
 .node__shared {
   display: inline-block;
@@ -1804,7 +1814,7 @@ html:not(.js) .scene__play {
   border-radius: 50%;
   border: 1.5px solid var(--line-strong);
   background: var(--white);
-  transition: border-color var(--t-ui) var(--ease-out), transform var(--t-ui) var(--ease-out);
+  transition: border-color 150ms ease;
 }
 .start:hover .start__icon {
   border-color: var(--orange-display);
@@ -1830,9 +1840,7 @@ html:not(.js) .scene__play {
   color: var(--orange-ink);
   transition: transform var(--t-ui) var(--ease-out);
 }
-.start:hover .start__name .arrow {
-  transform: translateX(6px);
-}
+
 .start__line {
   grid-column: 2;
   color: var(--ink-2);
@@ -2019,7 +2027,7 @@ html:not(.js) .scene__play {
   }
 }
 [data-inview='true'] .flow i {
-  animation: flow-y 2600ms var(--ease-in-out) infinite;
+  animation: flow-y 2600ms linear infinite;
 }
 [data-inview='true'] .flow--back i {
   animation-name: flow-y-back;
@@ -2410,7 +2418,7 @@ html:not(.js) .scene__play {
 .site-footer a {
   text-decoration: none;
   color: var(--on-dark-2);
-  transition: color var(--t-micro) var(--ease-out);
+  transition: color 150ms ease;
 }
 .site-footer a:hover {
   color: var(--white);
@@ -2595,7 +2603,7 @@ html:not(.js) .scene__play {
 .js [data-reveal].is-visible .flow-step::before {
   transform: scaleX(1);
   transition: transform 520ms var(--ease-out);
-  transition-delay: calc(var(--i) * 140ms);
+  transition-delay: calc(var(--i) * 70ms);
 }
 .flow-step b {
   font-size: 13px;
@@ -3135,6 +3143,7 @@ html:not(.js) .scene__play {
   }
 }
 .voice-demo__orb {
+  transition: background-color 150ms ease;
   position: relative;
   display: grid;
   place-items: center;
@@ -3203,16 +3212,21 @@ html:not(.js) .scene__play {
    Reduced motion: still states, no movement. Content stays fully visible.
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
+  /* Fewer and gentler, not zero: drop movement, keep short opacity/colour fades. */
   *,
   *::before,
   *::after {
     animation-duration: 1ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 1ms !important;
+    transition-property: opacity, color, background-color, border-color !important;
+    transition-duration: 200ms !important;
+    transition-timing-function: ease !important;
     transition-delay: 0ms !important;
     scroll-behavior: auto !important;
   }
-  .js [data-reveal],
+  .js [data-reveal] {
+    transform: none;
+  }
   .js .mini-line {
     opacity: 1;
     transform: none;

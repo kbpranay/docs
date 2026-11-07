@@ -37,7 +37,7 @@ function runningLoopsInScene() {
 async function progress(page) {
   return page.evaluate(() => {
     const el = document.querySelector('.scene')
-    return el ? Number(getComputedStyle(el).getPropertyValue('--progress') || 0) * 12000 : -1
+    return el ? Number(el.__ebProgress || 0) : -1
   })
 }
 
