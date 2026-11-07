@@ -39,9 +39,9 @@ export const products: Product[] = [
     name: 'Voice Agent',
     short: 'Voice',
     navLine: 'Answers and resolves inbound calls',
-    title: ['Answer at once. ', { hl: 'Finish the routine requests.' }],
+    title: ['AI voice agents ', { hl: 'for your inbound lines.' }],
     intro:
-      'An AI voice agent for your inbound lines. It understands the caller, finds the answer in your approved knowledge, completes permitted actions in your systems and hands over to a person, with the context, when it should.',
+      'Answers calls in natural speech, finds the answer in your approved knowledge, completes permitted actions in your systems and transfers to your queues with a summary. Connected through SIP and AudioCodes to Genesys Cloud, Cisco and your existing telephony.',
     problem: {
       title: 'Most calls are routine. They still wait in the queue.',
       body: 'Address changes, status checks, appointment moves and misrouted calls take agent time that customers spend waiting. Menu trees push the routing work onto the caller.',
@@ -65,6 +65,7 @@ export const products: Product[] = [
       { icon: 'plug', title: 'Telephony fit', body: 'Connects to your telephony through SIP and session border controllers such as AudioCodes.' },
       { icon: 'handover', title: 'Warm handover', body: 'Transfers into your existing queues with a summary the agent sees before saying hello.' },
       { icon: 'summary', title: 'Call summaries', body: 'Each call can end with a structured summary written back to your CRM.' },
+      { icon: 'target', title: 'Quality assessment of AI calls', body: 'AI calls can be scored against the same QA scorecard as your agents’ calls.' },
     ],
     fit: {
       integrations: ['Genesys Cloud and Cisco contact centers', 'Salesforce and other CRMs via API', 'SIP and AudioCodes telephony'],
@@ -75,6 +76,7 @@ export const products: Product[] = [
       { q: 'Does it replace our IVR or sit behind it?', a: 'Either. Many teams start behind an existing entry point with one workload, then extend once the results are measured.' },
       { q: 'What happens when the agent is unsure?', a: 'It asks a clarifying question or transfers to a person with the conversation summary. You set the thresholds and the destination queues.' },
       { q: 'Which languages and dialects are supported?', a: 'That depends on the speech and language components configured for your deployment. We test your languages and dialects with your own scenarios during the evaluation.' },
+      { q: 'What will it not do?', a: 'It does not act outside the permissions you set, does not answer from sources you have not approved, and transfers to a person when a request is above your thresholds or outside its scope.' },
       { q: 'How long does a rollout take?', a: 'It depends on the integrations and workloads you choose. We scope one workload with you first and agree the acceptance criteria before building.' },
     ],
     visual: {
@@ -88,6 +90,55 @@ export const products: Product[] = [
     },
   },
   {
+    slug: 'quality-assessment',
+    icon: 'target',
+    name: 'Quality Assessment',
+    short: 'Quality',
+    navLine: 'Scores human and AI conversations against your QA scorecard',
+    title: ['Review more conversations. ', { hl: 'Coach from evidence.' }],
+    intro:
+      'Automated quality assessment for your contact center. Conversations handled by people or AI agents are evaluated against your QA scorecard, with the reasoning, the evidence from the transcript and a coaching note, in the language of the conversation.',
+    problem: {
+      title: 'Most conversations are never reviewed.',
+      body: 'Quality teams can listen to only a small share of calls. Scores depend on who reviews, feedback arrives weeks later, and compliance gaps hide in the conversations nobody heard.',
+      points: ['Manual sampling misses most conversations', 'Scores vary between reviewers', 'Coaching is based on a handful of calls'],
+    },
+    workflow: [
+      { title: 'Capture', body: 'Takes the transcript of each call, chat or email, from people and AI agents.' },
+      { title: 'Evaluate', body: 'Checks the conversation against each criterion in your scorecard.' },
+      { title: 'Explain', body: 'Records the result, the reasoning and the transcript evidence for each criterion.' },
+      { title: 'Coach', body: 'Writes a coaching note for the agent, in the language of the conversation.' },
+      { title: 'Review', body: 'Your quality team confirms the results and coaches from them.' },
+    ],
+    capabilities: [
+      { icon: 'log', title: 'Your scorecard', body: 'Evaluate against the criteria your quality team already applies.' },
+      { icon: 'eye', title: 'Evidence per score', body: 'Each result points to the moment in the conversation behind it.' },
+      { icon: 'cap', title: 'Coaching notes', body: 'Specific, written feedback for each agent, ready for the next one-to-one.' },
+      { icon: 'handover', title: 'Human and AI conversations', body: 'One quality standard for your agents and your AI agents.' },
+      { icon: 'globe', title: 'Multilingual evaluation', body: 'Evaluates in the language of the conversation, within the languages configured for your deployment.' },
+      { icon: 'trend', title: 'Trends by team and topic', body: 'See where quality slips and which topics need coaching or a process fix.' },
+    ],
+    fit: {
+      integrations: ['Call recordings and transcripts from your contact center', 'Genesys Cloud and Cisco contact centers', 'Enterprise Bot voice, email and chat agents'],
+      deployment: deploymentLine,
+    },
+    faq: [
+      { q: 'Does it replace our quality team?', a: 'No. It gives your quality team evidence for many more conversations, so they spend their time reviewing results and coaching rather than searching for calls to sample.' },
+      { q: 'Can we use our existing scorecard?', a: 'Your criteria are configured during setup. We test them on your own anonymised conversations during the evaluation.' },
+      { q: 'Which languages can it evaluate?', a: 'That depends on the language components configured for your deployment. We test your languages with your own conversations.' },
+      { q: 'Is a score final?', a: 'Your reviewers decide. Every result shows its reasoning and evidence so it can be checked.' },
+    ],
+    visual: {
+      channel: 'Quality assessment',
+      lines: [
+        { who: 'system', text: 'Call 10:42 · scored against Claims QA scorecard' },
+        { who: 'system', text: 'Process followed · Met · policy §4.2 checked' },
+        { who: 'system', text: 'Handover explained · Partly met' },
+        { who: 'agent', text: 'Coaching note · tell the caller when Claims will confirm' },
+      ],
+    },
+  },
+  {
     slug: 'email-agent',
     icon: 'mail',
     name: 'Email Agent',
@@ -95,7 +146,7 @@ export const products: Product[] = [
     navLine: 'Reads, routes and resolves email',
     title: ['Clear the inbox. ', { hl: 'Keep the judgment.' }],
     intro:
-      'Reads every incoming email and attachment, separates each request, drafts or sends the reply and completes routine updates. Exceptions go to your team with the case already prepared.',
+      'Reads incoming email and attachments, separates each request, drafts or sends the reply and completes routine updates. Exceptions go to your team with the case already prepared.',
     problem: {
       title: 'Email queues hide work.',
       body: 'One message can contain three requests, a scanned form and a missing policy number. Manual triage turns that into hours of reading before anyone acts.',
@@ -279,7 +330,7 @@ export const products: Product[] = [
       deployment: deploymentLine,
     },
     faq: [
-      { q: 'Does it include conversations handled by human agents?', a: 'That depends on the channels and integrations in your deployment. We confirm what can be included during scoping.' },
+      { q: 'Does it include conversations handled by human agents?', a: 'Conversation Analytics covers your automated conversations. To evaluate conversations handled by your agents, see Quality Assessment.' },
       { q: 'Can we export the data?', a: 'Yes. Reports can be exported for use in your own BI and reporting tools.' },
     ],
     visual: {
@@ -297,4 +348,4 @@ export const products: Product[] = [
 export const productBySlug = (slug: string) => products.find((p) => p.slug === slug)
 
 /** The four starting points featured on the homepage (Chat stays reachable). */
-export const startingPoints = ['voice-agent', 'email-agent', 'agent-assist', 'conversation-analytics']
+export const startingPoints = ['voice-agent', 'agent-assist', 'quality-assessment', 'conversation-analytics']

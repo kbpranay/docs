@@ -2,18 +2,19 @@ export type Segment = string | { hl: string }
 
 export const site = {
   name: 'Enterprise Bot',
-  tagline: 'Contact center automation',
+  tagline: 'Voice AI and quality assessment for contact centers',
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.enterprisebot.ai',
   description:
-    'AI agents for voice, email and chat that work inside the contact center, languages and deployment model you already have. They resolve routine requests, hand the rest to your agents with context, and log every step for review.',
+    'AI voice agents for the contact center, plus automated quality assessment of human and AI conversations against your QA scorecard. Connected to your telephony, contact center and business systems, in the languages configured and tested for your deployment.',
   primaryCta: { label: 'Book a tailored demo', href: '/demo' },
-  secondaryCta: { label: 'See it work', href: '/#journey' },
+  secondaryCta: { label: 'See voice in production', href: '/#voice' },
 }
 
 export const nav = [
+  { label: 'Voice', href: '/platform/voice-agent' },
+  { label: 'Quality', href: '/platform/quality-assessment' },
   { label: 'Integrations', href: '/#integrations' },
-  { label: 'Customers', href: '/#customers' },
-  { label: 'Enterprise control', href: '/#control' },
+  { label: 'Security', href: '/#control' },
 ]
 
 /** Offices as listed in the current public site footer (observed 7 Nov 2026). */

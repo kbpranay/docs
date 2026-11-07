@@ -7,6 +7,12 @@ import { nav, site } from '@/content/site'
 import { products } from '@/content/products'
 import { Arrow, Chevron } from './Icons'
 
+const megaGroups = [
+  { label: 'Voice', slugs: ['voice-agent'] },
+  { label: 'Contact-center loop', slugs: ['agent-assist', 'quality-assessment', 'conversation-analytics'] },
+  { label: 'More channels', slugs: ['email-agent', 'chat-agent'] },
+]
+
 export function Header() {
   const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
@@ -68,11 +74,19 @@ export function Header() {
                 Platform <Chevron />
               </button>
               <div id="mega-platform" className="mega" data-open={megaOpen ? 'true' : 'false'}>
-                {products.map((p) => (
-                  <Link key={p.slug} href={`/platform/${p.slug}`} tabIndex={megaOpen ? 0 : -1}>
-                    <span className="mega__name">{p.name}</span>
-                    <span className="mega__line">{p.navLine}</span>
-                  </Link>
+                {megaGroups.map((g) => (
+                  <div key={g.label} className="mega__group">
+                    <p className="mega__label">{g.label}</p>
+                    {g.slugs.map((slug) => {
+                      const p = products.find((x) => x.slug === slug)!
+                      return (
+                        <Link key={p.slug} href={`/platform/${p.slug}`} tabIndex={megaOpen ? 0 : -1}>
+                          <span className="mega__name">{p.name}</span>
+                          <span className="mega__line">{p.navLine}</span>
+                        </Link>
+                      )
+                    })}
+                  </div>
                 ))}
               </div>
             </div>
@@ -84,9 +98,6 @@ export function Header() {
           </nav>
 
           <div className="site-header__actions">
-            <Link className="quiet" href={site.secondaryCta.href}>
-              {site.secondaryCta.label}
-            </Link>
             <Link className="btn btn--primary" href={site.primaryCta.href}>
               {site.primaryCta.label}
             </Link>

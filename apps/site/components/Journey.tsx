@@ -65,9 +65,9 @@ const STEPS: { title: string; detail: Record<Channel, string> }[] = [
     },
   },
   {
-    title: 'Summarise and measure',
+    title: 'Summarise, measure and score',
     detail: {
-      voice: 'Call summary and outcome saved to the CRM.',
+      voice: 'Call summary saved to the CRM; call scored against your QA scorecard.',
       email: 'Reply sent; both outcomes logged.',
       chat: 'Chat summary and outcome saved to the CRM.',
     },

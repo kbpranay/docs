@@ -25,14 +25,14 @@ const indexable = process.env.SITE_INDEXABLE === 'true'
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: 'Enterprise Bot — Contact center automation',
+    default: 'Enterprise Bot — Voice AI and quality assessment for contact centers',
     template: '%s · Enterprise Bot',
   },
   description: site.description,
   openGraph: {
     type: 'website',
     siteName: 'Enterprise Bot',
-    title: 'Automate the conversation. Complete the work.',
+    title: 'Resolve the call. Score the conversation.',
     description: site.description,
   },
   robots: indexable ? { index: true, follow: true } : { index: false, follow: false },

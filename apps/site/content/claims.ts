@@ -158,6 +158,14 @@ export const positioning = {
     observed: OBSERVED,
     reviewBeforeLaunch: 'Confirm supported Cisco versions and integration method.',
   },
+  qualityAssessment: {
+    id: 'quality-assessment',
+    status: 'positioning',
+    source: 'Internal product ("GenAI Insights"): Slack #generali-genai-insights, #sales GenAI Insights training 14 Oct 2026, NFON demo plan 30 Sep 2026',
+    observed: OBSERVED,
+    reviewBeforeLaunch:
+      'Product sign-off on scope: human vs AI conversations, channels, languages, custom scorecards and weightings, reviewer override. Do not name any customer as a QA reference without written approval.',
+  },
   genesysLayer: {
     id: 'genesys-layer',
     status: 'positioning',

@@ -67,7 +67,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             <div className="scene__bar">
               <span className="scene__channel">
                 <span className="scene__dot" aria-hidden="true">
-                  <Phone />
+                  {p.slug === 'voice-agent' ? <Phone /> : <OutlineIcon name={p.icon} size={14} />}
                 </span>
                 {p.visual.channel}
               </span>

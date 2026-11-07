@@ -40,7 +40,7 @@ export function Footer() {
         </div>
         <div className="site-footer__base">
           <span>© {new Date().getFullYear()} Enterprise Bot</span>
-          <span>Simulations on this site use synthetic data.</span>
+          <span>Simulations and sample scorecards on this site use synthetic data.</span>
         </div>
       </div>
     </footer>

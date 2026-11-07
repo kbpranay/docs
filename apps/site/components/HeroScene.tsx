@@ -53,7 +53,7 @@ function stageAt(e: number): Stage {
 const FINAL: Stage = { beat: 4, done: 4, said: 3, speaker: 'none' }
 const POSTER: Stage = { beat: 0, done: -1, said: 0, speaker: 'customer' }
 
-const STATUS = ['Inbound call · Voice Agent', 'Transferring to Claims', 'Handed over · summary saved']
+const STATUS = ['Inbound call · Voice Agent', 'Transferring to Claims', 'Call handed over · summary saved']
 const statusIndex = (beat: number) => (beat >= 4 ? 2 : beat === 3 ? 1 : 0)
 
 export function HeroScene() {

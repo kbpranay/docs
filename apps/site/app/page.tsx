@@ -5,6 +5,7 @@ import { Arrow, Check } from '@/components/Icons'
 import { InView } from '@/components/InView'
 import { Journey } from '@/components/Journey'
 import { OutlineIcon } from '@/components/OutlineIcon'
+import { SampleCall } from '@/components/SampleCall'
 import { Waves } from '@/components/Waves'
 import { proofRow, quotes, stats } from '@/content/claims'
 import { products, startingPoints } from '@/content/products'
@@ -15,9 +16,9 @@ const startCopy: Record<string, { line: string; does: string[] }> = {
     line: 'Answers inbound calls, completes routine requests and transfers the rest with a summary.',
     does: ['Routing', 'Status checks', 'Account changes'],
   },
-  'email-agent': {
-    line: 'Reads every email and attachment, resolves routine requests and prepares the exceptions.',
-    does: ['Multi-request emails', 'Attachments', 'Drafts for approval'],
+  'quality-assessment': {
+    line: 'Scores human and AI conversations against your QA scorecard, with evidence and a coaching note.',
+    does: ['Your scorecard', 'Evidence per score', 'Coaching notes'],
   },
   'agent-assist': {
     line: 'Suggests answers from your knowledge during the conversation and writes the wrap-up for your agents.',
@@ -50,20 +51,22 @@ export default function Home() {
         <div className="container">
           <div className="hero__grid">
             <div className="hero__copy">
-              <p className="kicker">Contact center automation</p>
+              <p className="kicker">Voice AI for contact centers</p>
               <h1 id="hero-title">
-                <span className="line">Automate the conversation.</span>
+                <span className="line">Resolve the call.</span>
                 <span className="line">
+                  Score the{' '}
                   <span className="hl">
-                    Complete the work.
+                    conversation.
                     <Brush draw />
                   </span>
                 </span>
               </h1>
               <p className="hero__sub">
-                AI agents for voice, email and chat that work inside the contact center, languages and deployment
-                model you already have. They resolve routine requests, hand the rest to your agents with context,
-                and log every step for review.
+                AI voice agents answer your inbound lines, complete routine requests in your systems and hand the
+                rest to your agents with a summary. Quality assessment then scores human and AI conversations against
+                your QA scorecard, with the evidence and a coaching note. Email and chat run on the same knowledge
+                and rules.
               </p>
               <div className="hero__ctas">
                 <Link className="btn btn--primary" href={site.primaryCta.href}>
@@ -93,94 +96,120 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 2 — Customer outcomes */}
-      <section id="customers" className="section section--paper" aria-labelledby="customers-title">
+      {/* 2 — Voice in production */}
+      <section id="voice" className="section section--paper" aria-labelledby="voice-title">
         <div className="container">
           <div className="section-head section-head--split" data-reveal>
             <div>
-              <p className="kicker">Customer outcomes</p>
-              <h2 id="customers-title" className="h2" style={{ marginTop: 16 }}>
-                What customers say, and what they <span className="hl">measured.</span>
+              <p className="kicker">Voice in production</p>
+              <h2 id="voice-title" className="h2" style={{ marginTop: 16 }}>
+                Answering and routing calls at <span className="hl">Generali Switzerland.</span>
               </h2>
             </div>
-            <p className="lede">Named customers, in their own words. Every figure names the customer and where it comes from.</p>
+            <p className="lede">
+              Leonie is the voicebot in Generali’s customer care. Named customer, named results, in their own words.
+            </p>
           </div>
-
-          <div className="customers">
-            <article className="feature-story" data-reveal>
+          <SampleCall />
+          <article className="feature-story feature-story--wide" data-reveal>
+            <div>
               <p className="feature-story__customer">{quotes.generali.customer} · Leonie voicebot</p>
               <blockquote>{quotes.generali.quote}</blockquote>
               <p className="cite">
                 <strong>{quotes.generali.person}</strong>
                 {quotes.generali.role}
               </p>
-              <div className="stats">
-                {[stats.generaliComprehension, stats.generaliMisrouted].map((st, i) => (
-                  <div key={st.id} data-reveal style={{ ['--reveal-delay' as string]: `${120 + i * 120}ms` }}>
-                    <p className="stat__value">{st.value}</p>
-                    <div className="stat__rule" />
-                    <p className="stat__label">{st.label}</p>
-                    <p className="stat__context">{st.context}</p>
-                  </div>
-                ))}
-              </div>
-            </article>
-
-            <div className="quote-stack">
-              <article className="quote-card" data-reveal style={{ ['--reveal-delay' as string]: '120ms' }}>
-                <div className="stat-inline">
-                  <b>{stats.callpointTraining.value}</b>
-                  <span>
-                    {stats.callpointTraining.label} · {stats.callpointTraining.customer},{' '}
-                    {stats.callpointTraining.context.toLowerCase()}
-                  </span>
+            </div>
+            <div className="stats">
+              {[stats.generaliComprehension, stats.generaliMisrouted].map((st, i) => (
+                <div key={st.id} data-reveal style={{ ['--reveal-delay' as string]: `${120 + i * 120}ms` }}>
+                  <p className="stat__value">{st.value}</p>
+                  <div className="stat__rule" />
+                  <p className="stat__label">{st.label}</p>
+                  <p className="stat__context">{st.context}</p>
                 </div>
-                <blockquote>{quotes.callpoint.quote}</blockquote>
-                <p className="cite">
-                  <strong>{quotes.callpoint.person}</strong>
-                  {quotes.callpoint.customer} · quote refers to an earlier Enterprise Bot product name
-                </p>
-              </article>
-              <article className="quote-card" data-reveal style={{ ['--reveal-delay' as string]: '220ms' }}>
-                <blockquote>{quotes.swica.quote}</blockquote>
-                <p className="cite">
-                  <strong>{quotes.swica.person}</strong>
-                  {quotes.swica.customer}
-                </p>
-              </article>
+              ))}
             </div>
-          </div>
+          </article>
         </div>
       </section>
 
-      {/* 3 — One journey across channels */}
-      <section id="journey" className="section section--white" aria-labelledby="journey-title">
-        <div className="container">
-          <div className="section-head section-head--split" data-reveal>
-            <div>
-              <p className="kicker">One way of working</p>
-              <h2 id="journey-title" className="h2" style={{ marginTop: 16 }}>
-                Same request. <span className="hl">Any channel.</span>
-              </h2>
-            </div>
-            <p className="lede">
-              A customer can call, email or chat. Behind every channel, the same five steps run against the same
-              knowledge, systems and rules. Illustrative example with synthetic data.
-            </p>
-          </div>
+      {/* 3 — Quality assessment */}
+      <section id="quality" className="section section--white" aria-labelledby="quality-title">
+        <div className="container qa">
           <div data-reveal>
-            <Journey />
+            <p className="kicker">Quality assessment</p>
+            <h2 id="quality-title" className="h2" style={{ marginTop: 16 }}>
+              Score human and AI conversations against <span className="hl">your QA scorecard.</span>
+            </h2>
+            <p className="lede" style={{ marginTop: 20 }}>
+              Each evaluated conversation gets a result per scorecard criterion, the reasoning behind it, the evidence
+              from the transcript and a coaching note, in the language of the conversation. Your quality team reviews
+              and coaches from evidence.
+            </p>
+            <ul className="qa__points">
+              <li>
+                <OutlineIcon name="log" size={24} />
+                <span>
+                  <b>Your scorecard.</b> Use the criteria your quality team already applies.
+                </span>
+              </li>
+              <li>
+                <OutlineIcon name="eye" size={24} />
+                <span>
+                  <b>Evidence for every result.</b> Each score points to the moment in the conversation behind it.
+                </span>
+              </li>
+              <li>
+                <OutlineIcon name="cap" size={24} />
+                <span>
+                  <b>Coaching notes.</b> Specific, written for the agent, ready for the next one-to-one.
+                </span>
+              </li>
+            </ul>
+            <Link className="text-link" href="/platform/quality-assessment" style={{ marginTop: 28 }}>
+              See Quality Assessment <Arrow />
+            </Link>
           </div>
+          <figure className="scorecard" data-reveal style={{ ['--reveal-delay' as string]: '120ms' }}>
+            <div className="scorecard__head">
+              <span>
+                <b>Claims call · 10:42</b>
+                <small>Scored against: Claims QA scorecard</small>
+              </span>
+              <span className="scene__label">Illustrative</span>
+            </div>
+            <ol className="scorecard__rows">
+              {[
+                { c: 'Greeting and identification', r: 'Met', e: 'Caller verified before account details were discussed.' },
+                { c: 'Correct process followed', r: 'Met', e: 'Payout policy §4.2 checked before the account change.' },
+                { c: 'Handover explained', r: 'Partly met', e: 'Approval step named; expected timing not given.' },
+              ].map((row) => (
+                <li key={row.c}>
+                  <div className="scorecard__crit">
+                    <b>{row.c}</b>
+                    <span className={row.r === 'Met' ? 'chip chip--ok' : 'chip chip--warn'}>{row.r}</span>
+                  </div>
+                  <p>“{row.e}”</p>
+                </li>
+              ))}
+            </ol>
+            <div className="scorecard__coach">
+              <b>Coaching note</b>
+              <p>Tell the caller when Claims will confirm the approval.</p>
+            </div>
+            <figcaption>Illustrative example on the synthetic call shown above. Not customer data.</figcaption>
+          </figure>
         </div>
       </section>
 
-      {/* 4 — Choose your starting point */}
+      {/* 4 — The contact-center loop */}
       <section className="section section--paper" aria-labelledby="start-title">
         <div className="container">
           <div className="section-head" data-reveal>
-            <p className="kicker">Where to start</p>
+            <p className="kicker">The contact-center loop</p>
             <h2 id="start-title" className="h2 h2--xl">
-              Start with the workload that costs you most.
+              Answer, assist, assess, improve.
             </h2>
           </div>
           <div className="starts">
@@ -205,15 +234,42 @@ export default function Home() {
                     <li key={d}>{d}</li>
                   ))}
                 </ul>
+                {p.slug === 'agent-assist' && (
+                  <span className="start__proof">
+                    <b>{stats.callpointTraining.value}</b> {stats.callpointTraining.label} ·{' '}
+                    {stats.callpointTraining.customer}
+                  </span>
+                )}
               </Link>
             ))}
           </div>
           <p className="also" data-reveal>
             Also available:{' '}
+            <Link className="text-link" href="/platform/email-agent">
+              Email Agent for shared mailboxes
+            </Link>{' '}
+            and{' '}
             <Link className="text-link" href="/platform/chat-agent">
-              Chat Agent for web, app and WhatsApp <Arrow />
+              Chat Agent for web, app and WhatsApp
             </Link>
+            , on the same knowledge and rules.
           </p>
+          <div className="quote-row">
+            <article className="quote-card" data-reveal>
+              <blockquote>{quotes.callpoint.quote}</blockquote>
+              <p className="cite">
+                <strong>{quotes.callpoint.person}</strong>
+                {quotes.callpoint.customer} · quote refers to an earlier Enterprise Bot product name
+              </p>
+            </article>
+            <article className="quote-card" data-reveal style={{ ['--reveal-delay' as string]: '100ms' }}>
+              <blockquote>{quotes.swica.quote}</blockquote>
+              <p className="cite">
+                <strong>{quotes.swica.person}</strong>
+                {quotes.swica.customer}
+              </p>
+            </article>
+          </div>
         </div>
       </section>
 
@@ -224,12 +280,12 @@ export default function Home() {
             <div>
               <p className="kicker">Integrations</p>
               <h2 id="int-title" className="h2" style={{ marginTop: 16 }}>
-                Works with the contact center you already run.
+                Plugs into your telephony and <span className="hl">contact center.</span>
               </h2>
             </div>
             <p className="lede">
-              Keep your routing, queues and agent desktop. Enterprise Bot adds the AI layer between your customers and
-              your systems.
+              Keep your carriers, routing, queues and agent desktop. Enterprise Bot connects through SIP and AudioCodes,
+              answers in front of your queues and transfers back into them with a summary.
             </p>
           </div>
 
@@ -262,10 +318,9 @@ export default function Home() {
                 <img src="/eb-logo-on-light.svg" alt="Enterprise Bot" width={150} height={23} loading="lazy" />
                 <span>AI layer</span>
               </div>
-              <div className="arch__agents">
-                <div>Voice</div>
-                <div>Email</div>
-                <div>Chat</div>
+              <div className="arch__agents arch__agents--voice">
+                <div className="arch__voice">Voice Agent</div>
+                <div>Email · Chat</div>
               </div>
               <div className="arch__layers">
                 <div>
@@ -277,8 +332,8 @@ export default function Home() {
                   <small>Permitted API calls</small>
                 </div>
                 <div>
-                  Analytics
-                  <small>Outcomes, handovers</small>
+                  Quality
+                  <small>Scorecards, outcomes</small>
                 </div>
               </div>
             </div>
@@ -315,7 +370,7 @@ export default function Home() {
                 layer, so you automate routine contacts without replacing the platform you already pay for.
               </p>
               <ul>
-                <li>Voice, email and chat automation in front of your queues</li>
+                <li>Voice automation in front of your queues, with email and chat on the same setup</li>
                 <li>Handover into existing queues with a written summary</li>
               </ul>
             </article>
@@ -328,6 +383,14 @@ export default function Home() {
               </ul>
             </article>
             <article className="integration" data-reveal style={{ ['--reveal-delay' as string]: '200ms' }}>
+              <h3>SIP and AudioCodes</h3>
+              <p>Connects to your existing telephony and session border controllers.</p>
+              <ul>
+                <li>Inbound calls answered by the Voice Agent</li>
+                <li>Transfers back into your queues with a summary</li>
+              </ul>
+            </article>
+            <article className="integration" data-reveal style={{ ['--reveal-delay' as string]: '300ms' }}>
               <h3>Salesforce and CRMs</h3>
               <p>The record stays the source of truth. The AI writes back what it did and why.</p>
               <ul>
@@ -339,7 +402,28 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6 — Enterprise control */}
+      {/* 6 — Beyond the phone */}
+      <section id="journey" className="section section--white" aria-labelledby="journey-title">
+        <div className="container">
+          <div className="section-head section-head--split" data-reveal>
+            <div>
+              <p className="kicker">Beyond the phone</p>
+              <h2 id="journey-title" className="h2" style={{ marginTop: 16 }}>
+                Built for calls. <span className="hl">Ready for email and chat.</span>
+              </h2>
+            </div>
+            <p className="lede">
+              Voice comes first. The same knowledge, rules, handover and quality checks run on email and chat when you
+              need them. Illustrative example with synthetic data.
+            </p>
+          </div>
+          <div data-reveal>
+            <Journey />
+          </div>
+        </div>
+      </section>
+
+      {/* 7 — Enterprise control */}
       <section id="control" className="section section--white" aria-labelledby="control-title">
         <div className="container">
           <div className="section-head section-head--split" data-reveal>
@@ -411,7 +495,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 7 — How an evaluation works */}
+      {/* 8 — How an evaluation works */}
       <section className="section section--paper" aria-labelledby="path-title">
         <div className="container">
           <div className="section-head" data-reveal>
@@ -439,17 +523,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 8 — Final conversion */}
+      {/* 9 — Final conversion */}
       <section className="cta-band" aria-labelledby="cta-title">
         <Waves />
         <div className="container cta-band__grid">
           <div data-reveal>
             <h2 id="cta-title">
-              See it resolve requests from <span className="hl">your</span> contact center.
+              Hear it on <span className="hl">your</span> calls. See them scored.
             </h2>
             <p>
-              Bring one workload. We will show how the agent handles it with your systems, your languages and your
-              approval rules.
+              Bring one call type. We will show the Voice Agent handling it in your language, the handover into your
+              contact center and a QA scorecard applied to the conversation.
             </p>
           </div>
           <div className="cta-band__panel" data-reveal style={{ ['--reveal-delay' as string]: '120ms' }}>
