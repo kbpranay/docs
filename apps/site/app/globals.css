@@ -262,9 +262,12 @@ ol {
 .hero h1 .hl {
   white-space: nowrap;
 }
-.h2 .hl,
-.page-hero h1 .hl {
+.h2 .hl {
   color: var(--orange-display);
+}
+.section--navy .h2 .hl,
+.page-hero h1 .hl {
+  color: var(--orange);
 }
 .section--navy .hl,
 .hero .hl,
