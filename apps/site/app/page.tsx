@@ -143,7 +143,7 @@ export default function Home() {
               ))}
             </div>
           </article>
-          <article className="proof-card" data-reveal style={{ ['--reveal-delay' as string]: '90ms' }}>
+          <article className="proof-card" data-reveal style={{ ['--reveal-delay' as string]: '70ms' }}>
             <p className="proof-card__value">{stats.swissHealthRouting.value}</p>
             <div>
               <p className="proof-card__label">{stats.swissHealthRouting.label}</p>
