@@ -1,5 +1,7 @@
 # AIDA Help Center
 
+> This repository also contains the Enterprise Bot marketing website in [`apps/site`](apps/site/README.md).
+
 Nextra 4 helpdesk site for AIDA — Artificial Intelligence Digital Assistance. Built from the AIDA User Manual and the Flows User Manual (v4.12.x).
 
 ## Local development
