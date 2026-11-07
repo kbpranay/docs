@@ -4266,6 +4266,23 @@ html:not(.js) .scene__play {
     display: none;
   }
 }
+/* Hero figure cards fill their column; tick rows stay on one line */
+.figure-card {
+  margin: 0;
+}
+.page-hero .figure-card {
+  width: 100%;
+  max-width: 480px;
+  justify-self: end;
+}
+.figure-row:has(> .figure-row__tick) {
+  flex-wrap: nowrap;
+  align-items: flex-start;
+}
+.figure-row:has(> .figure-row__tick) > :last-child {
+  flex: 1;
+  min-width: 0;
+}
 @media (prefers-reduced-motion: reduce) {
   /* Fewer and gentler, not zero: drop movement, keep short opacity/colour fades. */
   *,
