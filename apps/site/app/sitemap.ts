@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${site.url}/security`, priority: 0.7 },
     { url: `${site.url}/pricing`, priority: 0.7 },
     { url: `${site.url}/evaluation`, priority: 0.7 },
+    { url: `${site.url}/implementation`, priority: 0.6 },
     { url: `${site.url}/responsible-ai`, priority: 0.6 },
     { url: `${site.url}/resources`, priority: 0.5 },
     { url: `${site.url}/demo`, priority: 0.6 },

@@ -3491,6 +3491,93 @@ html:not(.js) .scene__play {
 .story-link--dark {
   color: var(--ink);
 }
+@media (min-width: 1100px) {
+  .path.path--five {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 24px;
+  }
+}
+/* Deployment model table (security) */
+.res-table {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: var(--white);
+}
+.res-table__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr) minmax(0, 1.3fr);
+  gap: 16px;
+  padding: 18px clamp(16px, 3vw, 28px);
+  border-top: 1px solid var(--line);
+  color: var(--ink-2);
+}
+.res-table__row:first-child {
+  border-top: 0;
+}
+.res-table__row--head {
+  background: var(--paper);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.res-table__model {
+  font-weight: 600;
+  color: var(--ink);
+}
+@media (max-width: 640px) {
+  .res-table__row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+  .res-table__row--head {
+    display: none;
+  }
+}
+/* Second voice proof: compact, sits under the Generali story */
+.proof-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px 32px;
+  margin-top: 20px;
+  padding: 24px clamp(20px, 3vw, 36px);
+  border-radius: var(--radius-xl);
+  background: var(--white);
+  border: 1px solid var(--line);
+}
+.proof-card__value {
+  margin: 0;
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--orange-ink);
+  line-height: 1;
+}
+.proof-card__label {
+  margin: 0;
+  font-weight: 600;
+  color: var(--ink);
+}
+.proof-card__context {
+  margin: 6px 0 0;
+  color: var(--ink-2);
+  font-size: 15px;
+}
+.proof-card .story-link {
+  margin-top: 0;
+  white-space: nowrap;
+}
+@media (max-width: 760px) {
+  .proof-card {
+    grid-template-columns: 1fr;
+  }
+  .proof-card .story-link {
+    white-space: normal;
+  }
+}
 .proof-row__label a {
   color: var(--on-dark-2);
   text-decoration: underline;

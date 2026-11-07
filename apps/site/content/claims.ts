@@ -80,6 +80,19 @@ export const stats = {
     observed: OBSERVED,
     reviewBeforeLaunch: RECHECK,
   },
+  swissHealthRouting: {
+    id: 'swiss-health-routing',
+    value: '98%',
+    label: 'routing accuracy, confirmed by agents after each call',
+    customer: 'A leading Swiss health insurer',
+    context: 'AI call routing on Genesys in Swiss German, French and Italian',
+    status: 'published-public',
+    source: 'enterprisebot.ai case study "Swiss health insurer" (AI voice routing, Genesys, 8 service categories, about 300 test cases before launch)',
+    sourceUrl: 'https://www.enterprisebot.ai/swiss-health-insurer-case-study-en-enterprise-bot',
+    observed: OBSERVED,
+    reviewBeforeLaunch:
+      'Published anonymously; keep the customer unnamed unless approved. Confirm the 98% definition (agent confirmation after each call) and period. Source page also carries text from other case studies; ask marketing to fix it.',
+  },
 } satisfies Record<string, StatClaim>
 
 export const quotes = {
@@ -100,7 +113,7 @@ export const quotes = {
     id: 'callpoint-quote',
     quote: "With Enterprise Bot's Chatbot IQ, we've successfully integrated AI into the end-customer process.",
     person: 'José Manuel Taboas',
-    role: 'Callpoint AG',
+    role: 'COO, Callpoint AG',
     customer: 'Callpoint AG',
     status: 'published-public',
     source: 'enterprisebot.ai homepage',
@@ -266,5 +279,29 @@ export const positioning = {
     source: 'Genesys vs Enterprise Bot battlecard, 18 Oct 2026 (Notion)',
     observed: OBSERVED,
     reviewBeforeLaunch: 'Confirm supported Genesys Cloud integration scope and handover method.',
+  },
+  implementation: {
+    id: 'implementation-support',
+    status: 'positioning',
+    source:
+      'RFP answer library and bid tracker (Notion RFP index, SharePoint bid tracker, Oct–Nov 2026): phased delivery with test and acceptance, admin and agent training, named contacts and escalation, data export on exit',
+    observed: OBSERVED,
+    reviewBeforeLaunch:
+      'Delivery and support leads to confirm the phases and the support model. No response-time or uptime numbers until the SLA wording is agreed internally.',
+  },
+  dataLifecycle: {
+    id: 'data-lifecycle',
+    status: 'positioning',
+    source:
+      'RFP security and GDPR answers (Notion RFP index, Oct–Nov 2026) and help center: retention per deployment, deletion on request, PII masking, DPA, encryption in transit and at rest documented for review',
+    observed: OBSERVED,
+    reviewBeforeLaunch: 'Security lead to confirm each statement per deployment model; no SAML claim until confirmed.',
+  },
+  aiLimits: {
+    id: 'ai-limits',
+    status: 'positioning',
+    source: 'RFP AI-governance answers incl. model-limitations documentation prepared for a public-sector bid (Notion RFP index, Oct 2026)',
+    observed: OBSERVED,
+    reviewBeforeLaunch: 'Legal to confirm EU AI Act wording; do not say "compliant" or name a risk class.',
   },
 } satisfies Record<string, Claim>

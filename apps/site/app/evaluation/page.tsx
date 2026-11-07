@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { CtaBand, PageHero } from '@/components/PageHero'
 
 export const metadata: Metadata = {
@@ -66,6 +67,9 @@ export default function Evaluation() {
                 <li key={c}>{c}</li>
               ))}
             </ul>
+            <p className="lede" style={{ marginTop: 20 }}>
+              After the pilot: <Link href="/implementation">how rollout, training and support work</Link>.
+            </p>
           </div>
         </div>
       </section>

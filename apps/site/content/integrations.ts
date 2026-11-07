@@ -19,11 +19,14 @@ export interface Integration {
   flow: { method: string; action: string }
   scope: string
   faq: { q: string; a: string }[]
+  /** Optional published proof on this platform (key in claims.ts stats). */
+  proof?: 'swissHealthRouting'
 }
 
 export const integrations: Integration[] = [
   {
     slug: 'genesys',
+    proof: 'swissHealthRouting',
     flow: { method: 'AudioHook or SIP', action: 'Account updated in your CRM' },
     name: 'Genesys Cloud',
     navLine: 'Keep Genesys. Add voice AI and QA; live translation in early access.',

@@ -116,7 +116,7 @@ export default function Home() {
             </div>
             <p className="lede">
               Leonie is the voicebot in Generali Switzerland’s customer care. A named customer, a named sponsor and two
-              published results.
+              published results, plus call routing on Genesys at a Swiss health insurer.
             </p>
           </div>
           <SampleCall />
@@ -142,6 +142,19 @@ export default function Home() {
                 </div>
               ))}
             </div>
+          </article>
+          <article className="proof-card" data-reveal style={{ ['--reveal-delay' as string]: '90ms' }}>
+            <p className="proof-card__value">{stats.swissHealthRouting.value}</p>
+            <div>
+              <p className="proof-card__label">{stats.swissHealthRouting.label}</p>
+              <p className="proof-card__context">
+                {stats.swissHealthRouting.customer} · {stats.swissHealthRouting.context}. The call stays in Genesys; Enterprise
+                Bot classifies it and routes it back to the right team.
+              </p>
+            </div>
+            <a className="story-link story-link--dark" href={stats.swissHealthRouting.sourceUrl}>
+              Read the case study ↗
+            </a>
           </article>
         </div>
       </section>

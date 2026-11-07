@@ -6,6 +6,7 @@ import { FigureCard } from '@/components/FigureCard'
 import { Phone } from '@/components/Icons'
 import { CtaBand, PageHero } from '@/components/PageHero'
 import { integrationBySlug, integrations } from '@/content/integrations'
+import { stats } from '@/content/claims'
 
 export const dynamicParams = false
 export function generateStaticParams() {
@@ -92,6 +93,20 @@ export default async function IntegrationPage({ params }: { params: Promise<{ sl
               </article>
             ))}
           </div>
+          {i.proof && (
+            <article className="proof-card" data-reveal>
+              <p className="proof-card__value">{stats[i.proof].value}</p>
+              <div>
+                <p className="proof-card__label">{stats[i.proof].label}</p>
+                <p className="proof-card__context">
+                  {stats[i.proof].customer} · {stats[i.proof].context}.
+                </p>
+              </div>
+              <a className="story-link story-link--dark" href={stats[i.proof].sourceUrl}>
+                Read the case study ↗
+              </a>
+            </article>
+          )}
         </div>
       </section>
 

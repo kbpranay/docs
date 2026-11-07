@@ -17,6 +17,13 @@ const blocks = [
   { t: 'Everything on record', b: 'Conversation logs, audit view and quality assessment show what the AI did and why.' },
 ]
 
+const limits = [
+  { t: 'It can misunderstand', b: 'Noise, strong accents and rare terms can cause recognition errors. We test with your audio and vocabulary, and set when the agent asks again or hands over.' },
+  { t: 'It can be wrong', b: 'A language model can produce a fluent but incorrect answer. Grounding, guardrails and tests reduce this; logs and quality assessment let you find and fix it.' },
+  { t: 'It should not decide alone', b: 'Decisions with legal or financial effect stay with people. The AI prepares, a person approves.' },
+  { t: 'Callers should know', b: 'The agent is set up to say it is an AI at the start of the call, and callers can ask for a person whenever your team is available.' },
+]
+
 export default function ResponsibleAI() {
   return (
     <>
@@ -45,6 +52,28 @@ export default function ResponsibleAI() {
           <p className="source-note" data-reveal>
             Controls differ by voice mode: guardrails and PII masking apply fully in cascaded mode.{' '}
             <Link href="/technology">See the voice modes</Link>.
+          </p>
+        </div>
+      </section>
+      <section className="section section--white" aria-labelledby="lim-title">
+        <div className="container">
+          <div className="section-head" data-reveal>
+            <p className="kicker">Known limits</p>
+            <h2 id="lim-title" className="h2">
+              What AI gets wrong, <span className="hl">stated up front.</span>
+            </h2>
+          </div>
+          <div className="caps caps--four" data-reveal>
+            {limits.map((x) => (
+              <article key={x.t} className="cap">
+                <h3>{x.t}</h3>
+                <p>{x.b}</p>
+              </article>
+            ))}
+          </div>
+          <p className="source-note" data-reveal>
+            For your risk and EU AI Act assessment we provide a written description of the system, its limits and the
+            human oversight in your deployment.
           </p>
         </div>
       </section>
