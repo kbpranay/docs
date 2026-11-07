@@ -77,7 +77,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               {p.visual.lines.map((l, i) => (
                 <p key={i} className={`mini-line mini-line--${l.who}`} style={{ ['--i' as string]: i }}>
                   <span className="mini-line__tag">
-                    {l.who === 'customer' ? 'Customer' : l.who === 'agent' ? 'AI agent' : 'System'}
+                    {l.who === 'customer' ? 'Customer' : l.who === 'agent' ? 'AI agent' : l.who === 'person' ? 'Agent' : 'System'}
                   </span>
                   <span className="mini-line__text">{l.text}</span>
                 </p>

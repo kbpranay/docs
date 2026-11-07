@@ -27,7 +27,7 @@ export interface Product {
   proof?: { stats: StatClaim[]; quote?: QuoteClaim }
   faq: { q: string; a: string }[]
   /** Lines for the product hero visual. */
-  visual: { channel: string; lines: { who: 'customer' | 'agent' | 'system'; text: string }[] }
+  visual: { channel: string; lines: { who: 'customer' | 'agent' | 'person' | 'system'; text: string }[] }
 }
 
 const deploymentLine =
@@ -289,7 +289,7 @@ export const products: Product[] = [
       lines: [
         { who: 'customer', text: 'Dzień dobry, chcę zmienić termin wizyty.' },
         { who: 'system', text: 'Agent hears (German): Guten Tag, ich möchte meinen Termin ändern.' },
-        { who: 'agent', text: 'Gerne. Passt Ihnen Dienstag um 10 Uhr?' },
+        { who: 'person', text: 'Gerne. Passt Ihnen Dienstag um 10 Uhr?' },
         { who: 'system', text: 'Customer hears (Polish): Oczywiście. Czy pasuje wtorek o 10?' },
       ],
     },
