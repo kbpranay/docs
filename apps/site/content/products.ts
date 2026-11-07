@@ -211,7 +211,7 @@ export const products: Product[] = [
   {
     slug: 'chat-agent',
     showcase: { kind: 'chat', title: ['Answers that ', { hl: 'act.' }], body: 'Live data and your systems behind the answers, so the chat can check a train, start a refund or hand over to a colleague without losing the thread.' },
-    storyIds: ['tpe', 'swica', 'ksw', 'yuh'],
+    storyIds: ['comboios', 'tpe', 'swica', 'ksw', 'yuh'],
     icon: 'chat',
     name: 'Chat Agent',
     short: 'Chat',
