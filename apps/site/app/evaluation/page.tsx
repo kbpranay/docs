@@ -1,3 +1,4 @@
+import { Brush } from '@/components/Brush'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { FigureCard } from '@/components/FigureCard'
@@ -32,7 +33,7 @@ export default function Evaluation() {
         kicker="Pilot and evaluation"
         title={
           <>
-            A pilot with <span className="hl">measures,</span> not a demo.
+            A pilot with <span className="hl hl--brush">measures,<Brush draw /></span> not a demo.
           </>
         }
         intro="Prove it on one workload, against your own baseline, before you commit to a rollout."
@@ -70,7 +71,7 @@ export default function Evaluation() {
       </section>
       <section className="section section--white" aria-labelledby="check-title">
         <div className="container">
-          <div className="narrow" data-reveal>
+          <div className="narrow narrow--wide" data-reveal>
             <p className="kicker">Before you start</p>
             <h2 id="check-title" className="h2" style={{ marginTop: 16 }}>
               The evaluation checklist.

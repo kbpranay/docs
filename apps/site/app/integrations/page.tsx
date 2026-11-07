@@ -1,3 +1,4 @@
+import { Brush } from '@/components/Brush'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { InView } from '@/components/InView'
@@ -18,7 +19,7 @@ export default function IntegrationsHub() {
         kicker="Integrations"
         title={
           <>
-            The AI layer for the contact center <span className="hl">you already run.</span>
+            The AI layer for the contact center <span className="hl hl--brush">you already run.<Brush draw /></span>
           </>
         }
         intro="Keep your platform for routing, queues and the agent desktop. Add Enterprise Bot for voice AI, agent assist and quality assessment, with live translation in early access."

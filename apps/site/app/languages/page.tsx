@@ -1,3 +1,4 @@
+import { Brush } from '@/components/Brush'
 import type { Metadata } from 'next'
 import { FigureCard } from '@/components/FigureCard'
 import { CtaBand, PageHero } from '@/components/PageHero'
@@ -22,7 +23,7 @@ export default function Languages() {
         kicker="Languages"
         title={
           <>
-            Your markets. <span className="hl">Your languages.</span>
+            Your markets. <span className="hl hl--brush">Your languages.<Brush draw /></span>
           </>
         }
         intro="Voice AI for the languages and dialects your customers actually speak, with the speech engine chosen per language and tested on your own calls."

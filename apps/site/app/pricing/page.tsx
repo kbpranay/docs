@@ -1,3 +1,4 @@
+import { Brush } from '@/components/Brush'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { FigureCard } from '@/components/FigureCard'
@@ -17,7 +18,7 @@ export default function Pricing() {
         kicker="Pricing"
         title={
           <>
-            Know the cost <span className="hl">before you commit.</span>
+            Know the cost <span className="hl hl--brush">before you commit.<Brush draw /></span>
           </>
         }
         intro="A clear pricing model, modelled on your own call and email volumes, so you can compare it with what you run today."

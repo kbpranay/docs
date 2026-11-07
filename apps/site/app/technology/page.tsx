@@ -1,3 +1,4 @@
+import { Brush } from '@/components/Brush'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { FigureCard } from '@/components/FigureCard'
@@ -19,7 +20,7 @@ export default function Technology() {
         kicker="Technology"
         title={
           <>
-            Built for live calls, <span className="hl">built for control.</span>
+            Built for live calls, <span className="hl hl--brush">built for control.<Brush draw /></span>
           </>
         }
         intro="Two voice modes, the speech and language models you choose, your telephony, and a full record of what the AI did."

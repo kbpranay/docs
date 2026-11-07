@@ -1,3 +1,4 @@
+import { Brush } from '@/components/Brush'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { FigureCard } from '@/components/FigureCard'
@@ -53,7 +54,7 @@ export default function Implementation() {
         kicker="Implementation and support"
         title={
           <>
-            From signature <span className="hl">to live calls.</span>
+            From signature <span className="hl hl--brush">to live calls.<Brush draw /></span>
           </>
         }
         intro="A phased rollout with testing and acceptance you sign off, training for the people who run it, and support that stays after go-live."

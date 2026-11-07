@@ -1,3 +1,4 @@
+import { Brush } from '@/components/Brush'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { FigureCard } from '@/components/FigureCard'
@@ -65,7 +66,7 @@ export default function Security() {
         kicker="Security and data"
         title={
           <>
-            Ready for <span className="hl">your security review.</span>
+            Ready for <span className="hl hl--brush">your security review.<Brush draw /></span>
           </>
         }
         intro="Where it runs, what it may access, what it records and who can change it, documented for your security and data protection teams."
