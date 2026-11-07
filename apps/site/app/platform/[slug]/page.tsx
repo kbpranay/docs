@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Highlight } from '@/components/Highlight'
 import { Arrow } from '@/components/Icons'
+import { OutlineIcon } from '@/components/OutlineIcon'
 import { Waves } from '@/components/Waves'
 import { productBySlug, products } from '@/content/products'
 import { site } from '@/content/site'
@@ -137,6 +138,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <div className="caps" data-reveal>
             {p.capabilities.map((c) => (
               <article key={c.title} className="cap">
+                <OutlineIcon name={c.icon} />
                 <h3>{c.title}</h3>
                 <p>{c.body}</p>
               </article>

@@ -22,6 +22,18 @@ const MOBILE = { viewport: { width: 390, height: 844 }, deviceScaleFactor: 1, is
 const report = { base: BASE, out: OUT, frames: {}, checks: {}, metrics: {} }
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
 
+/** Infinite CSS animations currently running inside the hero scene. */
+function runningLoopsInScene() {
+  const scene = document.querySelector('.scene')
+  return document
+    .getAnimations()
+    .filter((a) => {
+      const t = a.effect && a.effect.target
+      return a.playState === 'running' && a.effect.getTiming().iterations === Infinity && t && scene.contains(t)
+    })
+    .map((a) => a.animationName || 'unknown')
+}
+
 async function progress(page) {
   return page.evaluate(() => {
     const el = document.querySelector('.scene')
@@ -120,10 +132,22 @@ async function contactSheet(browser, title, frames, file, cols) {
     const p1 = await progress(page)
     await sleep(1000)
     const p2 = await progress(page)
+    const loopsOffscreen = await page.evaluate(runningLoopsInScene)
     await page.evaluate(() => window.scrollTo(0, 0))
     await sleep(1200)
     const p3 = await progress(page)
-    report.checks.offscreenPause = { pausedWhileOffscreen: Math.abs(p2 - p1) < 1, resumedOnReturn: p3 > p2 + 300, p1, p2, p3 }
+    await page.getByRole('button', { name: /Pause the simulation/ }).click().catch(() => {})
+    await sleep(300)
+    const loopsPaused = await page.evaluate(runningLoopsInScene)
+    report.checks.offscreenPause = {
+      pausedWhileOffscreen: Math.abs(p2 - p1) < 1,
+      resumedOnReturn: p3 > p2 + 300,
+      infiniteLoopsRunningOffscreen: loopsOffscreen,
+      infiniteLoopsRunningWhenPaused: loopsPaused,
+      p1,
+      p2,
+      p3,
+    }
 
     // Animated properties in use (should be opacity/transform-centric)
     report.checks.animatedProperties = await page.evaluate(() => {
@@ -200,12 +224,16 @@ async function contactSheet(browser, title, frames, file, cols) {
     await page.locator('.scene').scrollIntoViewIfNeeded()
     await page.evaluate(() => {
       const r = document.querySelector('.scene').getBoundingClientRect()
-      window.scrollBy(0, r.top - 80)
+      window.scrollBy(0, r.top - 84)
     })
     const frames = []
     for (const t of [300, 1800, 3500, 6200, 8800, 10600, 12000])
       frames.push({ ...(await frameAt(page, t, `m-scene-${String(t).padStart(5, '0')}.png`)), label: 'Mobile' })
     report.frames.mobileScene = frames
+    report.checks.mobileScene = await page.evaluate(() => {
+      const r = document.querySelector('.scene').getBoundingClientRect()
+      return { sceneHeight: Math.round(r.height), top: Math.round(r.top), bottom: Math.round(r.bottom), fitsUnderHeader: r.top >= 72 && r.bottom <= window.innerHeight }
+    })
     await scrollThrough(page)
     await page.screenshot({ path: path.join(OUT, 'm-full-home.png'), fullPage: true })
     await page.getByRole('button', { name: 'Open menu' }).click()
@@ -214,17 +242,19 @@ async function contactSheet(browser, title, frames, file, cols) {
     await ctx.close()
   }
 
-  // ---------- 320px overflow check ----------
-  {
-    const ctx = await browser.newContext({ viewport: { width: 320, height: 700 }, deviceScaleFactor: 1, isMobile: true })
+  // ---------- Phone-width overflow check ----------
+  // Mobile emulation zooms out (and widens innerWidth) when content overflows,
+  // so compare against the configured layout width, not window.innerWidth.
+  const overflow = {}
+  for (const width of [320, 360, 390]) {
+    const ctx = await browser.newContext({ viewport: { width, height: 740 }, deviceScaleFactor: 1, isMobile: true, hasTouch: true })
     const page = await ctx.newPage()
-    const overflow = {}
-    for (const route of ['/', '/platform/voice-agent', '/demo']) {
+    for (const route of ['/', '/platform/voice-agent', '/platform/email-agent', '/demo']) {
       await page.goto(BASE + route, { waitUntil: 'networkidle' })
-      overflow[route] = await page.evaluate(() => {
+      overflow[`${width} ${route}`] = await page.evaluate((layoutWidth) => {
         // Page-level horizontal scroll, plus content that sticks out of the
         // viewport but is hidden by an overflow:hidden ancestor (clipped text).
-        const vw = window.innerWidth
+        const vw = layoutWidth
         const clipped = []
         for (const el of document.querySelectorAll('main *, header *')) {
           if (el.closest('[aria-hidden="true"], .hero__waves, .mobile-menu')) continue
@@ -233,11 +263,37 @@ async function contactSheet(browser, title, frames, file, cols) {
             clipped.push((el.className && String(el.className).slice(0, 40)) || el.tagName)
           }
         }
-        return { pageScroll: document.documentElement.scrollWidth - vw, clippedElements: clipped.length, examples: [...new Set(clipped)].slice(0, 8) }
-      })
+        return {
+          pageScroll: document.documentElement.scrollWidth - vw,
+          innerWidth: window.innerWidth,
+          clippedElements: clipped.length,
+          examples: [...new Set(clipped)].slice(0, 8),
+        }
+      }, width)
     }
-    report.checks.overflowAt320 = overflow
     await ctx.close()
+  }
+  report.checks.phoneOverflow = overflow
+  report.checks.phoneOverflowOk = Object.values(overflow).every((o) => o.pageScroll <= 0 && o.innerWidth <= 390 && o.clippedElements === 0)
+
+  // ---------- Scene fits common laptop screens (final state) ----------
+  {
+    const fits = {}
+    for (const [w, h] of [[1366, 768], [1440, 900], [1536, 864]]) {
+      const ctx = await browser.newContext({ viewport: { width: w, height: h }, deviceScaleFactor: 1, reducedMotion: 'reduce' })
+      const page = await ctx.newPage()
+      await page.goto(BASE + '/', { waitUntil: 'networkidle' })
+      await sleep(300)
+      if (w === 1366) await page.screenshot({ path: path.join(OUT, 'd-fold-1366x768.png') })
+      fits[`${w}x${h}`] = await page.evaluate((vh) => {
+        const scene = document.querySelector('.scene').getBoundingClientRect()
+        const foot = document.querySelector('.scene__foot').getBoundingClientRect()
+        const note = document.querySelector('.scene__note').getBoundingClientRect()
+        return { sceneHeight: Math.round(scene.height), footBottom: Math.round(foot.bottom), noteBottom: Math.round(note.bottom), fits: foot.bottom <= vh }
+      }, h)
+      await ctx.close()
+    }
+    report.checks.sceneFitsFold = fits
   }
 
   // ---------- Reduced motion + no JS stills ----------

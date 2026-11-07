@@ -4,6 +4,7 @@ import { HeroScene } from '@/components/HeroScene'
 import { Arrow, Check } from '@/components/Icons'
 import { InView } from '@/components/InView'
 import { Journey } from '@/components/Journey'
+import { OutlineIcon } from '@/components/OutlineIcon'
 import { Waves } from '@/components/Waves'
 import { proofRow, quotes, stats } from '@/content/claims'
 import { products, startingPoints } from '@/content/products'
@@ -98,7 +99,7 @@ export default function Home() {
             <div>
               <p className="kicker">Customer outcomes</p>
               <h2 id="customers-title" className="h2" style={{ marginTop: 16 }}>
-                Results our customers have <span className="hl">published.</span>
+                <span className="hl">Published</span> results from named deployments.
               </h2>
             </div>
             <p className="lede">Each result is tied to a named deployment and the work it automated.</p>
@@ -174,8 +175,8 @@ export default function Home() {
         <div className="container">
           <div className="section-head" data-reveal>
             <p className="kicker">Where to start</p>
-            <h2 id="start-title" className="h2">
-              Start with the workload that <span className="hl">costs you most.</span>
+            <h2 id="start-title" className="h2 h2--xl">
+              Start with the workload that costs you most.
             </h2>
           </div>
           <div className="starts">
@@ -187,8 +188,11 @@ export default function Home() {
                 data-reveal
                 style={{ ['--reveal-delay' as string]: `${(i % 2) * 100}ms` }}
               >
-                <span className="start__num">0{i + 1}</span>
+                <span className="start__icon">
+                  <OutlineIcon name={p.icon} size={26} />
+                </span>
                 <span className="start__name">
+                  <span className="start__num">0{i + 1}</span>
                   {p.name} <Arrow width={22} height={22} />
                 </span>
                 <span className="start__line">{startCopy[p.slug].line}</span>
@@ -216,7 +220,7 @@ export default function Home() {
             <div>
               <p className="kicker">Integrations</p>
               <h2 id="int-title" className="h2" style={{ marginTop: 16 }}>
-                Works with the contact center <span className="hl">you already run.</span>
+                Works with the contact center you already run.
               </h2>
             </div>
             <p className="lede">
@@ -403,7 +407,7 @@ export default function Home() {
           <div className="section-head" data-reveal>
             <p className="kicker">How to evaluate</p>
             <h2 id="path-title" className="h2">
-              Prove it on one workload <span className="hl">before you scale.</span>
+              Prove it on one workload before you scale.
             </h2>
           </div>
           <ol className="path">

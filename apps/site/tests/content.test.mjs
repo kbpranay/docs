@@ -123,6 +123,11 @@ test('text colour pairs meet WCAG AA', () => {
     const r = ratio(token(fg), token(bg))
     assert.ok(r >= 4.5, `--${fg} on --${bg} is ${r.toFixed(2)}:1 (needs 4.5:1)`)
   }
+  // Large display text only (h1/h2 highlights, big stats): WCAG AA large is 3:1.
+  for (const [fg, bg] of [['orange-display', 'paper'], ['orange-display', 'white']]) {
+    const r = ratio(token(fg), token(bg))
+    assert.ok(r >= 3, `--${fg} on --${bg} is ${r.toFixed(2)}:1 (needs 3:1 for large text)`)
+  }
 })
 
 test('motion respects reduced-motion and only animates cheap properties', () => {

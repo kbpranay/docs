@@ -10,7 +10,8 @@
   --purple: #3f437d;
   --grey: #8d91a9;
   --orange: #f87f22;
-  --orange-ink: #a84a08; /* orange text on light backgrounds (5.3:1) */
+  --orange-ink: #a84a08; /* orange text under 24px on light backgrounds (5.3:1) */
+  --orange-display: #d9650c; /* large display text on light backgrounds (AA large, 3.4:1) */
   --paper: #f7f6f2;
   --mist: #f0f2f6;
   --white: #ffffff;
@@ -146,6 +147,28 @@ ol {
 }
 
 /* ---------- Layout ---------- */
+/* Every layout grid starts as one shrinkable column, so a long chip or
+   nowrap label can never widen the page on phones. Breakpoints below add
+   their own columns. */
+.customers,
+.journey,
+.starts,
+.arch,
+.integrations-list,
+.pillars,
+.path,
+.cta-band__grid,
+.site-footer__grid,
+.page-hero__grid,
+.problem,
+.flow-steps,
+.caps,
+.fit,
+.demo-grid,
+.form-grid,
+.section-head--split {
+  grid-template-columns: minmax(0, 1fr);
+}
 .container {
   width: 100%;
   max-width: calc(var(--container) + var(--gutter) * 2);
@@ -194,6 +217,19 @@ ol {
   line-height: 1.1;
   max-width: 20ch;
 }
+.h2--xl {
+  font-size: clamp(2.3rem, 5vw, 4.2rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  max-width: 16ch;
+}
+.outline-icon {
+  color: var(--orange-display);
+  flex: none;
+}
+.section--navy .outline-icon {
+  color: var(--orange);
+}
 .lede {
   font-size: clamp(1.05rem, 1.4vw, 1.2rem);
   color: var(--ink-2);
@@ -225,6 +261,10 @@ ol {
 }
 .hero h1 .hl {
   white-space: nowrap;
+}
+.h2 .hl,
+.page-hero h1 .hl {
+  color: var(--orange-display);
 }
 .section--navy .hl,
 .hero .hl,
@@ -516,7 +556,7 @@ ol {
   color: var(--on-dark-3);
   margin: 8px 0 8px;
 }
-.mobile-menu a {
+.mobile-menu a:not(.btn) {
   display: block;
   padding: 12px 0;
   font-size: 18px;
@@ -525,9 +565,9 @@ ol {
   border-bottom: 1px solid var(--line-dark);
 }
 .mobile-menu .btn {
-  margin-top: 28px;
+  display: flex;
   width: 100%;
-  border-bottom: 0;
+  margin-top: 28px;
 }
 @media (min-width: 1040px) {
   .site-nav,
@@ -569,6 +609,9 @@ ol {
   align-items: center;
 }
 @media (min-width: 1100px) {
+  .hero {
+    padding-block-start: 24px;
+  }
   .hero__grid {
     grid-template-columns: minmax(0, 5.3fr) minmax(0, 6.7fr);
     gap: 56px;
@@ -632,11 +675,20 @@ ol {
   stroke-dashoffset: 0;
 }
 .js .brush--draw path {
+  opacity: 0;
   stroke-dashoffset: 1;
   animation: brush-draw 700ms var(--ease-out) 350ms forwards;
 }
+.js .brush--draw path + path {
+  animation-delay: 470ms;
+}
 @keyframes brush-draw {
-  to {
+  0% {
+    opacity: 1;
+    stroke-dashoffset: 1;
+  }
+  100% {
+    opacity: 1;
     stroke-dashoffset: 0;
   }
 }
@@ -692,15 +744,15 @@ ol {
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 14px 20px;
+  padding: 10px 18px;
   background: var(--mist);
   border-bottom: 1px solid var(--line);
-  min-height: 60px;
+  min-height: 52px;
 }
 .scene__channel {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 14px;
   min-width: 0;
   font-size: 14px;
   font-weight: 600;
@@ -708,22 +760,34 @@ ol {
 }
 .scene__dot {
   position: relative;
-  width: 10px;
-  height: 10px;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   background: #17a673;
+  color: var(--white);
   flex: none;
+  transition: background-color var(--t-ui) var(--ease-out);
+}
+.scene__dot svg {
+  width: 13px;
+  height: 13px;
 }
 .scene__dot::after {
   content: '';
   position: absolute;
-  inset: -5px;
+  inset: -4px;
   border-radius: 50%;
   border: 2px solid #17a673;
   opacity: 0;
 }
 .scene[data-live='true'] .scene__dot::after {
   animation: ring 1.6s var(--ease-out) infinite;
+}
+.scene[data-ready='true']:not([data-playing='true']) .scene__dot::after,
+.scene[data-ready='true']:not([data-playing='true']) .step.is-on:not(.is-done) .step__spinner {
+  animation-play-state: paused;
 }
 .scene[data-ended='true'] .scene__dot {
   background: var(--grey);
@@ -765,11 +829,16 @@ ol {
 }
 .scene__status > span {
   grid-area: 1 / 1;
-  transition: opacity var(--t-ui) var(--ease-out), transform var(--t-ui) var(--ease-out);
+  transition:
+    opacity 200ms var(--ease-out) 120ms,
+    transform 200ms var(--ease-out) 120ms;
 }
 .scene__status > span[aria-hidden='true'] {
   opacity: 0;
   transform: translateY(4px);
+  transition:
+    opacity 120ms var(--ease-out),
+    transform 120ms var(--ease-out);
 }
 
 /* Waveform: colour shows who is speaking */
@@ -825,7 +894,7 @@ ol {
 }
 .scene__label {
   margin-left: auto;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--ink-2);
   padding: 4px 10px;
@@ -844,7 +913,7 @@ ol {
   }
 }
 .scene__col {
-  padding: 20px;
+  padding: 16px;
   min-width: 0;
 }
 .scene__col + .scene__col {
@@ -852,7 +921,7 @@ ol {
 }
 @media (min-width: 720px) {
   .scene__col {
-    padding: 18px 22px 20px;
+    padding: 14px 20px;
   }
   .scene__col + .scene__col {
     border-top: 0;
@@ -860,7 +929,7 @@ ol {
   }
 }
 .scene__heading {
-  font-size: 11.5px;
+  font-size: 12.5px;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -882,7 +951,7 @@ ol {
 }
 .bubble__who {
   display: block;
-  font-size: 11.5px;
+  font-size: 12.5px;
   font-weight: 600;
   letter-spacing: 0.04em;
   margin-bottom: 2px;
@@ -918,8 +987,25 @@ ol {
     opacity: 0 !important;
     transform: translateY(-6px) !important;
     pointer-events: none;
+    transition:
+      opacity 140ms var(--ease-out),
+      transform 140ms var(--ease-out);
   }
-  .scene:not([data-ready='true']) .convo .bubble:not(:last-child) {
+  /* Outgoing line leaves first; the new line follows. */
+  .scene[data-ready='true'] .convo .bubble.is-latest {
+    transition:
+      opacity 260ms var(--ease-out) 140ms,
+      transform 260ms var(--ease-out) 140ms;
+  }
+  /* Poster before hydration: the caller's line. Without JS: the last line. */
+  .js .scene:not([data-ready='true']) .convo .bubble:not(:first-child),
+  html:not(.js) .scene .convo .bubble:not(:last-child) {
+    display: none;
+  }
+  /* Compact phone layout: the caller line already states the request and
+     the handover pill carries the reason, so these are hidden from the start. */
+  .scene .step[data-beat='0'] .chip,
+  .scene .step[data-beat='3'] .step__detail {
     display: none;
   }
 }
@@ -934,7 +1020,7 @@ ol {
   display: grid;
   grid-template-columns: 28px 1fr;
   column-gap: 12px;
-  padding: 7px 10px 8px 8px;
+  padding: 5px 10px 6px 8px;
   border-radius: var(--radius);
   transition:
     background-color var(--t-ui) var(--ease-out),
@@ -1003,7 +1089,7 @@ ol {
   padding: 2px 10px;
   white-space: nowrap;
   border-radius: 999px;
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 500;
   background: var(--mist);
   color: var(--ink);
@@ -1013,6 +1099,14 @@ ol {
   background: rgba(23, 166, 115, 0.1);
   border-color: rgba(23, 166, 115, 0.25);
   color: #0d6b4a;
+}
+.chip--source {
+  background: rgba(63, 67, 125, 0.08);
+  border-color: rgba(63, 67, 125, 0.25);
+  color: var(--purple);
+}
+.chip--source svg {
+  flex: none;
 }
 .chip--warn {
   background: rgba(248, 127, 34, 0.12);
@@ -1025,36 +1119,27 @@ ol {
   gap: 0 6px;
 }
 .summary-card {
+  display: grid;
+  gap: 6px;
   margin-top: 6px;
-  padding: 10px 14px 12px;
+  padding: 10px;
   border-radius: var(--radius);
   background: var(--navy);
-  color: var(--white);
-}
-.summary-card ul {
-  display: grid;
-  gap: 3px;
-  font-size: 13.5px;
   color: var(--on-dark-2);
-  line-height: 1.45;
+  font-size: 13.5px;
+  line-height: 1.4;
 }
 .summary-card li {
   display: flex;
-  gap: 8px;
-}
-.summary-card li::before {
-  content: '';
-  flex: none;
-  width: 5px;
-  height: 5px;
-  margin-top: 0.55em;
-  border-radius: 50%;
-  background: var(--orange);
-}
-.summary-card .chips {
-  margin-top: 4px;
+  align-items: center;
+  gap: 10px;
 }
 .summary-card .chip {
+  flex: none;
+  justify-content: center;
+  min-width: 56px;
+  padding-inline: 8px;
+  margin-top: 0;
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.16);
   color: var(--white);
@@ -1134,16 +1219,27 @@ ol {
     transform: rotate(360deg);
   }
 }
-/* Inspect mode: dim everything except the chosen beat */
+/* Inspect mode: mute the other beats with readable tokens (ink-2 stays
+   above 7:1), keep the chosen beat in full colour. */
 .scene[data-inspect='true'] [data-beat].is-on:not(.is-focus) {
-  opacity: 0.32;
+  opacity: 1;
+}
+.scene[data-inspect='true'] [data-beat].is-on:not(.is-focus),
+.scene[data-inspect='true'] [data-beat].is-on:not(.is-focus) * {
+  color: var(--ink-2) !important;
+  background-color: transparent !important;
+  border-color: var(--line) !important;
+}
+.scene[data-inspect='true'] .bubble.is-on:not(.is-focus),
+.scene[data-inspect='true'] .step.is-on:not(.is-focus) .step__icon {
+  background-color: var(--mist) !important;
 }
 
 .scene__foot {
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 12px 16px 14px;
+  padding: 8px 16px 10px;
   border-top: 1px solid var(--line);
   background: var(--white);
 }
@@ -1202,7 +1298,7 @@ ol {
   padding: 6px 4px 2px 0;
   border: 0;
   background: none;
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--ink-2);
   cursor: pointer;
@@ -1233,15 +1329,87 @@ ol {
   background: var(--orange);
   transform: scale(1.35);
 }
+.rail__num {
+  display: none;
+}
 @media (max-width: 560px) {
-  .rail__beat {
-    font-size: 0;
-    gap: 0;
+  /* Phones: numbered beats; only the current one is named. */
+  .rail__beat::before {
+    display: none;
   }
-  .rail__beat[data-state='current'] {
-    font-size: 12.5px;
-    gap: 6px;
+  .rail__num {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    font-size: 13px;
+    font-weight: 600;
+    background: var(--mist);
+    color: var(--ink-2);
+    transition: background-color var(--t-ui) var(--ease-out), color var(--t-ui) var(--ease-out);
   }
+  .rail__beat[data-state='done'] .rail__num {
+    background: var(--navy);
+    color: var(--white);
+  }
+  .rail__beat[data-state='current'] .rail__num {
+    background: var(--orange);
+    color: var(--navy);
+  }
+  .rail__name {
+    display: none;
+  }
+  .rail__beat[data-state='current'] .rail__name {
+    display: inline;
+  }
+}
+
+/* No JavaScript: show the finished story as a calm still, with no controls. */
+html:not(.js) .scene .step__icon {
+  background: var(--navy);
+  color: var(--white);
+}
+html:not(.js) .scene .step.is-current {
+  background: transparent;
+}
+html:not(.js) .scene .step.is-current::before {
+  transform: scaleY(0);
+}
+html:not(.js) .scene__status > span {
+  opacity: 0;
+}
+html:not(.js) .scene__status > span:last-child {
+  opacity: 1;
+  transform: none;
+}
+html:not(.js) .scene__dot {
+  background: var(--grey);
+}
+html:not(.js) .scene .wave {
+  --wave-color: var(--grey);
+  opacity: 0.5;
+}
+html:not(.js) .rail__fill {
+  transform: scaleX(1);
+}
+html:not(.js) .rail__beat::before,
+html:not(.js) .rail__num {
+  background: var(--navy);
+  color: var(--white);
+  transform: none;
+}
+html:not(.js) .rail__beat {
+  pointer-events: none;
+  font-weight: 500;
+  color: var(--ink-2);
+}
+html:not(.js) .rail__name {
+  display: inline;
+}
+html:not(.js) .scene__play {
+  visibility: hidden;
 }
 .scene__note {
   margin-top: 14px;
@@ -1350,7 +1518,7 @@ ol {
   margin-top: 2px;
 }
 .light-stat .stat__value {
-  color: var(--orange-ink);
+  color: var(--orange-display);
 }
 .light-stat .stat__context {
   color: var(--ink-2);
@@ -1413,7 +1581,7 @@ ol {
 }
 @media (min-width: 1000px) {
   .journey {
-    grid-template-columns: 5fr 7fr;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
     gap: 48px;
     align-items: start;
   }
@@ -1453,6 +1621,7 @@ ol {
 }
 .inbox-card__meta {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 12px;
   font-size: 13px;
@@ -1468,6 +1637,7 @@ ol {
   line-height: 1.55;
 }
 .inbox-card .chip {
+  white-space: normal;
   margin-top: 14px;
 }
 .swap {
@@ -1487,8 +1657,8 @@ ol {
 .pipeline__line {
   position: absolute;
   left: 19px;
-  top: 20px;
-  bottom: 20px;
+  top: 34px;
+  bottom: 34px;
   width: 2px;
   background: var(--line);
   overflow: hidden;
@@ -1608,12 +1778,27 @@ ol {
     border-left: 1px solid var(--line-strong);
   }
 }
+.start__icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1.5px solid var(--line-strong);
+  background: var(--white);
+  transition: border-color var(--t-ui) var(--ease-out), transform var(--t-ui) var(--ease-out);
+}
+.start:hover .start__icon {
+  border-color: var(--orange-display);
+}
 .start__num {
   font-size: 14px;
   font-weight: 600;
   color: var(--orange-ink);
-  padding-top: 8px;
+  letter-spacing: 0;
   font-variant-numeric: tabular-nums;
+  align-self: flex-start;
+  margin-top: 4px;
 }
 .start__name {
   font-size: clamp(1.5rem, 2.3vw, 2rem);
@@ -1666,14 +1851,14 @@ ol {
 }
 @media (min-width: 1000px) {
   .arch {
-    grid-template-columns: 1fr 88px 1.25fr 88px 1fr;
+    grid-template-columns: minmax(0, 1fr) 88px minmax(0, 1.25fr) 88px minmax(0, 1fr);
   }
 }
 .arch__col {
   display: grid;
   gap: 10px;
-  align-content: center;
-  grid-template-rows: auto repeat(3, minmax(76px, auto));
+  align-content: stretch;
+  grid-template-rows: auto repeat(3, 1fr);
 }
 .arch__title {
   font-size: 12px;
@@ -1702,6 +1887,7 @@ ol {
   margin-top: 2px;
 }
 .arch__core {
+  align-self: center;
   padding: 20px;
   border-radius: var(--radius-l);
   background: var(--white);
@@ -1729,7 +1915,7 @@ ol {
 }
 .arch__agents {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
 }
 .arch__agents div,
@@ -1746,7 +1932,7 @@ ol {
 }
 .arch__layers {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
 }
 .arch__layers div {
@@ -1756,7 +1942,7 @@ ol {
 .arch__layers small {
   display: block;
   font-weight: 400;
-  font-size: 12.5px;
+  font-size: 13px;
   color: var(--ink-2);
   margin-top: 2px;
 }
@@ -1764,25 +1950,22 @@ ol {
   position: relative;
   min-height: 56px;
 }
-.arch__link::before {
-  content: '';
+/* Two lanes per connector: requests travel in (orange), results come back
+   (white). Each lane is its own dashed line and the dot rides on it. */
+.flow {
   position: absolute;
-  left: 50%;
   top: 0;
   bottom: 0;
+  left: calc(50% - 9px);
   width: 0;
   border-left: 2px dashed rgba(255, 255, 255, 0.22);
 }
-.flow {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  width: 0;
-  height: 100%;
+.flow--back {
+  left: calc(50% + 7px);
 }
 .flow i {
   position: absolute;
-  left: -4px;
+  left: -5px;
   top: 0;
   width: 8px;
   height: 8px;
@@ -1799,24 +1982,22 @@ ol {
   .arch__link {
     min-height: 0;
   }
-  .arch__link::before {
+  .flow {
     left: 8px;
     right: 8px;
-    top: 50%;
+    top: calc(50% - 9px);
     bottom: auto;
     width: auto;
     height: 0;
     border-left: 0;
     border-top: 2px dashed rgba(255, 255, 255, 0.22);
   }
-  .flow {
-    left: 8px;
-    top: calc(50% - 12px);
-    width: calc(100% - 16px);
-    height: 0;
-  }
   .flow--back {
-    top: calc(50% + 12px);
+    top: calc(50% + 7px);
+  }
+  .flow i {
+    left: 0;
+    top: -5px;
   }
 }
 [data-inview='true'] .flow i {
@@ -1888,6 +2069,15 @@ ol {
   100% {
     transform: translateX(0);
     opacity: 0;
+  }
+}
+@media (max-width: 420px) {
+  .arch__agents div,
+  .arch__layers div {
+    padding: 10px 4px;
+  }
+  .arch__layers small {
+    overflow-wrap: anywhere;
   }
 }
 .integrations-list {
@@ -2296,7 +2486,12 @@ ol {
   opacity: 0;
   transform: translateY(8px);
   animation: line-in 480ms var(--ease-out) forwards;
-  animation-delay: calc(300ms + var(--i) * 520ms);
+  animation-delay: calc(200ms + (var(--i) - 1) * 520ms);
+}
+.js .mini-line:first-child {
+  animation: none;
+  opacity: 1;
+  transform: none;
 }
 @keyframes line-in {
   to {
@@ -2402,6 +2597,9 @@ ol {
   display: grid;
   gap: 8px;
   align-content: start;
+}
+.cap .outline-icon {
+  margin-bottom: 8px;
 }
 .cap h3 {
   font-size: 18px;
@@ -2675,6 +2873,7 @@ ol {
   }
   .js .brush--draw path {
     animation: none;
+    opacity: 1;
     stroke-dashoffset: 0;
   }
   .js .scene:not([data-ready='true']) [data-beat]:not([data-beat='0']) {

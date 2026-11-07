@@ -1,3 +1,4 @@
+import type { IconName } from '@/components/OutlineIcon'
 import type { Segment } from './site'
 import { quotes, stats, type QuoteClaim, type StatClaim } from './claims'
 
@@ -15,11 +16,12 @@ export interface Product {
   name: string
   short: string
   navLine: string
+  icon: IconName
   title: Segment[]
   intro: string
   problem: { title: string; body: string; points: string[] }
   workflow: { title: string; body: string }[]
-  capabilities: { title: string; body: string }[]
+  capabilities: { icon: IconName; title: string; body: string }[]
   fit: { integrations: string[]; deployment: string }
   proof?: { stats: StatClaim[]; quote?: QuoteClaim }
   faq: { q: string; a: string }[]
@@ -33,6 +35,7 @@ const deploymentLine =
 export const products: Product[] = [
   {
     slug: 'voice-agent',
+    icon: 'phone',
     name: 'Voice Agent',
     short: 'Voice',
     navLine: 'Answers and resolves inbound calls',
@@ -56,12 +59,12 @@ export const products: Product[] = [
       { title: 'Resolve or hand over', body: 'Ends the call resolved, or transfers to the right queue with a written summary.' },
     ],
     capabilities: [
-      { title: 'Routing by intent', body: 'Callers say what they need; the agent routes on meaning, not on which key they pressed.' },
-      { title: 'Natural turn-taking', body: 'Designed for real conversations: callers can interrupt, correct themselves or change topic.' },
-      { title: 'Multilingual voice', body: 'Replies in the caller’s language, within the languages configured for your deployment.' },
-      { title: 'Telephony fit', body: 'Connects to your telephony through SIP and session border controllers such as AudioCodes.' },
-      { title: 'Warm handover', body: 'Transfers into your existing queues with a summary the agent sees before saying hello.' },
-      { title: 'Call summaries', body: 'Every call ends with a structured summary written back to your CRM.' },
+      { icon: 'route', title: 'Routing by intent', body: 'Callers say what they need; the agent routes on meaning, not on which key they pressed.' },
+      { icon: 'turns', title: 'Natural turn-taking', body: 'Designed for real conversations: callers can interrupt, correct themselves or change topic.' },
+      { icon: 'globe', title: 'Multilingual voice', body: 'Replies in the caller’s language, within the languages configured for your deployment.' },
+      { icon: 'plug', title: 'Telephony fit', body: 'Connects to your telephony through SIP and session border controllers such as AudioCodes.' },
+      { icon: 'handover', title: 'Warm handover', body: 'Transfers into your existing queues with a summary the agent sees before saying hello.' },
+      { icon: 'summary', title: 'Call summaries', body: 'Every call ends with a structured summary written back to your CRM.' },
     ],
     fit: {
       integrations: ['Genesys Cloud and Cisco contact centers', 'Salesforce and other CRMs via API', 'SIP and AudioCodes telephony'],
@@ -86,6 +89,7 @@ export const products: Product[] = [
   },
   {
     slug: 'email-agent',
+    icon: 'mail',
     name: 'Email Agent',
     short: 'Email',
     navLine: 'Reads, routes and resolves email',
@@ -109,12 +113,12 @@ export const products: Product[] = [
       { title: 'Reply or route', body: 'Sends or drafts the reply, or routes the case to a person with a prepared summary.' },
     ],
     capabilities: [
-      { title: 'Multi-request triage', body: 'Each request in an email gets its own classification, owner and outcome.' },
-      { title: 'Attachment extraction', body: 'Pulls structured fields from forms and documents so nobody re-types them.' },
-      { title: 'Missing information', body: 'Asks the sender for exactly what is missing instead of parking the case.' },
-      { title: 'Your approval rules', body: 'Set each request type to send automatically, draft for approval or route only.' },
-      { title: 'Routing with context', body: 'Cases reach the right team with the summary, extracted data and suggested reply.' },
-      { title: 'Audit trail', body: 'Every action and reply is logged against the original message.' },
+      { icon: 'layers', title: 'Multi-request triage', body: 'Each request in an email gets its own classification, owner and outcome.' },
+      { icon: 'clip', title: 'Attachment extraction', body: 'Pulls structured fields from forms and documents so nobody re-types them.' },
+      { icon: 'question', title: 'Missing information', body: 'Asks the sender for exactly what is missing instead of parking the case.' },
+      { icon: 'shield', title: 'Your approval rules', body: 'Set each request type to send automatically, draft for approval or route only.' },
+      { icon: 'route', title: 'Routing with context', body: 'Cases reach the right team with the summary, extracted data and suggested reply.' },
+      { icon: 'log', title: 'Audit trail', body: 'Every action and reply is logged against the original message.' },
     ],
     fit: {
       integrations: ['Shared mailboxes and ticketing systems', 'CRM and case management via API', 'Document and policy systems'],
@@ -137,6 +141,7 @@ export const products: Product[] = [
   },
   {
     slug: 'chat-agent',
+    icon: 'chat',
     name: 'Chat Agent',
     short: 'Chat',
     navLine: 'Web, app and WhatsApp conversations',
@@ -160,12 +165,12 @@ export const products: Product[] = [
       { title: 'Summarise', body: 'Records the outcome and summary for reporting and follow-up.' },
     ],
     capabilities: [
-      { title: 'Web and app', body: 'Embed on any site or web app with a single script.' },
-      { title: 'WhatsApp', body: 'The same agent and knowledge on WhatsApp Business.' },
-      { title: 'Answers with sources', body: 'Knowledge answers come from indexed documents, FAQs and web pages you approve.' },
-      { title: 'Actions in chat', body: 'Bookings, status checks and updates through connected workflows.' },
-      { title: 'Live-agent handover', body: 'Hands over with the full transcript and the details already collected.' },
-      { title: 'Multilingual', body: 'Understands and replies in the customer’s language using one knowledge base.' },
+      { icon: 'code', title: 'Web and app', body: 'Embed on any site or web app with a single script.' },
+      { icon: 'chat', title: 'WhatsApp', body: 'The same agent and knowledge on WhatsApp Business.' },
+      { icon: 'book', title: 'Answers with sources', body: 'Knowledge answers come from indexed documents, FAQs and web pages you approve.' },
+      { icon: 'bolt', title: 'Actions in chat', body: 'Bookings, status checks and updates through connected workflows.' },
+      { icon: 'handover', title: 'Live-agent handover', body: 'Hands over with the full transcript and the details already collected.' },
+      { icon: 'globe', title: 'Multilingual', body: 'Understands and replies in the customer’s language using one knowledge base.' },
     ],
     fit: {
       integrations: ['Website and app embed', 'WhatsApp Business', 'Live chat and CRM handover'],
@@ -188,6 +193,7 @@ export const products: Product[] = [
   },
   {
     slug: 'agent-assist',
+    icon: 'headset',
     name: 'Agent Assist',
     short: 'Agent Assist',
     navLine: 'Real-time help inside the agent desktop',
@@ -211,12 +217,12 @@ export const products: Product[] = [
       { title: 'Write back', body: 'Saves the confirmed summary and outcome to your CRM.' },
     ],
     capabilities: [
-      { title: 'Suggested answers', body: 'Relevant knowledge, with the source, while the conversation is still live.' },
-      { title: 'Next steps', body: 'Process guidance so agents follow the same path for the same request.' },
-      { title: 'Automatic summaries', body: 'Wrap-up notes drafted for the agent to check and confirm.' },
-      { title: 'CRM write-back', body: 'Confirmed outcomes saved to the record without copy and paste.' },
-      { title: 'Handover context', body: 'Agents see what the AI agent already did before they take over.' },
-      { title: 'Faster onboarding', body: 'New starters get guidance in the flow of work instead of only in training.' },
+      { icon: 'bulb', title: 'Suggested answers', body: 'Relevant knowledge, with the source, while the conversation is still live.' },
+      { icon: 'compass', title: 'Next steps', body: 'Process guidance so agents follow the same path for the same request.' },
+      { icon: 'summary', title: 'Automatic summaries', body: 'Wrap-up notes drafted for the agent to check and confirm.' },
+      { icon: 'sync', title: 'CRM write-back', body: 'Confirmed outcomes saved to the record without copy and paste.' },
+      { icon: 'eye', title: 'Handover context', body: 'Agents see what the AI agent already did before they take over.' },
+      { icon: 'cap', title: 'Faster onboarding', body: 'New starters get guidance in the flow of work instead of only in training.' },
     ],
     fit: {
       integrations: ['Works alongside your existing agent desktop', 'Genesys Cloud and Cisco contact centers', 'Salesforce and other CRMs'],
@@ -239,6 +245,7 @@ export const products: Product[] = [
   },
   {
     slug: 'conversation-analytics',
+    icon: 'bars',
     name: 'Conversation Analytics',
     short: 'Analytics',
     navLine: 'What was asked, resolved and handed over',
@@ -262,12 +269,12 @@ export const products: Product[] = [
       { title: 'Improve', body: 'Spot the next workload to automate and the answers to fix.' },
     ],
     capabilities: [
-      { title: 'Live data', body: 'Current conversation volumes and outcomes as they happen.' },
-      { title: 'Reports and insights', body: 'Historical trends by topic, channel and outcome.' },
-      { title: 'Resolution, not just containment', body: 'Separates requests that were completed from conversations that simply ended.' },
-      { title: 'Handover reasons', body: 'See why conversations went to a person and which ones did not need to.' },
-      { title: 'Topic trends', body: 'Spot new or growing request types early.' },
-      { title: 'Traceability', body: 'Drill from any metric to the conversations behind it.' },
+      { icon: 'pulse', title: 'Live data', body: 'Current conversation volumes and outcomes as they happen.' },
+      { icon: 'bars', title: 'Reports and insights', body: 'Historical trends by topic, channel and outcome.' },
+      { icon: 'target', title: 'Resolution, not just containment', body: 'Separates requests that were completed from conversations that simply ended.' },
+      { icon: 'split', title: 'Handover reasons', body: 'See why conversations went to a person and which ones did not need to.' },
+      { icon: 'trend', title: 'Topic trends', body: 'Spot new or growing request types early.' },
+      { icon: 'link', title: 'Traceability', body: 'Drill from any metric to the conversations behind it.' },
     ],
     fit: {
       integrations: ['Enterprise Bot voice, email and chat agents', 'Exports to your BI tools', 'CRM outcome data'],

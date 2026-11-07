@@ -1,7 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { Pause, Play, Replay, Tick } from './Icons'
+import { Doc, Pause, Phone, Play, Replay, StepNext, Tick } from './Icons'
 
 /**
  * Signature scene: a call resolved through an action.
@@ -22,8 +22,8 @@ const BEATS = ['Request', 'Knowledge', 'Action', 'Handover', 'Summary'] as const
 const START = [0, 2000, 5000, 8000, 10000] // ms, beat start
 const TOTAL = 12000
 const WORK_MS = 850 // spinner time before a step's tick draws
-const SAY_DELAY = [0, 1000, 1000, 600] // agent speaks after the work starts
-const SAY_MS = [1900, 1700, 1600, 1500] // waveform active while speaking
+const SAY_DELAY = [0, 1000, 1000, 1000] // agent speaks after its step's tick has drawn
+const SAY_MS = [1900, 1700, 1600, 1000] // waveform active while speaking
 
 type Speaker = 'customer' | 'agent' | 'none'
 interface Stage {
@@ -179,6 +179,18 @@ export function HeroScene() {
   }, [pause, start, reduced, ready])
 
   const onToggle = () => {
+    if (reduced) {
+      // Still mode: the button steps through the beats without animation.
+      const atEnd = finished && focus == null
+      const nb = atEnd ? 0 : (focus ?? -1) + 1
+      if (nb > 4) {
+        setFocus(null)
+        elapsed.current = TOTAL
+        apply(TOTAL)
+        setFinished(true)
+      } else inspect(nb)
+      return
+    }
     setFocus(null)
     if (playing) {
       userPaused.current = true
@@ -190,10 +202,6 @@ export function HeroScene() {
       elapsed.current = 0
       setFinished(false)
       apply(0)
-    }
-    if (reduced) {
-      // Still mode: "play" steps through without animation, one beat per press.
-      return
     }
     start()
   }
@@ -218,7 +226,16 @@ export function HeroScene() {
   const ended = s.beat >= 4
   const statusIdx = statusIndex(s.beat)
 
-  const label = playing ? 'Pause the simulation' : finished ? 'Replay the simulation' : 'Play the simulation'
+  const label = reduced
+    ? finished && focus == null
+      ? 'Step through the simulation'
+      : 'Next step'
+    : playing
+      ? 'Pause the simulation'
+      : finished
+        ? 'Replay the simulation'
+        : 'Play the simulation'
+  const icon = reduced ? <StepNext /> : playing ? <Pause /> : finished ? <Replay /> : <Play />
 
   return (
     <div
@@ -227,6 +244,7 @@ export function HeroScene() {
       role="group"
       aria-label="Illustrative simulation: a voice call resolved through an action, then handed to a person"
       data-ready={ready ? 'true' : undefined}
+      data-playing={playing ? 'true' : 'false'}
       data-live={ready && !ended ? 'true' : 'false'}
       data-ended={ended ? 'true' : 'false'}
       data-speaking={playing && s.speaker !== 'none' ? 'true' : 'false'}
@@ -235,7 +253,9 @@ export function HeroScene() {
     >
       <div className="scene__bar">
         <span className="scene__channel">
-          <span className="scene__dot" aria-hidden="true" />
+          <span className="scene__dot" aria-hidden="true">
+            <Phone />
+          </span>
           <span className="scene__status">
             {STATUS.map((t, i) => (
               <span key={t} aria-hidden={i === statusIdx ? undefined : 'true'}>
@@ -285,10 +305,7 @@ export function HeroScene() {
               </span>
               <div>
                 <p className="step__title">Request understood</p>
-                <div className="chips">
-                  <span className="chip">Refund account change</span>
-                  <span className="chip chip--ok">Caller verified</span>
-                </div>
+                <span className="chip chip--ok">Caller verified</span>
               </div>
             </li>
             <li className={'step' + on(1) + isDone(1) + cur(1) + foc(1)} data-beat="1">
@@ -297,8 +314,11 @@ export function HeroScene() {
                 <Tick />
               </span>
               <div>
-                <p className="step__title">Rule checked</p>
-                <span className="chip">Source · Payout policy §4.2</span>
+                <p className="step__title">Policy found</p>
+                <span className="chip chip--source">
+                  <Doc />
+                  Claims payout policy §4.2
+                </span>
               </div>
             </li>
             <li className={'step' + on(2) + isDone(2) + cur(2) + foc(2)} data-beat="2">
@@ -318,7 +338,7 @@ export function HeroScene() {
               </span>
               <div>
                 <p className="step__title">Handed to a person</p>
-                <p className="step__detail">Refund over CHF 2,000 needs approval</p>
+                <p className="step__detail">Above the CHF 2,000 approval limit</p>
                 <span className="handover">
                   <span className="handover__avatar" aria-hidden="true">
                     AR
@@ -334,16 +354,14 @@ export function HeroScene() {
               </span>
               <div>
                 <p className="step__title">Summary saved to CRM</p>
-                <div className="summary-card">
-                  <ul>
-                    <li>Verified; refund account changed</li>
-                    <li>Approval passed to Claims</li>
-                  </ul>
-                  <div className="chips">
-                    <span className="chip">AI · account change</span>
-                    <span className="chip">Person · approval</span>
-                  </div>
-                </div>
+                <ul className="summary-card">
+                  <li>
+                    <span className="chip">AI</span>Refund account changed
+                  </li>
+                  <li>
+                    <span className="chip">Person</span>Approval sent to Claims
+                  </li>
+                </ul>
               </div>
             </li>
           </ol>
@@ -352,7 +370,7 @@ export function HeroScene() {
 
       <div className="scene__foot">
         <button type="button" className="scene__play" onClick={onToggle} aria-label={label} title={label}>
-          {playing ? <Pause /> : finished ? <Replay /> : <Play />}
+          {icon}
         </button>
         <div className="rail">
           <div className="rail__track" aria-hidden="true">
@@ -371,7 +389,10 @@ export function HeroScene() {
                   aria-label={`Show step ${i + 1}: ${b}`}
                   onClick={() => inspect(i)}
                 >
-                  {b}
+                  <span className="rail__num" aria-hidden="true">
+                    {i + 1}
+                  </span>
+                  <span className="rail__name">{b}</span>
                 </button>
               )
             })}
