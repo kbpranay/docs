@@ -98,7 +98,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               {p.problem.body}
             </p>
           </div>
-          <ul className="pain" data-reveal style={{ ['--reveal-delay' as string]: '120ms' }}>
+          <ul className="pain" data-reveal style={{ ['--reveal-delay' as string]: '70ms' }}>
             {p.problem.points.map((pt, i) => (
               <li key={pt}>
                 <span>0{i + 1}</span>
@@ -172,7 +172,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                 ))}
               </ul>
             </div>
-            <div className="fit__box" data-reveal style={{ ['--reveal-delay' as string]: '100ms' }}>
+            <div className="fit__box" data-reveal style={{ ['--reveal-delay' as string]: '70ms' }}>
               <h3>Deployment</h3>
               <p>{p.fit.deployment}</p>
             </div>
@@ -207,7 +207,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                       key={st.id}
                       className="quote-card light-stat"
                       data-reveal
-                      style={{ ['--reveal-delay' as string]: `${100 + i * 100}ms` }}
+                      style={{ ['--reveal-delay' as string]: `${70 + i * 70}ms` }}
                     >
                       <div>
                         <p className="stat__value">{st.value}</p>
@@ -257,7 +257,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             </h2>
             <p>We will scope one request type with you and show it running against your systems.</p>
           </div>
-          <div className="cta-band__panel" data-reveal style={{ ['--reveal-delay' as string]: '120ms' }}>
+          <div className="cta-band__panel" data-reveal style={{ ['--reveal-delay' as string]: '70ms' }}>
             <Link className="btn btn--primary" href={site.primaryCta.href}>
               {site.primaryCta.label} <Arrow />
             </Link>

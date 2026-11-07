@@ -733,7 +733,6 @@ ol {
    Signature scene — "a call resolved through an action"
    ========================================================================== */
 .scene {
-  --progress: 0;
   position: relative;
   border-radius: var(--radius-xl);
   background: var(--white);
@@ -1201,6 +1200,7 @@ ol {
     background-color var(--t-ui) var(--ease-out);
 }
 .scene[data-resetting='true'] [data-beat],
+.scene[data-resetting='true'] .step__icon,
 .scene[data-resetting='true'] .step__tick path {
   transition: none !important;
 }
@@ -1298,7 +1298,7 @@ ol {
   inset: 0;
   background: var(--orange);
   transform-origin: left center;
-  transform: scaleX(var(--progress));
+  transform: scaleX(0);
 }
 .rail__beats {
   display: grid;
@@ -3226,6 +3226,10 @@ html:not(.js) .scene__play {
   }
   .js [data-reveal] {
     transform: none;
+  }
+  .btn:active,
+  .scene__status > span {
+    transform: none !important;
   }
   .js .mini-line {
     opacity: 1;
