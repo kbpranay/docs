@@ -4,6 +4,7 @@ import type { ReactNode } from 'react'
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 import { RevealObserver } from '@/components/RevealObserver'
+import { ConsentBanner } from '@/components/ConsentBanner'
 import { offices, site } from '@/content/site'
 import { JsonLd } from '@/lib/seo'
 import './globals.css'
@@ -74,6 +75,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           ]}
         />
         <main id="main">{children}</main>
+        <ConsentBanner />
         <Footer />
         <RevealObserver />
       </body>

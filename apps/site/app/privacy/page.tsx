@@ -41,7 +41,12 @@ export default function Privacy() {
         </p>
 
         <h2 id="cookies">Cookies and analytics</h2>
-        <p>This website currently sets no cookies and uses no analytics or advertising trackers.</p>
+        <p>
+          This website sets one first-party cookie, <code>eb_consent</code>, to remember your choice for six months.
+          Analytics run only if you choose “Accept analytics”: we then use Vercel Web Analytics, which counts page views
+          without cookies or cross-site tracking. We use no advertising trackers. You can change your choice at any time
+          with “Cookie settings” in the footer.
+        </p>
 
         <h2 id="rights">Your rights and contact</h2>
         <p>

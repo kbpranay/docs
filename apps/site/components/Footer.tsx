@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { CookieSettingsButton } from './ConsentBanner'
 import { offices, site } from '@/content/site'
 import { integrations } from '@/content/integrations'
 import { products } from '@/content/products'
@@ -62,6 +63,7 @@ export function Footer() {
                 <li><Link href="/implementation">Implementation and support</Link></li>
                 <li><Link href="/resources">Resources</Link></li>
                 <li><Link href="/privacy">Privacy</Link></li>
+                <li><CookieSettingsButton /></li>
                 <li><a href="https://www.enterprisebot.ai/impressum">Imprint</a></li>
               </ul>
             </div>

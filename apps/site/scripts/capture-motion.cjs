@@ -84,6 +84,15 @@ async function contactSheet(browser, title, frames, file, cols) {
 
 ;(async () => {
   const browser = await chromium.launch()
+  // Pre-set the consent cookie so the banner does not cover captured frames.
+  const consentCookie = [{ name: 'eb_consent', value: 'necessary', url: BASE }]
+  const _newContext = browser.newContext.bind(browser)
+  browser.newContext = async (opts) => {
+    const c = await _newContext(opts)
+    await c.addCookies(consentCookie)
+    return c
+  }
+  browser.newPage = async (opts) => (await browser.newContext(opts)).newPage()
 
   // ---------- Desktop: hero timeline ----------
   {
