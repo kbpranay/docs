@@ -172,7 +172,10 @@ export default async function IntegrationPage({ params }: { params: Promise<{ sl
           </div>
         </div>
       </section>
-      <Related route="integration" extra={i.slug === 'genesys' ? ['/customers'] : []} />
+      <Related
+        route="integration"
+        extra={[...integrations.filter((o) => o.slug !== i.slug).map((o) => `/integrations/${o.slug}`), ...(i.slug === 'genesys' ? ['/customers', '/industries/insurance'] : [])]}
+      />
       <CtaBand title={<>See it on <span className="hl">your</span> {i.name} setup.</>} body="We scope one call type and show the handover into your platform." />
     </>
   )

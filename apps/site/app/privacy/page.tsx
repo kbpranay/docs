@@ -4,7 +4,7 @@ import { pageMeta } from '@/lib/seo'
 export const metadata: Metadata = pageMeta({
   title: 'Privacy notice',
   description:
-    'How this website handles demo requests and the live voice demo.',
+    'How the Enterprise Bot website handles your data: demo requests, the live voice demo, cookies and your rights.',
   path: '/privacy',
 })
 

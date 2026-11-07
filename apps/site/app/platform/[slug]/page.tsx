@@ -9,6 +9,8 @@ import { OutlineIcon } from '@/components/OutlineIcon'
 import { Waves } from '@/components/Waves'
 import { productBySlug, products } from '@/content/products'
 import { site } from '@/content/site'
+import { industries } from '@/content/industries'
+import { Related } from '@/components/Related'
 
 export const dynamicParams = false
 
@@ -253,6 +255,15 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         </div>
       </section>
 
+      <Related
+        route={`/platform/${p.slug}`}
+        extra={[
+          ...industries.filter((ind) => ind.products.includes(`/platform/${p.slug}`)).map((ind) => `/industries/${ind.slug}`),
+          ...(p.slug === 'quality-assessment' ? ['/responsible-ai'] : []),
+          '/customers',
+          '/integrations',
+        ]}
+      />
       <section className="cta-band" aria-labelledby="pcta-title">
         <Waves />
         <div className="container cta-band__grid">

@@ -6,6 +6,8 @@ export const site = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.enterprisebot.ai',
   description:
     'AI voice agents for the contact center, plus automated quality assessment of human and AI conversations against your QA scorecard. Connected to your telephony, contact center and business systems, in the languages configured and tested for your deployment.',
+  metaDescription:
+    'AI voice agents and automated quality assessment for contact centers, added to Genesys, Microsoft Teams, Cisco and VIER, in the languages your customers speak.',
   primaryCta: { label: 'Book a tailored demo', href: '/demo' },
   secondaryCta: { label: 'See voice in production', href: '/#voice' },
 }

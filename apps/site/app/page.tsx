@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Brush } from '@/components/Brush'
 import { QaLens } from '@/components/QaLens'
@@ -32,6 +33,11 @@ const startCopy: Record<string, { line: string; does: string[] }> = {
     line: 'Shows what was asked, what was resolved and why conversations reached a person.',
     does: ['Resolution', 'Handover reasons', 'Topic trends'],
   },
+}
+
+export const metadata: Metadata = {
+  alternates: { canonical: '/' },
+  openGraph: { url: '/', images: [{ url: '/opengraph-image', width: 1200, height: 630 }] },
 }
 
 const shownLogos = logoWall.logos.filter((l) => l.approved && l.file && (showFeedyou || l.origin === 'eb'))
@@ -160,6 +166,7 @@ export default function Home() {
           </div>
           <p className="path-links" data-reveal>
             <Link href="/customers">See all customer stories →</Link>
+            <Link href="/industries">Solutions by industry →</Link>
           </p>
         </div>
       </section>
