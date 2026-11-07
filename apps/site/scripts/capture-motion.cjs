@@ -196,6 +196,18 @@ async function contactSheet(browser, title, frames, file, cols) {
     await page.getByRole('button', { name: 'Platform' }).click()
     await sleep(400)
     await page.screenshot({ path: path.join(OUT, 'd-mega.png'), clip: { x: 0, y: 0, width: 1440, height: 520 } })
+    report.checks.megaMenu = await page.evaluate(() => {
+      const links = [...document.querySelectorAll('.mega a')]
+      const overflow = links.filter((a) => a.scrollWidth > a.clientWidth + 1).length
+      const rects = links.map((a) => a.getBoundingClientRect())
+      let overlaps = 0
+      for (let i = 0; i < rects.length; i++)
+        for (let j = i + 1; j < rects.length; j++) {
+          const a = rects[i], b = rects[j]
+          if (a.left < b.right - 1 && b.left < a.right - 1 && a.top < b.bottom - 1 && b.top < a.bottom - 1) overlaps++
+        }
+      return { links: links.length, overflow, overlaps, ok: overflow === 0 && overlaps === 0 }
+    })
 
     report.metrics.desktop = await page.evaluate(() => {
       const res = performance.getEntriesByType('resource')

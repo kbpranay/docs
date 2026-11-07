@@ -63,10 +63,9 @@ export default function Home() {
                 </span>
               </h1>
               <p className="hero__sub">
-                AI voice agents answer your inbound lines, complete routine requests in your systems and hand the
-                rest to your agents with a summary. Quality assessment then scores human and AI conversations against
-                your QA scorecard, with the evidence and a coaching note. Email and chat run on the same knowledge
-                and rules.
+                AI voice agents answer your inbound lines, resolve routine requests in your systems and hand the rest
+                to your agents with a summary. Quality assessment then scores human and AI conversations against your
+                QA scorecard, with evidence and a coaching note.
               </p>
               <div className="hero__ctas">
                 <Link className="btn btn--primary" href={site.primaryCta.href}>
@@ -371,12 +370,9 @@ export default function Home() {
           <div className="integrations-list">
             <article className="integration" data-reveal>
               <h3>Genesys Cloud</h3>
-              <p>
-                Keep Genesys Cloud for routing, workforce management and the agent desktop. Enterprise Bot adds the AI
-                layer, so you automate routine contacts without replacing the platform you already pay for.
-              </p>
+              <p>Keep Genesys Cloud and the platform you already pay for. Enterprise Bot adds the AI layer.</p>
               <ul>
-                <li>Voice automation in front of your queues, with email and chat on the same setup</li>
+                <li>Voice automation in front of your queues</li>
                 <li>Handover into existing queues with a written summary</li>
               </ul>
             </article>

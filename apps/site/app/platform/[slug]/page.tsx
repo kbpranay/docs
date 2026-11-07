@@ -114,7 +114,13 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <div className="section-head" data-reveal>
             <p className="kicker">How it works</p>
             <h2 id="flow-title" className="h2">
-              From request to <span className="hl">recorded outcome.</span>
+              {p.flowTitle ? (
+                <Highlight segments={p.flowTitle} />
+              ) : (
+                <>
+                  From request to <span className="hl">recorded outcome.</span>
+                </>
+              )}
             </h2>
           </div>
           <ol className="flow-steps" data-reveal>

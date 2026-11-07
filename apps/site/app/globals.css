@@ -3037,6 +3037,19 @@ html:not(.js) .scene__play {
   width: min(820px, 86vw);
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
+.site-nav .mega a,
+.mega__line {
+  white-space: normal;
+  text-wrap: pretty;
+}
+.feature-story--wide > div:first-child {
+  display: grid;
+  gap: 24px;
+  align-content: center;
+}
+.scorecard__head {
+  flex-wrap: wrap;
+}
 .mega__group {
   display: grid;
   align-content: start;

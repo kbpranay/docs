@@ -21,6 +21,7 @@ export interface Product {
   intro: string
   problem: { title: string; body: string; points: string[] }
   workflow: { title: string; body: string }[]
+  flowTitle?: Segment[]
   capabilities: { icon: IconName; title: string; body: string }[]
   fit: { integrations: string[]; deployment: string }
   proof?: { stats: StatClaim[]; quote?: QuoteClaim }
@@ -91,6 +92,7 @@ export const products: Product[] = [
   },
   {
     slug: 'quality-assessment',
+    flowTitle: ['From conversation to ', { hl: 'coaching note.' }],
     icon: 'target',
     name: 'Quality Assessment',
     short: 'Quality',

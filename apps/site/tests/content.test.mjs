@@ -99,7 +99,7 @@ test('product pages follow the template', () => {
   for (const key of ['title:', 'intro:', 'problem:', 'workflow:', 'capabilities:', 'fit:', 'faq:', 'visual:']) {
     assert.equal(count(new RegExp(`\\n    ${key}`, 'g')), n, `every product needs ${key}`)
   }
-  assert.equal(count(/\{ hl: '/g), n, 'every product title needs exactly one highlighted phrase')
+  assert.equal(count(/\n    title: \[[^\n]*\{ hl: '/g), n, 'every product title needs a highlighted phrase')
 })
 
 test('text colour pairs meet WCAG AA', () => {
