@@ -387,7 +387,7 @@ export const customerStories: CustomerStory[] = [
     metric: { value: '98%', label: 'routing accuracy, confirmed by agents' },
     url: 'https://www.enterprisebot.ai/swiss-health-insurer-case-study-en-enterprise-bot',
     origin: 'eb',
-    reviewBeforeLaunch: 'Keep unnamed unless approved; source page needs cleaning (see stats.swissHealthRouting).',
+    reviewBeforeLaunch: 'Keep unnamed unless approved; source page cleaned of other customers’ sections on 7 Nov 2026.',
   },
   {
     id: 'moneta',
@@ -447,7 +447,7 @@ export const customerStories: CustomerStory[] = [
     metric: { value: '90%', label: 'reduction in agent handling costs' },
     url: 'https://www.enterprisebot.ai/case_study/comboios-de-portugal',
     origin: 'eb',
-    reviewBeforeLaunch: RECHECK + ' Source page also carries other customers’ text; ask marketing to clean it.',
+    reviewBeforeLaunch: RECHECK + ' Source page cleaned of other customers’ sections on 7 Nov 2026; accuracy figure (98% vs 98.5%) still to reconcile.',
   },
   {
     id: 'tpe',
