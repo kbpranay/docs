@@ -26,6 +26,12 @@ From the Enterprise Bot website masterplan (Notion, 7 Nov 2026) — proposal-sta
 - Supporting statement: AI agents for voice, email and chat, connected to your contact center, knowledge and business systems, with the deployment options and oversight your enterprise needs.
 - Why believe: approved customer stories; visible integrations and handover; language demonstrations; deployment and data-flow documentation; evaluated workflows; transparent commercial assumptions.
 
+**Focus priority — CEO instruction, 7 Nov 2026 (overrides the broader message house where they conflict):** Enterprise Bot must read as a **contact-center and voice AI company first**. A buyer scanning any page should see, in this order: (1) voice AI / voice bots for the contact center, (2) the rest of the contact-center loop — agent assist and **AI quality assessment of every conversation (QA scorecards, coaching, compliance)**, (3) email and chat as supporting channels. Score focus harshly: generic "AI agents for voice, email and chat" framing, equal weight across channels, or QA missing/buried is a major failure, not polish.
+
+**What exists in the product (internal evidence, not yet public claims):** QA product (internally "GenAI Insights"): automatic evaluation of human-agent and AI conversations against a QA scorecard, with reasoning, evidence and coaching notes, in the conversation's language; sold to Generali. Voice: SIP/AudioCodes and Genesys connectivity, live translation (EN–DE demonstrated), multilingual voice. Demo voice lines exist internally but no public test line.
+
+**Credibility test:** can a buyer *experience* the voice product (hear it, call it, or try it) or see real QA output? If not, say what is missing and how much it costs credibility.
+
 **Audience:** contact-center leaders and operations buyers first; parallel routes for CIO/security reviewers, CX leaders and channel partners.
 
 **The opening vs competitors** (Parloa, PolyAI, NiCE Cognigy, Boost.ai, ElevenLabs): practical contact-center automation that fits the systems, languages and deployment requirements an enterprise already has. Show the entire resolution — conversation, knowledge, action in a business system, exception/handover, summary, measurement. Omnichannel, integrations, model choice and governance are table stakes: they must not be labelled unique without evidence. Differentiation = a demonstrated combination for a specific workload, with proof.
@@ -40,9 +46,9 @@ From the Enterprise Bot website masterplan (Notion, 7 Nov 2026) — proposal-sta
 
 Score each 1–5 (5 = best-in-category positioning; 4 = strong, polish only; 3 = acceptable but generic; 2 = clear problem; 1 = broken):
 
-1. Category and promise clarity (5-second test on the hero)
-2. Differentiation (specific, credible, not table-stakes dressed as unique)
-3. Proof and credibility (attributed, contextual, placed where doubt arises)
+1. Category and promise clarity (5-second test: does it read as contact-center + voice AI?)
+2. Differentiation and focus (voice-first, QA visible; specific, credible, not table-stakes dressed as unique)
+3. Proof and credibility (attributed, contextual; can the buyer hear/try voice or see QA output?)
 4. Buyer relevance (speaks to contact-center ops pains; CIO/security route exists)
 5. Narrative flow (each homepage section answers the next buyer question; no repetition)
 6. Product page meaning (template followed; each page distinct and concrete)
