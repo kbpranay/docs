@@ -13,6 +13,7 @@ import { providerLabel, voiceDemoEnabled, voiceDemoProvider } from '@/lib/voiceD
 import { Waves } from '@/components/Waves'
 import { logoWall, quotes, stats } from '@/content/claims'
 import { LogoMarquee } from '@/components/LogoMarquee'
+import { ProofStrip } from '@/components/ProofStrip'
 import { products, startingPoints } from '@/content/products'
 import { showFeedyou, site } from '@/content/site'
 
@@ -103,7 +104,7 @@ export default function Home() {
       <section className="logos-band" aria-labelledby="logos-title">
         <div className="container">
           <div className="logos-band__head">
-            <p id="logos-title">Trusted by insurers, banks, rail operators and contact centers across Europe</p>
+            <p id="logos-title">{showFeedyou ? 'Customers of Enterprise Bot and Feedyou, an Enterprise Bot company' : 'Customers include'}</p>
             <Link href="/customers">Read customer stories →</Link>
           </div>
           <LogoMarquee rows={logoRows} />
@@ -164,6 +165,13 @@ export default function Home() {
             </a>
           </article>
           </div>
+          <ProofStrip
+            label="Also on the phone"
+            items={[
+              { id: 'moneta', text: 'MONETA Money Bank: voicebot on Genesys' },
+              { id: 'foxconn', text: 'Foxconn Czech plants: voicebot in 9 languages' },
+            ]}
+          />
           <p className="path-links" data-reveal>
             <Link href="/customers">See all customer stories →</Link>
             <Link href="/industries">Solutions by industry →</Link>

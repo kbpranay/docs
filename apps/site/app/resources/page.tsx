@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { pageMeta } from '@/lib/seo'
 import { CtaBand, PageHero } from '@/components/PageHero'
 import { Related } from '@/components/Related'
@@ -6,18 +7,17 @@ import { Related } from '@/components/Related'
 export const metadata: Metadata = pageMeta({
   title: 'Resources',
   description:
-    'Guides on agentic voice AI, Genesys, language coverage and contact-center productivity.',
+    'Buyer guides for evaluating voice AI and quality assessment: pilot checklist, pricing model, known limits, security review, rollout and languages.',
   path: '/resources',
 })
 
-const BLOG = 'https://www.enterprisebot.ai/blog/'
-const posts = [
-  { t: 'The shift from IVRs to voicebots, and now agentic voice AI', d: 'Jun 2026', href: BLOG + 'the-shift-from-ivrs-to-voicebots-and-now-agentic-voice-ai', topic: 'Voice AI' },
-  { t: 'Voice bots: speech-to-text, text-to-speech and language coverage', d: 'Apr 2025', href: BLOG + 'the-evolution-of-voice-bots-advances-in-speech-to-text-and-text-to-speech-technologies-2025-and-language-coverage', topic: 'Languages' },
-  { t: 'Upgrade your Genesys contact center with generative AI automation', d: 'Earlier', href: BLOG + 'upgrade-your-genesys-contact-center-with-enterprise-bots-genai-automation', topic: 'Genesys' },
-  { t: 'How to improve agent productivity in your call center', d: 'Apr 2026', href: BLOG + 'how-to-improve-agent-productivity-in-call-centers', topic: 'Agent assist' },
-  { t: 'Key questions to ask before investing in conversational AI', d: 'Nov 2026', href: BLOG + 'key-questions-to-ask-before-investing-in-conversational-ai', topic: 'Evaluation' },
-  { t: 'On-premises chatbots and safe business communication', d: 'Earlier', href: BLOG + 'on-premise-chatbots-the-future-of-safe-business-communication', topic: 'Deployment' },
+const guides = [
+  { t: 'The evaluation checklist', topic: 'Pilot', href: '/evaluation', line: 'What to agree before a pilot: baseline, measures, systems and languages.' },
+  { t: 'How pricing is modelled', topic: 'Commercial', href: '/pricing', line: 'Platform fee plus usage, modelled on your own volumes.' },
+  { t: 'Known limits of AI in the contact center', topic: 'Responsible AI', href: '/responsible-ai', line: 'What AI gets wrong and how you stay in control.' },
+  { t: 'Security review: what we share', topic: 'Security', href: '/security', line: 'Deployment models, data lifecycle and documentation on request.' },
+  { t: 'From signature to live calls', topic: 'Implementation', href: '/implementation', line: 'Five phases, each with a sign-off, plus training and support.' },
+  { t: 'Languages by market', topic: 'Languages', href: '/languages', line: 'Switzerland, Poland, Eastern Europe and India, tested on your calls.' },
 ]
 
 export default function Resources() {
@@ -36,19 +36,21 @@ export default function Resources() {
       <section className="section section--paper" aria-labelledby="res-title">
         <div className="container">
           <h2 id="res-title" className="sr-only">
-            Articles
+            Buyer guides
           </h2>
           <div className="hub">
-            {posts.map((p, i) => (
-              <a key={p.href} href={p.href} className="hub__card" data-reveal style={{ ['--reveal-delay' as string]: `${(i % 3) * 70}ms` }}>
-                <span className="hub__topic">
-                  {p.topic} · {p.d}
-                </span>
+            {guides.map((p, i) => (
+              <Link key={p.href} href={p.href} className="hub__card" data-reveal style={{ ['--reveal-delay' as string]: `${(i % 3) * 70}ms` }}>
+                <span className="hub__topic">{p.topic}</span>
                 <span className="hub__name">{p.t}</span>
-                <span className="hub__line">Read on the Enterprise Bot blog</span>
-              </a>
+                <span className="hub__line">{p.line}</span>
+              </Link>
             ))}
           </div>
+          <p className="path-links" data-reveal>
+            <Link href="/blog">Read the blog →</Link>
+            <Link href="/customers">Customer stories →</Link>
+          </p>
         </div>
       </section>
       <Related route="/resources" />

@@ -76,7 +76,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
             <div className="section-head" data-reveal>
               <p className="kicker">Customer results</p>
               <h2 id="proof-title" className="h2">
-                Published by customers in your industry
+                {i.proofTitle ?? 'Published by customers in your industry'}
               </h2>
             </div>
             <div className="stories" data-reveal>

@@ -8,7 +8,10 @@ import { Arrow, Phone } from '@/components/Icons'
 import { OutlineIcon } from '@/components/OutlineIcon'
 import { Waves } from '@/components/Waves'
 import { productBySlug, products } from '@/content/products'
-import { site } from '@/content/site'
+import { showFeedyou, site } from '@/content/site'
+import { customerStories } from '@/content/claims'
+import { StoryCard } from '@/components/StoryCard'
+import { QaLens } from '@/components/QaLens'
 import { industries } from '@/content/industries'
 import { Related } from '@/components/Related'
 
@@ -31,6 +34,9 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   if (!p) notFound()
 
   const others = products.filter((o) => o.slug !== p.slug)
+  const stories = (p.storyIds ?? [])
+    .map((id) => customerStories.find((c) => c.id === id))
+    .filter((c): c is NonNullable<typeof c> => !!c && (showFeedyou || c.origin === 'eb'))
   const appLd = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
@@ -233,7 +239,45 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         </section>
       )}
 
-      <section className="section section--paper" aria-labelledby="faq-title">
+      {p.slug === 'quality-assessment' && (
+        <section className="section section--white" aria-labelledby="scored-title">
+          <div className="container qa">
+            <div data-reveal>
+              <p className="kicker">Example</p>
+              <h2 id="scored-title" className="h2" style={{ marginTop: 16 }}>
+                See a <span className="hl">scored call.</span>
+              </h2>
+              <p className="lede" style={{ marginTop: 20 }}>
+                Each criterion on your scorecard is checked against the moment in the call that proves it, then summed up
+                in a coaching note your team leads can use in the next one-to-one.
+              </p>
+            </div>
+            <div data-reveal style={{ ['--reveal-delay' as string]: '70ms' }}>
+              <QaLens />
+            </div>
+          </div>
+        </section>
+      )}
+
+      {stories.length > 0 && (
+        <section className="section section--paper" aria-labelledby="stories-title">
+          <div className="container">
+            <div className="section-head" data-reveal>
+              <p className="kicker">Customer results</p>
+              <h2 id="stories-title" className="h2">
+                {p.proof ? 'Also in production' : 'In production'}
+              </h2>
+            </div>
+            <div className="stories" data-reveal>
+              {stories.map((st) => (
+                <StoryCard key={st.id} s={st} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <section className={`section ${stories.length > 0 ? 'section--white' : 'section--paper'}`} aria-labelledby="faq-title">
         <div className="container">
           <div className="section-head" data-reveal>
             <p className="kicker">Questions</p>

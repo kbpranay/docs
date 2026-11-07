@@ -25,6 +25,8 @@ export interface Product {
   capabilities: { icon: IconName; title: string; body: string }[]
   fit: { integrations: string[]; deployment: string }
   proof?: { stats: StatClaim[]; quote?: QuoteClaim }
+  /** Published customer stories (claims.ts customerStories ids) shown under "Also in production". */
+  storyIds?: string[]
   faq: { q: string; a: string }[]
   /** Lines for the product hero visual. */
   visual: { channel: string; lines: { who: 'customer' | 'agent' | 'person' | 'system'; text: string }[] }
@@ -36,6 +38,7 @@ const deploymentLine =
 export const products: Product[] = [
   {
     slug: 'voice-agent',
+    storyIds: ['swiss-health', 'moneta', 'foxconn', 'bezrealitky'],
     icon: 'phone',
     name: 'Voice Agent',
     short: 'Voice',
@@ -127,6 +130,7 @@ export const products: Product[] = [
       deployment: deploymentLine,
     },
     faq: [
+      { q: 'Which conversations are evaluated?', a: 'Calls handled by your agents or by AI agents that you choose to send for evaluation. Coverage and any additional channels are confirmed during scoping.' },
       { q: 'What will it not do?', a: 'It does not replace your reviewers’ judgement or make HR decisions. Every result shows its reasoning and evidence so your team can check it.' },
       { q: 'Does it replace our quality team?', a: 'No. It gives your quality team evidence for many more conversations, so they spend their time reviewing results and coaching rather than searching for calls to sample.' },
       { q: 'Can we use our existing scorecard?', a: 'Your criteria are configured during setup. We test them on your own anonymised conversations during the evaluation.' },
@@ -145,6 +149,7 @@ export const products: Product[] = [
   },
   {
     slug: 'email-agent',
+    storyIds: ['avenberg', 'six', 'bcd'],
     icon: 'mail',
     name: 'Email Agent',
     short: 'Email',
@@ -198,6 +203,7 @@ export const products: Product[] = [
   },
   {
     slug: 'chat-agent',
+    storyIds: ['tpe', 'swica', 'ksw', 'yuh'],
     icon: 'chat',
     name: 'Chat Agent',
     short: 'Chat',
@@ -300,6 +306,7 @@ export const products: Product[] = [
   },
   {
     slug: 'agent-assist',
+    storyIds: ['callpoint', 'bcd'],
     icon: 'headset',
     name: 'Agent Assist',
     short: 'Agent Assist',

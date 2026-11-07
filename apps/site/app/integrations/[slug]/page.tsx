@@ -7,6 +7,7 @@ import { FigureCard } from '@/components/FigureCard'
 import { Phone } from '@/components/Icons'
 import { CtaBand, PageHero } from '@/components/PageHero'
 import { Related } from '@/components/Related'
+import { ProofStrip } from '@/components/ProofStrip'
 import { integrationBySlug, integrations } from '@/content/integrations'
 import { stats } from '@/content/claims'
 
@@ -114,6 +115,7 @@ export default async function IntegrationPage({ params }: { params: Promise<{ sl
               </a>
             </article>
           )}
+          {i.slug === 'genesys' && <ProofStrip label="Also on Genesys" items={[{ id: 'moneta', text: 'MONETA Money Bank: voicebot on the Genesys platform' }]} />}
         </div>
       </section>
 

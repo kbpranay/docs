@@ -38,6 +38,7 @@ export default function Industries() {
                 <p className="story__metric">
                   <span>{i.navLine}</span>
                 </p>
+                <p className="story__origin">{i.proofLine}</p>
                 <span className="story-link story-link--dark">
                   Explore <Arrow />
                 </span>

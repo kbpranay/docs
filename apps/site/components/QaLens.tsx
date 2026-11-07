@@ -175,8 +175,8 @@ export function QaLens() {
         </button>
       </div>
       <figcaption>
-        Example: hand-written to show the format, on the synthetic claims call from the top of this page. Not product
-        output and not customer data.
+        Example: hand-written to show the format, on a synthetic claims call like the one at the top of this page. Not
+        product output and not customer data.
       </figcaption>
     </figure>
   )

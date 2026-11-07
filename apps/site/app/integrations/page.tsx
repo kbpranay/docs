@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { InView } from '@/components/InView'
 import { CtaBand, PageHero } from '@/components/PageHero'
 import { Related } from '@/components/Related'
+import { ProofStrip } from '@/components/ProofStrip'
 import { Arrow } from '@/components/Icons'
 import { integrations } from '@/content/integrations'
 
@@ -50,6 +51,13 @@ export default function IntegrationsHub() {
               supported versions are confirmed for each environment during scoping.
             </p>
           </div>
+          <ProofStrip
+            label="In production on Genesys"
+            items={[
+              { id: 'swiss-health', text: 'A Swiss health insurer: AI call routing in Swiss German, French and Italian' },
+              { id: 'moneta', text: 'MONETA Money Bank: voicebot on Genesys' },
+            ]}
+          />
         </div>
       </section>
       <section className="section section--white" aria-labelledby="how-title">

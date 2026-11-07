@@ -26,7 +26,7 @@ ${products.map((p) => `- [${p.name}](${u(`/platform/${p.slug}`)}): ${p.intro}`).
 ${integrations.map((i) => `- [${i.name}](${u(`/integrations/${i.slug}`)}): ${i.navLine}`).join('\n')}
 
 ## Customer results (published case studies)
-${stories.map((s) => `- ${s.name} (${s.sector}, ${s.country}): ${s.metric!.value} ${s.metric!.label}. Source: ${s.url}`).join('\n')}
+${stories.map((s) => `- ${s.name} (${s.sector}, ${s.country}): ${s.metric!.value} ${s.metric!.label}${s.origin === 'feedyou' ? ' (delivered by Feedyou, an Enterprise Bot company)' : ''}. Source: ${s.url}`).join('\n')}
 
 ## Buying and trust
 - [Security and data](${u('/security')}): deployment models, data residency, the GDPR data lifecycle and current certification status.

@@ -5,6 +5,7 @@ import { FigureCard } from '@/components/FigureCard'
 import { Faq } from '@/components/Faq'
 import { CtaBand, PageHero } from '@/components/PageHero'
 import { Related } from '@/components/Related'
+import { ProofStrip } from '@/components/ProofStrip'
 
 export const metadata: Metadata = pageMeta({
   title: 'Languages',
@@ -81,6 +82,14 @@ export default function Languages() {
             Supported languages depend on the speech and language components configured for your deployment. Other
             European and Asian languages are available; ask us about yours.
           </p>
+          <ProofStrip
+            label="Running today"
+            items={[
+              { id: 'swiss-health', text: 'Swiss German, French and Italian: AI call routing on Genesys at a Swiss health insurer' },
+              { id: 'moneta', text: 'Czech: MONETA Money Bank voicebot' },
+              { id: 'foxconn', text: 'Foxconn Czech plants: voicebot in 9 languages' },
+            ]}
+          />
         </div>
       </section>
       <section className="section section--white" aria-labelledby="test-title">
