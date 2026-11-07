@@ -296,6 +296,38 @@ async function contactSheet(browser, title, frames, file, cols) {
   report.checks.phoneOverflow = overflow
   report.checks.phoneOverflowOk = Object.values(overflow).every((o) => o.pageScroll <= 0 && o.innerWidth <= 390 && o.clippedElements === 0 && o.truncatedInScene.length === 0)
 
+  // ---------- Desktop: nothing sticks out of its card ----------
+  {
+    const clipped = {}
+    for (const w of [1000, 1280, 1440]) {
+      const ctx = await browser.newContext({ viewport: { width: w, height: 900 }, deviceScaleFactor: 1 })
+      const page = await ctx.newPage()
+      await page.goto(BASE + '/sitemap.xml')
+      const routes = [...(await page.content()).matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => new URL(m[1]).pathname)
+      for (const r of routes) {
+        await page.goto(BASE + r, { waitUntil: 'networkidle' })
+        const n = await page.evaluate(() => {
+          let c = 0
+          for (const box of document.querySelectorAll('.mode, .hub__card, .cap, .mini-scene, .scene, .market, .integration, .quote-card')) {
+            const b = box.getBoundingClientRect()
+            const cs = getComputedStyle(box)
+            const right = b.right - parseFloat(cs.borderRightWidth)
+            for (const el of box.querySelectorAll('*')) {
+              if (el.closest('[aria-hidden="true"]')) continue
+              const r = el.getBoundingClientRect()
+              if (r.width && r.right > right + 1) c++
+            }
+          }
+          return c
+        })
+        if (n) clipped[`${w} ${r}`] = n
+      }
+      await ctx.close()
+    }
+    report.checks.desktopClipping = clipped
+    report.checks.desktopClippingOk = Object.keys(clipped).length === 0
+  }
+
   // ---------- Scene fits common laptop screens (final state) ----------
   {
     const fits = {}

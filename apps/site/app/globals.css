@@ -1570,6 +1570,9 @@ html:not(.js) .scene__play {
   line-height: 1.5;
   font-weight: 500;
 }
+.quote-card .story-link {
+  margin-top: auto;
+}
 .quote-card .cite {
   color: var(--ink-2);
 }
@@ -3800,13 +3803,24 @@ html:not(.js) .scene__play {
   padding-bottom: 22px;
 }
 @media (min-width: 1000px) {
-  .pipe__node {
-    white-space: nowrap;
-    padding: 8px 12px;
-  }
   .pipe__link {
     flex: 0 0 16px;
   }
+}
+.mode {
+  grid-template-columns: minmax(0, 1fr);
+}
+.pipe__row {
+  align-items: stretch;
+}
+.pipe__seg {
+  align-items: stretch;
+}
+.pipe__node {
+  min-height: 52px;
+}
+.pipe__node--end {
+  padding-inline: 8px;
 }
 @media (max-width: 560px) {
   .pipe__tag {
