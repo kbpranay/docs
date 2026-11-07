@@ -50,8 +50,8 @@ npm run typecheck
 
 A button in the homepage voice section connects the visitor's microphone to a
 real-time voice model (OpenAI Realtime) running a fictional insurance-claims
-scenario (`lib/voiceDemo.ts`). It is labelled on the page as a third-party model
-demo, not Enterprise Bot's production voice stack.
+scenario (`lib/voiceDemo.ts`). The consent step tells visitors their audio is
+processed by OpenAI before the microphone starts.
 
 - Switch on: `VOICE_DEMO_ENABLED=true` and `OPENAI_API_KEY=...` (server only; set at build and run time).
 - Limits (server-enforced in `app/api/voice-demo/session`): `VOICE_DEMO_MAX_SECONDS` (120; the server

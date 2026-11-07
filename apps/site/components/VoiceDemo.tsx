@@ -187,10 +187,6 @@ export function VoiceDemo() {
         </p>
       )}
       {message && <p className="voice-demo__msg" role="status">{message}</p>}
-      <p className="voice-demo__note">
-        Live demo on a fictional scenario. It runs on a third-party real-time voice model and is not connected to any
-        customer system; production deployments use the speech and language components configured for you.
-      </p>
     </div>
   )
 }

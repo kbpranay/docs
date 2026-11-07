@@ -172,7 +172,7 @@ export const positioning = {
     source: 'Website live demo (components/VoiceDemo.tsx) on a third-party real-time voice model (OpenAI Realtime), CEO instruction 7 Nov 2026',
     observed: OBSERVED,
     reviewBeforeLaunch:
-      'Keep the on-page label that it is a third-party model on a fictional scenario. Privacy review of sending visitor audio to OpenAI (privacy notice, DPA). Confirm cost caps and abuse limits.',
+      'Keep the consent notice that visitor audio is processed by OpenAI. Privacy review of sending visitor audio to OpenAI (privacy notice, DPA). Confirm cost caps and abuse limits.',
   },
   genesysLayer: {
     id: 'genesys-layer',
