@@ -295,7 +295,7 @@ export const positioning = {
     source:
       'CEO confirmation, 7 Nov 2026, checked in Slack: Generali agent assist via Luware Nimbus/Teams (live 5 Nov 2026) and Leonie on AudioCodes; AXA Switzerland transcription via Genesys AudioHook and via Dialogmaster over SIPREC (live since 27 Nov 2025); Callpoint agent assist in Genesys; WWZ behind VIER voice and speech recognition (text only)',
     observed: OBSERVED,
-    reviewBeforeLaunch: 'Confirm each customer agrees to be named on the integration pages (Generali, AXA, Callpoint, WWZ).',
+    reviewBeforeLaunch: 'CEO (7 Nov 2026) will obtain each customer’s OK to be named before launch (Generali, AXA, Callpoint, WWZ).',
   },
   differentiation: {
     id: 'differentiation',
