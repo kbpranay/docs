@@ -439,7 +439,7 @@ export const customerStories: CustomerStory[] = [
     country: 'United Kingdom',
     channels: ['Chat'],
     voice: false,
-    outcome: 'Answers delay and journey questions from the Darwin live departure and disruption feed.', url: 'https://www.enterprisebot.ai/case_study/transpennineexpress',
+    outcome: 'In its published case study, the chatbot answers delay and journey questions from the Darwin live departure and disruption feed.', url: 'https://www.enterprisebot.ai/case_study/transpennineexpress',
     origin: 'eb',
     reviewBeforeLaunch:
       'Metric removed: the published case study gives conflicting figures (listing card vs key results). Contract ends 18 Nov 2026; decide whether to keep TPE as a past reference.',

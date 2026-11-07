@@ -159,7 +159,7 @@ export const products: Product[] = [
     navLine: 'Reads, routes and resolves email',
     title: ['Clear the inbox. ', { hl: 'Keep the judgment.' }],
     intro:
-      'Reads incoming email and attachments, separates each request, drafts or sends the reply and completes routine updates. Exceptions go to your team with the case already prepared. It runs on the same knowledge, rules and audit trail as your Voice Agent, and exceptions reach the same queues.',
+      'Reads incoming email and attachments, separates each request, drafts or sends the reply and completes routine updates. Exceptions go to your team with the case already prepared. It runs on the same knowledge, rules and audit trail as your Voice Agent.',
     flowTitle: ['From inbox to ', { hl: 'resolved case.' }],
     problem: {
       title: 'Email queues hide work.',
@@ -207,7 +207,7 @@ export const products: Product[] = [
   },
   {
     slug: 'chat-agent',
-    showcase: { kind: 'chat', title: ['Answers that ', { hl: 'act.' }], body: 'Live data and your systems behind every answer, so the chat can check a train, start a refund or hand over to a colleague without losing the thread.' },
+    showcase: { kind: 'chat', title: ['Answers that ', { hl: 'act.' }], body: 'Live data and your systems behind the answers, so the chat can check a train, start a refund or hand over to a colleague without losing the thread.' },
     storyIds: ['tpe', 'swica', 'ksw', 'yuh'],
     icon: 'chat',
     name: 'Chat Agent',
@@ -312,7 +312,7 @@ export const products: Product[] = [
   },
   {
     slug: 'agent-assist',
-    showcase: { kind: 'suggest', title: ['The right answer, ', { hl: 'while the customer talks.' }], body: 'Suggestions come from your approved knowledge, with the source shown, so agents can check and insert them in one step.' },
+    showcase: { kind: 'suggest', title: ['The right answer, ', { hl: 'while the customer talks.' }], body: 'Suggestions come from your approved knowledge, with the source shown, so agents can check them before they use them.' },
     storyIds: ['callpoint', 'bcd'],
     icon: 'headset',
     name: 'Agent Assist',

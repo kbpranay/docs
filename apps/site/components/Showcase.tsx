@@ -70,7 +70,6 @@ export function ShowcaseFigure({ kind }: { kind: ShowcaseKind }) {
               <p>Apologise, confirm the two transactions, then open a duplicate-charge case. Refunds take 3–5 working days.</p>
               <div className="chips">
                 <span className="chip chip--source">Source: disputes guide §2.1</span>
-                <span className="chip">Insert</span>
               </div>
             </div>
           </div>

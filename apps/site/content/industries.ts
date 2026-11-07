@@ -95,10 +95,10 @@ export const industries: Industry[] = [
       { t: 'Channels passengers use', b: 'Web chat, WhatsApp and voice from one platform, with the same knowledge and rules.' },
       { t: 'Insight after the rush', b: 'Conversation analytics shows why passengers got in touch and where the bot handed over.' },
     ],
-    stories: ['comboios', 'tpe', 'rmv', 'bcd'],
+    stories: ['rmv', 'tpe', 'bcd', 'comboios'],
     products: ['/platform/chat-agent', '/platform/voice-agent', '/platform/conversation-analytics', '/platform/email-agent'],
     faq: [
-      { q: 'What happens on a disruption day?', a: 'Routine delay and refund questions are answered automatically from live data, so agents can focus on passengers who need a person.' },
+      { q: 'What happens on a disruption day?', a: 'Routine delay and refund questions can be answered automatically from your live data feeds, so agents can focus on passengers who need a person.' },
       { q: 'Can the AI use live train data?', a: 'Yes. In TransPennine Express’s published case study, the chatbot answers from the Darwin real-time departure and disruption feed.' },
       { q: 'Which channels are supported?', a: 'Web chat, WhatsApp, email and voice, from one platform with shared knowledge and rules.' },
     ],
@@ -126,7 +126,7 @@ export const industries: Industry[] = [
     stories: ['callpoint'],
     products: ['/platform/agent-assist', '/platform/quality-assessment', '/platform/conversation-analytics', '/platform/voice-agent'],
     faq: [
-      { q: 'Can we report results to our clients?', a: 'Yes. Quality results and conversation analytics can be reported per client process.' },
+      { q: 'Can we report results to our clients?', a: 'Yes. Quality results and conversation records are kept per client process, so you can report them to each client; report formats are confirmed during scoping.' },
       { q: 'Can we keep each client’s data and scorecards separate?', a: 'Yes. Knowledge, rules, scorecards and access are configured per client process.' },
       { q: 'What result has a contact-center provider published?', a: `Callpoint AG published ${stats.callpointTraining.value} ${stats.callpointTraining.label} with Enterprise Bot agent assist.` },
     ],
