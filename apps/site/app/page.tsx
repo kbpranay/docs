@@ -99,7 +99,7 @@ export default function Home() {
                 <li key={n}>{n}</li>
               ))}
             </ul>
-            <p className="proof-row__ratings">Rated 4.7 on G2 · 4.5 on Capterra · 4.5 on GetApp</p>
+            <p className="proof-row__ratings">Rated 4.7 on G2 · 4.5 on Capterra · 4.5 on GetApp (as shown November 2026)</p>
           </div>
         </div>
       </section>
@@ -276,7 +276,7 @@ export default function Home() {
           <Link href="/platform/live-translate" className="lt-strip" data-reveal>
             <span className="lt-strip__tag">Early access</span>
             <span className="lt-strip__body">
-              <b>Live Translate</b> Customers and agents speak different languages on the same call, translated in real time.
+              <b>Live Translate</b> Customer and agent speak different languages on the same call, translated as they speak.
             </span>
             <span className="lt-strip__go">
               See Live Translate <Arrow />
