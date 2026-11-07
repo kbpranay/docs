@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { Metadata } from 'next'
 import { DemoForm } from '@/components/DemoForm'
 import { Waves } from '@/components/Waves'
@@ -53,6 +54,10 @@ export default function DemoPage() {
                 </li>
               ))}
             </ol>
+            <p className="path-links path-links--left">
+              Want to plan first? <Link href="/evaluation">See how a pilot works</Link>
+              <Link href="/pricing">See how pricing is modelled</Link>
+            </p>
           </div>
           <DemoForm />
         </div>

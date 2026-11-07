@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { FigureCard } from '@/components/FigureCard'
+import { Check } from '@/components/Icons'
 import { CtaBand, PageHero } from '@/components/PageHero'
 
 export const metadata: Metadata = {
@@ -14,18 +16,18 @@ const phases = [
   { t: 'Build and connect', d: 'Telephony and contact-center integration, knowledge sources and business systems, in a test environment.' },
   { t: 'Test and accept', d: 'Scenario tests on your real cases, tracked one by one, and sign-off against criteria you set before go-live.' },
   { t: 'Go live in stages', d: 'Start with a share of traffic or one call type, watch the logs and quality scores, then widen.' },
-  { t: 'Improve every month', d: 'Review of handovers, misunderstandings and QA results, with changes tested before release.' },
+  { t: 'Improve monthly', d: 'Review of handovers, misunderstandings and QA results, with changes tested before release.' },
 ]
 
 const enable = [
   { t: 'Admin training', b: 'Your team learns to edit flows, knowledge and prompts, read the logs and roll back a change.' },
-  { t: 'Agent practice', b: 'Agents rehearse difficult customer conversations with AI before they meet them on a live call.' },
+  { t: 'Agent practice', b: 'Rehearsing difficult conversations with AI before live calls is not yet generally available. Ask us about its status.' },
   { t: 'Supervisor coaching', b: 'Team leads learn to use quality assessment results for coaching notes and trends.' },
-  { t: 'Help center', b: 'Documentation for every feature, kept current with each release.' },
+  { t: 'Help center', b: 'Documentation for admins and agents, updated with each release.' },
 ]
 
 const support = [
-  { t: 'Named contacts', b: 'A project lead during delivery and named contacts after go-live, so you never start from zero.' },
+  { t: 'Named contacts', b: 'A project lead during delivery and named contacts after go-live who know your setup.' },
   { t: 'Clear escalation', b: 'Severity levels, response commitments and escalation paths written into your contract.' },
   { t: 'Release notes and change control', b: 'You know what changes and when; workflow versions can be compared and rolled back.' },
   { t: 'A clean exit', b: 'Export your conversation logs and workflow configuration at any time; data deleted as the contract sets out.' },
@@ -55,6 +57,21 @@ export default function Implementation() {
           </>
         }
         intro="A phased rollout with testing and acceptance you sign off, training for the people who run it, and support that stays after go-live."
+        aside={
+          <FigureCard
+            title="Sign-offs"
+            rows={phases.map((p) => (
+              <>
+                <span className="figure-row__tick" aria-hidden="true">
+                  <Check />
+                </span>
+                <span>
+                  <b>{p.t}</b> · signed off by you
+                </span>
+              </>
+            ))}
+          />
+        }
       />
       <section className="section section--paper" aria-labelledby="phases-title">
         <div className="container">

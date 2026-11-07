@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { FigureCard } from '@/components/FigureCard'
 import { CtaBand, PageHero } from '@/components/PageHero'
 
 export const metadata: Metadata = {
@@ -35,6 +36,22 @@ export default function ResponsibleAI() {
           </>
         }
         intro="How Enterprise Bot keeps AI answers grounded, actions within limits and every decision reviewable."
+        aside={
+          <FigureCard
+            title="Every decision on record"
+            label="Illustrative"
+            rows={[
+              ['10:42:07', 'Rule checked · payout policy §4.2'],
+              ['10:42:09', 'Action · refund account updated'],
+              ['10:42:12', 'Handover · amount above approval limit'],
+            ].map(([t, e]) => (
+              <>
+                <span className="figure-row__k">{t}</span>
+                <span>{e}</span>
+              </>
+            ))}
+          />
+        }
       />
       <section className="section section--paper" aria-labelledby="rai-title">
         <div className="container">

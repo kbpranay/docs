@@ -3497,6 +3497,164 @@ html:not(.js) .scene__play {
     gap: 24px;
   }
 }
+.path-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  margin-top: 32px;
+  font-weight: 600;
+}
+.path-links a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.path-links--left {
+  margin-top: 20px;
+  font-weight: 500;
+  color: var(--ink-2);
+}
+/* Voice proof: Generali story and Swiss health card side by side on wide screens */
+.voice-proof {
+  display: grid;
+  gap: 20px;
+}
+.voice-proof .proof-card {
+  margin-top: 0;
+}
+@media (min-width: 1200px) {
+  .voice-proof {
+    grid-template-columns: minmax(0, 2.4fr) minmax(0, 1fr);
+  }
+  .voice-proof .proof-card--side {
+    grid-template-columns: 1fr;
+    align-content: center;
+    gap: 16px;
+  }
+  .voice-proof .proof-card--side .story-link {
+    white-space: normal;
+  }
+}
+.path.path--four {
+  gap: 32px;
+}
+@media (min-width: 900px) {
+  .path.path--four {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+  }
+}
+@media (min-width: 1100px) and (max-width: 1279px) {
+  .path--five .path__step h3 {
+    font-size: 19px;
+  }
+}
+/* Path connectors draw on reveal */
+.js [data-reveal] .path__dash {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 420ms var(--ease-out) calc(var(--reveal-delay, 0ms) + 160ms);
+}
+.js [data-reveal].is-visible .path__dash {
+  transform: scaleX(1);
+}
+@media (min-width: 900px) {
+  .share-list--cols {
+    columns: 2;
+    column-gap: 48px;
+  }
+  .share-list--cols li {
+    break-inside: avoid;
+  }
+}
+@media (min-width: 960px) {
+  .proof-card:not(.proof-card--side) {
+    padding-inline: 48px;
+  }
+}
+/* Illustrative cost model (pricing) */
+.cost-model {
+  margin: 0;
+  padding: clamp(20px, 3vw, 32px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  background: var(--white);
+  box-shadow: 0 24px 48px -32px rgba(23, 21, 71, 0.35);
+}
+.cost-model__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.cost-model__row {
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+  padding: 10px 0;
+}
+.cost-model__k {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+.cost-model__bar {
+  display: flex;
+  height: 22px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--paper);
+  transform-origin: left;
+}
+.cost-model .seg,
+.cost-model__legend i {
+  display: block;
+  height: 100%;
+}
+.seg--platform {
+  background: var(--navy);
+}
+.seg--usage {
+  background: var(--orange);
+}
+.seg--impl {
+  background: #b9c3dd;
+}
+.js [data-reveal] .cost-model__bar {
+  transform: scaleX(0);
+  transition: transform 480ms var(--ease-out) calc(var(--reveal-delay, 0ms) + 120ms + var(--n) * 80ms);
+}
+.js [data-reveal].is-visible .cost-model__bar {
+  transform: scaleX(1);
+}
+.cost-model__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+  color: var(--ink-2);
+}
+.cost-model__legend li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cost-model__legend i {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+}
+.cost-model figcaption {
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--ink-2);
+}
 /* Deployment model table (security) */
 .res-table {
   border: 1px solid var(--line);
@@ -3531,6 +3689,16 @@ html:not(.js) .scene__play {
   .res-table__row {
     grid-template-columns: 1fr;
     gap: 4px;
+  }
+  .res-table [data-label]::before {
+    content: attr(data-label);
+    display: block;
+    margin-top: 8px;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-2);
   }
   .res-table__row--head {
     display: none;
@@ -4089,6 +4257,8 @@ html:not(.js) .scene__play {
     animation: none;
   }
   .js [data-reveal] .stat__rule,
+  .js [data-reveal] .path__dash,
+  .js [data-reveal] .cost-model__bar,
   .flow-step::before {
     transform: scaleX(1);
   }

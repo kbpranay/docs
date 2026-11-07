@@ -111,15 +111,16 @@ export default function Home() {
             <div>
               <p className="kicker">Voice in production</p>
               <h2 id="voice-title" className="h2" style={{ marginTop: 16 }}>
-                Answering and routing calls at <span className="hl">Generali Switzerland.</span>
+                Voice AI live in <span className="hl">Swiss contact centers.</span>
               </h2>
             </div>
             <p className="lede">
-              Leonie is the voicebot in Generali Switzerland’s customer care. A named customer, a named sponsor and two
-              published results, plus call routing on Genesys at a Swiss health insurer.
+              Leonie answers and routes calls in Generali Switzerland’s customer care. At a Swiss health insurer,
+              Enterprise Bot routes calls on Genesys in Swiss German, French and Italian. Both are published case studies.
             </p>
           </div>
           <SampleCall />
+          <div className="voice-proof">
           <article className="feature-story feature-story--wide" data-reveal>
             <div>
               <p className="feature-story__customer">{quotes.generali.customer} · Leonie voicebot</p>
@@ -143,7 +144,7 @@ export default function Home() {
               ))}
             </div>
           </article>
-          <article className="proof-card" data-reveal style={{ ['--reveal-delay' as string]: '70ms' }}>
+          <article className="proof-card proof-card--side" data-reveal style={{ ['--reveal-delay' as string]: '70ms' }}>
             <p className="proof-card__value">{stats.swissHealthRouting.value}</p>
             <div>
               <p className="proof-card__label">{stats.swissHealthRouting.label}</p>
@@ -156,6 +157,7 @@ export default function Home() {
               Read the case study ↗
             </a>
           </article>
+          </div>
         </div>
       </section>
 
@@ -586,6 +588,10 @@ export default function Home() {
               </li>
             ))}
           </ol>
+          <p className="path-links" data-reveal>
+            <Link href="/evaluation">See the full pilot plan →</Link>
+            <Link href="/pricing">How pricing works →</Link>
+          </p>
         </div>
       </section>
 
@@ -604,7 +610,7 @@ export default function Home() {
           </div>
           <div className="cta-band__panel" data-reveal style={{ ['--reveal-delay' as string]: '70ms' }}>
             <ul>
-              {['A session tailored to your stack', 'Your languages and request types', 'A clear evaluation plan'].map((t) => (
+              {['A session tailored to your stack', 'Your languages and request types', 'A pilot plan and a cost model on your volumes'].map((t) => (
                 <li key={t}>
                   <Check />
                   {t}

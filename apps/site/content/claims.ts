@@ -84,7 +84,7 @@ export const stats = {
     id: 'swiss-health-routing',
     value: '98%',
     label: 'routing accuracy, confirmed by agents after each call',
-    customer: 'A leading Swiss health insurer',
+    customer: 'A Swiss health insurer',
     context: 'AI call routing on Genesys in Swiss German, French and Italian',
     status: 'published-public',
     source: 'enterprisebot.ai case study "Swiss health insurer" (AI voice routing, Genesys, 8 service categories, about 300 test cases before launch)',
@@ -279,6 +279,14 @@ export const positioning = {
     source: 'Genesys vs Enterprise Bot battlecard, 18 Oct 2026 (Notion)',
     observed: OBSERVED,
     reviewBeforeLaunch: 'Confirm supported Genesys Cloud integration scope and handover method.',
+  },
+  pricingModel: {
+    id: 'pricing-model',
+    status: 'positioning',
+    source: 'Commercial answers in RFP responses and sales proposals (Notion RFP index, Oct–Nov 2026): platform fee plus usage, implementation scoped separately, cost modelled on customer volumes',
+    observed: OBSERVED,
+    reviewBeforeLaunch:
+      'Sales lead to confirm the fee structure and how languages appear in the cost model. No prices or discounts on the site.',
   },
   implementation: {
     id: 'implementation-support',

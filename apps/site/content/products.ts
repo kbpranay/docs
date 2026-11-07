@@ -127,6 +127,7 @@ export const products: Product[] = [
       deployment: deploymentLine,
     },
     faq: [
+      { q: 'What will it not do?', a: 'It does not replace your reviewers’ judgement or make HR decisions. Every result shows its reasoning and evidence so your team can check it.' },
       { q: 'Does it replace our quality team?', a: 'No. It gives your quality team evidence for many more conversations, so they spend their time reviewing results and coaching rather than searching for calls to sample.' },
       { q: 'Can we use our existing scorecard?', a: 'Your criteria are configured during setup. We test them on your own anonymised conversations during the evaluation.' },
       { q: 'Which languages can it evaluate?', a: 'That depends on the language components configured for your deployment. We test your languages with your own conversations.' },
@@ -180,6 +181,7 @@ export const products: Product[] = [
       deployment: deploymentLine,
     },
     faq: [
+      { q: 'What will it not do?', a: 'It does not send replies for request types you set to draft or route-only, does not act outside the permissions you set, and routes a case to your team when information is missing or no rule covers it.' },
       { q: 'Can it send replies without a person checking?', a: 'Only where you allow it. Each request type can be set to automatic, draft-for-approval or route-only, and you can change that at any time.' },
       { q: 'Which attachments can it read?', a: 'Common document and image formats. Extraction quality depends on the documents, so we test with your real, anonymised samples during the evaluation.' },
       { q: 'Does it work with our ticketing system?', a: 'We connect through APIs. We confirm the exact integration scope for your system before you commit.' },
@@ -232,6 +234,7 @@ export const products: Product[] = [
       deployment: deploymentLine,
     },
     faq: [
+      { q: 'What will it not do?', a: 'It does not answer from sources you have not approved, does not act outside the permissions you set, and offers a person when it cannot help.' },
       { q: 'Can one agent serve web, app and WhatsApp?', a: 'Yes. You publish the same agent to each channel and manage it in one place.' },
       { q: 'What if it does not know the answer?', a: 'It is set up to say so and offer a handover instead of guessing. You choose which sources it may answer from.' },
     ],
@@ -280,6 +283,7 @@ export const products: Product[] = [
       deployment: deploymentLine,
     },
     faq: [
+      { q: 'What will it not do?', a: 'It is not a certified interpreter for legal or medical consent. Language pairs are confirmed on your own audio before rollout, and calls can still go to a person who speaks the customer’s language.' },
       { q: 'Is it generally available?', a: 'Live Translate is in early access. We confirm language pairs, telephony setup and availability with each contact center before a pilot.' },
       { q: 'Which languages are supported?', a: 'English and German have been demonstrated. Other language pairs are being tested; we confirm yours on your own audio before rollout.' },
       { q: 'How fast is it?', a: 'Translation runs while people speak. We measure the delay on your telephony during the evaluation rather than quote a lab number.' },
@@ -332,6 +336,7 @@ export const products: Product[] = [
       deployment: deploymentLine,
     },
     faq: [
+      { q: 'What will it not do?', a: 'It does not speak to the customer, and nothing is saved without the agent confirming it. Suggestions come only from the knowledge sources you approve.' },
       { q: 'Do our agents need a new desktop?', a: 'No. Agent Assist is designed to work alongside the workspace your agents already use. Supported workspaces and versions are confirmed during scoping.' },
       { q: 'Can agents edit the suggested summary?', a: 'Yes. The agent confirms or edits the summary before it is saved.' },
     ],
@@ -383,6 +388,7 @@ export const products: Product[] = [
       deployment: deploymentLine,
     },
     faq: [
+      { q: 'What will it not do?', a: 'It does not evaluate conversations handled by your agents; that is Quality Assessment. It reports on the automated conversations in your deployment.' },
       { q: 'Does it include conversations handled by human agents?', a: 'Conversation Analytics covers your automated conversations. To evaluate conversations handled by your agents, see Quality Assessment.' },
       { q: 'Can we export the data?', a: 'Yes. Reports can be exported for use in your own BI and reporting tools.' },
     ],

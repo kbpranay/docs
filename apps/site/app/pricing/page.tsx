@@ -6,7 +6,7 @@ import { CtaBand, PageHero } from '@/components/PageHero'
 
 export const metadata: Metadata = {
   title: 'How pricing works',
-  description: 'Enterprise Bot pricing model: a platform fee plus usage, languages included, with total cost modelled on your own volumes.',
+  description: 'Enterprise Bot pricing model: a platform fee plus usage, with total cost modelled on your own volumes.',
   alternates: { canonical: '/pricing' },
 }
 
@@ -24,7 +24,7 @@ export default function Pricing() {
         aside={
           <FigureCard
             title="What you pay for"
-            rows={['Platform fee for your deployment', 'Usage, based on your volumes', 'Languages included, no per-language fee', 'Implementation scoped up front'].map((t) => (
+            rows={['Platform fee for your deployment', 'Usage, based on your volumes', 'Languages shown in your cost model', 'Implementation scoped up front'].map((t) => (
               <>
                 <span className="figure-row__tick" aria-hidden="true">
                   <Check />
@@ -66,14 +66,15 @@ export default function Pricing() {
             </article>
             <article className="cap">
               <h3>Languages</h3>
-              <p>Included. Adding a language does not add a language fee.</p>
+              <p>Shown in your cost model, so you see their effect before you commit.</p>
             </article>
           </div>
         </div>
       </section>
       <section className="section section--white" aria-labelledby="tco-title">
         <div className="container">
-          <div className="narrow" data-reveal>
+          <div className="qa">
+          <div data-reveal>
             <p className="kicker">Total cost of ownership</p>
             <h2 id="tco-title" className="h2" style={{ marginTop: 16 }}>
               Compared on your volumes, not on a list price.
@@ -83,13 +84,40 @@ export default function Pricing() {
               add-ons on your contact-center platform. You see the platform fee, usage and implementation separately.
             </p>
             <ul className="share-list">
-              <li>Your volumes today, at double and at five times</li>
+              <li>Your volumes today and in growth scenarios you choose</li>
               <li>Platform, usage and implementation shown separately</li>
               <li>Assumptions written down so your finance team can check them</li>
             </ul>
             <p className="lede" style={{ marginTop: 24 }}>
               Ready to compare? <Link href="/evaluation">See how an evaluation works</Link>.
             </p>
+          </div>
+          <figure className="cost-model" data-reveal style={{ ['--reveal-delay' as string]: '70ms' }}>
+            <div className="cost-model__head">
+              <span>Cost model</span>
+              <span className="scene__label">Illustrative</span>
+            </div>
+            {[
+              { k: 'Today', p: 34, u: 30, i: 22 },
+              { k: 'Growth A', p: 34, u: 52, i: 0 },
+              { k: 'Growth B', p: 34, u: 64, i: 0 },
+            ].map((r, n) => (
+              <div key={r.k} className="cost-model__row">
+                <span className="cost-model__k">{r.k}</span>
+                <span className="cost-model__bar" style={{ ['--n' as string]: n }} aria-hidden="true">
+                  <i className="seg seg--platform" style={{ width: `${r.p}%` }} />
+                  <i className="seg seg--usage" style={{ width: `${r.u}%` }} />
+                  {r.i > 0 && <i className="seg seg--impl" style={{ width: `${r.i}%` }} />}
+                </span>
+              </div>
+            ))}
+            <ul className="cost-model__legend">
+              <li><i className="seg--platform" /> Platform</li>
+              <li><i className="seg--usage" /> Usage</li>
+              <li><i className="seg--impl" /> Implementation</li>
+            </ul>
+            <figcaption>Illustrative. Your model uses your volumes.</figcaption>
+          </figure>
           </div>
         </div>
       </section>

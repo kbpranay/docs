@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { FigureCard } from '@/components/FigureCard'
 import { CtaBand, PageHero } from '@/components/PageHero'
 
 export const metadata: Metadata = {
@@ -35,13 +36,25 @@ export default function Evaluation() {
           </>
         }
         intro="Prove it on one workload, against your own baseline, before you commit to a rollout."
+        aside={
+          <FigureCard
+            title="Pilot scorecard"
+            label="Illustrative"
+            rows={['Resolution rate', 'Handover rate', 'Answer accuracy', 'Customer effort'].map((k) => (
+              <>
+                <span className="figure-row__k">{k}</span>
+                <span>vs your baseline</span>
+              </>
+            ))}
+          />
+        }
       />
       <section className="section section--paper" aria-labelledby="steps-title">
         <div className="container">
           <h2 id="steps-title" className="sr-only">
             Evaluation steps
           </h2>
-          <ol className="path">
+          <ol className="path path--four">
             {steps.map((s, i) => (
               <li key={s.t} className="path__step" data-reveal style={{ ['--reveal-delay' as string]: `${i * 70}ms` }}>
                 <div className="path__head">
@@ -62,7 +75,7 @@ export default function Evaluation() {
             <h2 id="check-title" className="h2" style={{ marginTop: 16 }}>
               The evaluation checklist.
             </h2>
-            <ul className="share-list">
+            <ul className="share-list share-list--cols">
               {checklist.map((c) => (
                 <li key={c}>{c}</li>
               ))}

@@ -38,7 +38,7 @@ const procurementFaq = [
   },
   {
     q: 'Do our conversations train your models or anyone else’s?',
-    a: 'Your data is processed to run your service. Which model providers are used, and under which terms, is set out per deployment in the data processing agreement; private or self-hosted models are an option.',
+    a: 'Your conversations are processed to run your service. Whether a model provider may use data for training is governed by its terms, which we set out per deployment in the data processing agreement. Private or self-hosted models are an option when no third-party terms are acceptable.',
   },
   {
     q: 'Can we run it without data leaving our network?',
@@ -121,13 +121,13 @@ export default function Security() {
             {residency.map((r) => (
               <div key={r.model} className="res-table__row" role="row">
                 <span role="cell" className="res-table__model">{r.model}</span>
-                <span role="cell">{r.where}</span>
-                <span role="cell">{r.fits}</span>
+                <span role="cell" data-label="Where it runs">{r.where}</span>
+                <span role="cell" data-label="When it fits">{r.fits}</span>
               </div>
             ))}
           </div>
           <p className="source-note" data-reveal>
-            Managed regions: Switzerland and the EU, the Middle East, North America and Asia. Language models through
+            Managed regions: the EU, the Middle East, North America and Asia. Language models through
             your own private endpoints or self-hosted components where required.
           </p>
         </div>
