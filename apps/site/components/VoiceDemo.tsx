@@ -114,8 +114,8 @@ export function VoiceDemo({ provider, providerName }: { provider: VoiceProvider;
       {phase === 'consent' && (
         <div className="voice-demo__consent" role="dialog" aria-label="Before you start">
           <p>
-            Your browser will ask for microphone access. Your voice is processed by {providerName} to run this demo.
-            Please don’t share personal information; this is a fictional scenario.
+            Uses your microphone; your voice is processed by {providerName} for this call.{' '}
+            <a href="/privacy#voice-demo">Privacy</a>
           </p>
           <div className="voice-demo__consent-actions">
             <button type="button" className="btn btn--primary" onClick={start}>

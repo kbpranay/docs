@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { offices, site } from '@/content/site'
+import { integrations } from '@/content/integrations'
 import { products } from '@/content/products'
 
 export function Footer() {
@@ -16,15 +17,38 @@ export function Footer() {
               <Link href={site.primaryCta.href}>{site.primaryCta.label} →</Link>
             </p>
           </div>
-          <div>
-            <h2>Platform</h2>
-            <ul>
-              {products.map((p) => (
-                <li key={p.slug}>
-                  <Link href={`/platform/${p.slug}`}>{p.name}</Link>
-                </li>
-              ))}
-            </ul>
+          <div className="footer-links">
+            <div>
+              <h2>Platform</h2>
+              <ul>
+                {products.map((p) => (
+                  <li key={p.slug}>
+                    <Link href={`/platform/${p.slug}`}>{p.name}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h2>Integrations</h2>
+              <ul>
+                {integrations.map((i) => (
+                  <li key={i.slug}>
+                    <Link href={`/integrations/${i.slug}`}>{i.name}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h2>Company</h2>
+              <ul>
+                <li><Link href="/technology">Technology</Link></li>
+                <li><Link href="/languages">Languages</Link></li>
+                <li><Link href="/security">Security and data</Link></li>
+                <li><Link href="/resources">Resources</Link></li>
+                <li><Link href="/privacy">Privacy</Link></li>
+                <li><a href="https://www.enterprisebot.ai/impressum">Imprint</a></li>
+              </ul>
+            </div>
           </div>
           <div>
             <h2>Offices</h2>

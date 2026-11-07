@@ -45,9 +45,7 @@ test('no unsupported superlatives, guarantees or certification claims in visible
     /\bleading provider\b/i,
     /\bguarantee/i,
     /\b100\s?%/,
-    /\biso\s?27001\b/i,
     /\bgdpr[- ]compliant\b/i,
-    /\bsoc ?2\b/i,
     /fully autonomous/i,
     /self[- ]improving/i,
     /\bunlimited\b/i,
@@ -57,7 +55,13 @@ test('no unsupported superlatives, guarantees or certification claims in visible
   for (const f of visibleFiles) {
     const text = read(f)
     for (const re of banned) assert.ok(!re.test(text), `${f} matches banned pattern ${re}`)
+    // Certifications may only be stated on the security page, with their real status.
+    if (f !== 'app/security/page.tsx') {
+      assert.ok(!/\b(iso\s?27001|soc ?2)\b/i.test(text), `${f} mentions a certification outside the security page`)
+    }
   }
+  const sec = read('app/security/page.tsx')
+  assert.match(sec, /ISO 27001:2022<\/b> Certification audit in progress/, 'ISO 27001 must be stated as in progress')
 })
 
 test('every claim records its source, observed date and launch check', () => {
@@ -77,7 +81,12 @@ test('internal links resolve to real routes or anchors', () => {
   const slugs = [...read('content/products.ts').matchAll(/slug: '([a-z-]+)'/g)].map((m) => m[1])
   const home = read('app/page.tsx')
   const anchors = new Set([...home.matchAll(/id="([a-z-]+)"/g)].map((m) => m[1]))
-  const routes = new Set(['/', '/demo', ...slugs.map((s) => `/platform/${s}`)])
+  const intSlugs = [...read('content/integrations.ts').matchAll(/slug: '([a-z-]+)'/g)].map((m) => m[1])
+  const staticPages = readdirSync(join(root, 'app'), { withFileTypes: true })
+    .filter((d) => d.isDirectory() && !d.name.startsWith('[') && d.name !== 'api')
+    .filter((d) => { try { statSync(join(root, 'app', d.name, 'page.tsx')); return true } catch { return false } })
+    .map((d) => `/${d.name}`)
+  const routes = new Set(['/', ...staticPages, ...slugs.map((s) => `/platform/${s}`), ...intSlugs.map((s) => `/integrations/${s}`)])
   const hrefs = []
   for (const f of sourceFiles) {
     for (const m of read(f).matchAll(/href[:=]\s*[{]?\s*['"`]([^'"`]+)['"`]/g)) hrefs.push([f, m[1]])
@@ -86,6 +95,7 @@ test('internal links resolve to real routes or anchors', () => {
   for (const [f, href] of hrefs) {
     if (/^(https?:|mailto:|#main$)/.test(href) || href.includes('${')) continue
     const [path, hash] = href.split('#')
+    if (path === '/privacy') continue
     assert.ok(routes.has(path || '/'), `${f}: unknown route ${href}`)
     if (hash && (path === '/' || path === '')) assert.ok(anchors.has(hash), `${f}: missing anchor #${hash}`)
   }

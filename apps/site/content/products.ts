@@ -67,6 +67,7 @@ export const products: Product[] = [
       { icon: 'handover', title: 'Warm handover', body: 'Transfers into your existing queues with a summary the agent sees before saying hello.' },
       { icon: 'summary', title: 'Call summaries', body: 'Each call can end with a structured summary written back to your CRM.' },
       { icon: 'target', title: 'Quality assessment of AI calls', body: 'AI calls can be scored against the same QA scorecard as your agents’ calls.' },
+      { icon: 'globe', title: 'Live translation', body: 'Customers and agents speak different languages on the same call, with real-time translation. Early access.' },
     ],
     fit: {
       integrations: ['Genesys Cloud and Cisco contact centers', 'Salesforce and other CRMs via API', 'SIP and AudioCodes telephony'],
@@ -119,6 +120,7 @@ export const products: Product[] = [
       { icon: 'handover', title: 'Human and AI conversations', body: 'One quality standard for your agents and your AI agents.' },
       { icon: 'globe', title: 'Multilingual evaluation', body: 'Evaluates in the language of the conversation, within the languages configured for your deployment.' },
       { icon: 'trend', title: 'Trends by team and topic', body: 'See where quality slips and which topics need coaching or a process fix.' },
+      { icon: 'turns', title: 'From coaching to practice', body: 'Turn recurring coaching points into scenarios agents rehearse with AI before live calls. Available in selected deployments.' },
     ],
     fit: {
       integrations: ['Call recordings and transcripts from your contact center', 'Genesys Cloud and Cisco contact centers', 'Enterprise Bot voice, email and chat agents'],

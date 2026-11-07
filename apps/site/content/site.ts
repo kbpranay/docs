@@ -11,10 +11,10 @@ export const site = {
 }
 
 export const nav = [
-  { label: 'Voice', href: '/platform/voice-agent' },
-  { label: 'Quality', href: '/platform/quality-assessment' },
-  { label: 'Integrations', href: '/#integrations' },
-  { label: 'Security', href: '/#control' },
+  { label: 'Integrations', href: '/integrations' },
+  { label: 'Technology', href: '/technology' },
+  { label: 'Languages', href: '/languages' },
+  { label: 'Security', href: '/security' },
 ]
 
 /** Offices as listed in the current public site footer (observed 7 Nov 2026). */

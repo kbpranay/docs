@@ -161,7 +161,7 @@ export const positioning = {
   qualityAssessment: {
     id: 'quality-assessment',
     status: 'positioning',
-    source: 'Internal product ("GenAI Insights"): Slack #generali-genai-insights, #sales GenAI Insights training 14 Oct 2026, NFON demo plan 30 Sep 2026',
+    source: 'Internal product evidence (sales training and product records, Sep–Oct 2026); full references in the Notion website masterplan',
     observed: OBSERVED,
     reviewBeforeLaunch:
       'Product sign-off on scope: human vs AI conversations, channels, languages, custom scorecards and weightings, reviewer override, team and topic trends. Do not name any customer as a QA reference without written approval.',
@@ -173,6 +173,67 @@ export const positioning = {
     observed: OBSERVED,
     reviewBeforeLaunch:
       'Keep the consent notice naming the voice provider (Gemini by default, or OpenAI). Privacy review of sending visitor audio to OpenAI (privacy notice, DPA). Confirm cost caps and abuse limits.',
+  },
+  integrationsPublic: {
+    id: 'integrations-public',
+    status: 'published-public',
+    source: 'enterprisebot.ai/technology and /products/voice-bot (Genesys AppFoundry, Luware Nimbus / Microsoft Teams, NICE CXone, VIER, generic SIP/WebRTC)',
+    sourceUrl: 'https://www.enterprisebot.ai/technology',
+    observed: OBSERVED,
+    reviewBeforeLaunch: 'Confirm each listed integration is current and its supported versions.',
+  },
+  integrationStatus: {
+    id: 'integration-status',
+    status: 'positioning',
+    source:
+      'Internal: Genesys AudioHook/AudioConnector live; VIER telephony live at a customer; AudioCodes VoiceAI Connect live; Luware Nimbus in customer UAT; native Teams in development; Cisco UCCX built, UCCE planned (Slack, Fireflies Oct 2026)',
+    observed: OBSERVED,
+    reviewBeforeLaunch: 'Product to confirm status per platform before the integration pages go live; no customer names.',
+  },
+  genesysAddOn: {
+    id: 'genesys-add-on',
+    status: 'positioning',
+    source: 'Internal CEO positioning on adding value alongside Genesys (Sep–Oct 2026); full references in Notion',
+    observed: OBSERVED,
+    reviewBeforeLaunch: 'No cost percentages, WER or customer figures without measurement and approval.',
+  },
+  voiceModes: {
+    id: 'voice-modes',
+    status: 'positioning',
+    source: 'AIDA help center: Standard (cascaded) and Realtime Voice modes, barge-in, silence timeout (apps/web/content/en)',
+    observed: OBSERVED,
+    reviewBeforeLaunch: 'Product to confirm tool-calling support in Realtime mode and guardrail/PII status per mode.',
+  },
+  languageList: {
+    id: 'language-list',
+    status: 'published-public',
+    source: 'enterprisebot.ai blog "The evolution of voice bots… language coverage", 28 Apr 2025 (46 locales)',
+    sourceUrl:
+      'https://www.enterprisebot.ai/blog/the-evolution-of-voice-bots-advances-in-speech-to-text-and-text-to-speech-technologies-2025-and-language-coverage',
+    observed: OBSERVED,
+    reviewBeforeLaunch: 'Re-verify each listed locale against the current speech stack; no headline language count.',
+  },
+  liveTranslation: {
+    id: 'live-translation',
+    status: 'positioning',
+    source: 'Live Translate launch research (Notion, 1 Nov 2026)',
+    observed: OBSERVED,
+    reviewBeforeLaunch: 'Early access only; confirm language pairs and availability; no latency or price figures.',
+  },
+  agentTraining: {
+    id: 'agent-training',
+    status: 'positioning',
+    source: 'Internal CEO positioning, Oct 2026: agents practise complex customer scenarios with AI; full references in Notion',
+    observed: OBSERVED,
+    reviewBeforeLaunch: 'Product to confirm which deployments offer practice scenarios before launch.',
+  },
+  securityPosture: {
+    id: 'security-posture',
+    status: 'positioning',
+    source:
+      'enterprisebot.ai/technology (SaaS/VPC/on-prem, EU hosting, SOC 2, audit logs, SSO/RBAC); internal: ISO 27001:2022 audit in progress (Oct 2026); help center: Audit View, conversation logs, flow change logs',
+    observed: OBSERVED,
+    reviewBeforeLaunch: 'Confirm SOC 2 report type and date; say "ISO 27001 audit in progress" only until the certificate is issued.',
   },
   genesysLayer: {
     id: 'genesys-layer',

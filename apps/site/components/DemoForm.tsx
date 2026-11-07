@@ -97,7 +97,7 @@ export function DemoForm() {
             {status.kind === 'sending' ? 'Sending…' : 'Request my demo'} <Arrow />
           </button>
           <p className="form-note" id="form-note">
-            We use these details to arrange your demo.
+            We use these details to arrange your demo. <a href="/privacy#demo-form">Privacy</a>
           </p>
         </div>
       </div>

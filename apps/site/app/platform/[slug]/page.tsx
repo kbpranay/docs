@@ -175,6 +175,11 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             <div className="fit__box" data-reveal style={{ ['--reveal-delay' as string]: '70ms' }}>
               <h3>Deployment</h3>
               <p>{p.fit.deployment}</p>
+              <p style={{ marginTop: 16 }}>
+                <Link href="/integrations" style={{ color: 'var(--white)' }}>Integrations</Link> ·{' '}
+                <Link href="/technology" style={{ color: 'var(--white)' }}>Technology</Link> ·{' '}
+                <Link href="/languages" style={{ color: 'var(--white)' }}>Languages</Link>
+              </p>
             </div>
           </div>
         </div>

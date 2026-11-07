@@ -370,6 +370,19 @@ export default function Home() {
             </div>
           </InView>
 
+          <ul className="partner-strip" data-reveal>
+            {[
+              ['Genesys Cloud', '/integrations/genesys'],
+              ['Microsoft Teams', '/integrations/microsoft-teams'],
+              ['Cisco', '/integrations/cisco'],
+              ['VIER', '/integrations/vier'],
+              ['SIP and AudioCodes', '/integrations/sip-audiocodes'],
+            ].map(([n, h]) => (
+              <li key={h}>
+                <Link href={h}>{n} →</Link>
+              </li>
+            ))}
+          </ul>
           <div className="integrations-list">
             <article className="integration" data-reveal>
               <h3>Genesys Cloud</h3>
@@ -439,7 +452,7 @@ export default function Home() {
             </div>
             <p className="lede">
               Decide where it runs, what it may read, what it may do and when a person takes over. Then check what it
-              did.
+              did. <Link href="/security">Security and data</Link> · <Link href="/technology">Technology</Link>
             </p>
           </div>
           <div className="pillars">
@@ -468,7 +481,10 @@ export default function Home() {
             </article>
             <article className="pillar" data-reveal>
               <h3>Language</h3>
-              <p>Replies in the customer’s language, within the languages configured and tested for your deployment.</p>
+              <p>
+                Replies in the customer’s language, within the languages configured and tested for your deployment.{' '}
+                <Link href="/languages">Languages by market</Link>
+              </p>
               <div className="specimen lang-row" aria-hidden="true">
                 <span className="chip" style={{ marginTop: 0 }}>Caller: German</span>
                 <span className="arrow-sep">→</span>
