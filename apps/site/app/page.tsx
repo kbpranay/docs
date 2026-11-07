@@ -245,6 +245,11 @@ export default function Home() {
             <h2 id="start-title" className="h2 h2--xl">
               Answer, assist, assess, improve.
             </h2>
+            <p className="lede" style={{ marginTop: 16, maxWidth: '62ch' }}>
+              One connected stack for human and AI agents. AI agents answer, Agent Assist helps your people during the
+              call, Conversation Insights scores every conversation you include, and what it finds goes back into your
+              knowledge, flows and coaching.
+            </p>
           </div>
           <div className="starts">
             {starts.map((p, i) => (

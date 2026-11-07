@@ -293,9 +293,17 @@ export const positioning = {
     id: 'named-references',
     status: 'positioning',
     source:
-      'CEO confirmation, 7 Nov 2026: Generali on Microsoft Teams via Luware Nimbus and on AudioCodes; AXA and Callpoint on Genesys; WWZ on VIER; AXA (DialogueMaster) over SIP pending Slack check',
+      'CEO confirmation, 7 Nov 2026, checked in Slack: Generali agent assist via Luware Nimbus/Teams (live 5 Nov 2026) and Leonie on AudioCodes; AXA Switzerland transcription via Genesys AudioHook and via Dialogmaster over SIPREC (live since 27 Nov 2025); Callpoint agent assist in Genesys; WWZ behind VIER voice and speech recognition (text only)',
     observed: OBSERVED,
     reviewBeforeLaunch: 'Confirm each customer agrees to be named on the integration pages (Generali, AXA, Callpoint, WWZ).',
+  },
+  differentiation: {
+    id: 'differentiation',
+    status: 'positioning',
+    source: 'Notion "Enterprise Bot — Differentiation, Positioning & Proof Points" (7 Nov 2026): connected stack and loop, one agent across channels, complex documents (DocBrain), languages, deployment, cost model',
+    sourceUrl: 'https://app.notion.com/p/3fdd37827cbc81879cccdd0686d14735',
+    observed: OBSERVED,
+    reviewBeforeLaunch: 'No cost-saving percentages, WER or retrieval-accuracy numbers; describe the learning loop as a flow, not automatic retraining. Hybrid deployment splits need product confirmation before they are claimed.',
   },
   aboutCompany: {
     id: 'about-company',

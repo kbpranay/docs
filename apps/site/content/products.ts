@@ -65,6 +65,7 @@ export const products: Product[] = [
       { title: 'Resolve or hand over', body: 'Ends the call resolved, or transfers to the right queue with a written summary.' },
     ],
     capabilities: [
+      { icon: 'book', title: 'Answers from complex documents', body: 'Long policy documents, tables and attachments, with the source of each answer shown.' },
       { icon: 'route', title: 'Routing by intent', body: 'Callers say what they need; the agent routes on meaning, not on which key they pressed.' },
       { icon: 'turns', title: 'Natural turn-taking', body: 'Designed for real conversations: callers can interrupt, correct themselves or change topic.' },
       { icon: 'globe', title: 'Multilingual voice', body: 'Replies in the caller’s language, within the languages configured for your deployment.' },
