@@ -183,7 +183,7 @@ export const positioning = {
   voiceDemo: {
     id: 'live-voice-demo',
     status: 'positioning',
-    source: 'Website live demo (components/VoiceDemo.tsx) on a real-time voice model (Google Gemini by default, or OpenAI), CEO instruction 7 Nov 2026',
+    source: 'Website live demo (components/VoiceDemo.tsx) on a real-time voice model (Google Gemini by default, or OpenAI). CEO instruction 7 Nov 2026 (later the same day): present it as the Voice Agent in Realtime mode.',
     observed: OBSERVED,
     reviewBeforeLaunch:
       'Keep the consent notice naming the voice provider (Gemini by default, or OpenAI). Privacy review of sending visitor audio to OpenAI (privacy notice, DPA). Confirm cost caps and abuse limits.',
@@ -270,9 +270,9 @@ export const positioning = {
     id: 'security-posture',
     status: 'positioning',
     source:
-      'enterprisebot.ai/technology (SaaS/VPC/on-prem, EU hosting, SOC 2, audit logs, SSO/RBAC); internal: ISO 27001:2022 audit in progress (Oct 2026); help center: Audit View, conversation logs, flow change logs',
+      'enterprisebot.ai/technology (SaaS/VPC/on-prem, EU hosting, SOC 2, audit logs, SSO/RBAC); CEO confirmation 7 Nov 2026: SOC 2 Type II report and ISO 27001 certificate; help center: Audit View, conversation logs, flow change logs',
     observed: OBSERVED,
-    reviewBeforeLaunch: 'Confirm SOC 2 report type and date; say "ISO 27001 audit in progress" only until the certificate is issued.',
+    reviewBeforeLaunch: 'Security lead to attach the SOC 2 Type II report period and the ISO 27001 certificate number and scope to the documentation pack.',
   },
   genesysLayer: {
     id: 'genesys-layer',
@@ -287,7 +287,15 @@ export const positioning = {
     source: 'Commercial answers in RFP responses and sales proposals (Notion RFP index, Oct–Nov 2026): platform fee plus usage, implementation scoped separately, cost modelled on customer volumes',
     observed: OBSERVED,
     reviewBeforeLaunch:
-      'Sales lead to confirm the fee structure and how languages appear in the cost model. No prices or discounts on the site.',
+      'CEO confirmation 7 Nov 2026: usage per minute, per conversation or per successful outcome. Sales to align contract templates. No prices or discounts on the site.',
+  },
+  namedReferences: {
+    id: 'named-references',
+    status: 'positioning',
+    source:
+      'CEO confirmation, 7 Nov 2026: Generali on Microsoft Teams via Luware Nimbus and on AudioCodes; AXA and Callpoint on Genesys; WWZ on VIER; AXA (DialogueMaster) over SIP pending Slack check',
+    observed: OBSERVED,
+    reviewBeforeLaunch: 'Confirm each customer agrees to be named on the integration pages (Generali, AXA, Callpoint, WWZ).',
   },
   aboutCompany: {
     id: 'about-company',

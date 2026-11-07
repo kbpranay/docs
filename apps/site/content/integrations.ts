@@ -21,11 +21,17 @@ export interface Integration {
   faq: { q: string; a: string }[]
   /** Optional published proof on this platform (key in claims.ts stats). */
   proof?: 'swissHealthRouting'
+  /** Named production references (CEO confirmation, 7 Nov 2026; registered in claims.ts namedReferences). */
+  references?: { name: string; line: string }[]
 }
 
 export const integrations: Integration[] = [
   {
     slug: 'genesys',
+    references: [
+      { name: 'AXA', line: 'Enterprise Bot alongside Genesys in AXA’s contact center' },
+      { name: 'Callpoint AG', line: 'Agent assist for a Swiss contact-center provider running Genesys' },
+    ],
     proof: 'swissHealthRouting',
     flow: { method: 'AudioHook or SIP', action: 'Account updated in your CRM' },
     name: 'Genesys Cloud',
@@ -59,6 +65,7 @@ export const integrations: Integration[] = [
   },
   {
     slug: 'microsoft-teams',
+    references: [{ name: 'Generali Switzerland', line: 'Voice AI on Microsoft Teams through Luware Nimbus' }],
     flow: { method: 'Luware Nimbus', action: 'Answer found · request resolved' },
     name: 'Microsoft Teams',
     navLine: 'Voice AI and agent assist for Teams contact centers, via Luware Nimbus.',
@@ -110,6 +117,7 @@ export const integrations: Integration[] = [
   },
   {
     slug: 'vier',
+    references: [{ name: 'WWZ', line: 'Voice AI on WWZ’s VIER telephony' }],
     flow: { method: 'Call forwarding', action: 'Appointment moved in your system' },
     name: 'VIER',
     navLine: 'Keep VIER telephony; add Enterprise Bot voice AI.',
@@ -132,6 +140,7 @@ export const integrations: Integration[] = [
   },
   {
     slug: 'sip-audiocodes',
+    references: [{ name: 'Generali Switzerland', line: 'Connected through AudioCodes VoiceAI Connect' }],
     flow: { method: 'SIP · AudioCodes', action: 'Request completed via your API' },
     name: 'SIP and AudioCodes',
     navLine: 'Your carrier or SBC: SIP, WebRTC and AudioCodes VoiceAI Connect.',
@@ -150,7 +159,7 @@ export const integrations: Integration[] = [
     handover: 'Transfers to your queues or numbers with context passed in SIP headers where supported.',
     scope: 'Codec, SBC and carrier specifics are confirmed during setup.',
     faq: [
-      { q: 'Do we need AudioCodes?', a: 'No. Standard SIP carriers and SBCs can connect; codec, SBC and carrier specifics are confirmed during setup. AudioCodes VoiceAI Connect is one live option.' },
+      { q: 'Do we need AudioCodes?', a: 'No. Standard SIP carriers and SBCs can connect; codec, SBC and carrier specifics are confirmed during setup. AudioCodes VoiceAI Connect is one option in production, at Generali Switzerland.' },
       { q: 'Can we keep our carrier and numbers?', a: 'Yes. Calls reach the Voice Agent over SIP from your existing carrier or session border controller.' },
       { q: 'How are calls handed to agents?', a: 'Over SIP to the queue or number you choose, with a summary of the conversation passed along where your platform supports it.' },
     ],

@@ -5432,6 +5432,12 @@ html:not(.js) .scene__play {
   color: var(--orange-ink);
   margin-bottom: 4px;
 }
+.hub__ref {
+  margin-top: 6px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--orange-ink);
+}
 @media (prefers-reduced-motion: reduce) {
   .js [data-reveal] .sc-bars__track i {
     transform: scaleX(1) !important;

@@ -77,15 +77,15 @@ export default function Security() {
         intro="Where it runs, what it may access, what it records and who can change it, documented for your security and data protection teams."
         aside={
           <FigureCard
-            title="Certifications, stated plainly"
+            title="Certifications"
             rows={[
               <>
-                <span className="figure-row__k">SOC 2</span>
+                <span className="figure-row__k">SOC 2 Type II</span>
                 <span>Report available on request under NDA</span>
               </>,
               <>
-                <span className="figure-row__k">ISO 27001:2022</span>
-                <span>Certification audit in progress</span>
+                <span className="figure-row__k">ISO 27001</span>
+                <span>Certified; certificate available on request</span>
               </>,
               <>
                 <span className="figure-row__k">GDPR</span>
@@ -185,7 +185,8 @@ export default function Security() {
               Documentation on request.
             </h2>
             <ul className="share-list">
-              <li>SOC 2 report (under NDA)</li>
+              <li>SOC 2 Type II report (under NDA)</li>
+              <li>ISO 27001 certificate</li>
               <li>Data processing agreement</li>
               <li>Component-by-component data-flow diagram</li>
               <li>Answers to your security questionnaire</li>

@@ -12,6 +12,8 @@ import { showFeedyou, site } from '@/content/site'
 import { customerStories } from '@/content/claims'
 import { StoryCard } from '@/components/StoryCard'
 import { QaLens } from '@/components/QaLens'
+import { VoiceDemo } from '@/components/VoiceDemo'
+import { providerLabel, voiceDemoEnabled, voiceDemoProvider } from '@/lib/voiceDemo'
 import { ShowcaseFigure } from '@/components/Showcase'
 import { industries } from '@/content/industries'
 import { Related } from '@/components/Related'
@@ -95,6 +97,14 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           </div>
         </div>
       </section>
+
+      {p.slug === 'voice-agent' && voiceDemoEnabled && (
+        <section className="section section--paper" aria-label="Talk to the Voice Agent" style={{ paddingBottom: 0 }}>
+          <div className="container">
+            <VoiceDemo provider={voiceDemoProvider} providerName={providerLabel[voiceDemoProvider]} />
+          </div>
+        </section>
+      )}
 
       <section className="section section--paper" aria-labelledby="problem-title">
         <div className="container problem">

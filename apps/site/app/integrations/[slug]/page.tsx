@@ -115,6 +115,18 @@ export default async function IntegrationPage({ params }: { params: Promise<{ sl
               </a>
             </article>
           )}
+          {i.references && i.references.length > 0 && (
+            <div className="proof-strip" data-reveal>
+              <p className="proof-strip__label">In production on {i.name}</p>
+              <ul>
+                {i.references.map((r) => (
+                  <li key={r.name}>
+                    <b>{r.name}</b> · {r.line}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           {i.slug === 'genesys' && <ProofStrip label="Also on Genesys" items={[{ id: 'moneta', text: 'MONETA Money Bank: voicebot on the Genesys platform' }]} />}
         </div>
       </section>

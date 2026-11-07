@@ -88,10 +88,10 @@ export function VoiceDemo({ provider, providerName }: { provider: VoiceProvider;
           <Phone />
         </span>
         <div>
-          <p className="voice-demo__title">Try a demo call</p>
+          <p className="voice-demo__title">Talk to the Voice Agent</p>
           <p className="voice-demo__sub">
-            A fictional insurance-claims line on a real-time speech model, the kind used in our Realtime voice mode.
-            Scripted scenario; no real systems or data. Up to {Math.round(DEFAULT_MAX_SECONDS / 60)} minutes.
+            Call a demo insurance-claims line running in our Realtime voice mode. Synthetic scenario; no real systems
+            or data. Up to {Math.round(DEFAULT_MAX_SECONDS / 60)} minutes.
           </p>
         </div>
         <div className="voice-demo__action">

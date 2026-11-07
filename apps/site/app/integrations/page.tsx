@@ -41,6 +41,7 @@ export default function IntegrationsHub() {
                   {i.name} <Arrow />
                 </span>
                 <span className="hub__line">{i.navLine}</span>
+                {i.references && <span className="hub__ref">In production: {i.references.map((r) => r.name).join(', ')}</span>}
               </Link>
             ))}
           </div>

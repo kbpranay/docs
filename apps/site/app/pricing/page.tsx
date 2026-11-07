@@ -11,11 +11,12 @@ import { Related } from '@/components/Related'
 export const metadata: Metadata = pageMeta({
   title: 'How pricing works',
   description:
-    'Enterprise Bot pricing model: a platform fee plus usage, with total cost modelled on your own volumes.',
+    'Enterprise Bot pricing: a platform fee plus usage charged per minute, per conversation or per successful outcome, modelled on your own volumes.',
   path: '/pricing',
 })
 
 const faq = [
+  { q: 'How is usage charged?', a: 'You choose the model that fits your business case: per minute of voice, per conversation, or per successful outcome, such as a request resolved without a handover. We model each option on your volumes so you can compare them.' },
   { q: 'Does Enterprise Bot publish a price list?', a: 'No. Pricing is a platform fee for your deployment plus usage based on your volumes, with implementation scoped separately. We model it on your own call and email volumes so you can compare it with what you pay today.' },
   { q: 'What changes the cost?', a: 'Mainly volume and conversation length, the channels and products you use, the deployment model (managed cloud, private cloud or on-premises), the systems to integrate and peak concurrent conversations.' },
   { q: 'Can we see the cost before we commit?', a: 'Yes. We build a cost model with your volumes and growth scenarios, with platform, usage and implementation shown separately and the assumptions written down for your finance team.' },
@@ -36,7 +37,7 @@ export default function Pricing() {
         aside={
           <FigureCard
             title="What you pay for"
-            rows={['Platform fee for your deployment', 'Usage, based on your volumes', 'Languages shown in your cost model', 'Implementation scoped up front'].map((t) => (
+            rows={['Platform fee for your deployment', 'Usage: per minute, per conversation or per outcome', 'Languages shown in your cost model', 'Implementation scoped up front'].map((t) => (
               <>
                 <span className="figure-row__tick" aria-hidden="true">
                   <Check />
@@ -83,7 +84,31 @@ export default function Pricing() {
           </div>
         </div>
       </section>
-      <section className="section section--white" aria-labelledby="tco-title">
+      <section className="section section--white" aria-labelledby="units-title">
+        <div className="container">
+          <div className="section-head" data-reveal>
+            <p className="kicker">How usage is charged</p>
+            <h2 id="units-title" className="h2">
+              Pay the way <span className="hl">your business case works.</span>
+            </h2>
+          </div>
+          <div className="caps" data-reveal>
+            <article className="cap">
+              <h3>Per minute</h3>
+              <p>For voice: you pay for the minutes the AI is on the call. Simple to compare with your current cost per call.</p>
+            </article>
+            <article className="cap">
+              <h3>Per conversation</h3>
+              <p>One price per handled conversation on voice, chat or email, whatever its length.</p>
+            </article>
+            <article className="cap">
+              <h3>Per successful outcome</h3>
+              <p>You pay when a request is resolved as agreed, for example completed without a handover. Outcomes are defined together before go-live.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section className="section section--paper" aria-labelledby="tco-title">
         <div className="container">
           <div className="qa">
           <div data-reveal>
@@ -133,7 +158,7 @@ export default function Pricing() {
           </div>
         </div>
       </section>
-      <Faq id="pricing-faq" title="Pricing questions" items={faq} tone="paper" />
+      <Faq id="pricing-faq" title="Pricing questions" items={faq} tone="white" />
       <Related route="/pricing" />
       <CtaBand title={<>Get a cost model for <span className="hl">your</span> volumes.</>} body="Share your call and email volumes and we will model platform, usage and implementation costs for you." />
     </>
