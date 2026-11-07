@@ -1,14 +1,17 @@
 /**
  * Live voice demo configuration (server and client shared constants).
  *
- * The demo connects a visitor's microphone to a third-party real-time voice
- * model (OpenAI Realtime) running a sample insurance-claims scenario. It is a
- * demonstration of the experience, not Enterprise Bot's production voice stack,
- * and it is labelled that way on the page.
+ * The demo connects a visitor's microphone to a real-time voice model running a
+ * sample insurance-claims scenario. Default provider: Gemini Live (cheaper);
+ * OpenAI Realtime is available as a fallback.
  *
  * Env (server):
  *   VOICE_DEMO_ENABLED=true          switch the demo on
- *   OPENAI_API_KEY=...               server-side only, never sent to the browser
+ *   VOICE_DEMO_PROVIDER              'gemini' (default) or 'openai'
+ *   GEMINI_API_KEY=...               server-side only; browser gets a 1-use token
+ *   GEMINI_LIVE_MODEL                default 'gemini-2.5-flash-native-audio-preview-09-2025'
+ *   GEMINI_LIVE_VOICE                default 'Kore'
+ *   OPENAI_API_KEY=...               server-side only (openai provider)
  *   OPENAI_REALTIME_MODEL            default 'gpt-realtime'
  *   OPENAI_REALTIME_VOICE            default 'marin'
  *   VOICE_DEMO_MAX_SECONDS           default 120 (hard cap, enforced server-side)
@@ -18,6 +21,10 @@
  */
 
 export const voiceDemoEnabled = process.env.VOICE_DEMO_ENABLED === 'true'
+
+export type VoiceProvider = 'gemini' | 'openai'
+export const voiceDemoProvider: VoiceProvider = process.env.VOICE_DEMO_PROVIDER === 'openai' ? 'openai' : 'gemini'
+export const providerLabel: Record<VoiceProvider, string> = { gemini: 'Google (Gemini)', openai: 'OpenAI' }
 
 export const DEFAULT_MAX_SECONDS = 120
 

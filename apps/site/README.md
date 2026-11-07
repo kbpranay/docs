@@ -49,17 +49,21 @@ npm run typecheck
 ## Live voice demo ("Talk to the voice agent")
 
 A button in the homepage voice section connects the visitor's microphone to a
-real-time voice model (OpenAI Realtime) running a fictional insurance-claims
-scenario (`lib/voiceDemo.ts`). The consent step tells visitors their audio is
-processed by OpenAI before the microphone starts.
+real-time voice model running a fictional insurance-claims scenario
+(`lib/voiceDemo.ts`). The consent step names the provider before the mic starts.
 
-- Switch on: `VOICE_DEMO_ENABLED=true` and `OPENAI_API_KEY=...` (server only; set at build and run time).
-- Limits (server-enforced in `app/api/voice-demo/session`): `VOICE_DEMO_MAX_SECONDS` (120; the server
-  hangs up the call itself), `VOICE_DEMO_PER_IP_PER_HOUR` (3), `VOICE_DEMO_DAILY_LIMIT` (200),
-  `VOICE_DEMO_MAX_CONCURRENT` (5). Optional: `OPENAI_REALTIME_MODEL` (gpt-realtime), `OPENAI_REALTIME_VOICE` (marin).
-- Limits are in memory per server; use a shared store if you run more than one instance.
-- Also set a monthly spend limit on the OpenAI project used for this key.
-- Not yet tested against the live OpenAI API from this build (no key available here).
+- **Default provider: Gemini Live** (cheaper). Set `VOICE_DEMO_ENABLED=true` and `GEMINI_API_KEY=...`.
+  The server issues a single-use token locked to the demo model and prompt; it must be used within
+  30 s and expires at the cap, after which Gemini rejects the session. Optional: `GEMINI_LIVE_MODEL`,
+  `GEMINI_LIVE_VOICE` (Kore).
+- **Fallback: OpenAI Realtime.** Set `VOICE_DEMO_PROVIDER=openai` and `OPENAI_API_KEY=...`. The server
+  proxies the WebRTC offer and hangs up the call itself at the cap.
+- Limits (server-side, both providers): `VOICE_DEMO_MAX_SECONDS` (120), `VOICE_DEMO_PER_IP_PER_HOUR` (3),
+  `VOICE_DEMO_DAILY_LIMIT` (200), `VOICE_DEMO_MAX_CONCURRENT` (5). In memory per server; use a shared
+  store if you run more than one instance. Also set a spend cap on the provider account.
+- Env vars are read at build and run time (rebuild after changing them).
+- Not yet tested against the live Gemini or OpenAI APIs from this build (no keys available here).
+  Check the model name against Google's current Live API model list when you add the key.
 
 ## Before launch (not done in this build)
 

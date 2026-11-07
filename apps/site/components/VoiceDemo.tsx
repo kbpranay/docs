@@ -1,8 +1,9 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { DEFAULT_MAX_SECONDS } from '@/lib/voiceDemo'
+import { DEFAULT_MAX_SECONDS, type VoiceProvider } from '@/lib/voiceDemo'
 import { Phone } from './Icons'
+import { DemoError, type ActiveCall } from './voice/types'
 
 type Phase = 'idle' | 'consent' | 'connecting' | 'live' | 'ended' | 'error'
 
@@ -11,26 +12,20 @@ type Phase = 'idle' | 'consent' | 'connecting' | 'live' | 'ended' | 'error'
  * Mic starts only after explicit consent; the session ends at the cap (also
  * enforced server-side), on hang-up, or when the page is hidden.
  */
-export function VoiceDemo() {
+export function VoiceDemo({ provider, providerName }: { provider: VoiceProvider; providerName: string }) {
   const [phase, setPhase] = useState<Phase>('idle')
   const [message, setMessage] = useState('')
   const [left, setLeft] = useState(DEFAULT_MAX_SECONDS)
   const [speaking, setSpeaking] = useState<'agent' | 'caller' | null>(null)
   const [caption, setCaption] = useState('')
-  const pc = useRef<RTCPeerConnection | null>(null)
-  const mic = useRef<MediaStream | null>(null)
-  const audio = useRef<HTMLAudioElement | null>(null)
+  const call = useRef<ActiveCall | null>(null)
   const timer = useRef<number | null>(null)
 
   const cleanup = () => {
     if (timer.current) window.clearInterval(timer.current)
     timer.current = null
-    pc.current?.getSenders().forEach((s) => s.track?.stop())
-    pc.current?.close()
-    pc.current = null
-    mic.current?.getTracks().forEach((t) => t.stop())
-    mic.current = null
-    if (audio.current) audio.current.srcObject = null
+    call.current?.close()
+    call.current = null
     setSpeaking(null)
   }
 
@@ -41,7 +36,7 @@ export function VoiceDemo() {
   }
 
   useEffect(() => {
-    const onHide = () => document.hidden && pc.current && hangUp('Call ended because the page was hidden.')
+    const onHide = () => document.hidden && call.current && hangUp('Call ended because the page was hidden.')
     document.addEventListener('visibilitychange', onHide)
     return () => {
       document.removeEventListener('visibilitychange', onHide)
@@ -54,67 +49,18 @@ export function VoiceDemo() {
     setPhase('connecting')
     setMessage('')
     setCaption('')
+    const handlers = {
+      onSpeaking: setSpeaking,
+      onCaption: (d: string, reset?: boolean) => setCaption((c) => (reset ? d : c + d).slice(-240)),
+      onEnded: (why: string) => call.current && hangUp(why),
+    }
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
-      mic.current = stream
-      const conn = new RTCPeerConnection()
-      pc.current = conn
-      conn.ontrack = (e) => {
-        if (audio.current) audio.current.srcObject = e.streams[0]
-      }
-      conn.addTrack(stream.getAudioTracks()[0], stream)
-      const events = conn.createDataChannel('oai-events')
-      events.onopen = () => events.send(JSON.stringify({ type: 'response.create' }))
-      events.onmessage = (e) => {
-        let ev: { type?: string; delta?: string }
-        try {
-          ev = JSON.parse(e.data)
-        } catch {
-          return
-        }
-        switch (ev.type) {
-          case 'input_audio_buffer.speech_started':
-            setSpeaking('caller')
-            break
-          case 'output_audio_buffer.started':
-            setSpeaking('agent')
-            setCaption('')
-            break
-          case 'input_audio_buffer.speech_stopped':
-          case 'output_audio_buffer.stopped':
-            setSpeaking(null)
-            break
-          case 'response.output_audio_transcript.delta':
-          case 'response.audio_transcript.delta':
-            if (ev.delta) setCaption((c) => (c + ev.delta).slice(-240))
-            break
-        }
-      }
-      conn.onconnectionstatechange = () => {
-        if (conn.connectionState === 'failed' || conn.connectionState === 'disconnected') {
-          if (pc.current) hangUp('The call ended.')
-        }
-      }
-
-      const offer = await conn.createOffer()
-      await conn.setLocalDescription(offer)
-      const res = await fetch('/api/voice-demo/session', {
-        method: 'POST',
-        headers: { 'content-type': 'application/sdp' },
-        body: offer.sdp,
-      })
-      if (!res.ok) {
-        const body = (await res.json().catch(() => ({}))) as { message?: string }
-        cleanup()
-        setPhase('error')
-        setMessage(body.message ?? 'The demo could not start. Please try again.')
-        return
-      }
-      const max = Number(res.headers.get('x-max-seconds')) || DEFAULT_MAX_SECONDS
-      await conn.setRemoteDescription({ type: 'answer', sdp: await res.text() })
-      setLeft(max)
+      const mod = provider === 'openai' ? await import('./voice/openai') : await import('./voice/gemini')
+      const active = provider === 'openai' ? await (mod as typeof import('./voice/openai')).connectOpenAI(handlers) : await (mod as typeof import('./voice/gemini')).connectGemini(handlers)
+      call.current = active
+      setLeft(active.maxSeconds)
       setPhase('live')
-      const endAt = Date.now() + max * 1000
+      const endAt = Date.now() + active.maxSeconds * 1000
       timer.current = window.setInterval(() => {
         const s = Math.max(0, Math.round((endAt - Date.now()) / 1000))
         setLeft(s)
@@ -124,9 +70,11 @@ export function VoiceDemo() {
       cleanup()
       setPhase('error')
       setMessage(
-        err instanceof DOMException && err.name === 'NotAllowedError'
-          ? 'Microphone access was blocked. Allow it in your browser to talk to the demo agent.'
-          : 'The demo could not start. Please try again.',
+        err instanceof DemoError
+          ? err.message
+          : err instanceof DOMException && err.name === 'NotAllowedError'
+            ? 'Microphone access was blocked. Allow it in your browser to talk to the demo agent.'
+            : 'The demo could not start. Please try again.',
       )
     }
   }
@@ -135,7 +83,6 @@ export function VoiceDemo() {
 
   return (
     <div className="voice-demo" data-phase={phase} data-speaking={speaking ?? 'none'} data-reveal>
-      <audio ref={audio} autoPlay />
       <div className="voice-demo__main">
         <span className="voice-demo__orb" aria-hidden="true">
           <Phone />
@@ -167,8 +114,8 @@ export function VoiceDemo() {
       {phase === 'consent' && (
         <div className="voice-demo__consent" role="dialog" aria-label="Before you start">
           <p>
-            Your browser will ask for microphone access. Your voice is sent to a third-party real-time voice model
-            (OpenAI) to run this demo. Please don’t share personal information; this is a fictional scenario.
+            Your browser will ask for microphone access. Your voice is processed by {providerName} to run this demo.
+            Please don’t share personal information; this is a fictional scenario.
           </p>
           <div className="voice-demo__consent-actions">
             <button type="button" className="btn btn--primary" onClick={start}>
@@ -186,7 +133,11 @@ export function VoiceDemo() {
           <b>{speaking === 'caller' ? 'Listening…' : 'Voice Agent'}</b> {caption}
         </p>
       )}
-      {message && <p className="voice-demo__msg" role="status">{message}</p>}
+      {message && (
+        <p className="voice-demo__msg" role="status">
+          {message}
+        </p>
+      )}
     </div>
   )
 }
