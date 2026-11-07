@@ -9,7 +9,7 @@ import { Arrow, Chevron } from './Icons'
 
 const megaGroups = [
   { label: 'Voice', slugs: ['voice-agent', 'live-translate'], extra: { href: '/languages', name: 'Languages', line: 'Swiss German, Polish, Czech, Hindi and more.' } },
-  { label: 'Contact-center loop', slugs: ['agent-assist', 'quality-assessment', 'conversation-analytics'] },
+  { label: 'Contact-center loop', slugs: ['agent-assist', 'conversation-insights'] },
   { label: 'More channels', slugs: ['email-agent', 'chat-agent'] },
 ]
 

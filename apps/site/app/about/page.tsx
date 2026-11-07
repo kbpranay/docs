@@ -5,6 +5,7 @@ import { FigureCard } from '@/components/FigureCard'
 import { CtaBand, PageHero } from '@/components/PageHero'
 import { Related } from '@/components/Related'
 import { offices, showFeedyou } from '@/content/site'
+import { logoWall } from '@/content/claims'
 import { pageMeta } from '@/lib/seo'
 
 export const metadata: Metadata = pageMeta({
@@ -12,6 +13,8 @@ export const metadata: Metadata = pageMeta({
   description: 'Enterprise Bot is a Swiss company building voice AI and quality assessment for contact centers, with offices in Zurich, Barcelona, Warsaw, London, Bangalore and the US.',
   path: '/about',
 })
+
+const fyLogos = logoWall.logos.filter((l) => l.origin === 'feedyou' && l.approved && l.file).slice(0, 9)
 
 const founders = [
   { name: 'Pranay Jain', role: 'Co-founder and CEO' },
@@ -77,8 +80,8 @@ export default function About() {
       </section>
       {showFeedyou && (
         <section className="section section--white" aria-labelledby="fy-title">
-          <div className="container">
-            <div className="narrow" data-reveal>
+          <div className="container qa">
+            <div data-reveal>
               <p className="kicker">Feedyou, an Enterprise Bot company</p>
               <h2 id="fy-title" className="h2" style={{ marginTop: 16 }}>
                 Stronger in Central and Eastern Europe.
@@ -92,6 +95,14 @@ export default function About() {
                 <Link href="/customers">See their customer stories</Link>.
               </p>
             </div>
+            <ul className="logo-grid" data-reveal style={{ ['--reveal-delay' as string]: '70ms' }}>
+              {fyLogos.map((l) => (
+                <li key={l.name}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={`/logos/${l.file}`} alt={l.name} width={150} height={50} loading="lazy" />
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
       )}

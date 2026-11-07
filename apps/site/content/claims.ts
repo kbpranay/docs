@@ -172,12 +172,13 @@ export const positioning = {
     reviewBeforeLaunch: 'Confirm supported Cisco versions and integration method.',
   },
   qualityAssessment: {
-    id: 'quality-assessment',
+    id: 'conversation-insights',
     status: 'positioning',
-    source: 'Internal product evidence (sales training and product records, Sep–Oct 2026); full references in the Notion website masterplan',
+    source:
+      'GenAI Insights datasheets by Leti (Slack, 28 Oct 2026) and #qa-product: scorecards with criteria, weights, targets and versions; custom metrics in plain language shown as columns; plain-language questions answered as charts; intents, escalation reasons, sentiment, compliance flags; dashboards with drill-down; scheduled PDF/CSV reports. Product name proposed in the naming poll (EB Conversation Insights), not final.',
     observed: OBSERVED,
     reviewBeforeLaunch:
-      'Product sign-off on scope: human vs AI conversations, channels, languages, custom scorecards and weightings, reviewer override, team and topic trends. Do not name any customer as a QA reference without written approval.',
+      'Product (Sid) to confirm: channel coverage (calls and chat; email?), live call scoring, and the final product name. Do not publish "100%" coverage: some deployments exclude calls.',
   },
   voiceDemo: {
     id: 'live-voice-demo',

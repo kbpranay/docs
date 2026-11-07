@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { OutlineIcon, type IconName } from '@/components/OutlineIcon'
 import { pageMeta } from '@/lib/seo'
 import { CtaBand, PageHero } from '@/components/PageHero'
 import { Related } from '@/components/Related'
@@ -12,12 +13,12 @@ export const metadata: Metadata = pageMeta({
 })
 
 const guides = [
-  { t: 'The evaluation checklist', topic: 'Pilot', href: '/evaluation', line: 'What to agree before a pilot: baseline, measures, systems and languages.' },
-  { t: 'How pricing is modelled', topic: 'Commercial', href: '/pricing', line: 'Platform fee plus usage, modelled on your own volumes.' },
-  { t: 'Known limits of AI in the contact center', topic: 'Responsible AI', href: '/responsible-ai', line: 'What AI gets wrong and how you stay in control.' },
-  { t: 'Security review: what we share', topic: 'Security', href: '/security', line: 'Deployment models, data lifecycle and documentation on request.' },
-  { t: 'From signature to live calls', topic: 'Implementation', href: '/implementation', line: 'Five phases, each with a sign-off, plus training and support.' },
-  { t: 'Languages by market', topic: 'Languages', href: '/languages', line: 'Switzerland, Poland, Eastern Europe and India, tested on your calls.' },
+  { t: 'The evaluation checklist', topic: 'Pilot', href: '/evaluation', icon: 'target', line: 'What to agree before a pilot: baseline, measures, systems and languages.' },
+  { t: 'How pricing is modelled', topic: 'Commercial', href: '/pricing', icon: 'bars', line: 'Platform fee plus usage, modelled on your own volumes.' },
+  { t: 'Known limits of AI in the contact center', topic: 'Responsible AI', href: '/responsible-ai', icon: 'eye', line: 'What AI gets wrong and how you stay in control.' },
+  { t: 'Security review: what we share', topic: 'Security', href: '/security', icon: 'log', line: 'Deployment models, data lifecycle and documentation on request.' },
+  { t: 'From signature to live calls', topic: 'Implementation', href: '/implementation', icon: 'turns', line: 'Five phases, each with a sign-off, plus training and support.' },
+  { t: 'Languages by market', topic: 'Languages', href: '/languages', icon: 'globe', line: 'Switzerland, Poland, Eastern Europe and India, tested on your calls.' },
 ]
 
 export default function Resources() {
@@ -41,6 +42,9 @@ export default function Resources() {
           <div className="hub">
             {guides.map((p, i) => (
               <Link key={p.href} href={p.href} className="hub__card" data-reveal style={{ ['--reveal-delay' as string]: `${(i % 3) * 70}ms` }}>
+                <span className="hub__icon" aria-hidden="true">
+                  <OutlineIcon name={p.icon as IconName} size={28} />
+                </span>
                 <span className="hub__topic">{p.topic}</span>
                 <span className="hub__name">{p.t}</span>
                 <span className="hub__line">{p.line}</span>

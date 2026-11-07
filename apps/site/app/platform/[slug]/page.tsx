@@ -257,7 +257,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         </section>
       )}
 
-      {p.slug === 'quality-assessment' && (
+      {p.slug === 'conversation-insights' && (
         <section className="section section--white" aria-labelledby="scored-title">
           <div className="container qa">
             <div data-reveal>
@@ -321,7 +321,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         route={`/platform/${p.slug}`}
         extra={[
           ...industries.filter((ind) => ind.products.includes(`/platform/${p.slug}`)).map((ind) => `/industries/${ind.slug}`),
-          ...(p.slug === 'quality-assessment' ? ['/responsible-ai'] : []),
+          ...(p.slug === 'conversation-insights' ? ['/responsible-ai'] : []),
           '/customers',
           '/integrations',
         ]}

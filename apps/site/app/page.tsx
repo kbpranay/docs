@@ -22,17 +22,17 @@ const startCopy: Record<string, { line: string; does: string[] }> = {
     line: 'Answers inbound calls, completes routine requests and transfers the rest with a summary.',
     does: ['Routing', 'Status checks', 'Account changes'],
   },
-  'quality-assessment': {
-    line: 'Scores human and AI conversations against your QA scorecard, with evidence and a coaching note.',
-    does: ['Your scorecard', 'Evidence per score', 'Coaching notes'],
+  'conversation-insights': {
+    line: 'Scores every conversation against your QA scorecard and measures the custom metrics you define in plain language.',
+    does: ['Your scorecard', 'Custom metrics', 'Ask your data'],
   },
   'agent-assist': {
     line: 'Suggests answers from your knowledge during the conversation and writes the wrap-up for your agents.',
     does: ['Suggested answers', 'Summaries', 'CRM write-back'],
   },
-  'conversation-analytics': {
-    line: 'Shows what was asked, what was resolved and why conversations reached a person.',
-    does: ['Resolution', 'Handover reasons', 'Topic trends'],
+  'live-translate': {
+    line: 'Customer and agent each speak their own language, translated in real time on the same call (early access).',
+    does: ['Two-way', 'Same call', 'Early access'],
   },
 }
 
@@ -192,16 +192,22 @@ export default function Home() {
       <section id="quality" className="section section--white" aria-labelledby="quality-title">
         <div className="container qa">
           <div data-reveal>
-            <p className="kicker">Quality assessment</p>
+            <p className="kicker">Conversation Insights</p>
             <h2 id="quality-title" className="h2" style={{ marginTop: 16 }}>
               Score human and AI conversations against <span className="hl">your QA scorecard.</span>
             </h2>
             <p className="lede" style={{ marginTop: 20 }}>
-              Each evaluated conversation gets a result per scorecard criterion, the reasoning behind it, the evidence
-              from the transcript and a coaching note. Results are written in the conversation’s language, within the
-              languages configured for your deployment. Your quality team reviews and coaches from evidence.
+              Every conversation you include, from your agents and your AI agents, is scored against your scorecard with
+              the evidence and a coaching note, then measured with the metrics you define in plain language. Ask a
+              question about your conversations and get the answer as a chart.
             </p>
             <ul className="qa__points">
+              <li>
+                <OutlineIcon name="bars" size={24} />
+                <span>
+                  <b>Custom metrics in plain words.</b> Describe a KPI and track it across your conversations.
+                </span>
+              </li>
               <li>
                 <OutlineIcon name="log" size={24} />
                 <span>
@@ -221,8 +227,8 @@ export default function Home() {
                 </span>
               </li>
             </ul>
-            <Link className="text-link" href="/platform/quality-assessment" style={{ marginTop: 28 }}>
-              See Quality Assessment <Arrow />
+            <Link className="text-link" href="/platform/conversation-insights" style={{ marginTop: 28 }}>
+              See Conversation Insights <Arrow />
             </Link>
           </div>
           <div data-reveal style={{ ['--reveal-delay' as string]: '70ms' }}>

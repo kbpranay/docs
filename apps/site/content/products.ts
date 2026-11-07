@@ -27,7 +27,7 @@ export interface Product {
   proof?: { stats: StatClaim[]; quote?: QuoteClaim }
   /** Published customer stories (claims.ts customerStories ids) shown under "Also in production". */
   storyIds?: string[]
-  showcase?: { kind: 'call' | 'inbox' | 'chat' | 'suggest' | 'transcript' | 'bars'; title: Segment[]; body: string }
+  showcase?: { kind: 'call' | 'inbox' | 'chat' | 'suggest' | 'transcript' | 'bars' | 'metrics'; title: Segment[]; body: string }
   faq: { q: string; a: string }[]
   /** Lines for the product hero visual. */
   visual: { channel: string; lines: { who: 'customer' | 'agent' | 'person' | 'system'; text: string }[] }
@@ -97,54 +97,56 @@ export const products: Product[] = [
     },
   },
   {
-    slug: 'quality-assessment',
-    flowTitle: ['From conversation to ', { hl: 'coaching note.' }],
+    slug: 'conversation-insights',
+    showcase: { kind: 'metrics', title: ['Ask for any metric. ', { hl: 'In plain words.' }], body: 'Describe the metric you need, such as “customer asked for a callback”. It is applied to your conversations and appears as a column you can sort, filter and report on. Ask follow-up questions in plain language and get the answer as a chart.' },
+    flowTitle: ['From every conversation to ', { hl: 'the next decision.' }],
     icon: 'target',
-    name: 'Quality Assessment',
-    short: 'Quality',
-    navLine: 'Scores human and AI conversations against your QA scorecard',
-    title: ['Review more conversations. ', { hl: 'Coach from evidence.' }],
+    name: 'Conversation Insights',
+    short: 'Insights',
+    navLine: 'Quality scoring, custom metrics and analytics for every conversation',
+    title: ['Score every conversation. ', { hl: 'Measure what you choose.' }],
     intro:
-      'Automated quality assessment for your contact center. Conversations handled by people or AI agents are evaluated against your QA scorecard, with the reasoning, the evidence from the transcript and a coaching note. Results are written in the conversation’s language, within the languages configured for your deployment.',
+      'Quality assessment and conversation analytics in one. Conversations handled by your agents and your AI agents are scored against your QA scorecard, with evidence and a coaching note, and analysed with the metrics you define in plain language: intents, escalation reasons, sentiment, compliance and your own custom KPIs.',
     problem: {
-      title: 'Most conversations are never reviewed.',
-      body: 'Quality teams can listen to only a small share of calls. Scores depend on who reviews, feedback arrives weeks later, and compliance gaps hide in the conversations nobody heard.',
-      points: ['Manual sampling misses most conversations', 'Scores vary between reviewers', 'Coaching is based on a handful of calls'],
+      title: 'Decisions are made on a small sample.',
+      body: 'Quality teams can review only a small share of calls, and standard reports count conversations, not outcomes. The reasons customers call back, escalate or churn sit in transcripts nobody has time to read.',
+      points: ['Manual sampling misses most conversations', 'Every new question needs a new report', 'Scores and insights vary by who looked'],
     },
     workflow: [
-      { title: 'Capture', body: 'Takes the transcript of each call, from people and AI agents.' },
-      { title: 'Evaluate', body: 'Checks the conversation against each criterion in your scorecard.' },
-      { title: 'Explain', body: 'Records the result, the reasoning and the transcript evidence for each criterion.' },
-      { title: 'Coach', body: 'Writes a coaching note for the agent, in the conversation’s language.' },
-      { title: 'Review', body: 'Your quality team confirms the results and coaches from them.' },
+      { title: 'Capture', body: 'Transcripts of calls and chats from your agents and your AI agents.' },
+      { title: 'Score', body: 'Each conversation is checked against your scorecard, criterion by criterion, with evidence.' },
+      { title: 'Measure', body: 'Your custom metrics, intents, escalation reasons and sentiment are applied to every conversation.' },
+      { title: 'Explore', body: 'Dashboards and plain-language questions, with drill-down to the transcript behind any number.' },
+      { title: 'Act', body: 'Coaching notes for agents, scheduled reports for leaders and the next workload to automate.' },
     ],
     capabilities: [
-      { icon: 'log', title: 'Your scorecard', body: 'Evaluate against the criteria your quality team already applies.' },
-      { icon: 'eye', title: 'Evidence per score', body: 'Each result points to the moment in the conversation behind it.' },
-      { icon: 'cap', title: 'Coaching notes', body: 'Specific, written feedback for each agent, ready for the next one-to-one.' },
-      { icon: 'handover', title: 'Human and AI conversations', body: 'One quality standard for your agents and your AI agents.' },
-      { icon: 'globe', title: 'Multilingual evaluation', body: 'Evaluates in the language of the conversation, within the languages configured for your deployment.' },
-      { icon: 'trend', title: 'Trends by team and topic', body: 'See where quality slips and which topics need coaching or a process fix.' },
-      { icon: 'turns', title: 'From coaching to practice', body: 'Turning recurring coaching points into scenarios agents rehearse with AI is not yet generally available. Ask us about its status.' },
+      { icon: 'log', title: 'Your scorecards', body: 'Criteria, weights and targets your quality team defines, assigned by rule and versioned.' },
+      { icon: 'eye', title: 'Evidence per score', body: 'Each result points to the moment in the conversation behind it, with a coaching note.' },
+      { icon: 'bars', title: 'Custom metrics in plain language', body: 'Describe a KPI in words and it becomes a column you can sort, filter and report on.' },
+      { icon: 'pulse', title: 'Ask your data', body: 'Ask questions in plain language and get the answer as a chart.' },
+      { icon: 'split', title: 'Why customers escalate', body: 'Intents, escalation reasons and sentiment, so you know what to fix and what to automate next.' },
+      { icon: 'handover', title: 'Human and AI agents', body: 'One quality standard for your agents and your AI agents, with skill gaps by agent and team.' },
+      { icon: 'link', title: 'Drill down to the call', body: 'Every number links to the conversations behind it.' },
+      { icon: 'trend', title: 'Reports that arrive', body: 'Configurable dashboards and scheduled PDF and CSV reports.' },
     ],
     fit: {
       integrations: ['Call recordings and transcripts from your contact center', 'Genesys Cloud and Cisco contact centers', 'Enterprise Bot voice, email and chat agents'],
       deployment: deploymentLine,
     },
     faq: [
-      { q: 'Which conversations are evaluated?', a: 'Calls handled by your agents or by AI agents that you choose to send for evaluation. Coverage and any additional channels are confirmed during scoping.' },
-      { q: 'What will it not do?', a: 'It does not replace your reviewers’ judgement or make HR decisions. Every result shows its reasoning and evidence so your team can check it.' },
-      { q: 'Does it replace our quality team?', a: 'No. It gives your quality team evidence for many more conversations, so they spend their time reviewing results and coaching rather than searching for calls to sample.' },
-      { q: 'Can we use our existing scorecard?', a: 'Your criteria are configured during setup. We test them on your own anonymised conversations during the evaluation.' },
-      { q: 'Which languages can it evaluate?', a: 'That depends on the language components configured for your deployment. We test your languages with your own conversations.' },
-      { q: 'Is a score final?', a: 'Your reviewers decide. Every result shows its reasoning and evidence so it can be checked.' },
+      { q: 'Which conversations are analysed?', a: 'Calls and chats handled by your agents or by your AI agents that you choose to include. Coverage, exclusions and any further channels are confirmed during scoping.' },
+      { q: 'How do custom metrics work?', a: 'You describe the metric in plain language, for example “customer asked for a callback”. It is applied to your conversations and shown as a column you can sort, filter and include in reports.' },
+      { q: 'Can we use our existing scorecard?', a: 'Yes. Your criteria, weights and targets are configured during setup and tested on your own anonymised conversations during the evaluation.' },
+      { q: 'What will it not do?', a: 'It does not replace your reviewers’ judgement or make HR decisions. Every score shows its evidence so your team can check it.' },
+      { q: 'Which languages can it analyse?', a: 'That depends on the language components configured for your deployment. We test your languages with your own conversations.' },
+      { q: 'Can we take the data into our own tools?', a: 'Yes. Scheduled PDF and CSV reports, and exports for your own reporting.' },
     ],
     visual: {
-      channel: 'Quality assessment',
+      channel: 'Conversation insights',
       lines: [
-        { who: 'system', text: 'Call 10:42 · scored against Claims QA scorecard' },
-        { who: 'system', text: 'Process followed · Met · policy §4.2 checked' },
-        { who: 'system', text: 'Handover explained · Partly met' },
+        { who: 'system', text: 'Call 10:42 · Claims QA scorecard · 2 of 3 met' },
+        { who: 'system', text: 'Custom metric · callback requested · yes' },
+        { who: 'system', text: 'Escalation reason · amount above approval limit' },
         { who: 'agent', text: 'Coaching note · tell the caller when Claims will confirm' },
       ],
     },
@@ -291,7 +293,7 @@ export const products: Product[] = [
       { icon: 'target', title: 'Tested on your language pairs', body: 'Language pairs and audio conditions are tested with your own calls before rollout.' },
     ],
     fit: {
-      integrations: ['Connection to your contact center confirmed during early access', 'Enterprise Bot Quality Assessment'],
+      integrations: ['Connection to your contact center confirmed during early access', 'Enterprise Bot Conversation Insights'],
       deployment: deploymentLine,
     },
     faq: [
@@ -320,7 +322,7 @@ export const products: Product[] = [
     navLine: 'Real-time help inside the agent desktop',
     title: ['Give every agent the answer, ', { hl: 'with its source,' }, ' first.'],
     intro:
-      'Real-time support inside the agent workspace: suggested answers from your knowledge, next steps during the conversation and a summary written for the agent when it ends. Use it next to Quality Assessment: agents get guidance during the call, and team leads coach on what the scorecard finds.',
+      'Real-time support inside the agent workspace: suggested answers from your knowledge, next steps during the conversation and a summary written for the agent when it ends. Use it next to Conversation Insights: agents get guidance during the call, and team leads coach on what the scorecard finds.',
     problem: {
       title: 'New agents take months to become confident.',
       body: 'Answers are spread across wikis, PDFs and old tickets. After-call notes eat into handling time, and quality depends on who picks up.',
@@ -364,62 +366,9 @@ export const products: Product[] = [
       ],
     },
   },
-  {
-    slug: 'conversation-analytics',
-    showcase: { kind: 'bars', title: ['See why customers ', { hl: 'still need a person.' }], body: 'Handover reasons, topics and outcomes from your automated conversations, so you know what to improve next.' },
-    icon: 'bars',
-    name: 'Conversation Analytics',
-    short: 'Analytics',
-    navLine: 'What was asked, resolved and handed over',
-    title: ['See what happened in ', { hl: 'every conversation.' }],
-    intro:
-      'One view of your automated conversations: what customers asked for, what was resolved, where handovers happened and why. Know what to automate next from evidence, not anecdotes.',
-    problem: {
-      title: 'Containment rates hide the real story.',
-      body: 'A conversation that ends is not always a request that was resolved. The reasons for handovers sit in transcripts nobody has time to read.',
-      points: [
-        'Reports count conversations, not outcomes',
-        'Handover reasons are invisible',
-        'Automation priorities are set by opinion',
-      ],
-    },
-    workflow: [
-      { title: 'Capture', body: 'Every conversation, action and handover is recorded with its outcome.' },
-      { title: 'Classify', body: 'Requests are grouped by topic and result.' },
-      { title: 'Measure', body: 'Resolution, handover and volume trends in live and historical views.' },
-      { title: 'Trace', body: 'Every number links back to the conversations behind it.' },
-      { title: 'Improve', body: 'Spot the next workload to automate and the answers to fix.' },
-    ],
-    capabilities: [
-      { icon: 'pulse', title: 'Live data', body: 'Current conversation volumes and outcomes as they happen.' },
-      { icon: 'bars', title: 'Reports and insights', body: 'Historical trends by topic, channel and outcome.' },
-      { icon: 'target', title: 'Resolution, not just containment', body: 'Separates requests that were completed from conversations that simply ended.' },
-      { icon: 'split', title: 'Handover reasons', body: 'See why conversations went to a person, so you can find handovers worth automating.' },
-      { icon: 'trend', title: 'Topic trends', body: 'Spot new or growing request types early.' },
-      { icon: 'link', title: 'Traceability', body: 'Drill from any metric to the conversations behind it.' },
-    ],
-    fit: {
-      integrations: ['Enterprise Bot voice, email and chat agents', 'Exports to your BI tools', 'CRM outcome data'],
-      deployment: deploymentLine,
-    },
-    faq: [
-      { q: 'What will it not do?', a: 'It does not evaluate conversations handled by your agents; that is Quality Assessment. It reports on the automated conversations in your deployment.' },
-      { q: 'Does it include conversations handled by human agents?', a: 'Conversation Analytics covers your automated conversations. To evaluate conversations handled by your agents, see Quality Assessment.' },
-      { q: 'Can we export the data?', a: 'Yes. Reports can be exported for use in your own BI and reporting tools.' },
-    ],
-    visual: {
-      channel: 'Analytics',
-      lines: [
-        { who: 'system', text: 'Top request this week · change of address' },
-        { who: 'system', text: 'Resolved end to end · trend rising' },
-        { who: 'system', text: 'Top handover reason · missing policy number' },
-        { who: 'agent', text: 'Suggested fix · ask for it earlier in the flow' },
-      ],
-    },
-  },
 ]
 
 export const productBySlug = (slug: string) => products.find((p) => p.slug === slug)
 
 /** The four starting points featured on the homepage (Chat stays reachable). */
-export const startingPoints = ['voice-agent', 'agent-assist', 'quality-assessment', 'conversation-analytics']
+export const startingPoints = ['voice-agent', 'agent-assist', 'conversation-insights', 'live-translate']

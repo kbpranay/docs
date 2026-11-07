@@ -47,7 +47,7 @@ export default function Industries() {
           </div>
         </div>
       </section>
-      <Related route="/industries" extra={['/customers', '/platform/voice-agent', '/platform/quality-assessment', '/integrations']} />
+      <Related route="/industries" extra={['/customers', '/platform/voice-agent', '/platform/conversation-insights', '/integrations']} />
       <CtaBand title={<>See it on <span className="hl">your</span> service line.</>} body="We scope one workload in your industry and show it running against your systems." />
     </>
   )

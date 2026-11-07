@@ -78,6 +78,7 @@ export const integrations: Integration[] = [
     handover: 'Transfers to the right Nimbus queue with the conversation summary, so the agent in Teams starts with the context.',
     scope: 'Integration through Luware Nimbus; scope is confirmed per deployment and Nimbus version.',
     faq: [
+      { q: 'Do agents need a new desktop?', a: 'No. Agents keep working in Microsoft Teams with Luware Nimbus; the Voice Agent hands calls to their queues with a summary.' },
       { q: 'Do we need Luware Nimbus?', a: 'Today the integration runs through Nimbus. A direct Teams integration is in development; ask us about timing.' },
       { q: 'Where are transcripts stored?', a: 'That follows the deployment you choose; we document the data flow component by component during scoping.' },
     ],

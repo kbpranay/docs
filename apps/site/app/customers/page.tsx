@@ -102,7 +102,7 @@ export default function Customers() {
           )}
         </div>
       </section>
-      <section className="logos-band" aria-labelledby="names-title">
+      <section className="logos-band logos-band--paper" aria-labelledby="names-title">
         <div className="container">
           <div className="logos-band__head">
             <p id="names-title">

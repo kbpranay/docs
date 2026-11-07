@@ -42,7 +42,7 @@ export const industries: Industry[] = [
       { t: 'Data stays where you need it', b: 'Managed cloud in your region, private cloud or on-premises, with PII masking before data reaches a model.' },
     ],
     stories: ['generali', 'swiss-health', 'swica'],
-    products: ['/platform/voice-agent', '/platform/quality-assessment', '/platform/live-translate', '/integrations/genesys'],
+    products: ['/platform/voice-agent', '/platform/conversation-insights', '/platform/live-translate', '/integrations/genesys'],
     faq: [
       { q: 'Which languages can callers use?', a: 'The languages configured for your lines. In Switzerland that typically means Swiss German, German, French and Italian, tested on your own call audio before go-live.' },
       { q: 'Can the voice agent route calls without replacing our IVR platform?', a: 'Yes. At a Swiss health insurer, calls stay in Genesys; Enterprise Bot classifies the caller’s request and routes the call back to the right team.' },
@@ -69,7 +69,7 @@ export const industries: Industry[] = [
       { t: 'Measured, not promised', b: 'A pilot on one workload against your own baseline before rollout.' },
     ],
     stories: ['moneta', 'six', 'yuh'],
-    products: ['/platform/voice-agent', '/platform/email-agent', '/platform/quality-assessment', '/security'],
+    products: ['/platform/voice-agent', '/platform/email-agent', '/platform/conversation-insights', '/security'],
     faq: [
       { q: 'How are callers verified?', a: 'With the identity checks your security team defines, completed before any account detail is shared or changed.' },
       { q: 'Can it run inside our own infrastructure?', a: 'Yes. On-premises deployment on your Kubernetes with self-hosted or private-endpoint models is an option; we confirm which components run on-premises for your setup during scoping.' },
@@ -96,7 +96,7 @@ export const industries: Industry[] = [
       { t: 'Insight after the rush', b: 'Conversation analytics shows why passengers got in touch and where the bot handed over.' },
     ],
     stories: ['rmv', 'tpe', 'bcd', 'comboios'],
-    products: ['/platform/chat-agent', '/platform/voice-agent', '/platform/conversation-analytics', '/platform/email-agent'],
+    products: ['/platform/chat-agent', '/platform/voice-agent', '/platform/conversation-insights', '/platform/email-agent'],
     faq: [
       { q: 'What happens on a disruption day?', a: 'Routine delay and refund questions can be answered automatically from your live data feeds, so agents can focus on passengers who need a person.' },
       { q: 'Can the AI use live train data?', a: 'Yes. In TransPennine Express’s published case study, the chatbot answers from the Darwin real-time departure and disruption feed.' },
@@ -124,7 +124,7 @@ export const industries: Industry[] = [
       { t: 'Languages your clients need', b: 'Multilingual service lines, configured and tested per deployment.' },
     ],
     stories: ['callpoint'],
-    products: ['/platform/agent-assist', '/platform/quality-assessment', '/platform/conversation-analytics', '/platform/voice-agent'],
+    products: ['/platform/agent-assist', '/platform/conversation-insights', '/platform/voice-agent'],
     faq: [
       { q: 'Can we report results to our clients?', a: 'Yes. Quality results and conversation records are kept per client process, so you can report them to each client; report formats are confirmed during scoping.' },
       { q: 'Can we keep each client’s data and scorecards separate?', a: 'Yes. Knowledge, rules, scorecards and access are configured per client process.' },

@@ -3,7 +3,7 @@
  * product doing one job. Hand-written examples on synthetic data, not product
  * screenshots; each card says so.
  */
-export type ShowcaseKind = 'call' | 'inbox' | 'chat' | 'suggest' | 'transcript' | 'bars'
+export type ShowcaseKind = 'call' | 'inbox' | 'chat' | 'suggest' | 'transcript' | 'bars' | 'metrics'
 
 function Card({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -82,6 +82,33 @@ export function ShowcaseFigure({ kind }: { kind: ShowcaseKind }) {
             <li><span className="sc-pair__who">Customer · DE</span><p>Ich möchte meine Adresse ändern.</p><p className="sc-pair__tr">→ I would like to change my address.</p></li>
             <li><span className="sc-pair__who">Agent · EN</span><p>Of course. What is the new address?</p><p className="sc-pair__tr">→ Natürlich. Wie lautet die neue Adresse?</p></li>
           </ol>
+        </Card>
+      )
+    case 'metrics':
+      return (
+        <Card title="New custom metric">
+          <div className="sc-metric">
+            <p className="sc-metric__prompt">
+              <b>Describe it</b> “Did the customer ask for a callback?”
+            </p>
+            <table className="sc-metric__table">
+              <thead>
+                <tr>
+                  <th scope="col">Conversation</th>
+                  <th scope="col">Score</th>
+                  <th scope="col">Callback requested</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Claims call 10:42</td><td>2 of 3 met</td><td><span className="chip chip--warn">Yes</span></td></tr>
+                <tr><td>Billing chat 10:51</td><td>3 of 3 met</td><td><span className="chip">No</span></td></tr>
+                <tr><td>Policy call 11:05</td><td>3 of 3 met</td><td><span className="chip chip--warn">Yes</span></td></tr>
+              </tbody>
+            </table>
+            <p className="sc-metric__ask">
+              <b>Ask</b> “Which topics lead to callback requests?” → answered as a chart
+            </p>
+          </div>
         </Card>
       )
     case 'bars':

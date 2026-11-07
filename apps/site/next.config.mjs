@@ -31,6 +31,12 @@ const securityHeaders = [
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  async redirects() {
+    return [
+      { source: '/platform/quality-assessment', destination: '/platform/conversation-insights', permanent: true },
+      { source: '/platform/conversation-analytics', destination: '/platform/conversation-insights', permanent: true },
+    ]
+  },
   async headers() {
     return [{ source: '/:path*', headers: securityHeaders }]
   },

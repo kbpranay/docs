@@ -188,7 +188,7 @@ export default function Technology() {
             <article className="cap">
               <h3>Quality assessment</h3>
               <p>
-                Conversations scored against your QA scorecard. <Link href="/platform/quality-assessment">How QA works</Link>
+                Conversations scored against your QA scorecard. <Link href="/platform/conversation-insights">How Conversation Insights works</Link>
               </p>
             </article>
           </div>

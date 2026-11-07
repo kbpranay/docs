@@ -90,7 +90,7 @@ export default function IntegrationsHub() {
             </div>
             <div className="lanes__box lanes__box--eb" data-reveal style={{ ['--reveal-delay' as string]: '140ms' }}>
               <b>Enterprise Bot</b>
-              <span>Voice Agent · Agent Assist · Quality Assessment</span>
+              <span>Voice Agent · Agent Assist · Conversation Insights</span>
             </div>
           </InView>
         </div>
