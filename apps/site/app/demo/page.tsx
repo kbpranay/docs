@@ -31,9 +31,9 @@ export default function DemoPage() {
               What you will see
             </h2>
             <ul className="see-list">
-              <li>A voice agent handling your scenario in your language</li>
+              <li>A voice agent handling your scenario. Tell us your languages and we confirm which we can show.</li>
               <li>A QA scorecard applied to a sample conversation</li>
-              <li>The handover into your contact center, with the summary your agents would see</li>
+              <li>The handover to a person, with the summary your agents would see</li>
             </ul>
             <h2 className="h2" style={{ fontSize: 'clamp(1.6rem, 2.6vw, 2.2rem)', marginTop: 48 }}>
               What happens next

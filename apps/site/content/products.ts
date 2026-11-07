@@ -97,14 +97,14 @@ export const products: Product[] = [
     navLine: 'Scores human and AI conversations against your QA scorecard',
     title: ['Review more conversations. ', { hl: 'Coach from evidence.' }],
     intro:
-      'Automated quality assessment for your contact center. Conversations handled by people or AI agents are evaluated against your QA scorecard, with the reasoning, the evidence from the transcript and a coaching note, in the language of the conversation.',
+      'Automated quality assessment for your contact center. Conversations handled by people or AI agents are evaluated against your QA scorecard, with the reasoning, the evidence from the transcript and a coaching note. Results are written in the conversation’s language, within the languages configured for your deployment.',
     problem: {
       title: 'Most conversations are never reviewed.',
       body: 'Quality teams can listen to only a small share of calls. Scores depend on who reviews, feedback arrives weeks later, and compliance gaps hide in the conversations nobody heard.',
       points: ['Manual sampling misses most conversations', 'Scores vary between reviewers', 'Coaching is based on a handful of calls'],
     },
     workflow: [
-      { title: 'Capture', body: 'Takes the transcript of each call, chat or email, from people and AI agents.' },
+      { title: 'Capture', body: 'Takes the transcript of each call, from people and AI agents.' },
       { title: 'Evaluate', body: 'Checks the conversation against each criterion in your scorecard.' },
       { title: 'Explain', body: 'Records the result, the reasoning and the transcript evidence for each criterion.' },
       { title: 'Coach', body: 'Writes a coaching note for the agent, in the language of the conversation.' },

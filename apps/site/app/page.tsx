@@ -107,7 +107,8 @@ export default function Home() {
               </h2>
             </div>
             <p className="lede">
-              Leonie is the voicebot in Generali’s customer care. Named customer, named results, in their own words.
+              Leonie is the voicebot in Generali Switzerland’s customer care. A named customer, a named sponsor and two
+              published results.
             </p>
           </div>
           <SampleCall />
@@ -144,8 +145,8 @@ export default function Home() {
             </h2>
             <p className="lede" style={{ marginTop: 20 }}>
               Each evaluated conversation gets a result per scorecard criterion, the reasoning behind it, the evidence
-              from the transcript and a coaching note, in the language of the conversation. Your quality team reviews
-              and coaches from evidence.
+              from the transcript and a coaching note. Results are written in the conversation’s language, within the
+              languages configured for your deployment. Your quality team reviews and coaches from evidence.
             </p>
             <ul className="qa__points">
               <li>
@@ -198,7 +199,10 @@ export default function Home() {
               <b>Coaching note</b>
               <p>Tell the caller when Claims will confirm the approval.</p>
             </div>
-            <figcaption>Illustrative example on the synthetic call shown above. Not customer data.</figcaption>
+            <figcaption>
+              Illustrative: hand-written to show the format, based on the synthetic claims call in the simulation at the
+              top of this page. Not product output and not customer data.
+            </figcaption>
           </figure>
         </div>
       </section>
@@ -234,12 +238,7 @@ export default function Home() {
                     <li key={d}>{d}</li>
                   ))}
                 </ul>
-                {p.slug === 'agent-assist' && (
-                  <span className="start__proof">
-                    <b>{stats.callpointTraining.value}</b> {stats.callpointTraining.label} ·{' '}
-                    {stats.callpointTraining.customer}
-                  </span>
-                )}
+
               </Link>
             ))}
           </div>
@@ -256,6 +255,13 @@ export default function Home() {
           </p>
           <div className="quote-row">
             <article className="quote-card" data-reveal>
+              <div className="stat-inline">
+                <b>{stats.callpointTraining.value}</b>
+                <span>
+                  {stats.callpointTraining.label} · {stats.callpointTraining.customer},{' '}
+                  {stats.callpointTraining.context.toLowerCase()}
+                </span>
+              </div>
               <blockquote>{quotes.callpoint.quote}</blockquote>
               <p className="cite">
                 <strong>{quotes.callpoint.person}</strong>
@@ -413,8 +419,7 @@ export default function Home() {
               </h2>
             </div>
             <p className="lede">
-              Voice comes first. The same knowledge, rules, handover and quality checks run on email and chat when you
-              need them. Illustrative example with synthetic data.
+              Voice comes first. The same knowledge, rules and handover run on email and chat when you need them. Illustrative example with synthetic data.
             </p>
           </div>
           <div data-reveal>
@@ -529,11 +534,11 @@ export default function Home() {
         <div className="container cta-band__grid">
           <div data-reveal>
             <h2 id="cta-title">
-              Hear it on <span className="hl">your</span> calls. See them scored.
+              Hear it on <span className="hl">your</span> call type. See it scored.
             </h2>
             <p>
-              Bring one call type. We will show the Voice Agent handling it in your language, the handover into your
-              contact center and a QA scorecard applied to the conversation.
+              Bring one call type. We will show the Voice Agent handling it, the handover to a person and a QA
+              scorecard applied to the conversation. Tell us your languages and we will confirm which we can show.
             </p>
           </div>
           <div className="cta-band__panel" data-reveal style={{ ['--reveal-delay' as string]: '120ms' }}>
