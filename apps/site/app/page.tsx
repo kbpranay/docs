@@ -10,7 +10,8 @@ import { SampleCall } from '@/components/SampleCall'
 import { VoiceDemo } from '@/components/VoiceDemo'
 import { providerLabel, voiceDemoEnabled, voiceDemoProvider } from '@/lib/voiceDemo'
 import { Waves } from '@/components/Waves'
-import { feedyouProof, proofRow, quotes, stats } from '@/content/claims'
+import { logoWall, quotes, stats } from '@/content/claims'
+import { LogoMarquee } from '@/components/LogoMarquee'
 import { products, startingPoints } from '@/content/products'
 import { showFeedyou, site } from '@/content/site'
 
@@ -32,6 +33,11 @@ const startCopy: Record<string, { line: string; does: string[] }> = {
     does: ['Resolution', 'Handover reasons', 'Topic trends'],
   },
 }
+
+const shownLogos = logoWall.logos.filter((l) => l.approved && l.file && (showFeedyou || l.origin === 'eb'))
+const logoRows = showFeedyou
+  ? [shownLogos.filter((l) => l.origin === 'eb'), shownLogos.filter((l) => l.origin === 'feedyou')]
+  : [shownLogos]
 
 export default function Home() {
   const starts = startingPoints.map((slug) => products.find((p) => p.slug === slug)!)
@@ -92,16 +98,18 @@ export default function Home() {
           </div>
 
           <div className="proof-row">
-            <p className="proof-row__label">
-              Customers include · <Link href="/customers">Read customer stories →</Link>
-            </p>
-            <ul>
-              {[...proofRow.names, ...(showFeedyou ? feedyouProof.names.slice(0, 3) : [])].map((n) => (
-                <li key={n}>{n}</li>
-              ))}
-            </ul>
             <p className="proof-row__ratings">Rated 4.7 on G2 · 4.5 on Capterra · 4.5 on GetApp (ratings as published on enterprisebot.ai, November 2026)</p>
           </div>
+        </div>
+      </section>
+
+      <section className="logos-band" aria-labelledby="logos-title">
+        <div className="container">
+          <div className="logos-band__head">
+            <p id="logos-title">Trusted by insurers, banks, rail operators and contact centers across Europe</p>
+            <Link href="/customers">Read customer stories →</Link>
+          </div>
+          <LogoMarquee rows={logoRows} />
         </div>
       </section>
 

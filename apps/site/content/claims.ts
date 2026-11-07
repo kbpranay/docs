@@ -464,3 +464,62 @@ export const feedyouProof: Claim & { headline: string; names: string[] } = {
   observed: OBSERVED,
   reviewBeforeLaunch: FY_CHECK,
 }
+
+/**
+ * Logo wall. Files in public/logos/, copied from the logo strips on
+ * enterprisebot.ai and feedyou.ai (observed 7 Nov 2026). Entries with
+ * approved: false are customers confirmed in internal records but not yet shown
+ * publicly; they stay hidden until marketing confirms permission and supplies a logo file.
+ */
+export interface Logo {
+  name: string
+  file?: string
+  origin: 'eb' | 'feedyou'
+  approved: boolean
+}
+
+export const logoWall: Claim & { logos: Logo[] } = {
+  id: 'logo-wall',
+  status: 'published-public',
+  source: 'Logo strips on enterprisebot.ai homepage and feedyou.ai homepage; pending entries from internal account records (Slack, Notion, Oct–Nov 2026)',
+  sourceUrl: PUBLIC_SITE,
+  observed: OBSERVED,
+  reviewBeforeLaunch:
+    'Confirm logo permission per customer (including Feedyou customers). Pending: AXA, AXA Direct Assurance, WWZ, badenova — need written permission and logo files.',
+  logos: [
+    { name: 'Generali', file: 'generali.png', origin: 'eb', approved: true },
+    { name: 'Swisscom', file: 'swisscom.png', origin: 'eb', approved: true },
+    { name: 'SIX', file: 'six.png', origin: 'eb', approved: true },
+    { name: 'SWICA', file: 'swica.png', origin: 'eb', approved: true },
+    { name: 'Callpoint', file: 'callpoint.png', origin: 'eb', approved: true },
+    { name: 'Kantonsspital Winterthur', file: 'ksw.png', origin: 'eb', approved: true },
+    { name: 'TransPennine Express', file: 'transpennine-express.png', origin: 'eb', approved: true },
+    { name: 'Comboios de Portugal', file: 'comboios-de-portugal.png', origin: 'eb', approved: true },
+    { name: 'RMV', file: 'rmv.png', origin: 'eb', approved: true },
+    { name: 'LNER', file: 'liner.png', origin: 'eb', approved: true },
+    { name: 'Yuh', file: 'yuh.png', origin: 'eb', approved: true },
+    { name: 'BCD Travel WTS', file: 'wts.png', origin: 'eb', approved: true },
+    { name: 'AXA', origin: 'eb', approved: false },
+    { name: 'AXA Direct Assurance', origin: 'eb', approved: false },
+    { name: 'WWZ', origin: 'eb', approved: false },
+    { name: 'badenova', origin: 'eb', approved: false },
+    { name: 'MONETA Money Bank', file: 'moneta-money-bank.png', origin: 'feedyou', approved: true },
+    { name: 'Toyota', file: 'toyota.png', origin: 'feedyou', approved: true },
+    { name: 'Škoda', file: 'skoda.png', origin: 'feedyou', approved: true },
+    { name: 'DHL', file: 'dhl.png', origin: 'feedyou', approved: true },
+    { name: 'DB Schenker', file: 'db-schenker.png', origin: 'feedyou', approved: true },
+    { name: 'Tesco Mobile', file: 'tesco-mobile.png', origin: 'feedyou', approved: true },
+    { name: 'Foxconn', file: 'foxconn.png', origin: 'feedyou', approved: true },
+    { name: 'REWE Group', file: 'rewe-group.png', origin: 'feedyou', approved: true },
+    { name: 'Continental', file: 'continental.png', origin: 'feedyou', approved: true },
+    { name: 'Panasonic Automotive', file: 'panasonic-automotive.png', origin: 'feedyou', approved: true },
+    { name: 'Česká pošta', file: 'ceska-posta.png', origin: 'feedyou', approved: true },
+    { name: 'Skupina ČEZ', file: 'skupina-cez.png', origin: 'feedyou', approved: true },
+    { name: 'Dr.Max', file: 'dr-max-group.png', origin: 'feedyou', approved: true },
+    { name: 'Alza.cz', file: 'alza-cz.png', origin: 'feedyou', approved: true },
+    { name: 'PENNY', file: 'penny.png', origin: 'feedyou', approved: true },
+    { name: 'Kantar', file: 'kantar.png', origin: 'feedyou', approved: true },
+    { name: 'Pluxee', file: 'pluxee.png', origin: 'feedyou', approved: true },
+    { name: 'Metrostav', file: 'metrostav.png', origin: 'feedyou', approved: true },
+  ],
+}

@@ -269,7 +269,8 @@ async function contactSheet(browser, title, frames, file, cols) {
         const vw = layoutWidth
         const clipped = []
         for (const el of document.querySelectorAll('main *, header *')) {
-          if (el.closest('[aria-hidden="true"], .hero__waves, .mobile-menu')) continue
+          // .marquee__row scrolls logos past its masked edge on purpose.
+          if (el.closest('[aria-hidden="true"], .hero__waves, .mobile-menu, .marquee__row')) continue
           const r = el.getBoundingClientRect()
           if (r.width && r.right > vw + 1 && getComputedStyle(el).position !== 'fixed') {
             clipped.push((el.className && String(el.className).slice(0, 40)) || el.tagName)

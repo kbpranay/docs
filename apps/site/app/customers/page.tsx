@@ -2,7 +2,8 @@ import type { Metadata } from 'next'
 import { Brush } from '@/components/Brush'
 import { FigureCard } from '@/components/FigureCard'
 import { CtaBand, PageHero } from '@/components/PageHero'
-import { customerStories, feedyouProof, proofRow, type CustomerStory } from '@/content/claims'
+import { LogoMarquee } from '@/components/LogoMarquee'
+import { customerStories, feedyouProof, logoWall, type CustomerStory } from '@/content/claims'
 import { showFeedyou } from '@/content/site'
 
 export const metadata: Metadata = {
@@ -17,6 +18,11 @@ const voice = withMetric.filter((s) => s.voice)
 const other = withMetric.filter((s) => !s.voice)
 const more = stories.filter((s) => !s.metric)
 const countries = Array.from(new Set(stories.map((s) => s.country)))
+
+const shownLogos = logoWall.logos.filter((l) => l.approved && l.file && (showFeedyou || l.origin === 'eb'))
+const logoRows = showFeedyou
+  ? [shownLogos.filter((l) => l.origin === 'eb'), shownLogos.filter((l) => l.origin === 'feedyou')]
+  : [shownLogos]
 
 function Card({ s }: { s: CustomerStory }) {
   return (
@@ -47,7 +53,6 @@ function Card({ s }: { s: CustomerStory }) {
 }
 
 export default function Customers() {
-  const names = [...proofRow.names, ...(showFeedyou ? feedyouProof.names : [])]
   return (
     <>
       <PageHero
@@ -119,20 +124,14 @@ export default function Customers() {
           )}
         </div>
       </section>
-      <section className="section section--navy" aria-labelledby="names-title">
+      <section className="logos-band" aria-labelledby="names-title">
         <div className="container">
-          <div className="section-head" data-reveal>
-            <p className="kicker">Customers include</p>
-            <h2 id="names-title" className="h2">
-              Trusted by teams across Europe.
-            </h2>
-            {showFeedyou && <p className="lede">With Feedyou: {feedyouProof.headline}.</p>}
+          <div className="logos-band__head">
+            <p id="names-title">
+              Customers include{showFeedyou ? ` · with Feedyou: ${feedyouProof.headline}` : ''}
+            </p>
           </div>
-          <ul className="namewall" data-reveal>
-            {names.map((n) => (
-              <li key={n}>{n}</li>
-            ))}
-          </ul>
+          <LogoMarquee rows={logoRows} />
         </div>
       </section>
       <CtaBand
