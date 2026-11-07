@@ -1,16 +1,20 @@
 import type { Metadata } from 'next'
+import { pageMeta } from '@/lib/seo'
 import { Brush } from '@/components/Brush'
 import { FigureCard } from '@/components/FigureCard'
 import { CtaBand, PageHero } from '@/components/PageHero'
+import { Related } from '@/components/Related'
 import { LogoMarquee } from '@/components/LogoMarquee'
-import { customerStories, feedyouProof, logoWall, type CustomerStory } from '@/content/claims'
+import { StoryCard } from '@/components/StoryCard'
+import { customerStories, feedyouProof, logoWall } from '@/content/claims'
 import { showFeedyou } from '@/content/site'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: 'Customer stories',
-  description: 'Published customer stories: voice AI, call routing, agent assist, chat and email automation in contact centers across Europe.',
-  alternates: { canonical: '/customers' },
-}
+  description:
+    'Published customer stories: voice AI, call routing, agent assist, chat and email automation in contact centers across Europe.',
+  path: '/customers',
+})
 
 const stories = customerStories.filter((s) => showFeedyou || s.origin === 'eb')
 const withMetric = stories.filter((s) => s.metric)
@@ -24,38 +28,12 @@ const logoRows = showFeedyou
   ? [shownLogos.filter((l) => l.origin === 'eb'), shownLogos.filter((l) => l.origin === 'feedyou')]
   : [shownLogos]
 
-function Card({ s }: { s: CustomerStory }) {
-  return (
-    <article className="story">
-      <p className="story__meta">
-        {s.sector} · {s.country}
-      </p>
-      <h3>{s.name}</h3>
-      {s.metric && (
-        <p className="story__metric">
-          <b>{s.metric.value}</b>
-          <span>{s.metric.label}</span>
-        </p>
-      )}
-      <p className="story__chips">
-        {s.channels.map((c) => (
-          <span key={c} className="chip">
-            {c}
-          </span>
-        ))}
-      </p>
-      {s.origin === 'feedyou' && <p className="story__origin">Feedyou, an Enterprise Bot company</p>}
-      <a className="story-link story-link--dark" href={s.url}>
-        Read the case study ↗
-      </a>
-    </article>
-  )
-}
 
 export default function Customers() {
   return (
     <>
       <PageHero
+        crumbs={[{ name: 'Customer stories', href: '/customers' }]}
         kicker="Customer stories"
         title={
           <>
@@ -93,7 +71,7 @@ export default function Customers() {
           </div>
           <div className="stories" data-reveal>
             {voice.map((s) => (
-              <Card key={s.id} s={s} />
+              <StoryCard key={s.id} s={s} />
             ))}
           </div>
         </div>
@@ -108,7 +86,7 @@ export default function Customers() {
           </div>
           <div className="stories" data-reveal>
             {other.map((s) => (
-              <Card key={s.id} s={s} />
+              <StoryCard key={s.id} s={s} />
             ))}
           </div>
           {more.length > 0 && (
@@ -134,6 +112,7 @@ export default function Customers() {
           <LogoMarquee rows={logoRows} />
         </div>
       </section>
+      <Related route="/customers" />
       <CtaBand
         title={
           <>

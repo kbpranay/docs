@@ -573,7 +573,7 @@ ol {
   width: 100%;
   margin-top: 28px;
 }
-@media (min-width: 1040px) {
+@media (min-width: 1080px) {
   .site-nav,
   .site-header__actions {
     display: flex;
@@ -4822,6 +4822,95 @@ html:not(.js) .scene__play {
 .marquee__toggle:focus-visible {
   outline: 2px solid var(--orange-ink);
   outline-offset: 2px;
+}
+.crumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 18px;
+  padding: 0;
+  list-style: none;
+  font-size: 13.5px;
+  color: var(--on-dark-2);
+}
+.crumbs li + li::before {
+  content: '/';
+  margin-right: 6px;
+  opacity: 0.6;
+}
+.crumbs a {
+  color: var(--on-dark-2);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.crumbs [aria-current='page'] {
+  color: var(--on-dark);
+}
+.related {
+  padding: 28px 0;
+  background: var(--white);
+  border-top: 1px solid var(--line);
+}
+.related__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px 28px;
+}
+.related__label {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.related ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.related a {
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.story--link {
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 150ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .story--link:hover {
+    border-color: var(--orange-display);
+  }
+}
+.story--link:focus-visible {
+  outline: 2px solid var(--orange-ink);
+  outline-offset: 3px;
+}
+.site-header__actions .btn {
+  white-space: nowrap;
+}
+@media (min-width: 1080px) and (max-width: 1279px) {
+  .site-nav {
+    gap: 0;
+  }
+  .site-nav a,
+  .site-nav button.nav-trigger {
+    padding: 10px 9px;
+    font-size: 14px;
+  }
+  .site-header__logo img {
+    width: 148px;
+  }
+  .site-header__actions .btn {
+    padding-inline: 16px;
+    font-size: 14px;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .marquee__track {

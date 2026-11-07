@@ -1,10 +1,12 @@
 import type { Metadata } from 'next'
+import { faqLd, JsonLd, pageMeta } from '@/lib/seo'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Highlight } from '@/components/Highlight'
 import { FigureCard } from '@/components/FigureCard'
 import { Phone } from '@/components/Icons'
 import { CtaBand, PageHero } from '@/components/PageHero'
+import { Related } from '@/components/Related'
 import { integrationBySlug, integrations } from '@/content/integrations'
 import { stats } from '@/content/claims'
 
@@ -17,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   const i = integrationBySlug(slug)
   if (!i) return {}
-  return { title: `${i.name} integration`, description: i.intro, alternates: { canonical: `/integrations/${i.slug}` } }
+  return pageMeta({ title: `${i.name} integration`, description: i.intro, path: `/integrations/${i.slug}` })
 }
 
 export default async function IntegrationPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -26,7 +28,12 @@ export default async function IntegrationPage({ params }: { params: Promise<{ sl
   if (!i) notFound()
   return (
     <>
+      <JsonLd data={faqLd(i.faq)} />
       <PageHero
+        crumbs={[
+          { name: 'Integrations', href: '/integrations' },
+          { name: i.name, href: `/integrations/${i.slug}` },
+        ]}
         kicker={`${i.name} integration`}
         title={<Highlight segments={i.title} />}
         intro={i.intro}
@@ -165,6 +172,7 @@ export default async function IntegrationPage({ params }: { params: Promise<{ sl
           </div>
         </div>
       </section>
+      <Related route="integration" extra={i.slug === 'genesys' ? ['/customers'] : []} />
       <CtaBand title={<>See it on <span className="hl">your</span> {i.name} setup.</>} body="We scope one call type and show the handover into your platform." />
     </>
   )

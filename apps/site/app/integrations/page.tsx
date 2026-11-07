@@ -1,21 +1,25 @@
 import { Brush } from '@/components/Brush'
 import type { Metadata } from 'next'
+import { pageMeta } from '@/lib/seo'
 import Link from 'next/link'
 import { InView } from '@/components/InView'
 import { CtaBand, PageHero } from '@/components/PageHero'
+import { Related } from '@/components/Related'
 import { Arrow } from '@/components/Icons'
 import { integrations } from '@/content/integrations'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: 'Integrations',
-  description: 'Enterprise Bot adds voice AI and quality assessment to Genesys, Microsoft Teams, Cisco, VIER and SIP telephony, with live translation in early access.',
-  alternates: { canonical: '/integrations' },
-}
+  description:
+    'Enterprise Bot adds voice AI and quality assessment to Genesys, Microsoft Teams, Cisco, VIER and SIP telephony, with live translation in early access.',
+  path: '/integrations',
+})
 
 export default function IntegrationsHub() {
   return (
     <>
       <PageHero
+        crumbs={[{ name: 'Integrations', href: '/integrations' }]}
         kicker="Integrations"
         title={
           <>
@@ -83,6 +87,7 @@ export default function IntegrationsHub() {
           </InView>
         </div>
       </section>
+      <Related route="/integrations" />
       <CtaBand title={<>See it on <span className="hl">your</span> platform.</>} body="We scope one call type on your platform and show the handover your agents would see." />
     </>
   )

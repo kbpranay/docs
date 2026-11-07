@@ -1,13 +1,16 @@
 import type { Metadata } from 'next'
+import { pageMeta } from '@/lib/seo'
 import Link from 'next/link'
 import { FigureCard } from '@/components/FigureCard'
 import { CtaBand, PageHero } from '@/components/PageHero'
+import { Related } from '@/components/Related'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: 'Responsible AI and control',
-  description: 'Guardrails, human oversight, approval flows, testing and model choice for AI in the contact center.',
-  alternates: { canonical: '/responsible-ai' },
-}
+  description:
+    'Guardrails, human oversight, approval flows, testing and model choice for AI in the contact center.',
+  path: '/responsible-ai',
+})
 
 const blocks = [
   { t: 'Grounded answers', b: 'Answers come from the knowledge sources you approve; when no approved source covers a question, the agent is set up to say so and offer a person.' },
@@ -29,6 +32,7 @@ export default function ResponsibleAI() {
   return (
     <>
       <PageHero
+        crumbs={[{ name: 'Responsible AI and control', href: '/responsible-ai' }]}
         kicker="Responsible AI"
         title={
           <>
@@ -94,6 +98,7 @@ export default function ResponsibleAI() {
           </p>
         </div>
       </section>
+      <Related route="/responsible-ai" />
       <CtaBand title={<>Review the controls with <span className="hl">your</span> team.</>} body="We walk your risk, compliance and data protection teams through how the AI is governed." />
     </>
   )

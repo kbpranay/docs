@@ -1,14 +1,18 @@
 import { Brush } from '@/components/Brush'
 import type { Metadata } from 'next'
+import { pageMeta } from '@/lib/seo'
 import Link from 'next/link'
 import { FigureCard } from '@/components/FigureCard'
+import { Faq } from '@/components/Faq'
 import { CtaBand, PageHero } from '@/components/PageHero'
+import { Related } from '@/components/Related'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: 'Pilot and evaluation',
-  description: 'How to evaluate Enterprise Bot: one workload, agreed success criteria, your systems and languages, and a clear decision at the end.',
-  alternates: { canonical: '/evaluation' },
-}
+  description:
+    'How to evaluate Enterprise Bot: one workload, agreed success criteria, your systems and languages, and a clear decision at the end.',
+  path: '/evaluation',
+})
 
 const steps = [
   { t: 'Agree the workload and the measures', d: 'One high-volume call or email type, your current baseline and written success criteria before anything is built.' },
@@ -26,10 +30,16 @@ const checklist = [
   'Who decides, and when',
 ]
 
+const faq = [
+  { q: 'How long should a pilot take?', a: 'It depends on the workload and integrations. We agree the scope, measures and timeline with you in the first scoping call and write them down before anything is built.' },
+  { q: 'What do we need to provide for a pilot?', a: 'Your baseline and success criteria, a test line or contact-center connection, one knowledge source, one business system to act in, and the languages to test.' },
+]
+
 export default function Evaluation() {
   return (
     <>
       <PageHero
+        crumbs={[{ name: 'Pilot and evaluation', href: '/evaluation' }]}
         kicker="Pilot and evaluation"
         title={
           <>
@@ -87,6 +97,8 @@ export default function Evaluation() {
           </div>
         </div>
       </section>
+      <Faq id="evaluation-faq" title="Pilot questions" items={faq} tone="white" />
+      <Related route="/evaluation" />
       <CtaBand title={<>Plan <span className="hl">your</span> pilot.</>} body="We agree the workload, measures and setup with you in one scoping call." />
     </>
   )

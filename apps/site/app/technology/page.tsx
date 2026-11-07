@@ -1,22 +1,32 @@
 import { Brush } from '@/components/Brush'
 import type { Metadata } from 'next'
+import { pageMeta } from '@/lib/seo'
 import Link from 'next/link'
 import { FigureCard } from '@/components/FigureCard'
 import { Check } from '@/components/Icons'
+import { Faq } from '@/components/Faq'
 import { CtaBand, PageHero } from '@/components/PageHero'
+import { Related } from '@/components/Related'
 import { Pipeline } from '@/components/Pipeline'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: 'Technology',
   description:
     'How Enterprise Bot voice AI works: cascaded and real-time voice modes, low-latency design, model choice, telephony, guardrails, logs and deployment.',
-  alternates: { canonical: '/technology' },
-}
+  path: '/technology',
+})
+
+const faq = [
+  { q: 'What is the difference between Standard and Realtime voice mode?', a: 'Standard (cascaded) mode runs speech-to-text, a language model and text-to-speech, with guardrails and PII masking on every turn. Realtime mode uses one speech-to-speech model for the most natural turn-taking, with more limited guardrail and PII controls.' },
+  { q: 'Which models and speech engines can we use?', a: 'Speech recognition from engines such as Microsoft Azure, Deepgram and Google; voices from providers such as ElevenLabs, Microsoft Azure and Amazon Polly; language models from OpenAI, Google Gemini, Amazon Bedrock or your own private models.' },
+  { q: 'How do you keep response times low?', a: 'Streaming speech recognition, barge-in, turn-taking tuned per agent and hosting near your telephony. We measure response time on your telephony during the evaluation instead of quoting lab numbers.' },
+]
 
 export default function Technology() {
   return (
     <>
       <PageHero
+        crumbs={[{ name: 'Technology', href: '/technology' }]}
         kicker="Technology"
         title={
           <>
@@ -200,6 +210,8 @@ export default function Technology() {
           </div>
         </div>
       </section>
+      <Faq id="technology-faq" title="Technology questions" items={faq} tone="white" />
+      <Related route="/technology" />
       <CtaBand title={<>Test it on <span className="hl">your</span> lines.</>} body="We measure voice quality and response time on your telephony, in your languages." />
     </>
   )

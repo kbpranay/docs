@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import { Breadcrumbs } from '@/components/Breadcrumbs'
+import { faqLd, JsonLd, pageMeta } from '@/lib/seo'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Highlight } from '@/components/Highlight'
@@ -18,12 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   const p = productBySlug(slug)
   if (!p) return {}
-  return {
-    title: p.name,
-    description: p.intro,
-    alternates: { canonical: `/platform/${p.slug}` },
-    openGraph: { title: `${p.name} · Enterprise Bot`, description: p.intro },
-  }
+  return pageMeta({ title: p.name, description: p.intro, path: `/platform/${p.slug}` })
 }
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -32,23 +29,26 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   if (!p) notFound()
 
   const others = products.filter((o) => o.slug !== p.slug)
-  const faqLd = {
+  const appLd = {
     '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: site.url },
-      { '@type': 'ListItem', position: 2, name: p.name, item: `${site.url}/platform/${p.slug}` },
-    ],
+    '@type': 'SoftwareApplication',
+    name: `Enterprise Bot ${p.name}`,
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Web, cloud or on-premises',
+    description: p.intro,
+    url: `${site.url}/platform/${p.slug}`,
+    publisher: { '@type': 'Organization', name: site.name, url: site.url },
   }
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
+      <JsonLd data={[appLd, faqLd(p.faq)]} />
 
       <section className="page-hero" aria-labelledby="p-title">
         <Waves />
         <div className="container page-hero__grid">
           <div>
+            <Breadcrumbs crumbs={[{ name: p.name, href: `/platform/${p.slug}` }]} />
             <p className="kicker">{p.name}</p>
             <h1 id="p-title">
               <Highlight segments={p.title} />

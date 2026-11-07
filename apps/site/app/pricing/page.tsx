@@ -1,20 +1,31 @@
 import { Brush } from '@/components/Brush'
 import type { Metadata } from 'next'
+import { pageMeta } from '@/lib/seo'
 import Link from 'next/link'
 import { FigureCard } from '@/components/FigureCard'
 import { Check } from '@/components/Icons'
+import { Faq } from '@/components/Faq'
 import { CtaBand, PageHero } from '@/components/PageHero'
+import { Related } from '@/components/Related'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: 'How pricing works',
-  description: 'Enterprise Bot pricing model: a platform fee plus usage, with total cost modelled on your own volumes.',
-  alternates: { canonical: '/pricing' },
-}
+  description:
+    'Enterprise Bot pricing model: a platform fee plus usage, with total cost modelled on your own volumes.',
+  path: '/pricing',
+})
+
+const faq = [
+  { q: 'Does Enterprise Bot publish a price list?', a: 'No. Pricing is a platform fee for your deployment plus usage based on your volumes, with implementation scoped separately. We model it on your own call and email volumes so you can compare it with what you pay today.' },
+  { q: 'What changes the cost?', a: 'Mainly volume and conversation length, the channels and products you use, the deployment model (managed cloud, private cloud or on-premises), the systems to integrate and peak concurrent conversations.' },
+  { q: 'Can we see the cost before we commit?', a: 'Yes. We build a cost model with your volumes and growth scenarios, with platform, usage and implementation shown separately and the assumptions written down for your finance team.' },
+]
 
 export default function Pricing() {
   return (
     <>
       <PageHero
+        crumbs={[{ name: 'How pricing works', href: '/pricing' }]}
         kicker="Pricing"
         title={
           <>
@@ -122,6 +133,8 @@ export default function Pricing() {
           </div>
         </div>
       </section>
+      <Faq id="pricing-faq" title="Pricing questions" items={faq} tone="white" />
+      <Related route="/pricing" />
       <CtaBand title={<>Get a cost model for <span className="hl">your</span> volumes.</>} body="Share your call and email volumes and we will model platform, usage and implementation costs for you." />
     </>
   )

@@ -1,13 +1,15 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { pageMeta } from '@/lib/seo'
 import { DemoForm } from '@/components/DemoForm'
 import { Waves } from '@/components/Waves'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: 'Book a tailored demo',
-  description: 'See Enterprise Bot handle one of your workloads with your contact center, systems and languages.',
-  alternates: { canonical: '/demo' },
-}
+  description:
+    'See Enterprise Bot handle one of your workloads with your contact center, systems and languages.',
+  path: '/demo',
+})
 
 export default function DemoPage() {
   return (

@@ -1,14 +1,17 @@
 import { Brush } from '@/components/Brush'
 import type { Metadata } from 'next'
+import { faqLd, JsonLd, pageMeta } from '@/lib/seo'
 import Link from 'next/link'
 import { FigureCard } from '@/components/FigureCard'
 import { CtaBand, PageHero } from '@/components/PageHero'
+import { Related } from '@/components/Related'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: 'Security and data',
-  description: 'Deployment options, data residency, access control, audit and data logs, and certification status for Enterprise Bot.',
-  alternates: { canonical: '/security' },
-}
+  description:
+    'Deployment options, data residency, access control, audit and data logs, and certification status for Enterprise Bot.',
+  path: '/security',
+})
 
 const blocks = [
   { t: 'Deployment options', b: 'Managed hosting in your region (EU, Middle East, North America or Asia), a dedicated private cloud, or on-premises Kubernetes.' },
@@ -62,7 +65,9 @@ const procurementFaq = [
 export default function Security() {
   return (
     <>
+      <JsonLd data={faqLd(procurementFaq)} />
       <PageHero
+        crumbs={[{ name: 'Security and data', href: '/security' }]}
         kicker="Security and data"
         title={
           <>
@@ -193,6 +198,7 @@ export default function Security() {
           </div>
         </div>
       </section>
+      <Related route="/security" />
       <CtaBand title={<>Bring your <span className="hl">security questionnaire.</span></>} body="We answer it with your deployment model in mind and document the data flow for your review." />
     </>
   )

@@ -1,13 +1,17 @@
 import { Brush } from '@/components/Brush'
 import type { Metadata } from 'next'
+import { pageMeta } from '@/lib/seo'
 import { FigureCard } from '@/components/FigureCard'
+import { Faq } from '@/components/Faq'
 import { CtaBand, PageHero } from '@/components/PageHero'
+import { Related } from '@/components/Related'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: 'Languages',
-  description: 'Voice AI languages for Switzerland, Poland, Eastern Europe and India, tested on your own calls.',
-  alternates: { canonical: '/languages' },
-}
+  description:
+    'Voice AI languages for Switzerland, Poland, Eastern Europe and India, tested on your own calls.',
+  path: '/languages',
+})
 
 const markets = [
   { name: 'Switzerland', langs: ['Swiss German', 'German', 'French', 'Italian', 'English'], note: 'Swiss German alongside German, French, Italian and English, tested on your own call audio.' },
@@ -16,10 +20,17 @@ const markets = [
   { name: 'India', langs: ['Hindi', 'English (India)', 'Bengali'], note: 'Further Indian languages have been tested in pilots and are evaluated per project.' },
 ]
 
+const faq = [
+  { q: 'Which languages does the voice AI support?', a: 'Languages depend on the speech and language components configured for your deployment. Our focus markets are Switzerland (Swiss German, German, French, Italian, English), Poland, Eastern Europe and India; ask us about other languages.' },
+  { q: 'Does it understand Swiss German?', a: 'Yes. Swiss German is supported alongside German, French, Italian and English, and we test recognition on your own call audio before go-live.' },
+  { q: 'How do you check quality in our languages?', a: 'We choose the speech engine per language, add your vocabulary and test on your own call types, including noise, accents and language switches.' },
+]
+
 export default function Languages() {
   return (
     <>
       <PageHero
+        crumbs={[{ name: 'Languages', href: '/languages' }]}
         kicker="Languages"
         title={
           <>
@@ -108,6 +119,8 @@ export default function Languages() {
           </div>
         </div>
       </section>
+      <Faq id="languages-faq" title="Language questions" items={faq} tone="white" />
+      <Related route="/languages" />
       <CtaBand title={<>Hear it in <span className="hl">your</span> language.</>} body="Tell us your languages and markets and we will test them on your own call types." />
     </>
   )

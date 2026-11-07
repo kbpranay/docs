@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { offices, site } from '@/content/site'
 import { integrations } from '@/content/integrations'
 import { products } from '@/content/products'
+import { industries } from '@/content/industries'
 
 export function Footer() {
   return (
@@ -37,10 +38,20 @@ export function Footer() {
                   </li>
                 ))}
               </ul>
+              <h2 style={{ marginTop: 28 }}>Industries</h2>
+              <ul>
+                {industries.map((i) => (
+                  <li key={i.slug}>
+                    <Link href={`/industries/${i.slug}`}>{i.name}</Link>
+                  </li>
+                ))}
+              </ul>
             </div>
             <div>
               <h2>Company</h2>
               <ul>
+                <li><Link href="/about">About us</Link></li>
+                <li><Link href="/blog">Blog</Link></li>
                 <li><Link href="/technology">Technology</Link></li>
                 <li><Link href="/languages">Languages</Link></li>
                 <li><Link href="/security">Security and data</Link></li>

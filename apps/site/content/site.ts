@@ -11,9 +11,9 @@ export const site = {
 }
 
 export const nav = [
+  { label: 'Industries', href: '/industries' },
   { label: 'Integrations', href: '/integrations' },
   { label: 'Technology', href: '/technology' },
-  { label: 'Languages', href: '/languages' },
   { label: 'Security', href: '/security' },
   { label: 'Customers', href: '/customers' },
   { label: 'Pricing', href: '/pricing' },

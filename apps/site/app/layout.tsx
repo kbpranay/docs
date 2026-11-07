@@ -4,7 +4,8 @@ import type { ReactNode } from 'react'
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 import { RevealObserver } from '@/components/RevealObserver'
-import { site } from '@/content/site'
+import { offices, site } from '@/content/site'
+import { JsonLd } from '@/lib/seo'
 import './globals.css'
 
 // Self-hosted Poppins (WOFF2, Latin subset) — no third-party font requests.
@@ -32,9 +33,10 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     siteName: 'Enterprise Bot',
-    title: 'Resolve the call. Score the conversation.',
+    title: 'Enterprise Bot — Voice AI and quality assessment for contact centers',
     description: site.description,
   },
+  twitter: { card: 'summary_large_image' },
   robots: indexable ? { index: true, follow: true } : { index: false, follow: false },
   icons: { icon: '/icon.svg' },
 }
@@ -57,6 +59,20 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           Skip to content
         </a>
         <Header />
+        <JsonLd
+          data={[
+            {
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: site.name,
+              url: site.url,
+              logo: `${site.url}/eb-logo-on-light.svg`,
+              description: site.description,
+              address: offices.map((o) => ({ '@type': 'PostalAddress', streetAddress: o.address, addressLocality: o.city, addressCountry: o.country })),
+            },
+            { '@context': 'https://schema.org', '@type': 'WebSite', name: site.name, url: site.url },
+          ]}
+        />
         <main id="main">{children}</main>
         <Footer />
         <RevealObserver />

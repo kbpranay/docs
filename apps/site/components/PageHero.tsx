@@ -1,16 +1,31 @@
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 import { site } from '@/content/site'
+import type { Crumb } from '@/lib/seo'
+import { Breadcrumbs } from './Breadcrumbs'
 import { Arrow } from './Icons'
 import { Waves } from './Waves'
 
 /** Shared navy hero for content pages. */
-export function PageHero({ kicker, title, intro, aside }: { kicker: string; title: ReactNode; intro: string; aside?: ReactNode }) {
+export function PageHero({
+  kicker,
+  title,
+  intro,
+  aside,
+  crumbs,
+}: {
+  kicker: string
+  title: ReactNode
+  intro: string
+  aside?: ReactNode
+  crumbs?: Crumb[]
+}) {
   return (
     <section className="page-hero" aria-labelledby="page-title">
       <Waves />
       <div className={aside ? 'container page-hero__grid' : 'container'}>
         <div>
+          {crumbs && <Breadcrumbs crumbs={crumbs} />}
           <p className="kicker">{kicker}</p>
           <h1 id="page-title">{title}</h1>
           <p className="intro">{intro}</p>

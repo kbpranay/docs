@@ -1,16 +1,19 @@
 import { Brush } from '@/components/Brush'
 import type { Metadata } from 'next'
+import { pageMeta } from '@/lib/seo'
 import Link from 'next/link'
 import { FigureCard } from '@/components/FigureCard'
 import { Check } from '@/components/Icons'
+import { Faq } from '@/components/Faq'
 import { CtaBand, PageHero } from '@/components/PageHero'
+import { Related } from '@/components/Related'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: 'Implementation and support',
   description:
     'How Enterprise Bot goes live in your contact center: phased delivery, testing and acceptance, training for admins and agents, support and a clean exit.',
-  alternates: { canonical: '/implementation' },
-}
+  path: '/implementation',
+})
 
 const phases = [
   { t: 'Discovery', d: 'Workloads, languages, systems, data rules and success measures agreed with your team.' },
@@ -47,10 +50,16 @@ function Caps({ items, four }: { items: { t: string; b: string }[]; four?: boole
   )
 }
 
+const faq = [
+  { q: 'Who runs the AI after go-live?', a: 'Your team, with our support. We train admins to edit flows, knowledge and prompts and to read the logs, and supervisors to coach from quality results.' },
+  { q: 'Can we leave and take our data with us?', a: 'Yes. Conversation logs and workflow configuration can be exported, and your data is deleted as the contract sets out.' },
+]
+
 export default function Implementation() {
   return (
     <>
       <PageHero
+        crumbs={[{ name: 'Implementation and support', href: '/implementation' }]}
         kicker="Implementation and support"
         title={
           <>
@@ -121,6 +130,8 @@ export default function Implementation() {
           <Caps items={support} four />
         </div>
       </section>
+      <Faq id="implementation-faq" title="Rollout questions" items={faq} tone="white" />
+      <Related route="/implementation" />
       <CtaBand
         title={
           <>

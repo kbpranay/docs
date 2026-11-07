@@ -41,18 +41,9 @@ const logoRows = showFeedyou
 
 export default function Home() {
   const starts = startingPoints.map((slug) => products.find((p) => p.slug === slug)!)
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'Enterprise Bot',
-    url: site.url,
-    logo: `${site.url}/eb-logo-on-light.svg`,
-    description: site.description,
-  }
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       {/* 1 — Hero: category + signature product scene */}
       <section className="hero" aria-labelledby="hero-title">

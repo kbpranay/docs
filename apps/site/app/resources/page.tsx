@@ -1,11 +1,14 @@
 import type { Metadata } from 'next'
+import { pageMeta } from '@/lib/seo'
 import { CtaBand, PageHero } from '@/components/PageHero'
+import { Related } from '@/components/Related'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: 'Resources',
-  description: 'Guides on agentic voice AI, Genesys, language coverage and contact-center productivity.',
-  alternates: { canonical: '/resources' },
-}
+  description:
+    'Guides on agentic voice AI, Genesys, language coverage and contact-center productivity.',
+  path: '/resources',
+})
 
 const BLOG = 'https://www.enterprisebot.ai/blog/'
 const posts = [
@@ -21,6 +24,7 @@ export default function Resources() {
   return (
     <>
       <PageHero
+        crumbs={[{ name: 'Resources', href: '/resources' }]}
         kicker="Resources"
         title={
           <>
@@ -47,6 +51,7 @@ export default function Resources() {
           </div>
         </div>
       </section>
+      <Related route="/resources" />
       <CtaBand title={<>Prefer to see it <span className="hl">working?</span></>} body="Bring one call type and we will show it handled, handed over and scored." />
     </>
   )
