@@ -61,7 +61,7 @@ test('no unsupported superlatives, guarantees or certification claims in visible
     }
   }
   const sec = read('app/security/page.tsx')
-  assert.match(sec, /ISO 27001:2022<\/b> Certification audit in progress/, 'ISO 27001 must be stated as in progress')
+  assert.match(sec, /ISO 27001:2022<\/span>\s*<span>Certification audit in progress/, 'ISO 27001 must be stated as in progress')
 })
 
 test('every claim records its source, observed date and launch check', () => {

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { FigureCard } from '@/components/FigureCard'
 import { CtaBand, PageHero } from '@/components/PageHero'
 
 export const metadata: Metadata = {
@@ -12,9 +13,9 @@ const blocks = [
   { t: 'Deployment options', b: 'Managed hosting in the EU, Middle East, North America or Asia; a dedicated private cloud; or on-premises Kubernetes (EKS, GKE, AKS or your own infrastructure).' },
   { t: 'Data residency', b: 'Choose where data is processed and stored. We document the data flow component by component, including speech engines and language models.' },
   { t: 'Your models, your boundary', b: 'Use language models through your own private endpoints or self-hosted components when data must not leave your environment.' },
-  { t: 'Access control', b: 'Single sign-on and SCIM, role-based access and enforced two-step login.' },
+  { t: 'Access control', b: 'Single sign-on and SCIM, role-based access and team-wide two-step login.' },
   { t: 'Audit and data logs', b: 'Audit view of configuration changes, per-turn conversation logs and versioned workflows with exportable change history.' },
-  { t: 'Data protection', b: 'PII masking before data reaches a model, encryption in transit and at rest, and retention configured per deployment.' },
+  { t: 'Data protection', b: 'PII masking before data reaches a model and retention configured per deployment. Encryption and key handling are documented for your security review.' },
 ]
 
 export default function Security() {
@@ -24,10 +25,29 @@ export default function Security() {
         kicker="Security and data"
         title={
           <>
-            Built to pass <span className="hl">your security review.</span>
+            Ready for <span className="hl">your security review.</span>
           </>
         }
         intro="Where it runs, what it may access, what it records and who can change it, documented for your security and data protection teams."
+        aside={
+          <FigureCard
+            title="Certifications, stated plainly"
+            rows={[
+              <>
+                <span className="figure-row__k">SOC 2</span>
+                <span>Report available on request under NDA</span>
+              </>,
+              <>
+                <span className="figure-row__k">ISO 27001:2022</span>
+                <span>Certification audit in progress</span>
+              </>,
+              <>
+                <span className="figure-row__k">GDPR</span>
+                <span>DPA and data-flow documentation</span>
+              </>,
+            ]}
+          />
+        }
       />
       <section className="section section--paper" aria-labelledby="sec-title">
         <div className="container">
@@ -45,23 +65,16 @@ export default function Security() {
         </div>
       </section>
       <section className="section section--white" aria-labelledby="cert-title">
-        <div className="container fit fit--light">
-          <div data-reveal>
-            <p className="kicker">Certifications</p>
+        <div className="container">
+          <div data-reveal className="narrow">
+            <p className="kicker">For your review</p>
             <h2 id="cert-title" className="h2" style={{ marginTop: 16 }}>
-              Status, stated plainly.
+              Documentation on request.
             </h2>
-            <ul className="status-list">
-              <li>
-                <b>SOC 2</b> Report available on request under NDA.
-              </li>
-              <li>
-                <b>ISO 27001:2022</b> Certification audit in progress.
-              </li>
-              <li>
-                <b>GDPR</b> Data processing agreement and data-flow documentation provided during procurement.
-              </li>
-            </ul>
+            <p className="lede" style={{ marginTop: 20 }}>
+              SOC 2 report, data processing agreement, component-by-component data flow and answers to your security
+              questionnaire, shared during procurement.
+            </p>
             <p className="lede" style={{ marginTop: 20 }}>
               How this website handles your data: <Link href="/privacy">Privacy notice</Link>. Technical detail:{' '}
               <Link href="/technology">Technology</Link>.

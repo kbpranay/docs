@@ -28,7 +28,7 @@ export default function Privacy() {
 
         <h2 id="voice-demo">Live voice demo</h2>
         <p>
-          The “Talk to the demo voice agent” button asks your browser for microphone access only after you press start.
+          The “Try a demo call” button asks your browser for microphone access only after you press start.
           During the call, your voice is streamed to our AI voice provider (Google Gemini, or OpenAI where configured) to
           generate the agent’s replies and captions. Calls are limited to two minutes. The website does not record or
           store the audio. Please do not share personal information: the scenario is fictional.

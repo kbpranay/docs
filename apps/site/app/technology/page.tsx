@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { FigureCard } from '@/components/FigureCard'
+import { Check } from '@/components/Icons'
 import { CtaBand, PageHero } from '@/components/PageHero'
+import { Pipeline } from '@/components/Pipeline'
 
 export const metadata: Metadata = {
   title: 'Technology',
@@ -20,6 +23,19 @@ export default function Technology() {
           </>
         }
         intro="Two voice modes, the speech and language models you choose, your telephony, and a full record of what the AI did."
+        aside={
+          <FigureCard
+            title="Designed for low latency"
+            rows={['Streaming speech recognition', 'Barge-in: callers can interrupt', 'Turn-taking tuned per agent', 'Hosted near your telephony'].map((t) => (
+              <>
+                <span className="figure-row__tick" aria-hidden="true">
+                  <Check />
+                </span>
+                <span>{t}</span>
+              </>
+            ))}
+          />
+        }
       />
 
       <section className="section section--paper" aria-labelledby="modes-title">
@@ -28,7 +44,7 @@ export default function Technology() {
             <div>
               <p className="kicker">Voice architecture</p>
               <h2 id="modes-title" className="h2" style={{ marginTop: 16 }}>
-                Cascaded or real-time. <span className="hl">Per agent.</span>
+                Cascaded or real‑time. <span className="hl">Per agent.</span>
               </h2>
             </div>
             <p className="lede">Choose the voice mode for each agent based on what the call needs: control and accuracy, or the most natural turn-taking.</p>
@@ -37,6 +53,10 @@ export default function Technology() {
             <article className="mode">
               <p className="mode__tag">Cascaded</p>
               <h3>Speech-to-text → language model → text-to-speech</h3>
+              <Pipeline
+                label="Cascaded: caller, speech-to-text, language model with guardrails and PII masking, text-to-speech, caller"
+                nodes={[{ name: 'Speech-to-text' }, { name: 'Language model', tag: 'Guardrails · PII masking', strong: true }, { name: 'Text-to-speech' }]}
+              />
               <ul>
                 <li>Guardrails and PII masking apply to every turn</li>
                 <li>Readable transcripts for QA and audit</li>
@@ -47,6 +67,7 @@ export default function Technology() {
             <article className="mode">
               <p className="mode__tag">Real-time</p>
               <h3>One speech-to-speech model hears and answers</h3>
+              <Pipeline label="Real-time: caller, speech-to-speech model, caller" nodes={[{ name: 'Speech-to-speech model', strong: true }]} />
               <ul>
                 <li>The most natural turn-taking</li>
                 <li>Suited to open, conversational calls</li>
@@ -106,7 +127,7 @@ export default function Technology() {
           <div className="integrations-list" data-reveal>
             <article className="integration">
               <h3>Speech-to-text</h3>
-              <p>Engines such as Soniox, Microsoft Azure, Deepgram and Google, chosen per language and tuned to your vocabulary.</p>
+              <p>Engines such as Microsoft Azure, Deepgram and Google, chosen per language, with your vocabulary added and tested.</p>
             </article>
             <article className="integration">
               <h3>Text-to-speech</h3>
@@ -118,7 +139,7 @@ export default function Technology() {
             </article>
             <article className="integration">
               <h3>Compare before you switch</h3>
-              <p>Test models side by side on your own scenarios and re-run the tests after every change.</p>
+              <p>Compare language models side by side on your own scenarios before you switch.</p>
             </article>
           </div>
         </div>
@@ -164,14 +185,14 @@ export default function Technology() {
       </section>
 
       <section className="section section--white" aria-labelledby="deploy-title">
-        <div className="container fit fit--light">
-          <div data-reveal>
+        <div className="container">
+          <div data-reveal className="narrow">
             <p className="kicker">Telephony and deployment</p>
             <h2 id="deploy-title" className="h2" style={{ marginTop: 16 }}>
               Runs where your rules say it can.
             </h2>
             <p className="lede" style={{ marginTop: 20 }}>
-              SIP, SIPREC, WebRTC, WebSockets and platform audio streams. Managed hosting, a dedicated private cloud, or
+              SIP, WebRTC, WebSockets and platform audio streams. Managed hosting, a dedicated private cloud, or
               on-premises Kubernetes. <Link href="/integrations">See integrations</Link> ·{' '}
               <Link href="/security">Security and data</Link>
             </p>

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { FigureCard } from '@/components/FigureCard'
 import { CtaBand, PageHero } from '@/components/PageHero'
 
 export const metadata: Metadata = {
@@ -8,10 +9,10 @@ export const metadata: Metadata = {
 }
 
 const markets = [
-  { name: 'Switzerland', langs: ['Swiss German', 'German', 'French', 'Italian', 'English'], note: 'Swiss German voice agents run in production contact centers.' },
-  { name: 'Poland', langs: ['Polish', 'Ukrainian', 'Russian', 'English'], note: 'Polish voice with on-premises speech options for regulated organisations.' },
+  { name: 'Switzerland', langs: ['Swiss German', 'German', 'French', 'Italian', 'English'], note: 'Swiss German alongside German, French, Italian and English, tested on your own call audio.' },
+  { name: 'Poland', langs: ['Polish', 'Ukrainian', 'Russian', 'English'], note: 'Polish alongside Ukrainian, Russian and English for multilingual service lines.' },
   { name: 'Eastern Europe', langs: ['Czech', 'Slovak', 'Romanian', 'Hungarian', 'Bulgarian', 'Latvian', 'Lithuanian'], note: 'Voices and recognition per language, configured for each deployment.' },
-  { name: 'India', langs: ['Hindi', 'English (India)', 'Bengali'], note: 'Further Indian languages are evaluated per project, including language switching within a call.' },
+  { name: 'India', langs: ['Hindi', 'English (India)', 'Bengali'], note: 'Further Indian languages have been tested in pilots and are evaluated per project.' },
 ]
 
 export default function Languages() {
@@ -25,6 +26,26 @@ export default function Languages() {
           </>
         }
         intro="Voice AI for the languages and dialects your customers actually speak, with the speech engine chosen per language and tested on your own calls."
+        aside={
+          <FigureCard
+            title="One call, three languages"
+            label="Illustrative"
+            rows={[
+              <>
+                <span className="figure-row__k">Caller</span>
+                <span className="chip">Swiss German</span>
+              </>,
+              <>
+                <span className="figure-row__k">Agent reply</span>
+                <span className="chip">Swiss German</span>
+              </>,
+              <>
+                <span className="figure-row__k">CRM note</span>
+                <span className="chip chip--ok">English</span>
+              </>,
+            ]}
+          />
+        }
       />
       <section className="section section--paper" aria-labelledby="markets-title">
         <div className="container">
@@ -68,8 +89,8 @@ export default function Languages() {
               <p>Product names, places and specialist terms added and tested.</p>
             </article>
             <article className="cap">
-              <h3>Blind scoring</h3>
-              <p>Transcripts compared with a blind reference, plus task success per language.</p>
+              <h3>Reference scoring</h3>
+              <p>Transcripts checked against a reference, plus task success per language.</p>
             </article>
             <article className="cap">
               <h3>Engine per language</h3>

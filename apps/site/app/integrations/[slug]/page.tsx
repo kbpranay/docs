@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Highlight } from '@/components/Highlight'
+import { FigureCard } from '@/components/FigureCard'
+import { Phone } from '@/components/Icons'
 import { CtaBand, PageHero } from '@/components/PageHero'
 import { integrationBySlug, integrations } from '@/content/integrations'
 
@@ -23,14 +25,41 @@ export default async function IntegrationPage({ params }: { params: Promise<{ sl
   if (!i) notFound()
   return (
     <>
-      <PageHero kicker={`${i.name} integration`} title={<Highlight segments={i.title} />} intro={i.intro} />
+      <PageHero
+        kicker={`${i.name} integration`}
+        title={<Highlight segments={i.title} />}
+        intro={i.intro}
+        aside={
+          <FigureCard
+            title="How a call flows"
+            label="Illustrative"
+            icon={<Phone />}
+            rows={[
+              <>
+                <span className="figure-row__k">{i.name}</span>
+                <span className="figure-row__arrow" aria-hidden="true">→</span>
+                <span className="figure-row__eb">Voice Agent</span>
+                <span className="chip">{i.flow.method}</span>
+              </>,
+              <>
+                <span className="figure-row__k">Action</span>
+                <span className="chip chip--ok">{i.flow.action}</span>
+              </>,
+              <>
+                <span className="figure-row__k">Handover</span>
+                <span>Back to {i.name} · summary attached</span>
+              </>,
+            ]}
+          />
+        }
+      />
 
       <section className="section section--paper" aria-labelledby="keep-title">
         <div className="container problem">
           <div data-reveal>
             <p className="kicker">What stays</p>
             <h2 id="keep-title" className="h2" style={{ marginTop: 16 }}>
-              Nothing you rely on changes.
+              Your platform keeps its job.
             </h2>
             <p className="lede" style={{ marginTop: 20 }}>
               {i.handover}

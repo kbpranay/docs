@@ -73,10 +73,14 @@ export default function Home() {
                 <Link className="btn btn--primary" href={site.primaryCta.href}>
                   {site.primaryCta.label} <Arrow />
                 </Link>
-                <Link className="btn btn--ghost" href={site.secondaryCta.href}>
-                  {voiceDemoEnabled ? 'Talk to the voice agent' : site.secondaryCta.label}
+                <Link className="btn btn--ghost" href={voiceDemoEnabled ? '/#try' : site.secondaryCta.href}>
+                  {voiceDemoEnabled ? 'Try a demo call' : site.secondaryCta.label}
                 </Link>
               </div>
+              <p className="hero__platforms">
+                Added to the platform you already run: Genesys Cloud, Microsoft Teams (via Luware Nimbus), Cisco, VIER and
+                SIP telephony. <Link href="/integrations">See integrations →</Link>
+              </p>
             </div>
             <div className="hero__scene">
               <HeroScene />
@@ -112,7 +116,6 @@ export default function Home() {
               published results.
             </p>
           </div>
-          {voiceDemoEnabled && <VoiceDemo provider={voiceDemoProvider} providerName={providerLabel[voiceDemoProvider]} />}
           <SampleCall />
           <article className="feature-story feature-story--wide" data-reveal>
             <div>
@@ -136,6 +139,14 @@ export default function Home() {
           </article>
         </div>
       </section>
+
+      {voiceDemoEnabled && (
+        <section id="try" className="section section--paper" aria-label="Try a demo call" style={{ paddingTop: 0 }}>
+          <div className="container">
+            <VoiceDemo provider={voiceDemoProvider} providerName={providerLabel[voiceDemoProvider]} />
+          </div>
+        </section>
+      )}
 
       {/* 3 — Quality assessment */}
       <section id="quality" className="section section--white" aria-labelledby="quality-title">

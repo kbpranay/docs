@@ -120,7 +120,7 @@ export const products: Product[] = [
       { icon: 'handover', title: 'Human and AI conversations', body: 'One quality standard for your agents and your AI agents.' },
       { icon: 'globe', title: 'Multilingual evaluation', body: 'Evaluates in the language of the conversation, within the languages configured for your deployment.' },
       { icon: 'trend', title: 'Trends by team and topic', body: 'See where quality slips and which topics need coaching or a process fix.' },
-      { icon: 'turns', title: 'From coaching to practice', body: 'Turn recurring coaching points into scenarios agents rehearse with AI before live calls. Available in selected deployments.' },
+      { icon: 'turns', title: 'From coaching to practice', body: 'Turning recurring coaching points into scenarios agents rehearse with AI is not yet generally available. Ask us about its status.' },
     ],
     fit: {
       integrations: ['Call recordings and transcripts from your contact center', 'Genesys Cloud and Cisco contact centers', 'Enterprise Bot voice, email and chat agents'],

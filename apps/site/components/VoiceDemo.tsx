@@ -88,7 +88,7 @@ export function VoiceDemo({ provider, providerName }: { provider: VoiceProvider;
           <Phone />
         </span>
         <div>
-          <p className="voice-demo__title">Talk to the demo voice agent</p>
+          <p className="voice-demo__title">Try a demo call</p>
           <p className="voice-demo__sub">
             A sample insurance-claims line. Ask about a claim, change a refund account or report a new claim, in your
             language. Up to {Math.round(DEFAULT_MAX_SECONDS / 60)} minutes.
@@ -114,7 +114,8 @@ export function VoiceDemo({ provider, providerName }: { provider: VoiceProvider;
       {phase === 'consent' && (
         <div className="voice-demo__consent" role="dialog" aria-label="Before you start">
           <p>
-            Uses your microphone; your voice is processed by {providerName} for this call.{' '}
+            Uses your microphone; your voice is processed by {providerName} for this call. Fictional scenario: please
+            don’t share personal details.{' '}
             <a href="/privacy#voice-demo">Privacy</a>
           </p>
           <div className="voice-demo__consent-actions">

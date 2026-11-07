@@ -11,10 +11,10 @@ const BLOG = 'https://www.enterprisebot.ai/blog/'
 const posts = [
   { t: 'The shift from IVRs to voicebots, and now agentic voice AI', d: 'Jun 2026', href: BLOG + 'the-shift-from-ivrs-to-voicebots-and-now-agentic-voice-ai', topic: 'Voice AI' },
   { t: 'Voice bots: speech-to-text, text-to-speech and language coverage', d: 'Apr 2025', href: BLOG + 'the-evolution-of-voice-bots-advances-in-speech-to-text-and-text-to-speech-technologies-2025-and-language-coverage', topic: 'Languages' },
-  { t: 'Upgrade your Genesys contact center with generative AI automation', d: '2024', href: BLOG + 'upgrade-your-genesys-contact-center-with-enterprise-bots-genai-automation', topic: 'Genesys' },
+  { t: 'Upgrade your Genesys contact center with generative AI automation', d: 'Earlier', href: BLOG + 'upgrade-your-genesys-contact-center-with-enterprise-bots-genai-automation', topic: 'Genesys' },
   { t: 'How to improve agent productivity in your call center', d: 'Apr 2026', href: BLOG + 'how-to-improve-agent-productivity-in-call-centers', topic: 'Agent assist' },
   { t: 'Key questions to ask before investing in conversational AI', d: 'Nov 2026', href: BLOG + 'key-questions-to-ask-before-investing-in-conversational-ai', topic: 'Evaluation' },
-  { t: 'On-premises chatbots and safe business communication', d: 'Blog', href: BLOG + 'on-premise-chatbots-the-future-of-safe-business-communication', topic: 'Deployment' },
+  { t: 'On-premises chatbots and safe business communication', d: 'Earlier', href: BLOG + 'on-premise-chatbots-the-future-of-safe-business-communication', topic: 'Deployment' },
 ]
 
 export default function Resources() {

@@ -1,12 +1,13 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { InView } from '@/components/InView'
 import { CtaBand, PageHero } from '@/components/PageHero'
 import { Arrow } from '@/components/Icons'
 import { integrations } from '@/content/integrations'
 
 export const metadata: Metadata = {
   title: 'Integrations',
-  description: 'Enterprise Bot adds voice AI, quality assessment and live translation to Genesys, Microsoft Teams, Cisco, VIER and SIP telephony.',
+  description: 'Enterprise Bot adds voice AI and quality assessment to Genesys, Microsoft Teams, Cisco, VIER and SIP telephony, with live translation in early access.',
   alternates: { canonical: '/integrations' },
 }
 
@@ -20,14 +21,14 @@ export default function IntegrationsHub() {
             The AI layer for the contact center <span className="hl">you already run.</span>
           </>
         }
-        intro="Keep your platform for routing, queues and the agent desktop. Add Enterprise Bot for voice AI, agent assist, quality assessment and live translation."
+        intro="Keep your platform for routing, queues and the agent desktop. Add Enterprise Bot for voice AI, agent assist and quality assessment, with live translation in early access."
       />
       <section className="section section--paper" aria-labelledby="hub-title">
         <div className="container">
           <h2 id="hub-title" className="sr-only">
             Platforms
           </h2>
-          <div className="hub">
+          <div className="hub hub--partners">
             {integrations.map((i, n) => (
               <Link key={i.slug} href={`/integrations/${i.slug}`} className="hub__card" data-reveal style={{ ['--reveal-delay' as string]: `${(n % 3) * 70}ms` }}>
                 <span className="hub__name">
@@ -54,20 +55,31 @@ export default function IntegrationsHub() {
               Three ways to connect, one way of working.
             </h2>
           </div>
-          <div className="caps" data-reveal>
-            <article className="cap">
-              <h3>Audio streaming</h3>
-              <p>Your platform streams the call (for example Genesys AudioHook) and keeps the audio record.</p>
-            </article>
-            <article className="cap">
-              <h3>SIP</h3>
-              <p>Calls reach the Voice Agent over SIP and transfer back with context in SIP headers.</p>
-            </article>
-            <article className="cap">
-              <h3>Recording streams</h3>
-              <p>SIPREC or media streams on human-handled calls for agent assist and quality assessment.</p>
-            </article>
-          </div>
+          <InView className="lanes">
+            <div className="lanes__box" data-reveal>
+              <b>Your contact center</b>
+              <span>Genesys, Teams, Cisco, VIER or any SIP telephony</span>
+            </div>
+            <div className="lanes__mid" data-reveal style={{ ['--reveal-delay' as string]: '70ms' }}>
+              {[
+                ['Audio streaming', 'Your platform streams the call and keeps the audio record.'],
+                ['SIP', 'Calls reach the Voice Agent and transfer back with context in SIP headers.'],
+                ['Media streams', 'Streams on agent calls for assist and QA, where your platform supports them.'],
+              ].map(([t, d]) => (
+                <div key={t} className="lane">
+                  <p className="lane__t">{t}</p>
+                  <span className="lane__line" aria-hidden="true">
+                    <i />
+                  </span>
+                  <p className="lane__d">{d}</p>
+                </div>
+              ))}
+            </div>
+            <div className="lanes__box lanes__box--eb" data-reveal style={{ ['--reveal-delay' as string]: '140ms' }}>
+              <b>Enterprise Bot</b>
+              <span>Voice Agent · Agent Assist · Quality Assessment</span>
+            </div>
+          </InView>
         </div>
       </section>
       <CtaBand title={<>See it on <span className="hl">your</span> platform.</>} body="We scope one call type on your platform and show the handover your agents would see." />

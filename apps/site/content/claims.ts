@@ -169,7 +169,7 @@ export const positioning = {
   voiceDemo: {
     id: 'live-voice-demo',
     status: 'positioning',
-    source: 'Website live demo (components/VoiceDemo.tsx) on a third-party real-time voice model (OpenAI Realtime), CEO instruction 7 Nov 2026',
+    source: 'Website live demo (components/VoiceDemo.tsx) on a real-time voice model (Google Gemini by default, or OpenAI), CEO instruction 7 Nov 2026',
     observed: OBSERVED,
     reviewBeforeLaunch:
       'Keep the consent notice naming the voice provider (Gemini by default, or OpenAI). Privacy review of sending visitor audio to OpenAI (privacy notice, DPA). Confirm cost caps and abuse limits.',
@@ -181,6 +181,15 @@ export const positioning = {
     sourceUrl: 'https://www.enterprisebot.ai/technology',
     observed: OBSERVED,
     reviewBeforeLaunch: 'Confirm each listed integration is current and its supported versions.',
+  },
+  technologyPage: {
+    id: 'technology-page',
+    status: 'published-public',
+    source:
+      'enterprisebot.ai/technology and /products/voice-bot: managed hosting in EU, Middle East, North America or Asia; dedicated VPC or on-prem; Kubernetes on EKS, GKE, AKS or own infrastructure; SCIM/SSO and RBAC; immutable audit logs; LLM choice (ChatGPT, Gemini, Bedrock, private models); STT Deepgram/Google/Microsoft; TTS ElevenLabs/Polly/Azure Neural; generic SIP/WebRTC with your own SBC',
+    sourceUrl: 'https://www.enterprisebot.ai/technology',
+    observed: OBSERVED,
+    reviewBeforeLaunch: 'Re-confirm each item is current; help center confirms team-wide 2FA, Audit View and conversation logs.',
   },
   integrationStatus: {
     id: 'integration-status',
