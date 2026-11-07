@@ -99,7 +99,7 @@ export default function Home() {
                 <li key={n}>{n}</li>
               ))}
             </ul>
-            <p className="proof-row__ratings">Rated 4.7 on G2 · 4.5 on Capterra · 4.5 on GetApp (as shown November 2026)</p>
+            <p className="proof-row__ratings">Rated 4.7 on G2 · 4.5 on Capterra · 4.5 on GetApp (ratings as published on enterprisebot.ai, November 2026)</p>
           </div>
         </div>
       </section>
