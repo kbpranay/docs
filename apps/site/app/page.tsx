@@ -20,7 +20,7 @@ const startCopy: Record<string, { line: string; does: string[] }> = {
     does: ['Multi-request emails', 'Attachments', 'Drafts for approval'],
   },
   'agent-assist': {
-    line: 'Suggests the right answer during the conversation and writes the wrap-up for your agents.',
+    line: 'Suggests answers from your knowledge during the conversation and writes the wrap-up for your agents.',
     does: ['Suggested answers', 'Summaries', 'CRM write-back'],
   },
   'conversation-analytics': {
@@ -103,7 +103,7 @@ export default function Home() {
                 What customers say, and what they <span className="hl">measured.</span>
               </h2>
             </div>
-            <p className="lede">Named customers, in their own words. Every figure states who measured it and on which deployment.</p>
+            <p className="lede">Named customers, in their own words. Every figure names the customer and where it comes from.</p>
           </div>
 
           <div className="customers">

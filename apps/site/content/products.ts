@@ -41,7 +41,7 @@ export const products: Product[] = [
     navLine: 'Answers and resolves inbound calls',
     title: ['Answer at once. ', { hl: 'Finish the routine requests.' }],
     intro:
-      'An AI voice agent for your inbound lines. It understands the caller, finds the right answer, completes permitted actions in your systems and hands over to a person, with the context, when it should.',
+      'An AI voice agent for your inbound lines. It understands the caller, finds the answer in your approved knowledge, completes permitted actions in your systems and hands over to a person, with the context, when it should.',
     problem: {
       title: 'Most calls are routine. They still wait in the queue.',
       body: 'Address changes, status checks, appointment moves and misrouted calls take agent time that customers spend waiting. Menu trees push the routing work onto the caller.',
@@ -196,7 +196,7 @@ export const products: Product[] = [
     name: 'Agent Assist',
     short: 'Agent Assist',
     navLine: 'Real-time help inside the agent desktop',
-    title: ['Give every agent ', { hl: 'the right answer' }, ' first.'],
+    title: ['Give every agent the answer, ', { hl: 'with its source,' }, ' first.'],
     intro:
       'Real-time support inside the agent workspace: suggested answers from your knowledge, next steps during the conversation and a summary written for the agent when it ends.',
     problem: {
