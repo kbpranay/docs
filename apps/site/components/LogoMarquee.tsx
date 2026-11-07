@@ -37,7 +37,7 @@ export function LogoMarquee({ rows }: { rows: Logo[][] }) {
         <div key={r} className={`marquee__row${r % 2 ? ' marquee__row--rev' : ''}`}>
           <ul className="marquee__track" style={{ ['--count' as string]: row.length }}>
             {[...row, ...row].map((l, i) => (
-              <li key={`${l.name}-${i}`} aria-hidden={i >= row.length ? 'true' : undefined} className={i >= row.length ? 'marquee__dup' : undefined}>
+              <li key={`${l.name}-${i}`} data-origin={l.origin} aria-hidden={i >= row.length ? 'true' : undefined} className={i >= row.length ? 'marquee__dup' : undefined}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={`/logos/${l.file}`} alt={i >= row.length ? '' : l.name} width={150} height={56} loading="lazy" decoding="async" />
               </li>

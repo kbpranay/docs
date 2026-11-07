@@ -123,7 +123,11 @@ export const integrations: Integration[] = [
     connect: [{ title: 'Call forwarding', body: 'Calls are forwarded from VIER to the Enterprise Bot voice agent and back to your agents.' }],
     handover: 'Transfers back to your VIER routing with context.',
     scope: 'Connected through call forwarding from your VIER setup; other integration paths are assessed during scoping.',
-    faq: [{ q: 'Do we have to change numbers?', a: 'No. Calls are forwarded from your existing VIER setup.' }],
+    faq: [
+      { q: 'Do we have to change numbers?', a: 'No. Calls are forwarded from your existing VIER setup.' },
+      { q: 'What happens when the AI cannot help?', a: 'The call goes back to your VIER routing with the context of the conversation, so the agent does not start from zero.' },
+      { q: 'Can we start with one call type?', a: 'Yes. Forward one number or call type first, measure it against your baseline, then widen.' },
+    ],
   },
   {
     slug: 'sip-audiocodes',
@@ -144,7 +148,11 @@ export const integrations: Integration[] = [
     ],
     handover: 'Transfers to your queues or numbers with context passed in SIP headers where supported.',
     scope: 'Codec, SBC and carrier specifics are confirmed during setup.',
-    faq: [{ q: 'Do we need AudioCodes?', a: 'No. Standard SIP carriers and SBCs can connect; codec, SBC and carrier specifics are confirmed during setup. AudioCodes VoiceAI Connect is one live option.' }],
+    faq: [
+      { q: 'Do we need AudioCodes?', a: 'No. Standard SIP carriers and SBCs can connect; codec, SBC and carrier specifics are confirmed during setup. AudioCodes VoiceAI Connect is one live option.' },
+      { q: 'Can we keep our carrier and numbers?', a: 'Yes. Calls reach the Voice Agent over SIP from your existing carrier or session border controller.' },
+      { q: 'How are calls handed to agents?', a: 'Over SIP to the queue or number you choose, with a summary of the conversation passed along where your platform supports it.' },
+    ],
   },
 ]
 

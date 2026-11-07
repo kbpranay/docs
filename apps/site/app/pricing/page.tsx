@@ -133,7 +133,7 @@ export default function Pricing() {
           </div>
         </div>
       </section>
-      <Faq id="pricing-faq" title="Pricing questions" items={faq} tone="white" />
+      <Faq id="pricing-faq" title="Pricing questions" items={faq} tone="paper" />
       <Related route="/pricing" />
       <CtaBand title={<>Get a cost model for <span className="hl">your</span> volumes.</>} body="Share your call and email volumes and we will model platform, usage and implementation costs for you." />
     </>

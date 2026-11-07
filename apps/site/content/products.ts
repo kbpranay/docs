@@ -27,6 +27,7 @@ export interface Product {
   proof?: { stats: StatClaim[]; quote?: QuoteClaim }
   /** Published customer stories (claims.ts customerStories ids) shown under "Also in production". */
   storyIds?: string[]
+  showcase?: { kind: 'call' | 'inbox' | 'chat' | 'suggest' | 'transcript' | 'bars'; title: Segment[]; body: string }
   faq: { q: string; a: string }[]
   /** Lines for the product hero visual. */
   visual: { channel: string; lines: { who: 'customer' | 'agent' | 'person' | 'system'; text: string }[] }
@@ -38,6 +39,7 @@ const deploymentLine =
 export const products: Product[] = [
   {
     slug: 'voice-agent',
+    showcase: { kind: 'call', title: ['One call, ', { hl: 'start to finish.' }], body: 'Verify the caller, find the rule, act in your system and hand over with a summary when a person must decide, all on the same call.' },
     storyIds: ['swiss-health', 'moneta', 'foxconn', 'bezrealitky'],
     icon: 'phone',
     name: 'Voice Agent',
@@ -149,6 +151,7 @@ export const products: Product[] = [
   },
   {
     slug: 'email-agent',
+    showcase: { kind: 'inbox', title: ['Every request in the email, ', { hl: 'handled.' }], body: 'Each email is split into its requests, the details are pulled out and a reply is drafted, then sent or held for approval under your rules.' },
     storyIds: ['avenberg', 'six', 'bcd'],
     icon: 'mail',
     name: 'Email Agent',
@@ -156,7 +159,8 @@ export const products: Product[] = [
     navLine: 'Reads, routes and resolves email',
     title: ['Clear the inbox. ', { hl: 'Keep the judgment.' }],
     intro:
-      'Reads incoming email and attachments, separates each request, drafts or sends the reply and completes routine updates. Exceptions go to your team with the case already prepared.',
+      'Reads incoming email and attachments, separates each request, drafts or sends the reply and completes routine updates. Exceptions go to your team with the case already prepared. It runs on the same knowledge, rules and audit trail as your Voice Agent, and exceptions reach the same queues.',
+    flowTitle: ['From inbox to ', { hl: 'resolved case.' }],
     problem: {
       title: 'Email queues hide work.',
       body: 'One message can contain three requests, a scanned form and a missing policy number. Manual triage turns that into hours of reading before anyone acts.',
@@ -203,6 +207,7 @@ export const products: Product[] = [
   },
   {
     slug: 'chat-agent',
+    showcase: { kind: 'chat', title: ['Answers that ', { hl: 'act.' }], body: 'Live data and your systems behind every answer, so the chat can check a train, start a refund or hand over to a colleague without losing the thread.' },
     storyIds: ['tpe', 'swica', 'ksw', 'yuh'],
     icon: 'chat',
     name: 'Chat Agent',
@@ -210,9 +215,9 @@ export const products: Product[] = [
     navLine: 'Web, app and WhatsApp conversations',
     title: ['Answer in the moment. ', { hl: 'Act on it too.' }],
     intro:
-      'AI chat for your website, app and WhatsApp. It answers from your knowledge, completes requests in your systems and hands over to live agents without losing the thread.',
+      'AI chat for your website, app and WhatsApp. It answers from your knowledge, completes requests in your systems and hands over to live agents without losing the thread. One knowledge base and rule set for phone and chat, so the answer a caller gets matches the answer in chat.',
     problem: {
-      title: 'Chatbots that only answer FAQs create more contacts.',
+      title: 'Chat that cannot act sends customers to the phone.',
       body: 'When a bot can explain a process but cannot complete it, customers leave the chat and call. The handover to a person then starts from zero.',
       points: [
         'Customers switch to the phone when the bot cannot act',
@@ -256,6 +261,7 @@ export const products: Product[] = [
   },
   {
     slug: 'live-translate',
+    showcase: { kind: 'transcript', title: ['Each side hears ', { hl: 'their own language.' }], body: 'The customer speaks German, the agent speaks English, and each hears the other translated in real time (early access).' },
     icon: 'globe',
     name: 'Live Translate',
     short: 'Translate',
@@ -306,6 +312,7 @@ export const products: Product[] = [
   },
   {
     slug: 'agent-assist',
+    showcase: { kind: 'suggest', title: ['The right answer, ', { hl: 'while the customer talks.' }], body: 'Suggestions come from your approved knowledge, with the source shown, so agents can check and insert them in one step.' },
     storyIds: ['callpoint', 'bcd'],
     icon: 'headset',
     name: 'Agent Assist',
@@ -313,7 +320,7 @@ export const products: Product[] = [
     navLine: 'Real-time help inside the agent desktop',
     title: ['Give every agent the answer, ', { hl: 'with its source,' }, ' first.'],
     intro:
-      'Real-time support inside the agent workspace: suggested answers from your knowledge, next steps during the conversation and a summary written for the agent when it ends.',
+      'Real-time support inside the agent workspace: suggested answers from your knowledge, next steps during the conversation and a summary written for the agent when it ends. Use it next to Quality Assessment: agents get guidance during the call, and team leads coach on what the scorecard finds.',
     problem: {
       title: 'New agents take months to become confident.',
       body: 'Answers are spread across wikis, PDFs and old tickets. After-call notes eat into handling time, and quality depends on who picks up.',
@@ -359,6 +366,7 @@ export const products: Product[] = [
   },
   {
     slug: 'conversation-analytics',
+    showcase: { kind: 'bars', title: ['See why customers ', { hl: 'still need a person.' }], body: 'Handover reasons, topics and outcomes from your automated conversations, so you know what to improve next.' },
     icon: 'bars',
     name: 'Conversation Analytics',
     short: 'Analytics',

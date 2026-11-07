@@ -28,7 +28,7 @@ export default function Blog() {
             Notes from <span className="hl hl--brush">the contact center.<Brush draw /></span>
           </>
         }
-        intro="What we learn building voice AI, quality assessment and automation for contact centers: speech and languages, accuracy, security and integrations."
+        intro="Articles from Enterprise Bot and Feedyou on voice AI, speech and languages, security and integrations."
       />
       {groups.map((g, gi) => (
         <section key={g.label} className={`section ${gi % 2 ? 'section--white' : 'section--paper'}`} aria-labelledby={`blog-${gi}`}>

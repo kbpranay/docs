@@ -458,7 +458,7 @@ export default function Home() {
       </section>
 
       {/* 6 — Beyond the phone */}
-      <section id="journey" className="section section--white" aria-labelledby="journey-title">
+      <section id="journey" className="section section--paper" aria-labelledby="journey-title">
         <div className="container">
           <div className="section-head section-head--split" data-reveal>
             <div>

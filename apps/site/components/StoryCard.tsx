@@ -7,6 +7,7 @@ export function StoryCard({ s }: { s: CustomerStory }) {
         {s.sector} · {s.country}
       </p>
       <h3>{s.name}</h3>
+      {!s.metric && s.outcome && <p className="story__outcome">{s.outcome}</p>}
       {s.metric && (
         <p className="story__metric">
           <b>{s.metric.value}</b>

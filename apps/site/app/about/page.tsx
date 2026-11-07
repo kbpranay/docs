@@ -36,7 +36,7 @@ export default function About() {
             A Swiss company for <span className="hl hl--brush">contact-center AI.<Brush draw /></span>
           </>
         }
-        intro="Enterprise Bot builds AI voice agents and automated quality assessment for contact centers, headquartered in Zurich with teams across Europe, India and the US."
+        intro="Enterprise Bot builds AI voice agents and automated quality assessment for contact centers. Headquartered in Zurich, with offices in Barcelona, Warsaw, London, Bangalore and Dover (US)."
         aside={
           <FigureCard
             title="Enterprise Bot at a glance"
@@ -84,9 +84,9 @@ export default function About() {
                 Stronger in Central and Eastern Europe.
               </h2>
               <p className="lede" style={{ marginTop: 20 }}>
-                Feedyou was founded in 2017 in Pardubice, Czech Republic, and has delivered voicebots and assistants for
-                more than 120 customers, including MONETA Money Bank, Toyota and Škoda. Together we serve contact centers
-                in Czech, Slovak and Polish alongside our Swiss and international languages.
+                Feedyou, founded in 2017 in Pardubice, Czech Republic, has delivered voicebots and assistants for more
+                than 120 customers in Central and Eastern Europe, including MONETA Money Bank, Toyota and Škoda. Together
+                we bring Czech-market delivery experience alongside our Swiss and international work.
               </p>
               <p className="lede" style={{ marginTop: 16 }}>
                 <Link href="/customers">See their customer stories</Link>.

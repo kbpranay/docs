@@ -12,6 +12,7 @@ import { showFeedyou, site } from '@/content/site'
 import { customerStories } from '@/content/claims'
 import { StoryCard } from '@/components/StoryCard'
 import { QaLens } from '@/components/QaLens'
+import { ShowcaseFigure } from '@/components/Showcase'
 import { industries } from '@/content/industries'
 import { Related } from '@/components/Related'
 
@@ -162,6 +163,23 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           </div>
         </div>
       </section>
+
+      {p.showcase && (
+        <section className="section section--white" aria-labelledby="showcase-title">
+          <div className="container qa">
+            <div data-reveal>
+              <p className="kicker">In action</p>
+              <h2 id="showcase-title" className="h2" style={{ marginTop: 16 }}>
+                <Highlight segments={p.showcase.title} />
+              </h2>
+              <p className="lede" style={{ marginTop: 20 }}>
+                {p.showcase.body}
+              </p>
+            </div>
+            <ShowcaseFigure kind={p.showcase.kind} />
+          </div>
+        </section>
+      )}
 
       <section className="section section--navy" aria-labelledby="fit-title">
         <div className="container">

@@ -288,6 +288,15 @@ export const positioning = {
     reviewBeforeLaunch:
       'Sales lead to confirm the fee structure and how languages appear in the cost model. No prices or discounts on the site.',
   },
+  aboutCompany: {
+    id: 'about-company',
+    status: 'published-public',
+    source:
+      'enterprisebot.ai/company/about (founders and roles, offices) and feedyou.ai/about-us (founded 2017 in Pardubice, 120+ customers), observed 7 Nov 2026',
+    sourceUrl: 'https://www.enterprisebot.ai/company/about',
+    observed: OBSERVED,
+    reviewBeforeLaunch: 'Confirm leadership titles are current (e.g. Chief Growth Officer) and the Feedyou wording with the announcement.',
+  },
   implementation: {
     id: 'implementation-support',
     status: 'positioning',
@@ -328,6 +337,8 @@ export interface CustomerStory {
   channels: string[]
   voice: boolean
   metric?: { value: string; label: string }
+  /** One-sentence outcome for stories without a published metric (from the case-study summary). */
+  outcome?: string
   url: string
   origin: 'eb' | 'feedyou'
   reviewBeforeLaunch: string
@@ -428,7 +439,7 @@ export const customerStories: CustomerStory[] = [
     country: 'United Kingdom',
     channels: ['Chat'],
     voice: false,
-    url: 'https://www.enterprisebot.ai/case_study/transpennineexpress',
+    outcome: 'Answers delay and journey questions from the Darwin live departure and disruption feed.', url: 'https://www.enterprisebot.ai/case_study/transpennineexpress',
     origin: 'eb',
     reviewBeforeLaunch:
       'Metric removed: the published case study gives conflicting figures (listing card vs key results). Contract ends 18 Nov 2026; decide whether to keep TPE as a past reference.',
@@ -445,12 +456,12 @@ export const customerStories: CustomerStory[] = [
     origin: 'feedyou',
     reviewBeforeLaunch: FY_CHECK,
   },
-  { id: 'swica', name: 'SWICA', sector: 'Health insurance', country: 'Switzerland', channels: ['Chat'], voice: false, url: 'https://www.enterprisebot.ai/case_study/swica', origin: 'eb', reviewBeforeLaunch: RECHECK },
-  { id: 'six', name: 'SIX', sector: 'Financial services', country: 'Switzerland', channels: ['Email automation'], voice: false, url: 'https://www.enterprisebot.ai/case_study/six', origin: 'eb', reviewBeforeLaunch: RECHECK },
-  { id: 'ksw', name: 'Kantonsspital Winterthur', sector: 'Healthcare', country: 'Switzerland', channels: ['Chat'], voice: false, url: 'https://www.enterprisebot.ai/case_study/ksw', origin: 'eb', reviewBeforeLaunch: RECHECK },
-  { id: 'rmv', name: 'RMV', sector: 'Public transport', country: 'Germany', channels: ['Chat', 'Email automation'], voice: false, url: 'https://www.enterprisebot.ai/case_study/rmv-0', origin: 'eb', reviewBeforeLaunch: RECHECK },
-  { id: 'yuh', name: 'Yuh', sector: 'Fintech', country: 'Switzerland', channels: ['Chat'], voice: false, url: 'https://www.enterprisebot.ai/case_study/yuh', origin: 'eb', reviewBeforeLaunch: RECHECK },
-  { id: 'bcd', name: 'BCD WTS', sector: 'Travel', country: 'Switzerland', channels: ['Email automation', 'Agent assist'], voice: false, url: 'https://www.enterprisebot.ai/case_study/bcd-wts', origin: 'eb', reviewBeforeLaunch: RECHECK },
+  { id: 'swica', name: 'SWICA', sector: 'Health insurance', country: 'Switzerland', channels: ['Chat'], voice: false, outcome: 'Its first digital employee, delivered with PwC and Enterprise Bot.', url: 'https://www.enterprisebot.ai/case_study/swica', origin: 'eb', reviewBeforeLaunch: RECHECK },
+  { id: 'six', name: 'SIX', sector: 'Financial services', country: 'Switzerland', channels: ['Email automation'], voice: false, outcome: 'Email response automation for financial-services enquiries.', url: 'https://www.enterprisebot.ai/case_study/six', origin: 'eb', reviewBeforeLaunch: RECHECK },
+  { id: 'ksw', name: 'Kantonsspital Winterthur', sector: 'Healthcare', country: 'Switzerland', channels: ['Chat'], voice: false, outcome: 'An AI chatbot answering patient and visitor questions.', url: 'https://www.enterprisebot.ai/case_study/ksw', origin: 'eb', reviewBeforeLaunch: RECHECK },
+  { id: 'rmv', name: 'RMV', sector: 'Public transport', country: 'Germany', channels: ['Chat', 'Email automation'], voice: false, outcome: 'Chatbot and email automation for a large German transport network.', url: 'https://www.enterprisebot.ai/case_study/rmv-0', origin: 'eb', reviewBeforeLaunch: RECHECK },
+  { id: 'yuh', name: 'Yuh', sector: 'Fintech', country: 'Switzerland', channels: ['Chat'], voice: false, outcome: 'AI chat support inside a Swiss banking app.', url: 'https://www.enterprisebot.ai/case_study/yuh', origin: 'eb', reviewBeforeLaunch: RECHECK },
+  { id: 'bcd', name: 'BCD WTS', sector: 'Travel', country: 'Switzerland', channels: ['Email automation', 'Agent assist'], voice: false, outcome: 'Email response automation and agent assist for travel desks.', url: 'https://www.enterprisebot.ai/case_study/bcd-wts', origin: 'eb', reviewBeforeLaunch: RECHECK },
 ]
 
 /** Feedyou headline and customer names as published on feedyou.ai (observed 7 Nov 2026). Gated like the stories. */

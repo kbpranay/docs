@@ -42,14 +42,24 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
         title={<Highlight segments={i.title} />}
         intro={i.intro}
         aside={
-          <FigureCard
-            title="Typical requests"
-            rows={i.workloads.map((w) => (
-              <>
-                <span className="figure-row__k">{w.t}</span>
-              </>
-            ))}
-          />
+          stories.length > 0 ? (
+            <FigureCard
+              title="Published results"
+              rows={[
+                ...stories.slice(0, 3).map((st) => (
+                  <>
+                    <span className="figure-row__k figure-row__k--name">{st.name}</span>
+                    <span>{st.metric ? `${st.metric.value} ${st.metric.label}` : st.outcome}</span>
+                  </>
+                )),
+                <>
+                  <a className="story-link story-link--dark" href="#proof-title">
+                    Read the case studies ↓
+                  </a>
+                </>,
+              ]}
+            />
+          ) : undefined
         }
       />
       <section className="section section--paper" aria-labelledby="work-title">

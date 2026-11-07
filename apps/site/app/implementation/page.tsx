@@ -51,6 +51,7 @@ function Caps({ items, four }: { items: { t: string; b: string }[]; four?: boole
 }
 
 const faq = [
+  { q: 'How do changes reach production?', a: 'Changes are tested before release, workflow versions can be compared and rolled back, and every change is recorded in the audit view.' },
   { q: 'Who runs the AI after go-live?', a: 'Your team, with our support. We train admins to edit flows, knowledge and prompts and to read the logs, and supervisors to coach from quality results.' },
   { q: 'Can we leave and take our data with us?', a: 'Yes. Conversation logs and workflow configuration can be exported, and your data is deleted as the contract sets out.' },
 ]

@@ -17,8 +17,6 @@ export const postGroups: { label: string; posts: Post[] }[] = [
     posts: [
       { title: 'The Shift from IVRs to Voicebots, and Now Agentic Voice AI', date: '2026-06-10', url: 'https://www.enterprisebot.ai/blog/the-shift-from-ivrs-to-voicebots-and-now-agentic-voice-ai', topic: 'How to tell real agentic voice AI from relabelled voicebots in a vendor demo.', source: 'eb' },
       { title: 'How Can You Improve Agent Productivity in Your Call Center?', date: '2026-04-20', url: 'https://www.enterprisebot.ai/blog/how-to-improve-agent-productivity-in-call-centers', topic: 'Using agent assist and AI to get more from the team you have.', source: 'eb' },
-      { title: 'Top Agentic AI Companies for Enterprise Customer Service (2026)', date: '2026-04-29', url: 'https://www.enterprisebot.ai/blog/top-agentic-ai-companies-for-enterprise-customer-service-2026', topic: 'The vendor landscape and how to evaluate agentic AI for service.', source: 'eb' },
-      { title: '11 Best Contact Center Software Solutions for 2026', date: '2026-01-09', url: 'https://www.enterprisebot.ai/blog/contact-center-software', topic: 'A comparison of contact-center software platforms.', source: 'eb' },
       { title: 'How a voicebot can help you with incoming calls', date: '2024-02-13', url: 'https://feedyou.ai/news/5-tips-voicebot-incoming-calls/', topic: 'Practical tips for inbound voicebots.', source: 'feedyou' },
       { title: '5 tips for using voicebot for outgoing calls', date: '2024-04-19', url: 'https://feedyou.ai/news/5-tips-for-using-voicebot-for-outgoing-calls/', topic: 'Where outbound voicebots work and how to set them up.', source: 'feedyou' },
     ],
@@ -29,7 +27,6 @@ export const postGroups: { label: string; posts: Post[] }[] = [
       { title: 'The Evolution of Voice Bots: Advances in STT and TTS Technologies 2025 and Language Coverage', date: '2025-04-28', url: 'https://www.enterprisebot.ai/blog/the-evolution-of-voice-bots-advances-in-speech-to-text-and-text-to-speech-technologies-2025-and-language-coverage', topic: 'Speech-to-text and text-to-speech choices, language by language.', source: 'eb' },
       { title: 'Back to BASICs: A Generative AI Benchmark for Enterprise', date: '2024-05-29', url: 'https://www.enterprisebot.ai/blog/back-to-basics-a-generative-ai-benchmark-for-enterprise', topic: 'A framework for evaluating AI answers in the enterprise.', source: 'eb' },
       { title: 'Prompt Engineering for Enterprise Chatbots', date: '2024-10-02', url: 'https://www.enterprisebot.ai/blog/prompt-engineering-for-enterprise-chatbots', topic: 'How prompts are built for consistent quality at scale.', source: 'eb' },
-      { title: 'Chatbots that speak all languages', date: '2022-05-30', url: 'https://feedyou.ai/news/chatbots-that-speak-all-languages/', topic: 'Running assistants across many languages.', source: 'feedyou' },
     ],
   },
   {

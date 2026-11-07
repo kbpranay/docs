@@ -128,7 +128,7 @@ export default function Languages() {
           </div>
         </div>
       </section>
-      <Faq id="languages-faq" title="Language questions" items={faq} tone="white" />
+      <Faq id="languages-faq" title="Language questions" items={faq} tone="paper" />
       <Related route="/languages" />
       <CtaBand title={<>Hear it in <span className="hl">your</span> language.</>} body="Tell us your languages and markets and we will test them on your own call types." />
     </>

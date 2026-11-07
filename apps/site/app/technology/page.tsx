@@ -210,7 +210,7 @@ export default function Technology() {
           </div>
         </div>
       </section>
-      <Faq id="technology-faq" title="Technology questions" items={faq} tone="white" />
+      <Faq id="technology-faq" title="Technology questions" items={faq} tone="paper" />
       <Related route="/technology" />
       <CtaBand title={<>Test it on <span className="hl">your</span> lines.</>} body="We measure voice quality and response time on your telephony, in your languages." />
     </>

@@ -31,6 +31,7 @@ const checklist = [
 ]
 
 const faq = [
+  { q: 'What happens after the pilot?', a: 'We review the results against your baseline together. If they meet the criteria you set, we plan the rollout in phases; if not, you have the evidence to decide.' },
   { q: 'How long should a pilot take?', a: 'It depends on the workload and integrations. We agree the scope, measures and timeline with you in the first scoping call and write them down before anything is built.' },
   { q: 'What do we need to provide for a pilot?', a: 'Your baseline and success criteria, a test line or contact-center connection, one knowledge source, one business system to act in, and the languages to test.' },
 ]
@@ -97,7 +98,7 @@ export default function Evaluation() {
           </div>
         </div>
       </section>
-      <Faq id="evaluation-faq" title="Pilot questions" items={faq} tone="white" />
+      <Faq id="evaluation-faq" title="Pilot questions" items={faq} tone="paper" />
       <Related route="/evaluation" />
       <CtaBand title={<>Plan <span className="hl">your</span> pilot.</>} body="We agree the workload, measures and setup with you in one scoping call." />
     </>

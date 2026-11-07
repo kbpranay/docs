@@ -97,7 +97,8 @@ test('internal links resolve to real routes or anchors', () => {
     const [path, hash] = href.split('#')
     if (path === '/privacy') continue
     assert.ok(routes.has(path || '/'), `${f}: unknown route ${href}`)
-    if (hash && (path === '/' || path === '')) assert.ok(anchors.has(hash), `${f}: missing anchor #${hash}`)
+    if (hash && path === '') assert.ok(read(f).includes(`id="${hash}"`), `${f}: missing in-page anchor #${hash}`)
+    if (hash && path === '/') assert.ok(anchors.has(hash), `${f}: missing anchor #${hash}`)
   }
 })
 
