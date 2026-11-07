@@ -263,7 +263,15 @@ async function contactSheet(browser, title, frames, file, cols) {
             clipped.push((el.className && String(el.className).slice(0, 40)) || el.tagName)
           }
         }
+        // Ellipsis truncation inside the hero scene (text cut but not overflowing).
+        const truncated = []
+        for (const el of document.querySelectorAll('.scene *')) {
+          if (el.children.length === 0 && el.textContent.trim() && el.scrollWidth > el.clientWidth + 1 && el.clientWidth > 0) {
+            truncated.push(el.textContent.trim().slice(0, 40))
+          }
+        }
         return {
+          truncatedInScene: truncated,
           pageScroll: document.documentElement.scrollWidth - vw,
           innerWidth: window.innerWidth,
           clippedElements: clipped.length,
@@ -274,7 +282,7 @@ async function contactSheet(browser, title, frames, file, cols) {
     await ctx.close()
   }
   report.checks.phoneOverflow = overflow
-  report.checks.phoneOverflowOk = Object.values(overflow).every((o) => o.pageScroll <= 0 && o.innerWidth <= 390 && o.clippedElements === 0)
+  report.checks.phoneOverflowOk = Object.values(overflow).every((o) => o.pageScroll <= 0 && o.innerWidth <= 390 && o.clippedElements === 0 && o.truncatedInScene.length === 0)
 
   // ---------- Scene fits common laptop screens (final state) ----------
   {

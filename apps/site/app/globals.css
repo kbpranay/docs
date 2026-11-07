@@ -818,6 +818,15 @@ ol {
   }
   .scene__channel {
     font-size: 13px;
+    white-space: normal;
+  }
+  /* All three labels share one grid cell, so the bar takes the longest
+     label's height once and never shifts when the status changes. */
+  .scene__status > span {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    line-height: 1.25;
   }
   .scene .wave {
     display: none;
@@ -830,8 +839,8 @@ ol {
 .scene__status > span {
   grid-area: 1 / 1;
   transition:
-    opacity 200ms var(--ease-out) 120ms,
-    transform 200ms var(--ease-out) 120ms;
+    opacity 200ms var(--ease-out) 80ms,
+    transform 200ms var(--ease-out) 80ms;
 }
 .scene__status > span[aria-hidden='true'] {
   opacity: 0;
@@ -1137,7 +1146,7 @@ ol {
 .summary-card .chip {
   flex: none;
   justify-content: center;
-  min-width: 56px;
+  min-width: 64px;
   padding-inline: 8px;
   margin-top: 0;
   background: rgba(255, 255, 255, 0.08);
@@ -1363,6 +1372,9 @@ ol {
   }
   .rail__beat[data-state='current'] .rail__name {
     display: inline;
+  }
+  .rail__beat[data-state='current'] {
+    margin-right: 8px;
   }
 }
 
@@ -2076,8 +2088,21 @@ html:not(.js) .scene__play {
   .arch__layers div {
     padding: 10px 4px;
   }
+  .arch__layers {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  .arch__layers div {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    text-align: left;
+    padding: 10px 12px;
+  }
   .arch__layers small {
-    overflow-wrap: anywhere;
+    margin-top: 0;
+    text-align: right;
   }
 }
 .integrations-list {

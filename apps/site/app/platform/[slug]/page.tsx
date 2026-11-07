@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Highlight } from '@/components/Highlight'
-import { Arrow } from '@/components/Icons'
+import { Arrow, Phone } from '@/components/Icons'
 import { OutlineIcon } from '@/components/OutlineIcon'
 import { Waves } from '@/components/Waves'
 import { productBySlug, products } from '@/content/products'
@@ -66,7 +66,9 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <div className="mini-scene" role="group" aria-label={`Illustrative example: ${p.name}`}>
             <div className="scene__bar">
               <span className="scene__channel">
-                <span className="scene__dot" aria-hidden="true" />
+                <span className="scene__dot" aria-hidden="true">
+                  <Phone />
+                </span>
                 {p.visual.channel}
               </span>
               <span className="scene__label">Illustrative</span>
