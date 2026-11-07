@@ -304,6 +304,7 @@ async function contactSheet(browser, title, frames, file, cols) {
       const page = await ctx.newPage()
       await page.goto(BASE + '/sitemap.xml')
       const routes = [...(await page.content()).matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => new URL(m[1]).pathname)
+      const offenders = []
       for (const r of routes) {
         await page.goto(BASE + r, { waitUntil: 'networkidle' })
         const n = await page.evaluate(() => {
@@ -320,12 +321,13 @@ async function contactSheet(browser, title, frames, file, cols) {
           }
           return c
         })
-        if (n) clipped[`${w} ${r}`] = n
+        if (n) offenders.push({ route: r, elements: n })
       }
+      clipped[w] = { ok: offenders.length === 0, routesChecked: routes.length, offenders }
       await ctx.close()
     }
     report.checks.desktopClipping = clipped
-    report.checks.desktopClippingOk = Object.keys(clipped).length === 0
+    report.checks.desktopClippingOk = Object.values(clipped).every((x) => x.ok)
   }
 
   // ---------- Scene fits common laptop screens (final state) ----------

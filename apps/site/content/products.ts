@@ -251,7 +251,7 @@ export const products: Product[] = [
     name: 'Live Translate',
     short: 'Translate',
     navLine: 'Customer and agent speak different languages on one call (early access)',
-    title: ['One call. ', { hl: 'Two languages.' }],
+    title: ['One call. ', { hl: 'Two\u00a0languages.' }],
     flowTitle: ['Both directions, ', { hl: 'at the same time.' }],
     intro:
       'Live two-way translation for contact-center calls. The customer speaks their language, the agent speaks theirs, and each hears the other translated in real time. In early access.',
