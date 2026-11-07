@@ -109,7 +109,7 @@ export const products: Product[] = [
       { title: 'Capture', body: 'Takes the transcript of each call, from people and AI agents.' },
       { title: 'Evaluate', body: 'Checks the conversation against each criterion in your scorecard.' },
       { title: 'Explain', body: 'Records the result, the reasoning and the transcript evidence for each criterion.' },
-      { title: 'Coach', body: 'Writes a coaching note for the agent, in the language of the conversation.' },
+      { title: 'Coach', body: 'Writes a coaching note for the agent, in the conversation’s language.' },
       { title: 'Review', body: 'Your quality team confirms the results and coaches from them.' },
     ],
     capabilities: [
