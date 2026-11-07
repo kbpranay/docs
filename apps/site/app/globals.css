@@ -3259,6 +3259,13 @@ html:not(.js) .scene__play {
 }
 .hub__name .arrow {
   color: var(--orange-ink);
+  transition: transform 160ms var(--ease-out);
+}
+.js .hub__card[data-reveal] {
+  transition:
+    opacity 560ms var(--ease-out) var(--reveal-delay, 0ms),
+    transform 560ms var(--ease-out) var(--reveal-delay, 0ms),
+    border-color 150ms ease;
 }
 @media (hover: hover) and (pointer: fine) {
   .hub__card:hover .arrow {
