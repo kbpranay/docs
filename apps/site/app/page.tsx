@@ -188,6 +188,14 @@ export default function Home() {
         </section>
       )}
 
+      <section className="pull" aria-label="In short">
+        <div className="container">
+          <p data-reveal>
+            Resolved, handed over, <span className="hl">scored.</span>
+          </p>
+        </div>
+      </section>
+
       {/* 3 — Quality assessment */}
       <section id="quality" className="section section--white" aria-labelledby="quality-title">
         <div className="container qa">

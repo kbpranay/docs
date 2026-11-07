@@ -5464,8 +5464,27 @@ html:not(.js) .scene__play {
 }
 @media (min-width: 760px) {
   .stat-band__grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   }
+}
+.stat__value--word {
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem) !important;
+}
+.pull {
+  padding: clamp(48px, 7vw, 96px) 0;
+  background: var(--navy);
+}
+.pull p {
+  margin: 0;
+  max-width: 22ch;
+  font-size: clamp(2.2rem, 5vw, 4.2rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  color: var(--white);
+}
+.pull .hl {
+  color: var(--orange);
 }
 /* Showcase rows animate in once, in order */
 .js .showcase[data-reveal] :is(.sc-steps li, .sc-chat__msg, .sc-pair li, .sc-metric__table tbody tr, .sc-bars__row, .sc-mail > *, .sc-suggest > *) {
