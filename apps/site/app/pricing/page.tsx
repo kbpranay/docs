@@ -116,7 +116,7 @@ export default function Pricing() {
               <li><i className="seg--usage" /> Usage</li>
               <li><i className="seg--impl" /> Implementation</li>
             </ul>
-            <figcaption>Illustrative. Your model uses your volumes.</figcaption>
+            <figcaption>Illustrative. Shape only: not to scale and not a quote. Your model uses your volumes.</figcaption>
           </figure>
           </div>
         </div>

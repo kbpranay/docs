@@ -66,7 +66,7 @@ export default function Implementation() {
                   <Check />
                 </span>
                 <span>
-                  <b>{p.t}</b> · signed off by you
+                  <b>{p.t}</b> · {p.t === 'Improve monthly' ? 'changes approved by you' : 'signed off by you'}
                 </span>
               </>
             ))}
