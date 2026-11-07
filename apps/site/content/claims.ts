@@ -316,9 +316,9 @@ export const positioning = {
 
 /**
  * Customer stories for /customers. Every entry links to a published case study.
- * origin 'feedyou': Feedyou case studies (feedyou.ai). Shown only when
- * NEXT_PUBLIC_SHOW_FEEDYOU=true, because the acquisition is not yet closed or
- * announced. Labelled "Feedyou, an Enterprise Bot company" when shown.
+ * origin 'feedyou': Feedyou case studies (feedyou.ai), labelled "Feedyou, an
+ * Enterprise Bot company". Shown by default (CEO decision, 7 Nov 2026: launch with
+ * Feedyou); NEXT_PUBLIC_SHOW_FEEDYOU=false hides them.
  */
 export interface CustomerStory {
   id: string
@@ -334,7 +334,7 @@ export interface CustomerStory {
 }
 
 const FY_CHECK =
-  'Feedyou story: publish only after the acquisition closes and is announced; confirm customer permission to appear on enterprisebot.ai.'
+  'Feedyou story: site launches together with the Feedyou announcement (CEO decision, 7 Nov 2026). Confirm customer permission to appear on enterprisebot.ai and re-check the figure on the live case study.'
 
 export const customerStories: CustomerStory[] = [
   {

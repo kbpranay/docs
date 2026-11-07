@@ -29,5 +29,8 @@ export const offices = [
   { city: 'Dover', country: 'United States', address: '8 The Green, Ste A, Dover, DE 19901' },
 ]
 
-/** Feedyou stories appear only when this is on (after the acquisition closes and is announced). */
-export const showFeedyou = process.env.NEXT_PUBLIC_SHOW_FEEDYOU === 'true'
+/**
+ * Feedyou stories and names are shown by default: CEO decision, 7 Nov 2026, to launch
+ * this site with Feedyou as part of Enterprise Bot. Set NEXT_PUBLIC_SHOW_FEEDYOU=false to hide them.
+ */
+export const showFeedyou = process.env.NEXT_PUBLIC_SHOW_FEEDYOU !== 'false'

@@ -70,6 +70,7 @@ real-time voice model running a fictional insurance-claims scenario
 - Confirm every entry in `content/claims.ts` (customer permission, metric period and definition).
 - Product sign-off on capability and deployment statements in `content/products.ts`.
 - Replace text customer names with approved logo files.
+- Feedyou: stories and names are on by default (launch together with the Feedyou announcement). Confirm each Feedyou customer's permission to appear; set `NEXT_PUBLIC_SHOW_FEEDYOU=false` to hide them if the launch date moves.
 - Connect HubSpot: set `HUBSPOT_PORTAL_ID` and `HUBSPOT_FORM_ID`. Until then the form says it is not connected.
 - Add imprint, privacy and cookie pages, plus a consent manager, before any analytics.
 - Set `SITE_INDEXABLE=true` and `NEXT_PUBLIC_SITE_URL` only for the approved production deployment
