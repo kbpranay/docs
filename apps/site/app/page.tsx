@@ -61,8 +61,9 @@ export default function Home() {
                 </span>
               </h1>
               <p className="hero__sub">
-                AI agents for voice, email and chat, connected to your contact center and business systems. Resolve
-                routine requests, support your agents and keep control of how AI operates.
+                AI agents for voice, email and chat that work inside the contact center, languages and deployment
+                model you already have. They resolve routine requests, hand the rest to your agents with context,
+                and log every step for review.
               </p>
               <div className="hero__ctas">
                 <Link className="btn btn--primary" href={site.primaryCta.href}>
@@ -99,10 +100,10 @@ export default function Home() {
             <div>
               <p className="kicker">Customer outcomes</p>
               <h2 id="customers-title" className="h2" style={{ marginTop: 16 }}>
-                <span className="hl">Published</span> results from named deployments.
+                What customers say, and what they <span className="hl">measured.</span>
               </h2>
             </div>
-            <p className="lede">Each result is tied to a named deployment and the work it automated.</p>
+            <p className="lede">Named customers, in their own words. Every figure states who measured it and on which deployment.</p>
           </div>
 
           <div className="customers">
@@ -129,12 +130,15 @@ export default function Home() {
               <article className="quote-card" data-reveal style={{ ['--reveal-delay' as string]: '120ms' }}>
                 <div className="stat-inline">
                   <b>{stats.callpointTraining.value}</b>
-                  <span>{stats.callpointTraining.label}</span>
+                  <span>
+                    {stats.callpointTraining.label} · {stats.callpointTraining.customer},{' '}
+                    {stats.callpointTraining.context.toLowerCase()}
+                  </span>
                 </div>
                 <blockquote>{quotes.callpoint.quote}</blockquote>
                 <p className="cite">
                   <strong>{quotes.callpoint.person}</strong>
-                  {quotes.callpoint.customer}
+                  {quotes.callpoint.customer} · quote refers to an earlier Enterprise Bot product name
                 </p>
               </article>
               <article className="quote-card" data-reveal style={{ ['--reveal-delay' as string]: '220ms' }}>
@@ -161,7 +165,7 @@ export default function Home() {
             </div>
             <p className="lede">
               A customer can call, email or chat. Behind every channel, the same five steps run against the same
-              knowledge, systems and rules.
+              knowledge, systems and rules. Illustrative example with synthetic data.
             </p>
           </div>
           <div data-reveal>
@@ -306,7 +310,10 @@ export default function Home() {
           <div className="integrations-list">
             <article className="integration" data-reveal>
               <h3>Genesys Cloud</h3>
-              <p>Keep Genesys for routing, workforce management and the agent desktop. Add Enterprise Bot as the AI layer.</p>
+              <p>
+                Keep Genesys Cloud for routing, workforce management and the agent desktop. Enterprise Bot adds the AI
+                layer, so you automate routine contacts without replacing the platform you already pay for.
+              </p>
               <ul>
                 <li>Voice, email and chat automation in front of your queues</li>
                 <li>Handover into existing queues with a written summary</li>
@@ -361,7 +368,10 @@ export default function Home() {
             </article>
             <article className="pillar" data-reveal style={{ ['--reveal-delay' as string]: '100ms' }}>
               <h3>Knowledge</h3>
-              <p>Answers come from the documents and pages you approve. When it does not know, it says so.</p>
+              <p>
+                Answers come from the documents and pages you approve. When no approved source covers the question, it
+                is set up to say so and offer a person.
+              </p>
               <div className="specimen" aria-hidden="true">
                 “Account changes are allowed on open claims.”
                 <br />

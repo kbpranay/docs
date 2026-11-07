@@ -39,7 +39,7 @@ export const products: Product[] = [
     name: 'Voice Agent',
     short: 'Voice',
     navLine: 'Answers and resolves inbound calls',
-    title: ['Answer every call. ', { hl: 'Finish the request.' }],
+    title: ['Answer at once. ', { hl: 'Finish the routine requests.' }],
     intro:
       'An AI voice agent for your inbound lines. It understands the caller, finds the right answer, completes permitted actions in your systems and hands over to a person, with the context, when it should.',
     problem: {
@@ -64,7 +64,7 @@ export const products: Product[] = [
       { icon: 'globe', title: 'Multilingual voice', body: 'Replies in the caller’s language, within the languages configured for your deployment.' },
       { icon: 'plug', title: 'Telephony fit', body: 'Connects to your telephony through SIP and session border controllers such as AudioCodes.' },
       { icon: 'handover', title: 'Warm handover', body: 'Transfers into your existing queues with a summary the agent sees before saying hello.' },
-      { icon: 'summary', title: 'Call summaries', body: 'Every call ends with a structured summary written back to your CRM.' },
+      { icon: 'summary', title: 'Call summaries', body: 'Each call can end with a structured summary written back to your CRM.' },
     ],
     fit: {
       integrations: ['Genesys Cloud and Cisco contact centers', 'Salesforce and other CRMs via API', 'SIP and AudioCodes telephony'],
@@ -159,13 +159,13 @@ export const products: Product[] = [
     },
     workflow: [
       { title: 'Understand', body: 'Recognises the request in free text, in the customer’s language.' },
-      { title: 'Ground', body: 'Answers from approved sources and says when it does not know.' },
+      { title: 'Ground', body: 'Answers from approved sources, and is set up to say when it cannot find an answer.' },
       { title: 'Act', body: 'Runs permitted actions through your systems inside the chat.' },
       { title: 'Hand over', body: 'Passes the conversation and collected details to a live agent.' },
       { title: 'Summarise', body: 'Records the outcome and summary for reporting and follow-up.' },
     ],
     capabilities: [
-      { icon: 'code', title: 'Web and app', body: 'Embed on any site or web app with a single script.' },
+      { icon: 'code', title: 'Web and app', body: 'Embed on your website or web app with a script tag.' },
       { icon: 'chat', title: 'WhatsApp', body: 'The same agent and knowledge on WhatsApp Business.' },
       { icon: 'book', title: 'Answers with sources', body: 'Knowledge answers come from indexed documents, FAQs and web pages you approve.' },
       { icon: 'bolt', title: 'Actions in chat', body: 'Bookings, status checks and updates through connected workflows.' },
@@ -176,10 +176,9 @@ export const products: Product[] = [
       integrations: ['Website and app embed', 'WhatsApp Business', 'Live chat and CRM handover'],
       deployment: deploymentLine,
     },
-    proof: { stats: [], quote: quotes.callpoint },
     faq: [
       { q: 'Can one agent serve web, app and WhatsApp?', a: 'Yes. You publish the same agent to each channel and manage it in one place.' },
-      { q: 'What if it does not know the answer?', a: 'It says so and offers a handover instead of guessing. Answers come only from the sources you approve.' },
+      { q: 'What if it does not know the answer?', a: 'It is set up to say so and offer a handover instead of guessing. You choose which sources it may answer from.' },
     ],
     visual: {
       channel: 'Web chat',
@@ -228,7 +227,6 @@ export const products: Product[] = [
       integrations: ['Works alongside your existing agent desktop', 'Genesys Cloud and Cisco contact centers', 'Salesforce and other CRMs'],
       deployment: deploymentLine,
     },
-    proof: { stats: [stats.callpointTraining] },
     faq: [
       { q: 'Do our agents need a new desktop?', a: 'No. Agent Assist is designed to work alongside the workspace your agents already use. Supported workspaces and versions are confirmed during scoping.' },
       { q: 'Can agents edit the suggested summary?', a: 'Yes. The agent confirms or edits the summary before it is saved.' },
@@ -272,7 +270,7 @@ export const products: Product[] = [
       { icon: 'pulse', title: 'Live data', body: 'Current conversation volumes and outcomes as they happen.' },
       { icon: 'bars', title: 'Reports and insights', body: 'Historical trends by topic, channel and outcome.' },
       { icon: 'target', title: 'Resolution, not just containment', body: 'Separates requests that were completed from conversations that simply ended.' },
-      { icon: 'split', title: 'Handover reasons', body: 'See why conversations went to a person and which ones did not need to.' },
+      { icon: 'split', title: 'Handover reasons', body: 'See why conversations went to a person, so you can find handovers worth automating.' },
       { icon: 'trend', title: 'Topic trends', body: 'Spot new or growing request types early.' },
       { icon: 'link', title: 'Traceability', body: 'Drill from any metric to the conversations behind it.' },
     ],

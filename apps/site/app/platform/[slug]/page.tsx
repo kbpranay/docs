@@ -58,8 +58,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               <Link className="btn btn--primary" href={site.primaryCta.href}>
                 {site.primaryCta.label} <Arrow />
               </Link>
-              <Link className="btn btn--ghost" href="/#journey">
-                See a customer journey
+              <Link className="btn btn--ghost" href={site.secondaryCta.href}>
+                {site.secondaryCta.label}
               </Link>
             </div>
           </div>

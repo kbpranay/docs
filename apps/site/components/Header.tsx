@@ -84,8 +84,8 @@ export function Header() {
           </nav>
 
           <div className="site-header__actions">
-            <Link className="quiet" href="/#journey">
-              See it work
+            <Link className="quiet" href={site.secondaryCta.href}>
+              {site.secondaryCta.label}
             </Link>
             <Link className="btn btn--primary" href={site.primaryCta.href}>
               {site.primaryCta.label}

@@ -16,7 +16,7 @@ export default function DemoPage() {
         <div className="container">
           <p className="kicker">Tailored demo</p>
           <h1 id="demo-title" style={{ maxWidth: '18ch' }}>
-            Show us one workload. <span className="hl">We’ll show it resolved.</span>
+            Show us one workload. <span className="hl">See how it runs in your stack.</span>
           </h1>
           <p className="intro">
             Tell us about your contact center and the requests you want to automate. We prepare the session around your

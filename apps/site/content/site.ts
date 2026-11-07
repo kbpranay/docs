@@ -5,9 +5,9 @@ export const site = {
   tagline: 'Contact center automation',
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.enterprisebot.ai',
   description:
-    'AI agents for voice, email and chat, connected to your contact center and business systems. Resolve routine requests, support your agents and keep control of how AI operates.',
+    'AI agents for voice, email and chat that work inside the contact center, languages and deployment model you already have. They resolve routine requests, hand the rest to your agents with context, and log every step for review.',
   primaryCta: { label: 'Book a tailored demo', href: '/demo' },
-  secondaryCta: { label: 'See a customer journey', href: '/#journey' },
+  secondaryCta: { label: 'See it work', href: '/#journey' },
 }
 
 export const nav = [
