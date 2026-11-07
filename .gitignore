@@ -36,3 +36,6 @@ next-env.d.ts
 
 # Superpowers brainstorm sessions (mockup state, not project source)
 .superpowers/
+
+# Motion review captures
+apps/site/.captures/
