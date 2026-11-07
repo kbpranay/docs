@@ -8,7 +8,7 @@ import { products } from '@/content/products'
 import { Arrow, Chevron } from './Icons'
 
 const megaGroups = [
-  { label: 'Voice', slugs: ['voice-agent', 'live-translate'], extra: { href: '/languages', name: 'Languages', line: 'Swiss German, Polish, Czech, Hindi and more.' } },
+  { label: 'Voice', slugs: ['voice-agent', 'live-translate'] },
   { label: 'Contact-center loop', slugs: ['agent-assist', 'conversation-insights'] },
   { label: 'More channels', slugs: ['email-agent', 'chat-agent'] },
 ]
@@ -86,14 +86,13 @@ export function Header() {
                         </Link>
                       )
                     })}
-                    {'extra' in g && g.extra && (
-                      <Link href={g.extra.href} tabIndex={megaOpen ? 0 : -1}>
-                        <span className="mega__name">{g.extra.name}</span>
-                        <span className="mega__line">{g.extra.line}</span>
-                      </Link>
-                    )}
                   </div>
                 ))}
+                <p className="mega__foot">
+                  <Link href="/languages" tabIndex={megaOpen ? 0 : -1}>Languages</Link>
+                  <Link href="/technology" tabIndex={megaOpen ? 0 : -1}>Technology</Link>
+                  <Link href="/integrations" tabIndex={megaOpen ? 0 : -1}>Integrations →</Link>
+                </p>
               </div>
             </div>
             {nav.map((n) => (

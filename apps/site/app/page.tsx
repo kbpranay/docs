@@ -288,15 +288,6 @@ export default function Home() {
             </Link>
             , on the same knowledge and rules.
           </p>
-          <Link href="/platform/live-translate" className="lt-strip" data-reveal>
-            <span className="lt-strip__tag">Early access</span>
-            <span className="lt-strip__body">
-              <b>Live Translate</b> Customer and agent speak different languages on the same call, translated as they speak.
-            </span>
-            <span className="lt-strip__go">
-              See Live Translate <Arrow />
-            </span>
-          </Link>
           <div className="quote-row">
             <article className="quote-card" data-reveal>
               <div className="stat-inline">

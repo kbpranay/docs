@@ -5438,7 +5438,69 @@ html:not(.js) .scene__play {
   font-weight: 600;
   color: var(--orange-ink);
 }
+.mega__foot {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 4px 20px;
+  margin: 8px 0 0;
+  padding: 12px 16px 4px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+.site-nav .mega .mega__foot a {
+  padding: 4px 0;
+  font-weight: 600;
+}
+/* Industry stat band */
+.stat-band {
+  padding: clamp(28px, 4vw, 44px) 0;
+  background: var(--navy);
+  color: var(--white);
+  border-top: 1px solid var(--line-dark);
+}
+.stat-band__grid {
+  display: grid;
+  gap: 28px;
+}
+@media (min-width: 760px) {
+  .stat-band__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+/* Showcase rows animate in once, in order */
+.js .showcase[data-reveal] :is(.sc-steps li, .sc-chat__msg, .sc-pair li, .sc-metric__table tbody tr, .sc-bars__row, .sc-mail > *, .sc-suggest > *) {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 360ms var(--ease-out), transform 360ms var(--ease-out);
+}
+.js .showcase[data-reveal].is-visible :is(.sc-steps li, .sc-chat__msg, .sc-pair li, .sc-metric__table tbody tr, .sc-bars__row, .sc-mail > *, .sc-suggest > *) {
+  opacity: 1;
+  transform: none;
+}
+.js .showcase[data-reveal].is-visible :is(.sc-steps li, .sc-chat__msg, .sc-pair li, .sc-metric__table tbody tr, .sc-bars__row, .sc-mail > *, .sc-suggest > *):nth-child(1) {
+  transition-delay: 200ms;
+}
+.js .showcase[data-reveal].is-visible :is(.sc-steps li, .sc-chat__msg, .sc-pair li, .sc-metric__table tbody tr, .sc-bars__row, .sc-mail > *, .sc-suggest > *):nth-child(2) {
+  transition-delay: 340ms;
+}
+.js .showcase[data-reveal].is-visible :is(.sc-steps li, .sc-chat__msg, .sc-pair li, .sc-metric__table tbody tr, .sc-bars__row, .sc-mail > *, .sc-suggest > *):nth-child(3) {
+  transition-delay: 480ms;
+}
+.js .showcase[data-reveal].is-visible :is(.sc-steps li, .sc-chat__msg, .sc-pair li, .sc-metric__table tbody tr, .sc-bars__row, .sc-mail > *, .sc-suggest > *):nth-child(4) {
+  transition-delay: 620ms;
+}
+.js .showcase[data-reveal].is-visible :is(.sc-steps li, .sc-chat__msg, .sc-pair li, .sc-metric__table tbody tr, .sc-bars__row, .sc-mail > *, .sc-suggest > *):nth-child(5) {
+  transition-delay: 760ms;
+}
+.js .showcase[data-reveal].is-visible :is(.sc-steps li, .sc-chat__msg, .sc-pair li, .sc-metric__table tbody tr, .sc-bars__row, .sc-mail > *, .sc-suggest > *):nth-child(6) {
+  transition-delay: 900ms;
+}
 @media (prefers-reduced-motion: reduce) {
+  .js .showcase[data-reveal] :is(.sc-steps li, .sc-chat__msg, .sc-pair li, .sc-metric__table tbody tr, .sc-bars__row, .sc-mail > *, .sc-suggest > *) {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
   .js [data-reveal] .sc-bars__track i {
     transform: scaleX(1) !important;
   }

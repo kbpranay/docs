@@ -31,6 +31,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
   const stories = i.stories
     .map((id) => customerStories.find((s) => s.id === id))
     .filter((s): s is NonNullable<typeof s> => !!s && (showFeedyou || s.origin === 'eb'))
+  const stats = stories.filter((s) => s.metric).slice(0, 3)
   return (
     <>
       <PageHero
@@ -62,6 +63,20 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
           ) : undefined
         }
       />
+      {stats.length > 0 && (
+        <section className="stat-band" aria-label="Published results">
+          <div className="container stat-band__grid">
+            {stats.map((st, n) => (
+              <div key={st.id} data-reveal style={{ ['--reveal-delay' as string]: `${n * 70}ms` }}>
+                <p className="stat__value">{st.metric!.value}</p>
+                <div className="stat__rule" />
+                <p className="stat__label">{st.metric!.label}</p>
+                <p className="stat__context">{st.name}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
       <section className="section section--paper" aria-labelledby="work-title">
         <div className="container">
           <div className="section-head" data-reveal>
