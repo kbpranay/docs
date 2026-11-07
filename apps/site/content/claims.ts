@@ -313,3 +313,154 @@ export const positioning = {
     reviewBeforeLaunch: 'Legal to confirm EU AI Act wording; do not say "compliant" or name a risk class.',
   },
 } satisfies Record<string, Claim>
+
+/**
+ * Customer stories for /customers. Every entry links to a published case study.
+ * origin 'feedyou': Feedyou case studies (feedyou.ai). Shown only when
+ * NEXT_PUBLIC_SHOW_FEEDYOU=true, because the acquisition is not yet closed or
+ * announced. Labelled "Feedyou, an Enterprise Bot company" when shown.
+ */
+export interface CustomerStory {
+  id: string
+  name: string
+  sector: string
+  country: string
+  channels: string[]
+  voice: boolean
+  metric?: { value: string; label: string }
+  url: string
+  origin: 'eb' | 'feedyou'
+  reviewBeforeLaunch: string
+}
+
+const FY_CHECK =
+  'Feedyou story: publish only after the acquisition closes and is announced; confirm customer permission to appear on enterprisebot.ai.'
+
+export const customerStories: CustomerStory[] = [
+  {
+    id: 'generali',
+    name: 'Generali Switzerland',
+    sector: 'Insurance',
+    country: 'Switzerland',
+    channels: ['Voice', 'Call routing'],
+    voice: true,
+    metric: { value: '97%', label: 'speech comprehension' },
+    url: 'https://www.enterprisebot.ai/case_study/generali_voice-0',
+    origin: 'eb',
+    reviewBeforeLaunch: RECHECK,
+  },
+  {
+    id: 'swiss-health',
+    name: 'A Swiss health insurer',
+    sector: 'Health insurance',
+    country: 'Switzerland',
+    channels: ['Voice routing', 'Genesys'],
+    voice: true,
+    metric: { value: '98%', label: 'routing accuracy, confirmed by agents' },
+    url: 'https://www.enterprisebot.ai/swiss-health-insurer-case-study-en-enterprise-bot',
+    origin: 'eb',
+    reviewBeforeLaunch: 'Keep unnamed unless approved; source page needs cleaning (see stats.swissHealthRouting).',
+  },
+  {
+    id: 'moneta',
+    name: 'MONETA Money Bank',
+    sector: 'Banking',
+    country: 'Czech Republic',
+    channels: ['Voice', 'Genesys'],
+    voice: true,
+    metric: { value: '25%', label: 'of call-center requests handled by the voicebot after six months (up to)' },
+    url: 'https://feedyou.ai/success-stories/moneta-money-bank/',
+    origin: 'feedyou',
+    reviewBeforeLaunch: FY_CHECK,
+  },
+  {
+    id: 'foxconn',
+    name: 'Foxconn (Czech plants)',
+    sector: 'Manufacturing',
+    country: 'Czech Republic',
+    channels: ['Voice', '9 languages'],
+    voice: true,
+    metric: { value: '2 min', label: 'password recovery, down from up to 3 days' },
+    url: 'https://feedyou.ai/success-stories/foxconn/',
+    origin: 'feedyou',
+    reviewBeforeLaunch: FY_CHECK,
+  },
+  {
+    id: 'bezrealitky',
+    name: 'Bezrealitky',
+    sector: 'Real estate',
+    country: 'Czech Republic',
+    channels: ['Voice', 'Chat'],
+    voice: true,
+    metric: { value: '3,300', label: 'calls a month handled by the voicebot' },
+    url: 'https://feedyou.ai/success-stories/bezrealitky/',
+    origin: 'feedyou',
+    reviewBeforeLaunch: FY_CHECK,
+  },
+  {
+    id: 'callpoint',
+    name: 'Callpoint AG',
+    sector: 'Contact-center services',
+    country: 'Switzerland',
+    channels: ['Agent assist'],
+    voice: false,
+    metric: { value: '60%', label: 'less training effort for new agents' },
+    url: 'https://www.enterprisebot.ai/case_study/callpoint',
+    origin: 'eb',
+    reviewBeforeLaunch: RECHECK,
+  },
+  {
+    id: 'comboios',
+    name: 'Comboios de Portugal',
+    sector: 'Rail',
+    country: 'Portugal',
+    channels: ['Chat', 'WhatsApp'],
+    voice: false,
+    metric: { value: '90%', label: 'reduction in agent handling costs' },
+    url: 'https://www.enterprisebot.ai/case_study/comboios-de-portugal',
+    origin: 'eb',
+    reviewBeforeLaunch: RECHECK + ' Source page also carries other customers’ text; ask marketing to clean it.',
+  },
+  {
+    id: 'tpe',
+    name: 'TransPennine Express',
+    sector: 'Rail',
+    country: 'United Kingdom',
+    channels: ['Chat'],
+    voice: false,
+    metric: { value: '3.1 s', label: 'average response time' },
+    url: 'https://www.enterprisebot.ai/case_study/transpennineexpress',
+    origin: 'eb',
+    reviewBeforeLaunch: RECHECK,
+  },
+  {
+    id: 'avenberg',
+    name: 'Avenberg',
+    sector: 'Retail',
+    country: 'Czech Republic',
+    channels: ['Email'],
+    voice: false,
+    metric: { value: '3.85 s', label: 'email response time, down from several minutes' },
+    url: 'https://feedyou.ai/success-stories/avenberg/',
+    origin: 'feedyou',
+    reviewBeforeLaunch: FY_CHECK,
+  },
+  { id: 'swica', name: 'SWICA', sector: 'Health insurance', country: 'Switzerland', channels: ['Chat'], voice: false, url: 'https://www.enterprisebot.ai/case_study/swica', origin: 'eb', reviewBeforeLaunch: RECHECK },
+  { id: 'six', name: 'SIX', sector: 'Financial services', country: 'Switzerland', channels: ['Email automation'], voice: false, url: 'https://www.enterprisebot.ai/case_study/six', origin: 'eb', reviewBeforeLaunch: RECHECK },
+  { id: 'ksw', name: 'Kantonsspital Winterthur', sector: 'Healthcare', country: 'Switzerland', channels: ['Chat'], voice: false, url: 'https://www.enterprisebot.ai/case_study/ksw', origin: 'eb', reviewBeforeLaunch: RECHECK },
+  { id: 'rmv', name: 'RMV', sector: 'Public transport', country: 'Germany', channels: ['Chat', 'Email automation'], voice: false, url: 'https://www.enterprisebot.ai/case_study/rmv-0', origin: 'eb', reviewBeforeLaunch: RECHECK },
+  { id: 'yuh', name: 'Yuh', sector: 'Fintech', country: 'Switzerland', channels: ['Chat'], voice: false, url: 'https://www.enterprisebot.ai/case_study/yuh', origin: 'eb', reviewBeforeLaunch: RECHECK },
+  { id: 'bcd', name: 'BCD WTS', sector: 'Travel', country: 'Switzerland', channels: ['Email automation', 'Agent assist'], voice: false, url: 'https://www.enterprisebot.ai/case_study/bcd-wts', origin: 'eb', reviewBeforeLaunch: RECHECK },
+]
+
+/** Feedyou headline and customer names as published on feedyou.ai (observed 7 Nov 2026). Gated like the stories. */
+export const feedyouProof: Claim & { headline: string; names: string[] } = {
+  id: 'feedyou-proof',
+  headline: '120+ customers and 300+ solutions over nine years in Central and Eastern Europe',
+  names: ['MONETA Money Bank', 'Toyota', 'Škoda', 'DHL', 'DB Schenker', 'Tesco Mobile', 'Česká pošta', 'REWE Group', 'Dr.Max', 'Foxconn'],
+  status: 'published-public',
+  source: 'feedyou.ai homepage: headline numbers and customer logo wall',
+  sourceUrl: 'https://feedyou.ai/',
+  observed: OBSERVED,
+  reviewBeforeLaunch: FY_CHECK,
+}

@@ -15,6 +15,7 @@ export const nav = [
   { label: 'Technology', href: '/technology' },
   { label: 'Languages', href: '/languages' },
   { label: 'Security', href: '/security' },
+  { label: 'Customers', href: '/customers' },
   { label: 'Pricing', href: '/pricing' },
 ]
 
@@ -27,3 +28,6 @@ export const offices = [
   { city: 'Bangalore', country: 'India', address: 'HSR Layout Sector 6, Bangalore 560102' },
   { city: 'Dover', country: 'United States', address: '8 The Green, Ste A, Dover, DE 19901' },
 ]
+
+/** Feedyou stories appear only when this is on (after the acquisition closes and is announced). */
+export const showFeedyou = process.env.NEXT_PUBLIC_SHOW_FEEDYOU === 'true'

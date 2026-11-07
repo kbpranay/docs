@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Brush } from '@/components/Brush'
+import { QaLens } from '@/components/QaLens'
 import { HeroScene } from '@/components/HeroScene'
 import { Arrow, Check } from '@/components/Icons'
 import { InView } from '@/components/InView'
@@ -9,9 +10,9 @@ import { SampleCall } from '@/components/SampleCall'
 import { VoiceDemo } from '@/components/VoiceDemo'
 import { providerLabel, voiceDemoEnabled, voiceDemoProvider } from '@/lib/voiceDemo'
 import { Waves } from '@/components/Waves'
-import { proofRow, quotes, stats } from '@/content/claims'
+import { feedyouProof, proofRow, quotes, stats } from '@/content/claims'
 import { products, startingPoints } from '@/content/products'
-import { site } from '@/content/site'
+import { showFeedyou, site } from '@/content/site'
 
 const startCopy: Record<string, { line: string; does: string[] }> = {
   'voice-agent': {
@@ -92,10 +93,10 @@ export default function Home() {
 
           <div className="proof-row">
             <p className="proof-row__label">
-              Customers include · <a href="https://www.enterprisebot.ai/case_study">Read customer stories ↗</a>
+              Customers include · <Link href="/customers">Read customer stories →</Link>
             </p>
             <ul>
-              {proofRow.names.map((n) => (
+              {[...proofRow.names, ...(showFeedyou ? feedyouProof.names.slice(0, 3) : [])].map((n) => (
                 <li key={n}>{n}</li>
               ))}
             </ul>
@@ -158,6 +159,9 @@ export default function Home() {
             </a>
           </article>
           </div>
+          <p className="path-links" data-reveal>
+            <Link href="/customers">See all customer stories →</Link>
+          </p>
         </div>
       </section>
 
@@ -207,38 +211,9 @@ export default function Home() {
               See Quality Assessment <Arrow />
             </Link>
           </div>
-          <figure className="scorecard" data-reveal style={{ ['--reveal-delay' as string]: '70ms' }}>
-            <div className="scorecard__head">
-              <span>
-                <b>Claims call · 10:42</b>
-                <small>Scored against: Claims QA scorecard</small>
-              </span>
-              <span className="scene__label">Illustrative</span>
-            </div>
-            <ol className="scorecard__rows">
-              {[
-                { c: 'Greeting and identification', r: 'Met', e: 'Caller verified before account details were discussed.' },
-                { c: 'Correct process followed', r: 'Met', e: 'Payout policy §4.2 checked before the account change.' },
-                { c: 'Handover explained', r: 'Partly met', e: 'Approval step named; expected timing not given.' },
-              ].map((row) => (
-                <li key={row.c}>
-                  <div className="scorecard__crit">
-                    <b>{row.c}</b>
-                    <span className={row.r === 'Met' ? 'chip chip--ok' : 'chip chip--warn'}>{row.r}</span>
-                  </div>
-                  <p>“{row.e}”</p>
-                </li>
-              ))}
-            </ol>
-            <div className="scorecard__coach">
-              <b>Coaching note</b>
-              <p>Tell the caller when Claims will confirm the approval.</p>
-            </div>
-            <figcaption>
-              Illustrative: hand-written to show the format, based on the synthetic claims call in the simulation at the
-              top of this page. Not product output and not customer data.
-            </figcaption>
-          </figure>
+          <div data-reveal style={{ ['--reveal-delay' as string]: '70ms' }}>
+            <QaLens />
+          </div>
         </div>
       </section>
 

@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${site.url}/technology`, priority: 0.7 },
     { url: `${site.url}/languages`, priority: 0.7 },
     { url: `${site.url}/security`, priority: 0.7 },
+    { url: `${site.url}/customers`, priority: 0.7 },
     { url: `${site.url}/pricing`, priority: 0.7 },
     { url: `${site.url}/evaluation`, priority: 0.7 },
     { url: `${site.url}/implementation`, priority: 0.6 },
