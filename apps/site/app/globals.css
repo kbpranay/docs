@@ -3045,7 +3045,8 @@ html:not(.js) .scene__play {
 }
 .mega {
   width: min(820px, 86vw);
-  max-width: calc(100vw - 2 * var(--gutter));
+  /* Keep a gutter at narrow desktop widths (the panel starts under the Platform trigger). */
+  max-width: min(820px, calc(100vw - 340px));
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 .site-nav .mega a,
@@ -3228,7 +3229,10 @@ html:not(.js) .scene__play {
     transform: none;
   }
   .btn:active,
-  .scene__status > span {
+  .scene__status > span,
+  .scene[data-ready='true'] [data-beat],
+  .mega,
+  .mobile-menu {
     transform: none !important;
   }
   .js .mini-line {
