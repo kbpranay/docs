@@ -174,6 +174,22 @@ export const positioning = {
     reviewBeforeLaunch:
       'Keep the consent notice naming the voice provider (Gemini by default, or OpenAI). Privacy review of sending visitor audio to OpenAI (privacy notice, DPA). Confirm cost caps and abuse limits.',
   },
+  caseStudies: {
+    id: 'case-studies',
+    status: 'published-public',
+    source: 'Published case studies on enterprisebot.ai/case_study (Generali voice, Callpoint, SWICA and others)',
+    sourceUrl: 'https://www.enterprisebot.ai/case_study',
+    observed: OBSERVED,
+    reviewBeforeLaunch: 'Confirm each linked case study is still approved by the customer.',
+  },
+  reviewRatings: {
+    id: 'review-ratings',
+    status: 'published-public',
+    source: 'Ratings shown on the enterprisebot.ai homepage: G2 4.7, Capterra 4.5, GetApp 4.5',
+    sourceUrl: PUBLIC_SITE,
+    observed: OBSERVED,
+    reviewBeforeLaunch: 'Re-check current ratings on each review platform and link to the profiles.',
+  },
   integrationsPublic: {
     id: 'integrations-public',
     status: 'published-public',

@@ -246,6 +246,55 @@ export const products: Product[] = [
     },
   },
   {
+    slug: 'live-translate',
+    icon: 'globe',
+    name: 'Live Translate',
+    short: 'Translate',
+    navLine: 'Customers and agents speak different languages on one call (early access)',
+    title: ['Every agent, ', { hl: 'every language.' }],
+    flowTitle: ['Both directions, ', { hl: 'at the same time.' }],
+    intro:
+      'Live two-way translation for contact-center calls. The customer speaks their language, the agent speaks theirs, and each hears the other translated in real time. In early access.',
+    problem: {
+      title: 'Language skills decide who can take the call.',
+      body: 'Calls in less common languages wait for the one agent who speaks them, get escalated, or need an interpreter on the line. Peaks and new markets make it worse.',
+      points: ['Language queues with long waits', 'Interpreters added to calls at extra cost', 'Agents limited to the languages they speak'],
+    },
+    workflow: [
+      { title: 'Customer speaks', body: 'The caller talks naturally in their own language.' },
+      { title: 'Translate', body: 'Speech is recognised and translated while they talk.' },
+      { title: 'Agent hears', body: 'The agent hears the translation in their language.' },
+      { title: 'Agent replies', body: 'The reply is translated back to the customer in parallel.' },
+      { title: 'Record', body: 'The conversation can be transcribed for summaries and quality assessment.' },
+    ],
+    capabilities: [
+      { icon: 'globe', title: 'Two-way, in parallel', body: 'Both directions are translated at the same time, so the conversation keeps its rhythm.' },
+      { icon: 'plug', title: 'Works over your telephony', body: 'Connects over SIP to the contact center you already run.' },
+      { icon: 'handover', title: 'Any agent, any queue', body: 'Route calls on skills and availability instead of language alone.' },
+      { icon: 'summary', title: 'Transcripts for follow-up', body: 'Transcripts available for summaries and QA where you enable them.' },
+      { icon: 'shield', title: 'Your deployment choices', body: 'Hosting and data flow agreed with your security team, like the rest of the platform.' },
+      { icon: 'target', title: 'Tested on your language pairs', body: 'Language pairs and audio conditions are tested with your own calls before rollout.' },
+    ],
+    fit: {
+      integrations: ['SIP connection to your contact center', 'Genesys Cloud and other SIP-capable platforms', 'Enterprise Bot Quality Assessment'],
+      deployment: deploymentLine,
+    },
+    faq: [
+      { q: 'Is it generally available?', a: 'Live Translate is in early access. We run it with a small number of contact centers and confirm language pairs and setup with each.' },
+      { q: 'Which languages are supported?', a: 'English and German have been demonstrated, and many European language pairs are in testing. We confirm your pairs on your own audio before rollout.' },
+      { q: 'How fast is it?', a: 'Translation runs while people speak. We measure the delay on your telephony during the evaluation rather than quote a lab number.' },
+    ],
+    visual: {
+      channel: 'Live translation',
+      lines: [
+        { who: 'customer', text: 'Dzień dobry, chcę zmienić termin wizyty.' },
+        { who: 'system', text: 'Agent hears (German): Guten Tag, ich möchte meinen Termin ändern.' },
+        { who: 'agent', text: 'Gerne. Passt Ihnen Dienstag um 10 Uhr?' },
+        { who: 'system', text: 'Customer hears (Polish): Oczywiście. Czy pasuje wtorek o 10?' },
+      ],
+    },
+  },
+  {
     slug: 'agent-assist',
     icon: 'headset',
     name: 'Agent Assist',

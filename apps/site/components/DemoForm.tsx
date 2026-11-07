@@ -5,7 +5,7 @@ import { Arrow } from './Icons'
 
 type Status = { kind: 'idle' } | { kind: 'sending' } | { kind: 'ok' } | { kind: 'info' | 'error'; message: string }
 
-const interests = ['Voice Agent', 'Quality Assessment', 'Agent Assist', 'Conversation Analytics', 'Email Agent', 'Chat Agent', 'Not sure yet']
+const interests = ['Voice Agent', 'Quality Assessment', 'Live Translate', 'Agent Assist', 'Conversation Analytics', 'Email Agent', 'Chat Agent', 'Not sure yet']
 const platforms = ['Genesys Cloud', 'Cisco', 'Salesforce', 'Other / none']
 
 export function DemoForm() {

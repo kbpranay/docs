@@ -91,12 +91,15 @@ export default function Home() {
           </div>
 
           <div className="proof-row">
-            <p className="proof-row__label">Customers include</p>
+            <p className="proof-row__label">
+              Customers include · <a href="https://www.enterprisebot.ai/case_study">Read customer stories ↗</a>
+            </p>
             <ul>
               {proofRow.names.map((n) => (
                 <li key={n}>{n}</li>
               ))}
             </ul>
+            <p className="proof-row__ratings">Rated 4.7 on G2 · 4.5 on Capterra · 4.5 on GetApp</p>
           </div>
         </div>
       </section>
@@ -125,6 +128,9 @@ export default function Home() {
                 <strong>{quotes.generali.person}</strong>
                 {quotes.generali.role}
               </p>
+              <a className="story-link" href="https://www.enterprisebot.ai/case_study/generali_voice-0">
+                Read the Generali case study ↗
+              </a>
             </div>
             <div className="stats">
               {[stats.generaliComprehension, stats.generaliMisrouted].map((st, i) => (
@@ -267,6 +273,15 @@ export default function Home() {
             </Link>
             , on the same knowledge and rules.
           </p>
+          <Link href="/platform/live-translate" className="lt-strip" data-reveal>
+            <span className="lt-strip__tag">Early access</span>
+            <span className="lt-strip__body">
+              <b>Live Translate</b> Customers and agents speak different languages on the same call, translated in real time.
+            </span>
+            <span className="lt-strip__go">
+              See Live Translate <Arrow />
+            </span>
+          </Link>
           <div className="quote-row">
             <article className="quote-card" data-reveal>
               <div className="stat-inline">
@@ -281,6 +296,9 @@ export default function Home() {
                 <strong>{quotes.callpoint.person}</strong>
                 {quotes.callpoint.customer} · quote refers to an earlier Enterprise Bot product name
               </p>
+              <a className="story-link story-link--dark" href="https://www.enterprisebot.ai/case_study/callpoint">
+                Read the Callpoint case study ↗
+              </a>
             </article>
             <article className="quote-card" data-reveal style={{ ['--reveal-delay' as string]: '70ms' }}>
               <blockquote>{quotes.swica.quote}</blockquote>
@@ -288,6 +306,9 @@ export default function Home() {
                 <strong>{quotes.swica.person}</strong>
                 {quotes.swica.customer}
               </p>
+              <a className="story-link story-link--dark" href="https://www.enterprisebot.ai/case_study/swica">
+                Read the SWICA case study ↗
+              </a>
             </article>
           </div>
         </div>

@@ -71,10 +71,12 @@ export default function Security() {
             <h2 id="cert-title" className="h2" style={{ marginTop: 16 }}>
               Documentation on request.
             </h2>
-            <p className="lede" style={{ marginTop: 20 }}>
-              SOC 2 report, data processing agreement, component-by-component data flow and answers to your security
-              questionnaire, shared during procurement.
-            </p>
+            <ul className="share-list">
+              <li>SOC 2 report (under NDA)</li>
+              <li>Data processing agreement</li>
+              <li>Component-by-component data-flow diagram</li>
+              <li>Answers to your security questionnaire</li>
+            </ul>
             <p className="lede" style={{ marginTop: 20 }}>
               How this website handles your data: <Link href="/privacy">Privacy notice</Link>. Technical detail:{' '}
               <Link href="/technology">Technology</Link>.

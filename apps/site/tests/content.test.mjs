@@ -105,7 +105,7 @@ test('product pages follow the template', () => {
   const src = read('content/products.ts')
   const count = (re) => (src.match(re) || []).length
   const n = count(/\n    slug: '/g)
-  assert.equal(n, 6, 'expected six products')
+  assert.equal(n, 7, 'expected seven products')
   for (const key of ['title:', 'intro:', 'problem:', 'workflow:', 'capabilities:', 'fit:', 'faq:', 'visual:']) {
     assert.equal(count(new RegExp(`\\n    ${key}`, 'g')), n, `every product needs ${key}`)
   }

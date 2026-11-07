@@ -3476,6 +3476,95 @@ html:not(.js) .scene__play {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+.story-link {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--white);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.story-link--dark {
+  color: var(--ink);
+}
+.proof-row__label a {
+  color: var(--on-dark-2);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.proof-row__ratings {
+  font-size: 14px;
+  color: var(--on-dark-3);
+}
+.lt-strip {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 10px 20px;
+  align-items: center;
+  margin-top: 32px;
+  padding: 20px 24px;
+  border-radius: var(--radius-l);
+  background: var(--navy);
+  color: var(--white);
+  text-decoration: none;
+}
+@media (min-width: 860px) {
+  .lt-strip {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+}
+.lt-strip__tag {
+  justify-self: start;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--orange);
+  color: var(--navy);
+  font-size: 13px;
+  font-weight: 600;
+}
+.lt-strip__body {
+  font-size: 16px;
+  color: var(--on-dark-2);
+}
+.lt-strip__body b {
+  color: var(--white);
+  margin-right: 6px;
+}
+.lt-strip__go {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 15px;
+}
+.lt-strip__go .arrow {
+  transition: transform 160ms var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .lt-strip:hover .arrow {
+    transform: translateX(3px);
+  }
+}
+.share-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 20px;
+}
+.share-list li {
+  display: flex;
+  gap: 12px;
+  font-size: 17px;
+  color: var(--ink-2);
+}
+.share-list li::before {
+  content: '';
+  flex: none;
+  width: 14px;
+  height: 2px;
+  margin-top: 0.8em;
+  background: var(--orange-display);
+}
 /* ---------- Figures and diagrams on content pages ---------- */
 .narrow {
   max-width: 64ch;

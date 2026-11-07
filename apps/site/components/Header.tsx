@@ -8,7 +8,7 @@ import { products } from '@/content/products'
 import { Arrow, Chevron } from './Icons'
 
 const megaGroups = [
-  { label: 'Voice', slugs: ['voice-agent'] },
+  { label: 'Voice', slugs: ['voice-agent', 'live-translate'] },
   { label: 'Contact-center loop', slugs: ['agent-assist', 'quality-assessment', 'conversation-analytics'] },
   { label: 'More channels', slugs: ['email-agent', 'chat-agent'] },
 ]
