@@ -100,7 +100,7 @@ export const products: Product[] = [
   {
     slug: 'conversation-insights',
     showcase: { kind: 'metrics', title: ['Ask for any metric. ', { hl: 'In plain words.' }], body: 'Describe the metric you need, such as “customer asked for a callback”. It is applied to your conversations and appears as a column you can sort, filter and report on. Ask follow-up questions in plain language and get the answer as a chart.' },
-    flowTitle: ['From every conversation to ', { hl: 'the next decision.' }],
+    flowTitle: ['From conversation to ', { hl: 'the next decision.' }],
     icon: 'target',
     name: 'Conversation Insights',
     short: 'Insights',
