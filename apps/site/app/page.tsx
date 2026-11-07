@@ -6,6 +6,8 @@ import { InView } from '@/components/InView'
 import { Journey } from '@/components/Journey'
 import { OutlineIcon } from '@/components/OutlineIcon'
 import { SampleCall } from '@/components/SampleCall'
+import { VoiceDemo } from '@/components/VoiceDemo'
+import { voiceDemoEnabled } from '@/lib/voiceDemo'
 import { Waves } from '@/components/Waves'
 import { proofRow, quotes, stats } from '@/content/claims'
 import { products, startingPoints } from '@/content/products'
@@ -72,7 +74,7 @@ export default function Home() {
                   {site.primaryCta.label} <Arrow />
                 </Link>
                 <Link className="btn btn--ghost" href={site.secondaryCta.href}>
-                  {site.secondaryCta.label}
+                  {voiceDemoEnabled ? 'Talk to the voice agent' : site.secondaryCta.label}
                 </Link>
               </div>
             </div>
@@ -110,6 +112,7 @@ export default function Home() {
               published results.
             </p>
           </div>
+          {voiceDemoEnabled && <VoiceDemo />}
           <SampleCall />
           <article className="feature-story feature-story--wide" data-reveal>
             <div>

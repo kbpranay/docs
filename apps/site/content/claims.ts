@@ -166,6 +166,14 @@ export const positioning = {
     reviewBeforeLaunch:
       'Product sign-off on scope: human vs AI conversations, channels, languages, custom scorecards and weightings, reviewer override, team and topic trends. Do not name any customer as a QA reference without written approval.',
   },
+  voiceDemo: {
+    id: 'live-voice-demo',
+    status: 'positioning',
+    source: 'Website live demo (components/VoiceDemo.tsx) on a third-party real-time voice model (OpenAI Realtime), CEO instruction 7 Nov 2026',
+    observed: OBSERVED,
+    reviewBeforeLaunch:
+      'Keep the on-page label that it is a third-party model on a fictional scenario. Privacy review of sending visitor audio to OpenAI (privacy notice, DPA). Confirm cost caps and abuse limits.',
+  },
   genesysLayer: {
     id: 'genesys-layer',
     status: 'positioning',

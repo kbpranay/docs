@@ -46,6 +46,21 @@ npm run typecheck
 3. Ask the `critical-marketing-designer` agent to review that folder.
 4. Fix its required changes and repeat until its verdict is **APPROVED**.
 
+## Live voice demo ("Talk to the voice agent")
+
+A button in the homepage voice section connects the visitor's microphone to a
+real-time voice model (OpenAI Realtime) running a fictional insurance-claims
+scenario (`lib/voiceDemo.ts`). It is labelled on the page as a third-party model
+demo, not Enterprise Bot's production voice stack.
+
+- Switch on: `VOICE_DEMO_ENABLED=true` and `OPENAI_API_KEY=...` (server only; set at build and run time).
+- Limits (server-enforced in `app/api/voice-demo/session`): `VOICE_DEMO_MAX_SECONDS` (120; the server
+  hangs up the call itself), `VOICE_DEMO_PER_IP_PER_HOUR` (3), `VOICE_DEMO_DAILY_LIMIT` (200),
+  `VOICE_DEMO_MAX_CONCURRENT` (5). Optional: `OPENAI_REALTIME_MODEL` (gpt-realtime), `OPENAI_REALTIME_VOICE` (marin).
+- Limits are in memory per server; use a shared store if you run more than one instance.
+- Also set a monthly spend limit on the OpenAI project used for this key.
+- Not yet tested against the live OpenAI API from this build (no key available here).
+
 ## Before launch (not done in this build)
 
 - Confirm every entry in `content/claims.ts` (customer permission, metric period and definition).

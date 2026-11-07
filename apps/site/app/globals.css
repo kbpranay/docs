@@ -319,6 +319,7 @@ ol {
   border-color: var(--ink);
 }
 .on-dark .btn--ghost,
+.voice-demo .btn--ghost,
 .section--navy .btn--ghost,
 .hero .btn--ghost,
 .page-hero .btn--ghost,
@@ -327,6 +328,7 @@ ol {
   color: var(--white);
 }
 .on-dark .btn--ghost:hover,
+.voice-demo .btn--ghost:hover,
 .section--navy .btn--ghost:hover,
 .hero .btn--ghost:hover,
 .page-hero .btn--ghost:hover,
@@ -3101,6 +3103,100 @@ html:not(.js) .scene__play {
 }
 .sample-call audio {
   width: 100%;
+}
+
+/* ---------- Live voice demo ---------- */
+.voice-demo {
+  margin: 0 0 24px;
+  padding: clamp(20px, 3vw, 28px);
+  border-radius: var(--radius-xl);
+  background: var(--navy);
+  color: var(--white);
+  display: grid;
+  gap: 16px;
+}
+.voice-demo__main {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 16px 20px;
+  align-items: center;
+}
+@media (min-width: 760px) {
+  .voice-demo__main {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+}
+.voice-demo__action {
+  grid-column: 1 / -1;
+}
+@media (min-width: 760px) {
+  .voice-demo__action {
+    grid-column: auto;
+  }
+}
+.voice-demo__orb {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--orange);
+  color: var(--navy);
+}
+.voice-demo__orb svg {
+  width: 24px;
+  height: 24px;
+}
+.voice-demo__orb::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid var(--orange);
+  opacity: 0;
+}
+.voice-demo[data-phase='live'][data-speaking='agent'] .voice-demo__orb::after,
+.voice-demo[data-phase='live'][data-speaking='caller'] .voice-demo__orb::after {
+  animation: ring 1.2s var(--ease-out) infinite;
+}
+.voice-demo[data-speaking='caller'] .voice-demo__orb {
+  background: var(--white);
+}
+.voice-demo__title {
+  font-size: 20px;
+  font-weight: 600;
+}
+.voice-demo__sub,
+.voice-demo__consent p,
+.voice-demo__caption {
+  font-size: 15.5px;
+  color: var(--on-dark-2);
+}
+.voice-demo__consent {
+  padding: 16px;
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--line-dark);
+  display: grid;
+  gap: 12px;
+}
+.voice-demo__consent-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.voice-demo__caption b {
+  color: var(--white);
+  margin-right: 6px;
+}
+.voice-demo__msg {
+  font-size: 15px;
+  color: var(--white);
+}
+.voice-demo__note {
+  font-size: 13px;
+  color: var(--on-dark-3);
 }
 
 /* ==========================================================================
