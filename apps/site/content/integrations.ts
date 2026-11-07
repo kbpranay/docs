@@ -111,15 +111,15 @@ export const integrations: Integration[] = [
     navLine: 'Keep VIER telephony; add Enterprise Bot voice AI.',
     title: ['Keep VIER. ', { hl: 'Add voice AI.' }],
     intro:
-      'If your contact center runs on VIER, keep your numbers and call routing and add Enterprise Bot voice agents, transcription and quality assessment.',
+      'If your contact center runs on VIER, keep your numbers and call routing and add Enterprise Bot voice agents, with transcripts and quality assessment for the calls they handle.',
     keep: ['VIER telephony and numbers', 'Your call routing'],
     add: [
       { title: 'Voice AI agents', body: 'Resolve routine calls and hand over the rest with a summary.' },
-      { title: 'Transcription and QA', body: 'Transcripts and scorecard evaluations for your conversations.' },
+      { title: 'Transcription and QA', body: 'Transcripts and scorecard evaluations for calls handled by the Voice Agent.' },
     ],
-    connect: [{ title: 'Call forwarding or SIP', body: 'Calls are forwarded from VIER to the Enterprise Bot voice agent and back to your agents.' }],
+    connect: [{ title: 'Call forwarding', body: 'Calls are forwarded from VIER to the Enterprise Bot voice agent and back to your agents.' }],
     handover: 'Transfers back to your VIER routing with context.',
-    scope: 'Integration path confirmed during scoping.',
+    scope: 'Connected through call forwarding from your VIER setup; other integration paths are assessed during scoping.',
     faq: [{ q: 'Do we have to change numbers?', a: 'No. Calls are forwarded from your existing VIER setup.' }],
   },
   {

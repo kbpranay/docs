@@ -143,6 +143,7 @@ export default function Home() {
       {voiceDemoEnabled && (
         <section id="try" className="section section--paper" aria-label="Try a demo call" style={{ paddingTop: 0 }}>
           <div className="container">
+            <p className="lede" style={{ marginBottom: 16 }}>Want to hear the voice experience yourself?</p>
             <VoiceDemo provider={voiceDemoProvider} providerName={providerLabel[voiceDemoProvider]} />
           </div>
         </section>

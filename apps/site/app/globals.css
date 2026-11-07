@@ -3691,6 +3691,61 @@ html:not(.js) .scene__play {
   }
 }
 
+.pipe__node {
+  position: relative;
+}
+.pipe__tag {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 6px);
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--on-dark-2);
+}
+.mode:not(:first-child) .pipe__tag {
+  color: var(--ink-2);
+}
+.pipe:has(.pipe__tag) {
+  padding-bottom: 22px;
+}
+@media (min-width: 1000px) {
+  .pipe__node {
+    white-space: nowrap;
+    padding: 8px 12px;
+  }
+  .pipe__link {
+    flex: 0 0 16px;
+  }
+}
+@media (max-width: 560px) {
+  .pipe__tag {
+    position: static;
+    transform: none;
+    display: block;
+    margin-top: 2px;
+    white-space: normal;
+    color: var(--navy);
+  }
+  .pipe:has(.pipe__tag) {
+    padding-bottom: 0;
+  }
+}
+.lane__d {
+  margin-top: 6px;
+}
+.lane__t {
+  font-size: 14px;
+}
+.hub__card {
+  display: flex;
+  flex-direction: column;
+}
+.hub__card .hub__line:last-child {
+  margin-top: auto;
+  padding-top: 8px;
+}
 /* Integrations hub: deliberate 3 + 2 grid and connection lanes */
 @media (min-width: 1100px) {
   .hub--partners {

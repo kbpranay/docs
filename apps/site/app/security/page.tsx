@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 }
 
 const blocks = [
-  { t: 'Deployment options', b: 'Managed hosting in the EU, Middle East, North America or Asia; a dedicated private cloud; or on-premises Kubernetes (EKS, GKE, AKS or your own infrastructure).' },
+  { t: 'Deployment options', b: 'Managed hosting in your region (EU, Middle East, North America or Asia), a dedicated private cloud, or on-premises Kubernetes.' },
   { t: 'Data residency', b: 'Choose where data is processed and stored. We document the data flow component by component, including speech engines and language models.' },
   { t: 'Your models, your boundary', b: 'Use language models through your own private endpoints or self-hosted components when data must not leave your environment.' },
   { t: 'Access control', b: 'Single sign-on and SCIM, role-based access and team-wide two-step login.' },

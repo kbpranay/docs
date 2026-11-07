@@ -18,7 +18,7 @@ export function Pipeline({ nodes, label }: { nodes: { name: string; tag?: string
             )}
             <span className={'pipe__node' + (i === 0 || i === all.length - 1 ? ' pipe__node--end' : '') + ('strong' in n && n.strong ? ' pipe__node--strong' : '')}>
               {n.name}
-              {'tag' in n && n.tag && <small>{n.tag}</small>}
+              {'tag' in n && n.tag && <span className="pipe__tag">{n.tag}</span>}
             </span>
           </div>
         ))}

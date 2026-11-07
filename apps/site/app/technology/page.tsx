@@ -55,7 +55,7 @@ export default function Technology() {
               <h3>Speech-to-text → language model → text-to-speech</h3>
               <Pipeline
                 label="Cascaded: caller, speech-to-text, language model with guardrails and PII masking, text-to-speech, caller"
-                nodes={[{ name: 'Speech-to-text' }, { name: 'Language model', tag: 'Guardrails · PII masking', strong: true }, { name: 'Text-to-speech' }]}
+                nodes={[{ name: 'Speech to text' }, { name: 'Language model', tag: 'Guardrails · PII masking', strong: true }, { name: 'Text to speech' }]}
               />
               <ul>
                 <li>Guardrails and PII masking apply to every turn</li>
