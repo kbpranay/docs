@@ -44,6 +44,9 @@ export function Footer() {
                 <li><Link href="/technology">Technology</Link></li>
                 <li><Link href="/languages">Languages</Link></li>
                 <li><Link href="/security">Security and data</Link></li>
+                <li><Link href="/responsible-ai">Responsible AI</Link></li>
+                <li><Link href="/pricing">How pricing works</Link></li>
+                <li><Link href="/evaluation">Pilot and evaluation</Link></li>
                 <li><Link href="/resources">Resources</Link></li>
                 <li><Link href="/privacy">Privacy</Link></li>
                 <li><a href="https://www.enterprisebot.ai/impressum">Imprint</a></li>

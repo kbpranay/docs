@@ -15,6 +15,7 @@ export const nav = [
   { label: 'Technology', href: '/technology' },
   { label: 'Languages', href: '/languages' },
   { label: 'Security', href: '/security' },
+  { label: 'Pricing', href: '/pricing' },
 ]
 
 /** Offices as listed in the current public site footer (observed 7 Nov 2026). */

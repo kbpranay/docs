@@ -1,0 +1,99 @@
+import type { Metadata } from 'next'
+import Link from 'next/link'
+import { FigureCard } from '@/components/FigureCard'
+import { Check } from '@/components/Icons'
+import { CtaBand, PageHero } from '@/components/PageHero'
+
+export const metadata: Metadata = {
+  title: 'How pricing works',
+  description: 'Enterprise Bot pricing model: a platform fee plus usage, languages included, with total cost modelled on your own volumes.',
+  alternates: { canonical: '/pricing' },
+}
+
+export default function Pricing() {
+  return (
+    <>
+      <PageHero
+        kicker="Pricing"
+        title={
+          <>
+            Know the cost <span className="hl">before you commit.</span>
+          </>
+        }
+        intro="A clear pricing model, modelled on your own call and email volumes, so you can compare it with what you run today."
+        aside={
+          <FigureCard
+            title="What you pay for"
+            rows={['Platform fee for your deployment', 'Usage, based on your volumes', 'Languages included, no per-language fee', 'Implementation scoped up front'].map((t) => (
+              <>
+                <span className="figure-row__tick" aria-hidden="true">
+                  <Check />
+                </span>
+                <span>{t}</span>
+              </>
+            ))}
+          />
+        }
+      />
+      <section className="section section--paper" aria-labelledby="drivers-title">
+        <div className="container">
+          <div className="section-head" data-reveal>
+            <p className="kicker">What drives cost</p>
+            <h2 id="drivers-title" className="h2">
+              The few things that move the number.
+            </h2>
+          </div>
+          <div className="caps" data-reveal>
+            <article className="cap">
+              <h3>Volume</h3>
+              <p>How many calls, chats and emails the AI handles, and how long a typical conversation lasts.</p>
+            </article>
+            <article className="cap">
+              <h3>Channels and products</h3>
+              <p>Voice, email, chat, agent assist, quality assessment: you pay for what you use.</p>
+            </article>
+            <article className="cap">
+              <h3>Deployment</h3>
+              <p>Managed hosting, private cloud or on-premises, and which models run where.</p>
+            </article>
+            <article className="cap">
+              <h3>Integrations</h3>
+              <p>The systems the AI acts in, scoped as part of implementation.</p>
+            </article>
+            <article className="cap">
+              <h3>Peak capacity</h3>
+              <p>How many conversations must run at the same time during your busiest hours.</p>
+            </article>
+            <article className="cap">
+              <h3>Languages</h3>
+              <p>Included. Adding a language does not add a language fee.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section className="section section--white" aria-labelledby="tco-title">
+        <div className="container">
+          <div className="narrow" data-reveal>
+            <p className="kicker">Total cost of ownership</p>
+            <h2 id="tco-title" className="h2" style={{ marginTop: 16 }}>
+              Compared on your volumes, not on a list price.
+            </h2>
+            <p className="lede" style={{ marginTop: 20 }}>
+              We build a cost model with your current volumes, growth scenarios and what you pay today, including AI
+              add-ons on your contact-center platform. You see the platform fee, usage and implementation separately.
+            </p>
+            <ul className="share-list">
+              <li>Your volumes today, at double and at five times</li>
+              <li>Platform, usage and implementation shown separately</li>
+              <li>Assumptions written down so your finance team can check them</li>
+            </ul>
+            <p className="lede" style={{ marginTop: 24 }}>
+              Ready to compare? <Link href="/evaluation">See how an evaluation works</Link>.
+            </p>
+          </div>
+        </div>
+      </section>
+      <CtaBand title={<>Get a cost model for <span className="hl">your</span> volumes.</>} body="Share your call and email volumes and we will model platform, usage and implementation costs for you." />
+    </>
+  )
+}
